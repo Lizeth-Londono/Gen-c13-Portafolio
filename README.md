@@ -24,8 +24,6 @@ Propuesta, planeación y futuro desarrollo de mi portafolio profesional, creado 
 - [Tecnologías previstas](#-tecnologías-previstas)
 - [Proceso creativo](#-proceso-creativo)
 - [Uso de inteligencia artificial](#-uso-de-inteligencia-artificial)
-- [Instalación](#-instalación)
-- [Uso](#-uso)
 - [Estructura del repositorio](#-estructura-del-repositorio)
 - [Evidencias visuales](#-evidencias-visuales)
 - [Estado actual](#-estado-actual)
@@ -34,7 +32,7 @@ Propuesta, planeación y futuro desarrollo de mi portafolio profesional, creado 
 - [Autora](#-autora)
 - [Referente visual](#-referente-visual)
 - [Contacto](#-contacto)
-- [Licencia](#-licencia)
+
 
 ---
 
@@ -160,11 +158,11 @@ Cofundadora de LIHEN.CO
 
 > Acta non verba, con propósito.
 
-### Mensaje complementario
+### Mensaje complementario 
 
 > Ideas que se convierten en soluciones digitales reales.
 
-### Paleta inicial
+### Paleta inicial propuesta
 
 ```css
 :root {
@@ -209,11 +207,11 @@ El objetivo es mantener una identidad tecnológica sin sacrificar la legibilidad
 
 ---
 
-## 🧭 Estructura del portafolio
+## 🧭 Estructura del portafolio propuesta
 
 El portafolio estará organizado inicialmente en cinco secciones.
 
-### 1. Inicio
+### 1. Inicio 
 
 La portada permitirá identificar rápidamente:
 
@@ -241,7 +239,7 @@ Ideas que se convierten en soluciones digitales reales.
 [ Ver proyectos ]    [ Contáctame ]
 ```
 
-### 2. Sobre mí
+### 2. Sobre mí propuesta
 
 Esta sección explicará quién soy más allá de una lista de tecnologías.
 
@@ -258,7 +256,7 @@ La composición visual incluirá:
 * una descripción breve;
 * elementos visuales relacionados con programación.
 
-### 3. Proyectos
+### 3. Proyectos propuesta
 
 La sección mostrará entre tres y cinco proyectos que pueda explicar y defender durante una entrevista.
 
@@ -277,7 +275,7 @@ Cada proyecto deberá incluir:
 * enlace al repositorio;
 * enlace al proyecto publicado, cuando exista.
 
-#### Proyectos considerados inicialmente
+#### Proyectos considerados inicialmente propuesta
 
 ##### Portafolio LXL
 
@@ -361,13 +359,13 @@ La composición propuesta estará dividida en:
 
 ---
 
-## ✨ Introducción animada
+## ✨ Introducción animada propuesta
 
 Antes de mostrar la página de inicio, quiero explorar una introducción visual corta.
 
 La idea es comenzar con una pantalla oscura en la que aparezcan caracteres distribuidos de forma irregular.
 
-### Caracteres considerados
+### Caracteres considerados propuesta
 
 ```text
 0  1  3  5  8
@@ -402,7 +400,7 @@ LIZETH LONDOÑO
 
 Finalmente, la animación daría paso a la pantalla principal.
 
-### Significado
+### Significado propuesta
 
 La introducción busca representar cómo diferentes elementos pueden organizarse hasta convertirse en una identidad y una solución digital:
 
@@ -420,7 +418,7 @@ Soluciones digitales reales
 
 La introducción no será únicamente decorativa. Tendrá relación con el concepto general del portafolio.
 
-### Alcance inicial
+### Alcance inicial propuesta
 
 La introducción todavía es una intención de diseño.
 
@@ -435,7 +433,7 @@ La prioridad será siempre que el portafolio sea funcional, responsive, accesibl
 
 ---
 
-## 🛠️ Tecnologías previstas
+## 🛠️ Tecnologías previstas propuesta
 
 Las tecnologías consideradas inicialmente son:
 
@@ -452,7 +450,7 @@ Las tecnologías definitivas se actualizarán según lo que realmente se utilice
 
 ---
 
-## 🧠 Proceso creativo
+## 🧠 Proceso creativo 
 
 El proceso planteado es:
 
@@ -480,7 +478,7 @@ Pruebas
 Publicación
 ```
 
-### Bocetos iniciales
+### Bocetos iniciales propuesta
 
 Los primeros bocetos fueron realizados manualmente para organizar:
 
@@ -492,7 +490,7 @@ Los primeros bocetos fueron realizados manualmente para organizar:
 
 Estos dibujos representan la primera interpretación de mi idea y no el resultado definitivo.
 
-### Wireframes
+### Wireframes propuesta
 
 Los wireframes se utilizan para revisar:
 
@@ -505,7 +503,7 @@ Los wireframes se utilizan para revisar:
 * botones;
 * relación entre secciones.
 
-### Exploraciones visuales
+### Exploraciones visuales propuesta
 
 Las propuestas a color sirven para estudiar:
 
@@ -555,43 +553,13 @@ Las decisiones finales sobre estructura, contenido, accesibilidad, navegación, 
 
 Actualmente el proyecto se encuentra en etapa de diseño y planeación.
 
-Cuando exista una primera versión desarrollada, podrá descargarse de la siguiente manera.
+Cuando exista una primera versión desarrollada, podrá descargarse o clonar
 
 ### 1. Clonar el repositorio
 
 ```bash
 git clone https://github.com/Lizeth-Londono/Gen-c13-Portafolio.git
 ```
-
-### 2. Entrar a la carpeta del proyecto
-
-```bash
-cd Gen-c13-Portafolio
-```
-
-### 3. Abrir el proyecto en Visual Studio Code
-
-```bash
-code .
-```
-
-### 4. Ejecutar la página
-
-Cuando la estructura web esté desarrollada, se podrá abrir el archivo `index.html` directamente en el navegador.
-
-También se podrá utilizar la extensión **Live Server**:
-
-1. Abrir `index.html`.
-2. Hacer clic derecho.
-3. Seleccionar `Open with Live Server`.
-
-Por ahora no se requiere ejecutar:
-
-```bash
-npm install
-```
-
-La primera versión será una página web estática y no utilizará dependencias de Node.js.
 
 ---
 
@@ -616,7 +584,7 @@ Inicio | Sobre mí | Proyectos | Habilidades | Contacto
 
 ---
 
-## 📁 Estructura del repositorio
+## 📁 Estructura del repositorio propuesta
 
 Estructura preliminar:
 
@@ -650,9 +618,9 @@ La estructura puede cambiar de acuerdo con las necesidades reales del proyecto.
 
 ---
 
-## 📸 Evidencias visuales
+## 📸 Evidencias visuales propuesta
 
-### Bocetos en papel
+### Bocetos en papel propuesta
 
 Las imágenes podrán almacenarse de esta forma:
 
@@ -680,7 +648,7 @@ Para mostrarlas en el README:
 ![Boceto de Contacto](docs/bocetos/contacto.jpg)
 ```
 
-### Wireframes
+### Wireframes propuesta
 
 ```text
 docs/
@@ -692,7 +660,7 @@ docs/
     └── contacto.png
 ```
 
-### Exploraciones visuales
+### Exploraciones visuales propuesta
 
 ```text
 docs/
@@ -782,7 +750,6 @@ La propuesta está abierta a cambios.
 
 **Lina Lizeth Londoño Marín**
 
-* Full-Stack Developer Jr.
 * Cofundadora de LIHEN.CO
 * Estudiante del bootcamp Junior Full-Stack Java de Generation Colombia
 
@@ -845,34 +812,6 @@ Puedes conocer más sobre mi proceso y mis proyectos mediante los siguientes can
 | Clonar repositorio         | `git clone https://github.com/Lizeth-Londono/Gen-c13-Portafolio.git`                                                                                                                                          |
 | Figma                      | [Prototipo y wireframes](https://www.figma.com/design/1ukITbrseKkFJCGqMj0SDz/Curso-de-Figma-desde-Cero-%7C-Clase-1--Bases-Fundamentales--2025--con-UI3---Community-?node-id=2006-14&p=f&t=3pqvDqq20oyAsVIF-0) |
 | Portafolio web             | Pendiente de publicación                                                                                                                                                                                      |
-
----
-
-## 📄 Licencia
-
-Por el momento, el proyecto no tiene una licencia definitiva.
-
-Cuando el repositorio se publique como proyecto abierto, se evaluará el uso de la licencia MIT.
-
-Los recursos externos, referencias visuales, tipografías e imágenes conservarán las licencias y los derechos de sus respectivos autores.
-
----
-
-## Nota académica
-
-Este repositorio documenta un proceso de aprendizaje.
-
-Las exploraciones visuales no se presentan como un producto terminado. Su función es mostrar la evolución desde una idea inicial hasta una solución diseñada, desarrollada y comprendida por mí.
-
-Cada elemento que llegue a la versión final deberá poder ser:
-
-* explicado;
-* justificado;
-* modificado;
-* mantenido;
-* desarrollado;
-* defendido durante una presentación o entrevista.
-
 ---
 
 > **Tecnología con propósito. Código que transforma. Ideas que dejan huella.**
