@@ -1,0 +1,966 @@
+/* ========================================
+   VARIABLES DE COLOR
+   ======================================== */
+
+/* Aquí se guardan los colores principales del portafolio */
+/* :root = permite crear variables que pueden utilizarse en toda la página */
+:root {
+
+    /* --color-identidad = color principal de la marca */
+    --color-identidad: #38023B;
+
+    /* --color-estructura = color de profundidad y contraste */
+    --color-estructura: #000000;
+
+    /* --color-tecnologia = color para interacción y progreso */
+    --color-tecnologia: #1EFFBC;
+
+    /* --color-calidez = color para contenido narrativo y superficies suaves */
+    --color-calidez: #FBD1A2;
+
+    /* --color-accion = color para acciones principales y CTA */
+    --color-accion: #F72C25;
+
+    /* --color-claro = color neutral para texto y contraste */
+    --color-claro: #FFFFFF;
+
+    /* --color-reticula = color utilizado para las líneas de las celdas */
+    --color-reticula: #303030;
+
+    /* --color-celda = color utilizado como fondo inicial de las celdas */
+    --color-celda: #151515;
+
+}
+
+
+/* ========================================
+   ESTILOS GENERALES
+   ======================================== */
+
+/* Aquí se configura el estilo general de la página */
+/* body = representa todo el contenido visible de la página */
+body {
+
+    /* margin = controla el espacio exterior */
+    /* 0 = elimina el margen automático del navegador */
+    margin: 0;
+
+    /* font-family = define el tipo de letra principal */
+    /* Inter = fuente principal para navegación, contenido y lectura */
+    /* sans-serif = fuente alternativa */
+    font-family: "Inter", sans-serif;
+
+    /* background-color = define el color de fondo general */
+    /* --color-identidad = utiliza Dark Amethyst como fondo principal */
+    background-color: var(--color-identidad);
+
+    /* color = define el color general del texto */
+    /* --color-claro = utiliza blanco para mantener contraste */
+    color: var(--color-claro);
+
+}
+
+
+/* ========================================
+   INTRODUCCIÓN LXL
+   ======================================== */
+
+/* Aquí se configura la pantalla inicial de la introducción */
+/* .intro-lxl = contiene toda la secuencia visual previa al hero */
+.intro-lxl {
+
+    /* position = define cómo se posiciona la introducción */
+    /* fixed = mantiene la introducción ocupando la pantalla */
+    position: fixed;
+
+    /* inset = define la distancia desde los cuatro bordes */
+    /* 0 = ocupa toda la ventana del navegador */
+    inset: 0;
+
+    /* display = define cómo se organiza el contenido */
+    /* flex = permite centrar la retícula con Flexbox */
+    display: flex;
+
+    /* justify-content = controla la alineación horizontal */
+    /* center = centra la retícula horizontalmente */
+    justify-content: center;
+
+    /* align-items = controla la alineación vertical */
+    /* center = centra la retícula verticalmente */
+    align-items: center;
+
+    /* background-color = define el fondo de la introducción */
+    /* --color-estructura = utiliza negro como fondo principal */
+    background-color: var(--color-estructura);
+
+    /* color = define el color general de los elementos */
+    /* --color-claro = utiliza blanco como contraste */
+    color: var(--color-claro);
+
+    /* z-index = controla qué elemento aparece por encima */
+    /* 100 = mantiene la introducción por encima del hero */
+    z-index: 100;
+
+    /* overflow = controla el contenido que pueda salir de la pantalla */
+    /* hidden = evita barras de desplazamiento durante futuras animaciones */
+    overflow: hidden;
+
+    /* box-sizing = controla cómo se calcula el tamaño total */
+    /* border-box = incluye bordes y padding dentro del tamaño */
+    box-sizing: border-box;
+
+}
+
+
+/* ========================================
+   RETÍCULA DE INTRODUCCIÓN
+   ======================================== */
+
+/* Aquí se crea la matriz donde se organizarán las celdas */
+/* .intro-reticula = contiene todas las celdas de la introducción */
+.intro-reticula {
+
+    /* display = define cómo se organizan los elementos internos */
+    /* grid = permite construir una retícula mediante CSS Grid */
+    display: grid;
+
+    /* grid-template-columns = define la cantidad de columnas */
+    /* repeat(14, 1fr) = crea catorce columnas del mismo tamaño */
+    grid-template-columns: repeat(14, 1fr);
+
+    /* width = define el ancho general de la retícula */
+    /* min() = utiliza el menor valor entre las opciones indicadas */
+    /* 94vw = permite que la matriz ocupe casi todo el ancho del banner */
+    /* 1400px = evita que crezca demasiado en pantallas grandes */
+    width: min(94vw, 1400px);
+
+    /* border = crea el borde exterior de la retícula */
+    /* 1px solid = define grosor y estilo */
+    /* --color-reticula = utiliza gris oscuro */
+    border: 1px solid var(--color-reticula);
+
+    /* background-color = define el fondo detrás de las celdas */
+    /* --color-reticula = mantiene visibles las divisiones */
+    background-color: var(--color-reticula);
+
+}
+
+
+/* ========================================
+   CELDAS DE LA RETÍCULA
+   ======================================== */
+
+/* Aquí se configura cada cuadro individual */
+/* .intro-celda = representa una posición dentro de la matriz */
+.intro-celda {
+
+    /* aspect-ratio = mantiene relación entre ancho y alto */
+    /* 1 / 1 = crea una celda cuadrada */
+    aspect-ratio: 1 / 1;
+
+    /* display = define cómo se organiza el contenido interno */
+    /* flex = permite centrar el símbolo dentro de la celda */
+    display: flex;
+
+    /* justify-content = controla la alineación horizontal */
+    /* center = centra el símbolo horizontalmente */
+    justify-content: center;
+
+    /* align-items = controla la alineación vertical */
+    /* center = centra el símbolo verticalmente */
+    align-items: center;
+
+    /* background-color = define el fondo inicial de la celda */
+    /* --color-celda = utiliza un negro ligeramente más claro */
+    background-color: var(--color-celda);
+
+    /* border = crea las líneas internas de la retícula */
+    /* 1px solid = define grosor y estilo */
+    /* --color-reticula = utiliza gris oscuro */
+    border: 1px solid var(--color-reticula);
+
+    /* box-sizing = controla cómo se calcula el tamaño */
+    /* border-box = mantiene el borde dentro del tamaño de la celda */
+    box-sizing: border-box;
+
+}
+
+/* ========================================
+   PRUEBA VISUAL DEL EMBLEMA
+   ======================================== */
+
+/* Aquí se resaltan temporalmente las celdas que forman el emblema */
+/* .intro-celda-emblema = identifica las celdas seleccionadas por el mapa */
+.intro-celda-emblema {
+
+    /* background-color = cambia el fondo para visualizar la forma provisional */
+    /* --color-identidad = utiliza Dark Amethyst como color de identidad */
+    background-color: var(--color-identidad);
+
+    /* border-color = cambia el color del borde de la celda */
+    /* --color-tecnologia = utiliza Tropical Mint para marcar la estructura */
+    border-color: var(--color-tecnologia);
+
+}
+
+
+/* Aquí se resaltan los símbolos que forman parte del emblema */
+.intro-celda-emblema .intro-simbolo {
+
+    /* color = cambia el color del símbolo */
+    /* --color-tecnologia = utiliza Tropical Mint como acento */
+    color: var(--color-tecnologia);
+
+}
+
+/* ========================================
+   SÍMBOLOS DE LA INTRODUCCIÓN
+   ======================================== */
+
+/* Aquí se configura el estilo general de los símbolos */
+/* .intro-simbolo = representa cada carácter dentro de una celda */
+.intro-simbolo {
+
+    /* font-family = define la tipografía de los símbolos */
+    /* Barlow Condensed = conecta los caracteres con la identidad LXL */
+    font-family: "Barlow Condensed", sans-serif;
+
+    /* font-size = define el tamaño de los caracteres */
+    /* 30px = mantiene presencia visual dentro de las celdas */
+    font-size: 30px;
+
+    /* font-weight = define el grosor del texto */
+    /* 600 = mantiene los símbolos visibles */
+    font-weight: 600;
+
+    /* color = define el color inicial */
+    /* --color-claro = utiliza blanco como base */
+    color: var(--color-claro);
+
+    /* line-height = controla la altura de la línea */
+    /* 1 = evita espacios verticales innecesarios */
+    line-height: 1;
+
+}
+
+
+/* ========================================
+   VARIACIÓN VISUAL DE SÍMBOLOS
+   ======================================== */
+
+/* Aquí se aplica un primer acento tecnológico */
+/* nth-child = selecciona celdas según su posición dentro de la retícula */
+.intro-celda:nth-child(4n) .intro-simbolo {
+
+    /* color = cambia el color del símbolo */
+    /* --color-tecnologia = utiliza Tropical Mint */
+    color: var(--color-tecnologia);
+
+}
+
+
+/* Aquí se aplica un segundo acento visual */
+.intro-celda:nth-child(6n) .intro-simbolo {
+
+    /* color = cambia el color del símbolo */
+    /* --color-calidez = utiliza Apricot Cream */
+    color: var(--color-calidez);
+
+}
+
+
+/* ========================================
+   EMBLEMA DE INTRODUCCIÓN
+   ======================================== */
+
+/* Aquí se muestra temporalmente el espacio reservado para el emblema */
+/* .intro-emblema = contiene la retícula utilizada para construir la silueta */
+.intro-emblema {
+
+    /* display = permite visualizar temporalmente la retícula del emblema */
+    /* block = muestra el elemento durante esta etapa de validación */
+    display: block;
+
+}
+
+/* ========================================
+   RETÍCULA INTERNA DEL EMBLEMA
+   ======================================== */
+
+/* Aquí se prepara la retícula de mayor resolución para el emblema */
+/* .intro-emblema-reticula = contendrá las celdas que formarán la silueta LIHEN */
+.intro-emblema-reticula {
+
+    /* display = define cómo se organizarán las celdas */
+    /* grid = permite crear una retícula de filas y columnas */
+    display: grid;
+
+    /* grid-template-columns = define la cantidad de columnas */
+    /* repeat(30, 1fr) = crea treinta columnas del mismo tamaño */
+    grid-template-columns: repeat(30, 1fr);
+
+    /* width = define el ancho máximo de la retícula del emblema */
+    /* min() = utiliza el menor valor entre las opciones indicadas */
+    /* 70vw = permite adaptar la retícula al tamaño de la pantalla */
+    /* 520px = evita que el emblema crezca demasiado en desktop */
+    width: min(70vw, 520px);
+
+    /* aspect-ratio = mantiene la misma relación entre ancho y alto */
+    /* 1 / 1 = crea una retícula cuadrada */
+    aspect-ratio: 1 / 1;
+
+    /* margin = permite centrar horizontalmente el bloque */
+    /* 0 auto = elimina margen vertical y centra horizontalmente */
+    margin: 0 auto;
+
+    /* box-sizing = controla cómo se calcula el tamaño total */
+    /* border-box = incluye bordes dentro del tamaño definido */
+    box-sizing: border-box;
+
+}
+
+/* Aquí se prepara cada celda de la retícula del emblema */
+/* .intro-emblema-celda = representa una posición dentro de la matriz 30 x 30 */
+.intro-emblema-celda {
+
+    /* aspect-ratio = mantiene cada celda completamente cuadrada */
+    /* 1 / 1 = conserva la misma proporción entre ancho y alto */
+    aspect-ratio: 1 / 1;
+
+    /* background-color = permite visualizar temporalmente cada celda */
+    /* --color-celda = utiliza el mismo fondo oscuro de la retícula principal */
+    background-color: var(--color-celda);
+
+    /* border = permite identificar cada posición de la nueva matriz */
+    /* 1px solid = crea una línea delgada alrededor de cada celda */
+    /* --color-reticula = utiliza el gris oscuro definido para la cuadrícula */
+    border: 1px solid var(--color-reticula);
+
+    /* box-sizing = mantiene el tamaño estable aunque se agreguen bordes */
+    box-sizing: border-box;
+
+}
+
+/* Aquí se identifica visualmente cada celda que forma parte del emblema */
+/* .intro-emblema-celda-activa = representa una posición activa dentro de la silueta LIHEN */
+.intro-emblema-celda-activa {
+
+    /* background-color = diferencia las celdas que forman el emblema */
+    /* --color-identidad = utiliza Dark Amethyst como color principal */
+    background-color: var(--color-identidad);
+
+    /* border-color = permite destacar temporalmente la estructura modular */
+    /* --color-tecnologia = utiliza Tropical Mint como acento */
+    border-color: var(--color-tecnologia);
+
+}
+
+/* ========================================
+   IDENTIDAD FINAL DE LA INTRODUCCIÓN
+   ======================================== */
+
+/* Aquí se prepara la identidad que aparecerá después del emblema */
+/* .intro-identidad = contiene LXL, CODE X LIHEN y el nombre */
+.intro-identidad {
+
+    /* display = controla si el bloque se muestra */
+    /* none = lo mantiene oculto durante esta primera etapa */
+    display: none;
+
+}
+
+
+/* Aquí se prepara el estilo de LXL dentro de la intro */
+.intro-identidad-lxl {
+
+    /* font-family = define la tipografía principal */
+    /* Barlow Condensed = conecta con la identidad visual */
+    font-family: "Barlow Condensed", sans-serif;
+
+    /* font-size = define el tamaño del monograma */
+    /* 64px = le da protagonismo a LXL */
+    font-size: 64px;
+
+    /* font-weight = define el grosor */
+    /* 700 = aplica un grosor fuerte */
+    font-weight: 700;
+
+    /* letter-spacing = define la separación entre letras */
+    /* 8px = refuerza la composición visual */
+    letter-spacing: 8px;
+
+    /* color = define el color del texto */
+    /* --color-claro = utiliza blanco */
+    color: var(--color-claro);
+
+}
+
+
+/* Aquí se prepara CODE X LIHEN dentro de la intro */
+.intro-identidad-marca {
+
+    /* font-family = define la tipografía */
+    font-family: "Barlow Condensed", sans-serif;
+
+    /* color = define el color */
+    /* --color-calidez = utiliza Apricot Cream */
+    color: var(--color-calidez);
+
+}
+
+
+/* Aquí se prepara el nombre dentro de la intro */
+.intro-identidad-nombre {
+
+    /* font-family = define la tipografía */
+    font-family: "Barlow Condensed", sans-serif;
+
+    /* color = define el color */
+    /* --color-claro = utiliza blanco */
+    color: var(--color-claro);
+
+}
+
+
+/* ========================================
+   ENCABEZADO PRINCIPAL
+   ======================================== */
+
+/* Aquí se configura la posición del encabezado principal */
+/* .encabezado-principal = contiene la navegación superior del portafolio */
+.encabezado-principal {
+
+    /* position = define cómo se posiciona el elemento */
+    /* absolute = permite colocar el encabezado sobre el hero */
+    position: absolute;
+
+    /* top = define la distancia desde la parte superior */
+    /* 0 = coloca el encabezado desde el inicio de la página */
+    top: 0;
+
+    /* left = define la distancia desde el lado izquierdo */
+    /* 0 = coloca el encabezado desde el borde izquierdo */
+    left: 0;
+
+    /* width = define el ancho del encabezado */
+    /* 100% = ocupa todo el ancho disponible */
+    width: 100%;
+
+    /* z-index = controla qué elemento aparece por encima */
+    /* 10 = mantiene la navegación visible sobre el hero */
+    z-index: 10;
+
+    /* box-sizing = controla cómo se calcula el ancho */
+    /* border-box = incluye padding y bordes dentro del ancho */
+    box-sizing: border-box;
+
+}
+
+
+/* ========================================
+   NAVEGACIÓN PRINCIPAL
+   ======================================== */
+
+/* Aquí se organiza la navegación principal */
+/* .navegacion-principal = contiene los enlaces superiores del portafolio */
+.navegacion-principal {
+
+    /* display = define cómo se organizan los elementos */
+    /* flex = permite utilizar Flexbox */
+    display: flex;
+
+    /* justify-content = controla la alineación horizontal */
+    /* flex-end = lleva la navegación hacia la derecha */
+    justify-content: flex-end;
+
+    /* padding = agrega espacio interno */
+    /* 28px 60px = agrega espacio vertical y horizontal */
+    padding: 28px 60px;
+
+}
+
+
+/* Aquí se organiza la lista de enlaces */
+/* .navegacion-lista = agrupa los elementos de navegación */
+.navegacion-lista {
+
+    /* display = define cómo se organizan los elementos */
+    /* flex = coloca los enlaces en una misma fila */
+    display: flex;
+
+    /* gap = define la separación entre elementos */
+    /* 32px = deja espacio entre cada enlace */
+    gap: 32px;
+
+    /* list-style = controla los marcadores de la lista */
+    /* none = elimina las viñetas */
+    list-style: none;
+
+    /* margin = controla el espacio exterior */
+    /* 0 = elimina el margen automático */
+    margin: 0;
+
+    /* padding = controla el espacio interior */
+    /* 0 = elimina el espacio automático */
+    padding: 0;
+
+}
+
+
+/* Aquí se configuran los enlaces del menú */
+/* .navegacion-lista a = selecciona los enlaces dentro de la navegación */
+.navegacion-lista a {
+
+    /* color = define el color del texto */
+    /* --color-claro = utiliza blanco */
+    color: var(--color-claro);
+
+    /* text-decoration = controla el subrayado */
+    /* none = elimina el subrayado automático */
+    text-decoration: none;
+
+    /* font-size = define el tamaño del texto */
+    /* 14px = mantiene una navegación discreta */
+    font-size: 14px;
+
+    /* font-weight = define el grosor del texto */
+    /* 600 = aplica un grosor seminegrita */
+    font-weight: 600;
+
+    /* transition = suaviza los cambios visuales */
+    /* color 0.2s ease = cambia el color progresivamente */
+    transition: color 0.2s ease;
+
+}
+
+
+/* Aquí se configura el estado al pasar el cursor sobre los enlaces */
+.navegacion-lista a:hover {
+
+    /* color = cambia el color del texto */
+    /* --color-tecnologia = utiliza Tropical Mint */
+    color: var(--color-tecnologia);
+
+}
+
+
+/* ========================================
+   SECCIÓN HERO
+   ======================================== */
+
+/* Aquí se configura la sección principal de presentación */
+/* .hero = sección inicial del portafolio */
+.hero {
+
+    /* min-height = define una altura mínima */
+    /* 100vh = ocupa toda la altura visible */
+    min-height: 100vh;
+
+    /* display = define cómo se organizan los elementos */
+    /* flex = permite organizar el contenido con Flexbox */
+    display: flex;
+
+    /* justify-content = alinea horizontalmente */
+    /* center = centra el contenido */
+    justify-content: center;
+
+    /* align-items = alinea verticalmente */
+    /* center = centra el contenido */
+    align-items: center;
+
+    /* text-align = define la alineación del texto */
+    /* center = centra el texto */
+    text-align: center;
+
+}
+
+
+/* Aquí se organiza el contenido interno del hero */
+.hero-contenido {
+
+    /* max-width = establece un ancho máximo */
+    /* 700px = evita que el contenido se extienda demasiado */
+    max-width: 700px;
+
+    /* padding = agrega espacio interno */
+    /* 20px = deja espacio alrededor */
+    padding: 20px;
+
+}
+
+
+/* ========================================
+   IDENTIDAD DEL HERO
+   ======================================== */
+
+/* Aquí se configura el bloque visual LXL */
+.hero-lxl {
+
+    /* margin-bottom = agrega espacio debajo */
+    /* 8px = separa LXL de CODE X LIHEN */
+    margin-bottom: 8px;
+
+}
+
+
+/* Aquí se configura el texto LXL */
+.hero-lxl span {
+
+    /* font-size = define el tamaño */
+    /* 64px = aumenta el protagonismo */
+    font-size: 64px;
+
+    /* font-weight = define el grosor */
+    /* 700 = aplica un grosor fuerte */
+    font-weight: 700;
+
+    /* letter-spacing = define el espacio entre letras */
+    /* 8px = separa las letras */
+    letter-spacing: 8px;
+
+    /* color = define el color */
+    /* --color-claro = utiliza blanco */
+    color: var(--color-claro);
+
+    /* font-family = define la tipografía */
+    /* Barlow Condensed = refuerza la identidad */
+    font-family: "Barlow Condensed", sans-serif;
+
+}
+
+
+/* Aquí se configura CODE X LIHEN */
+.hero-marca {
+
+    /* color = define el color */
+    /* --color-calidez = utiliza Apricot Cream */
+    color: var(--color-calidez);
+
+    /* font-size = define el tamaño */
+    font-size: 16px;
+
+    /* font-weight = define el grosor */
+    font-weight: 600;
+
+    /* letter-spacing = define la separación */
+    letter-spacing: 4px;
+
+    /* margin-bottom = agrega espacio inferior */
+    margin-bottom: 28px;
+
+    /* font-family = define la tipografía */
+    font-family: "Barlow Condensed", sans-serif;
+
+}
+
+
+/* ========================================
+   TEXTO DEL HERO
+   ======================================== */
+
+/* Aquí se configura el nombre principal */
+.hero-contenido h1 {
+
+    /* font-size = define el tamaño */
+    font-size: 48px;
+
+    /* margin-bottom = agrega espacio inferior */
+    margin-bottom: 16px;
+
+    /* font-family = define la tipografía */
+    font-family: "Barlow Condensed", sans-serif;
+
+    /* font-weight = define el grosor */
+    font-weight: 700;
+
+    /* letter-spacing = define la separación */
+    letter-spacing: 1px;
+
+}
+
+
+/* Aquí se configura el texto profesional */
+.hero-profesion {
+
+    /* font-size = define el tamaño */
+    font-size: 18px;
+
+    /* color = define el color */
+    /* --color-calidez = utiliza Apricot Cream */
+    color: var(--color-calidez);
+
+    /* margin = elimina el margen automático */
+    margin: 0;
+
+}
+
+
+/* ========================================
+   ACCIONES DEL HERO
+   ======================================== */
+
+/* Aquí se organizan los botones */
+.hero-acciones {
+
+    /* display = organiza los botones */
+    display: flex;
+
+    /* justify-content = centra los botones */
+    justify-content: center;
+
+    /* gap = define separación */
+    gap: 16px;
+
+    /* margin-top = agrega espacio superior */
+    margin-top: 24px;
+
+}
+
+
+/* Aquí se configura el estilo base de los botones */
+.boton {
+
+    /* display = permite aplicar dimensiones al enlace */
+    display: inline-block;
+
+    /* padding = agrega espacio interno */
+    padding: 12px 22px;
+
+    /* border-radius = redondea las esquinas */
+    border-radius: 8px;
+
+    /* text-decoration = elimina el subrayado */
+    text-decoration: none;
+
+    /* font-size = define el tamaño */
+    font-size: 14px;
+
+    /* font-weight = define el grosor */
+    font-weight: 700;
+
+    /* transition = suaviza los cambios */
+    transition: background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+/* Aquí se configura el botón de proyectos */
+.boton-proyectos {
+
+    /* background-color = define el fondo */
+    background-color: var(--color-accion);
+
+    /* color = define el texto */
+    color: var(--color-estructura);
+
+}
+
+
+/* Aquí se configura el botón de contacto */
+.boton-contacto {
+
+    /* background-color = mantiene el fondo transparente */
+    background-color: transparent;
+
+    /* color = utiliza Tropical Mint */
+    color: var(--color-tecnologia);
+
+    /* border = crea el borde */
+    border: 2px solid var(--color-tecnologia);
+
+}
+
+
+/* Aquí se configura el hover del botón de proyectos */
+.boton-proyectos:hover {
+
+    /* background-color = cambia a Apricot Cream */
+    background-color: var(--color-calidez);
+
+}
+
+
+/* Aquí se configura el hover del botón de contacto */
+.boton-contacto:hover {
+
+    /* background-color = utiliza Tropical Mint */
+    background-color: var(--color-tecnologia);
+
+    /* color = utiliza negro */
+    color: var(--color-estructura);
+
+}
+
+
+/* ========================================
+   ACCESIBILIDAD
+   ======================================== */
+
+/* Aquí se configura el enfoque visible mediante teclado */
+.navegacion-lista a:focus-visible,
+.boton:focus-visible {
+
+    /* outline = crea un contorno visible */
+    outline: 3px solid var(--color-tecnologia);
+
+    /* outline-offset = separa el contorno del elemento */
+    outline-offset: 4px;
+
+}
+
+
+/* ========================================
+   RESPONSIVE TABLET
+   ======================================== */
+
+/* Aquí se ajustan los elementos hasta 768 píxeles */
+@media (max-width: 768px) {
+
+    /* Aquí se ajusta la navegación */
+    .navegacion-principal {
+
+        /* center = centra el menú */
+        justify-content: center;
+
+        /* padding = reduce el espacio */
+        padding: 20px;
+
+    }
+
+
+    /* Aquí se ajusta la lista de navegación */
+    .navegacion-lista {
+
+        /* wrap = permite varias líneas */
+        flex-wrap: wrap;
+
+        /* center = mantiene los enlaces centrados */
+        justify-content: center;
+
+        /* gap = reduce la separación */
+        gap: 16px;
+
+    }
+
+
+    /* Aquí se ajusta la retícula de introducción */
+    .intro-reticula {
+
+        /* width = permite aprovechar mejor pantallas pequeñas */
+        width: 88vw;
+
+    }
+
+
+    /* Aquí se ajustan los símbolos */
+    .intro-simbolo {
+
+        /* font-size = reduce el tamaño */
+        font-size: 24px;
+
+    }
+
+
+    /* Aquí se ajusta el espacio del hero */
+    .hero {
+
+        /* padding-top = reserva espacio para navegación */
+        padding-top: 120px;
+
+        /* padding-bottom = agrega espacio inferior */
+        padding-bottom: 40px;
+
+        /* border-box = incluye padding dentro de la altura */
+        box-sizing: border-box;
+
+    }
+
+
+    /* Aquí se ajusta el nombre principal */
+    .hero-contenido h1 {
+
+        /* font-size = reduce el tamaño */
+        font-size: 40px;
+
+    }
+
+
+    /* Aquí se ajusta el texto profesional */
+    .hero-profesion {
+
+        /* font-size = mejora la lectura */
+        font-size: 16px;
+
+    }
+
+}
+
+/* Aquí se oculta temporalmente la retícula principal durante la prueba del emblema */
+/* Esta regla se retirará después de validar la nueva matriz */
+.intro-reticula {
+
+    /* display = oculta temporalmente la matriz de símbolos */
+    display: none;
+
+}
+
+
+/* ========================================
+   RESPONSIVE MÓVIL
+   ======================================== */
+
+/* Aquí se realizan ajustes hasta 480 píxeles */
+@media (max-width: 480px) {
+
+    /* Aquí se reorganiza la retícula para celulares pequeños */
+    .intro-reticula {
+
+        /* grid-template-columns = define la cantidad de columnas en móvil */
+        /* repeat(10, 1fr) = reorganiza las 140 celdas en diez columnas */
+        grid-template-columns: repeat(10, 1fr);
+
+        /* width = permite ocupar casi todo el ancho disponible */
+        /* 92vw = mantiene un pequeño margen lateral */
+        width: 92vw;
+
+    }
+
+
+    /* Aquí se ajustan los símbolos */
+    .intro-simbolo {
+
+        /* font-size = reduce el tamaño para las celdas móviles */
+        font-size: 20px;
+
+    }
+
+
+    /* Aquí se colocan los botones uno debajo del otro */
+    .hero-acciones {
+
+        /* column = organiza verticalmente */
+        flex-direction: column;
+
+        /* center = mantiene los botones centrados */
+        align-items: center;
+
+        /* gap = mantiene separación */
+        gap: 12px;
+
+    }
+
+
+    /* Aquí se mantiene el mismo ancho para ambos botones */
+    .boton {
+
+        /* width = define el ancho */
+        width: 180px;
+
+        /* border-box = incluye padding y borde */
+        box-sizing: border-box;
+
+    }
+
+}
