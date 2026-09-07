@@ -23,84 +23,36 @@
     <!-- crossorigin = permite solicitar recursos desde otro dominio -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Aquí se conectan las tipografías aprobadas para el portafolio -->
-    <!-- Barlow Condensed = se utilizará para identidad y títulos -->
-    <!-- Inter = se utilizará para navegación, contenido y lectura -->
+    <!-- Aquí se conectan las tipografías principales del portafolio -->
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
+    <!-- Aquí se conecta la tipografía manuscrita utilizada únicamente para Lizeth Londoño en el Hero -->
+    <link href="https://fonts.googleapis.com/css2?family=Oooh+Baby&display=swap" rel="stylesheet">
+
     <!-- Aquí se conecta la hoja de estilos principal -->
-    <!-- href = indica la ubicación del archivo CSS -->
     <link rel="stylesheet" href="styles.css">
 
 </head>
 
 <body>
 
-    <!-- Aquí se crea la introducción visual previa al portafolio -->
-    <!-- intro-lxl = contiene la secuencia que posteriormente formará la identidad LXL -->
-    <section id="intro-lxl" class="intro-lxl">
-
-        <!-- Aquí se crea la retícula principal de la introducción -->
-        <!-- intro-reticula = contiene las celdas que posteriormente generará JavaScript -->
-        <div class="intro-reticula" aria-hidden="true">
-
-            <!-- Aquí JavaScript generará las celdas de la retícula 14 x 10 -->
-
-            <!-- Cierre retícula de introducción -->
-        </div>
-
-
-        <!-- Aquí se prepara el resultado visual que aparecerá al finalizar la reorganización -->
-        <!-- intro-emblema = contiene la versión modular del emblema LIHEN -->
-        <div class="intro-emblema" aria-hidden="true">
-
-            <!-- Aquí se crea la retícula interna del emblema -->
-            <!-- intro-emblema-reticula = contendrá una matriz de mayor resolución -->
-            <div class="intro-emblema-reticula">
-
-                <!-- Aquí JavaScript generará posteriormente las celdas del emblema -->
-
-                <!-- Cierre retícula interna del emblema -->
-            </div>
-
-            <!-- Cierre emblema de introducción -->
-        </div>
-
-
-        <!-- Aquí se prepara la identidad que aparecerá después del emblema -->
-        <!-- intro-identidad = contiene el bloque LXL y la identidad textual -->
-        <div class="intro-identidad">
-
-            <!-- Aquí se prepara el monograma LXL -->
-            <span class="intro-identidad-lxl">
-                LXL
-            </span>
-
-            <!-- Aquí se prepara el concepto principal de identidad -->
-            <span class="intro-identidad-marca">
-                CODE X LIHEN
-            </span>
-
-            <!-- Aquí se prepara el nombre de la identidad -->
-            <span class="intro-identidad-nombre">
-                LIZETH LONDOÑO
-            </span>
-
-            <!-- Cierre identidad final de la introducción -->
-        </div>
-
-        <!-- Cierre introducción visual LXL -->
-    </section>
-
+    <!-- Aquí se crea un acceso rápido para personas que navegan con teclado -->
+    <!-- enlace-saltar = permite ir directamente al contenido principal -->
+    <!-- class = conecta este elemento con los estilos definidos para enlace-saltar -->
+    <a class="enlace-saltar" href="#contenido-principal">
+        Saltar al contenido principal
+    </a>
 
     <!-- Aquí se crea el encabezado principal del portafolio -->
     <header class="encabezado-principal">
 
         <!-- Aquí se crea la navegación principal -->
         <!-- nav = agrupa los enlaces de navegación -->
-        <nav class="navegacion-principal">
+        <!-- class = conecta este elemento con los estilos definidos para navegacion-principal -->
+        <!-- aria = aporta información de accesibilidad para tecnologías de asistencia -->
+        <nav class="navegacion-principal" aria-label="Navegación principal">
 
             <!-- Aquí se crea la lista de enlaces del portafolio -->
             <ul class="navegacion-lista">
@@ -119,15 +71,6 @@
 
                     <a href="#sobre-mi">
                         Sobre mí
-                    </a>
-
-                </li>
-
-                <!-- Aquí se crea el enlace hacia la sección Recorrido -->
-                <li>
-
-                    <a href="#recorrido">
-                        Recorrido
                     </a>
 
                 </li>
@@ -170,77 +113,2650 @@
 
 
     <!-- Aquí se crea el contenido principal del portafolio -->
-    <main>
+    <!-- id = identifica este elemento de forma única como contenido-principal -->
+    <main id="contenido-principal">
 
         <!-- Aquí se crea la sección principal de presentación -->
         <!-- hero = sección inicial que presenta el portafolio -->
+        <!-- class = conecta este elemento con los estilos definidos para hero -->
         <section id="inicio" class="hero">
 
-            <!-- Aquí se agrupa el contenido central del hero -->
-            <div class="hero-contenido">
+            <!-- Aquí se integra la Intro LXL dentro de la portada Inicio -->
+            <!-- La introducción utiliza el mismo espacio visual del Hero y no cubre el resto del sitio -->
+            <!-- Aquí se crea la introducción visual previa al portafolio -->
+            <!-- intro-lxl = contiene la secuencia que posteriormente formará la identidad LXL -->
+            <section id="intro-lxl" class="intro-lxl" aria-hidden="true" hidden>
 
-                <!-- Aquí se crea la identidad visual LXL -->
-                <!-- hero-lxl = bloque reservado para la identidad principal -->
-                <div class="hero-lxl" aria-label="Identidad visual LXL">
+                <!-- Aquí se crea la retícula principal de la introducción -->
+                <!-- intro-reticula = contiene las celdas que posteriormente generará JavaScript -->
+                <!-- class = conecta este elemento con los estilos definidos para intro-reticula -->
+                <div class="intro-reticula" aria-hidden="true">
 
-                    <!-- Aquí se representa temporalmente la identidad LXL con texto -->
-                    <!-- Más adelante este bloque podrá transformarse en el monograma visual definitivo -->
-                    <span>
-                        LXL
-                    </span>
+                    <!-- Aquí JavaScript generará las celdas de la retícula 14 x 10 -->
 
-                    <!-- Cierre identidad visual LXL -->
+                    <!-- Cierre retícula de introducción -->
                 </div>
 
 
-                <!-- Aquí se muestra el concepto principal de marca -->
-                <!-- hero-marca = identifica el concepto CODE X LIHEN -->
-                <p class="hero-marca">
-                    CODE X LIHEN
+                <!-- Aquí se prepara el logo LIHEN construido con celdas reales -->
+                <!-- pixel-code-logo = destino modular preparado para futuras reorganizaciones de la Intro -->
+                <!-- class = conecta este elemento con los estilos definidos para intro-logo-code-wrapper -->
+                <!-- aria = aporta información de accesibilidad para tecnologías de asistencia -->
+                <div class="intro-logo-code-wrapper" aria-hidden="true">
+
+                    <!-- Aquí JavaScript genera la matriz lógica 72 x 72 del logo LIHEN -->
+                    <!-- id = identifica este elemento de forma única como pixel-code-logo -->
+                    <div id="pixel-code-logo" class="pixel-code-logo">
+
+                        <!-- Aquí se generarán las celdas del logo mediante JavaScript -->
+
+                        <!-- Cierre matriz pixel code del logo -->
+                    </div>
+
+                    <!-- Cierre contenedor del logo LIHEN -->
+                </div>
+
+
+                <!-- Aquí se prepara el resultado visual que aparecerá al finalizar la reorganización -->
+                <!-- intro-emblema = contiene la versión modular del emblema LIHEN -->
+                <!-- class = conecta este elemento con los estilos definidos para intro-emblema -->
+                <!-- aria = aporta información de accesibilidad para tecnologías de asistencia -->
+                <div class="intro-emblema" aria-hidden="true">
+
+                    <!-- Aquí se crea la retícula interna del emblema -->
+                    <!-- intro-emblema-reticula = contendrá una matriz de mayor resolución -->
+                    <div class="intro-emblema-reticula">
+
+                        <!-- Aquí JavaScript generará posteriormente las celdas del emblema -->
+
+                        <!-- Cierre retícula interna del emblema -->
+                    </div>
+
+                    <!-- Cierre emblema de introducción -->
+                </div>
+
+
+                <!-- Aquí se prepara la identidad que aparecerá después del emblema -->
+                <!-- intro-identidad = contiene el bloque LXL y la identidad textual -->
+                <!-- class = conecta este elemento con los estilos definidos para intro-identidad -->
+                <div class="intro-identidad">
+
+                    <!-- Aquí se prepara el monograma LXL -->
+                    <span class="intro-identidad-lxl">
+                        LXL
+                    </span>
+
+                    <!-- Aquí se prepara el concepto principal de identidad -->
+                    <!-- class = conecta este elemento con los estilos definidos para intro-identidad-marca -->
+                    <span class="intro-identidad-marca">
+                        CODE X LIHEN
+                    </span>
+
+                    <!-- Aquí se prepara el nombre de la identidad -->
+                    <span class="intro-identidad-nombre">
+                        LIZETH LONDOÑO
+                    </span>
+
+                    <!-- Cierre identidad final de la introducción -->
+                </div>
+
+                <!-- Cierre introducción visual LXL -->
+            </section>
+
+            <!-- Aquí se integra la experiencia aprobada antes del Hero final -->
+            <!-- La animación vive solo dentro de Inicio y se monta como componente independiente -->
+            <div class="inicio-experiencia" data-inicio-experiencia aria-hidden="true" hidden>
+
+                <!-- Aquí se muestra brevemente la identidad LXL antes del Reveal -->
+                <!-- class = conecta este elemento con los estilos definidos para inicio-lxl-inicial -->
+                <!-- data- = guarda una referencia personalizada que JavaScript puede buscar o utilizar -->
+                <div class="inicio-lxl-inicial" data-inicio-lxl-inicial>
+
+                    <!-- Aquí se construye una versión compacta de LXL con la misma lógica pixelada del Hero final -->
+                    <div class="inicio-lxl-inicial__pixel-logo" role="img" aria-label="LXL, Code X Lihen">
+
+                        <!-- Primera letra L -->
+                        <span class="inicio-lxl-inicial__pixel-letter inicio-lxl-inicial__pixel-letter--l" aria-hidden="true">
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 1; --column: 1;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 2; --column: 1;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 3; --column: 1;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 4; --column: 1;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 5; --column: 1;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 6; --column: 1;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 7; --column: 1;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 7; --column: 2;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 7; --column: 3;"></span>
+                        </span>
+
+                        <!-- Letra X -->
+                        <span class="inicio-lxl-inicial__pixel-letter inicio-lxl-inicial__pixel-letter--x" aria-hidden="true">
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 2; --column: 1;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 2; --column: 5;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 3; --column: 2;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 3; --column: 4;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 4; --column: 3;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 5; --column: 2;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 5; --column: 4;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 6; --column: 1;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 6; --column: 5;"></span>
+                        </span>
+
+                        <!-- Segunda letra L -->
+                        <span class="inicio-lxl-inicial__pixel-letter inicio-lxl-inicial__pixel-letter--l" aria-hidden="true">
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 1; --column: 1;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 2; --column: 1;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 3; --column: 1;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 4; --column: 1;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 5; --column: 1;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 6; --column: 1;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 7; --column: 1;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 7; --column: 2;"></span>
+                            <span class="inicio-lxl-inicial__pixel" style="--row: 7; --column: 3;"></span>
+                        </span>
+
+                    </div>
+
+                    <!-- Aquí se presenta CODE X LIHEN con la misma paleta del Hero final, pero en tamaño compacto -->
+                    <p class="inicio-lxl-inicial__marca-pixel" aria-label="Code X Lihen">
+                        <span class="inicio-lxl-inicial__marca-code">CODE</span>
+                        <span class="inicio-lxl-inicial__marca-x" aria-hidden="true">X</span>
+                        <span class="inicio-lxl-inicial__marca-lihen">LIHEN</span>
+                    </p>
+
+                </div>
+
+                <!-- Aquí se monta el componente LIHEN Pixel Code Reveal -->
+                <!-- class = conecta este elemento con los estilos definidos para inicio-lihen-reveal -->
+                <div class="inicio-lihen-reveal" data-lihen-reveal></div>
+
+                <!-- Cierre experiencia de Inicio -->
+            </div>
+
+            <!-- Aquí se agrupa el contenido central del Hero final -->
+            <!-- Esta composición conserva la identidad LXL y aproxima la jerarquía a la referencia visual aprobada -->
+            <div class="hero-contenido">
+
+                <!-- ========================================
+                     IDENTIDAD LXL PIXELADA
+                     ======================================== -->
+
+                <!-- Aquí se construye LXL con bloques HTML + CSS, sin imagen ni librerías externas -->
+                <!-- role y aria-label permiten que la identidad sea comprendida aunque los bloques sean decorativos -->
+                <div class="hero-lxl" role="img" aria-label="LXL, Code X Lihen">
+
+                    <!-- Primera letra L -->
+                    <span class="hero-pixel-letter hero-pixel-letter--l" aria-hidden="true">
+                        <span class="hero-pixel" style="--row: 1; --column: 1;"></span>
+                        <span class="hero-pixel" style="--row: 2; --column: 1;"></span>
+                        <span class="hero-pixel" style="--row: 3; --column: 1;"></span>
+                        <span class="hero-pixel" style="--row: 4; --column: 1;"></span>
+                        <span class="hero-pixel" style="--row: 5; --column: 1;"></span>
+                        <span class="hero-pixel" style="--row: 6; --column: 1;"></span>
+                        <span class="hero-pixel" style="--row: 7; --column: 1;"></span>
+                        <span class="hero-pixel" style="--row: 7; --column: 2;"></span>
+                        <span class="hero-pixel" style="--row: 7; --column: 3;"></span>
+                    </span>
+
+                    <!-- Letra X -->
+                    <span class="hero-pixel-letter hero-pixel-letter--x" aria-hidden="true">
+                        <span class="hero-pixel" style="--row: 2; --column: 1;"></span>
+                        <span class="hero-pixel" style="--row: 2; --column: 5;"></span>
+                        <span class="hero-pixel" style="--row: 3; --column: 2;"></span>
+                        <span class="hero-pixel" style="--row: 3; --column: 4;"></span>
+                        <span class="hero-pixel" style="--row: 4; --column: 3;"></span>
+                        <span class="hero-pixel" style="--row: 5; --column: 2;"></span>
+                        <span class="hero-pixel" style="--row: 5; --column: 4;"></span>
+                        <span class="hero-pixel" style="--row: 6; --column: 1;"></span>
+                        <span class="hero-pixel" style="--row: 6; --column: 5;"></span>
+                    </span>
+
+                    <!-- Segunda letra L -->
+                    <span class="hero-pixel-letter hero-pixel-letter--l" aria-hidden="true">
+                        <span class="hero-pixel" style="--row: 1; --column: 1;"></span>
+                        <span class="hero-pixel" style="--row: 2; --column: 1;"></span>
+                        <span class="hero-pixel" style="--row: 3; --column: 1;"></span>
+                        <span class="hero-pixel" style="--row: 4; --column: 1;"></span>
+                        <span class="hero-pixel" style="--row: 5; --column: 1;"></span>
+                        <span class="hero-pixel" style="--row: 6; --column: 1;"></span>
+                        <span class="hero-pixel" style="--row: 7; --column: 1;"></span>
+                        <span class="hero-pixel" style="--row: 7; --column: 2;"></span>
+                        <span class="hero-pixel" style="--row: 7; --column: 3;"></span>
+                    </span>
+
+                    <!-- Cierre identidad LXL pixelada -->
+                </div>
+
+
+                <!-- Aquí se presenta CODE X LIHEN con cada parte separada para aplicar la paleta oficial -->
+                <p class="hero-marca" aria-label="Code X Lihen">
+                    <span class="hero-marca__code">CODE</span>
+                    <span class="hero-marca__x" aria-hidden="true">X</span>
+                    <span class="hero-marca__lihen">LIHEN</span>
                 </p>
 
 
-                <!-- Aquí se muestra el nombre principal -->
+                <!-- Aquí se mantiene el nombre principal como identidad profesional -->
                 <h1>
                     Lizeth Londoño
                 </h1>
 
 
-                <!-- Aquí se muestra la presentación profesional -->
+                <!-- Aquí se agrupan las dos acciones principales del Hero -->
+                <div class="hero-acciones">
+
+                    <!-- CTA principal hacia Proyectos -->
+                    <a href="#proyectos" class="boton boton-proyectos">
+                        <span class="hero-boton__icono" aria-hidden="true">&lt;&gt;</span>
+                        <span>Ver proyectos</span>
+                    </a>
+
+                    <!-- CTA secundario hacia Contacto -->
+                    <a href="#contacto" class="boton boton-contacto">
+                        <span class="hero-boton__icono" aria-hidden="true">↗</span>
+                        <span>Contáctame</span>
+                    </a>
+
+                    <!-- Cierre acciones principales del Hero -->
+                </div>
+
+
+                <!-- Aquí se conserva el rol profesional como información secundaria de cierre -->
                 <p class="hero-profesion">
                     Junior Full-Stack Java Developer en formación
                 </p>
 
-
-                <!-- Aquí se agrupan las acciones principales del hero -->
-                <div class="hero-acciones">
-
-                    <!-- Aquí se crea el enlace principal para visualizar los proyectos -->
-                    <a href="#proyectos" class="boton boton-proyectos">
-                        Ver proyectos
-                    </a>
-
-                    <!-- Aquí se crea el enlace secundario hacia la sección de contacto -->
-                    <a href="#contacto" class="boton boton-contacto">
-                        Contáctame
-                    </a>
-
-                    <!-- Cierre acciones principales del hero -->
-                </div>
-
-                <!-- Cierre contenido central del hero -->
+                <!-- Cierre contenido central del Hero -->
             </div>
 
             <!-- Cierre sección Hero -->
+        </section>
+
+        <!-- Aquí se crea la sección Sobre mí -->
+        <!-- Esta versión replica de forma directa la arquitectura visual de Contacto -->
+        <section id="sobre-mi" class="sobre-mi-fiel-contacto portada-seccion">
+
+            <!-- Aquí se agrupa todo el contenido de Sobre mí -->
+            <!-- La estructura conserva: encabezado + dos módulos + dos tarjetas inferiores + píxeles -->
+            <div class="sobre-mi-fiel-contacto__contenido">
+
+                <!-- ========================================
+                     ENCABEZADO EDITORIAL
+                     ======================================== -->
+
+                <!-- Aquí se replica el encabezado grande de Contacto -->
+                <header class="sobre-mi-fiel-contacto__encabezado">
+
+                    <!-- Etiqueta pequeña de sección -->
+                    <p class="seccion-etiqueta">
+                        SOBRE MÍ / LXL
+                    </p>
+
+                    <!-- Título principal con contorno turquesa -->
+                    <h2>
+                        MI HISTORIA &amp; CÓDIGO
+                    </h2>
+
+                <!-- Cierre encabezado editorial de Sobre mí -->
+                </header>
+
+
+                <!-- ========================================
+                     MÓDULO IZQUIERDO — IMAGEN
+                     ======================================== -->
+
+                <!--
+                    Este módulo ocupa exactamente el lugar visual del póster izquierdo de Contacto.
+                    La diferencia es que aquí se reserva para una fotografía personal.
+                -->
+                <article class="sobre-mi-fiel-contacto__imagen-poster">
+
+                    <!-- Texto superior sobre el fondo violeta -->
+                    <div class="sobre-mi-fiel-contacto__imagen-superior">
+                        <span>IMAGEN + IDENTIDAD</span>
+                        <span>EN PROCESO</span>
+                    </div>
+
+                    <!-- Forma principal pixelada -->
+                    <div class="sobre-mi-fiel-contacto__imagen-forma">
+
+                        <!-- Espacio cuadriculado para la fotografía -->
+                        <div class="sobre-mi-fiel-contacto__imagen-placeholder">
+                            <span aria-hidden="true">
+                                ESPACIO PARA IMAGEN
+                            </span>
+                        </div>
+
+                        <!-- Vacíos cuadrados de la figura -->
+                        <span class="sobre-mi-fiel-contacto__imagen-corte sobre-mi-fiel-contacto__imagen-corte-uno"
+                            aria-hidden="true"></span>
+                        <span class="sobre-mi-fiel-contacto__imagen-corte sobre-mi-fiel-contacto__imagen-corte-dos"
+                            aria-hidden="true"></span>
+                        <span class="sobre-mi-fiel-contacto__imagen-corte sobre-mi-fiel-contacto__imagen-corte-tres"
+                            aria-hidden="true"></span>
+
+                        <!-- Firma LXL inferior -->
+                        <div class="sobre-mi-fiel-contacto__imagen-marca" aria-hidden="true">
+                            <strong>LXL</strong>
+                            <span>CODE X LIHEN</span>
+                        </div>
+
+                    <!-- Cierre forma principal de imagen de Sobre mí -->
+                    </div>
+
+                <!-- Cierre módulo de imagen de Sobre mí -->
+                </article>
+
+
+                <!-- ========================================
+                     MÓDULO DERECHO — HISTORIA
+                     ======================================== -->
+
+                <!--
+                    Este módulo ocupa exactamente el lugar y tamaño del gran panel de imagen de Contacto.
+                    Su contenido cambia por la información narrativa de Sobre mí.
+                -->
+                <article class="sobre-mi-fiel-contacto__historia-panel">
+
+                    <!-- Superficie interna del panel narrativo -->
+                    <div class="sobre-mi-fiel-contacto__historia-contenido">
+
+                        <!-- Código decorativo -->
+                        <div class="sobre-mi-fiel-contacto__codigo" aria-hidden="true">
+
+                            <span class="sobre-mi-fiel-contacto__codigo-letras">
+                                L&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;Z&nbsp;&nbsp;&nbsp;E&nbsp;&nbsp;&nbsp;T&nbsp;&nbsp;&nbsp;H
+                            </span>
+
+                            <span class="sobre-mi-fiel-contacto__codigo-numeros">
+                                L&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;N&nbsp;&nbsp;&nbsp;D&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;Ñ&nbsp;&nbsp;&nbsp;0
+                            </span>
+
+                        </div>
+
+                        <!-- Título principal de la historia -->
+                        <h3>
+                            Mi historia también forma parte del código.
+                        </h3>
+
+                        <!-- Los cuatro bloques de información -->
+                        <div class="sobre-mi-fiel-contacto__textos">
+
+                            <p>
+                                Estoy construyendo una nueva etapa profesional en tecnología, conectando mi experiencia,
+                                mi organización y mi creatividad con el desarrollo de soluciones digitales.
+                            </p>
+
+                            <p>
+                                Mi experiencia previa fortaleció habilidades de seguimiento, análisis, organización y
+                                resolución de problemas que hoy traslado al desarrollo de software.
+                            </p>
+
+                            <p>
+                                Actualmente continúo mi formación como Junior Full-Stack Java Developer, aprendiendo
+                                mediante proyectos, práctica y documentación del proceso.
+                            </p>
+
+                            <p>
+                                Como cofundadora de LIHEN.CO también he fortalecido mi visión de marca, comunicación y
+                                experiencia de usuario, elementos que hoy conecto con mi perfil tecnológico.
+                            </p>
+
+                        <!-- Cierre bloques de texto de Sobre mí -->
+                        </div>
+
+
+                        <!-- ========================================
+                             MANIFIESTO PERSONAL — CIERRE DEL PANEL
+                             ======================================== -->
+
+                        <!--
+                            Este bloque ocupa la franja inferior libre del panel narrativo.
+                            Se coloca después de los cuatro párrafos para funcionar como
+                            una conclusión conceptual de la sección Sobre mí.
+                        -->
+                        <div class="sobre-mi-fiel-contacto__manifiesto">
+
+                            <!-- Línea turquesa vertical que funciona como acento visual -->
+                            <span class="sobre-mi-fiel-contacto__manifiesto-linea" aria-hidden="true">
+                            </span>
+
+                            <!-- Aquí se agrupan las dos líneas del mensaje -->
+                            <div class="sobre-mi-fiel-contacto__manifiesto-contenido">
+
+                                <!-- Frase principal -->
+                                <p class="sobre-mi-fiel-contacto__manifiesto-titulo">
+                                    Acta non verba, con propósito.
+                                </p>
+
+                                <!-- Frase secundaria -->
+                                <p class="sobre-mi-fiel-contacto__manifiesto-texto">
+                                    Ideas que se convierten en soluciones digitales reales.
+                                </p>
+
+                            <!-- Cierre contenido del manifiesto -->
+                            </div>
+
+                        <!-- Cierre manifiesto personal -->
+                        </div>
+
+                    <!-- Cierre contenido del panel de historia -->
+                    </div>
+
+                <!-- Cierre panel de historia de Sobre mí -->
+                </article>
+
+
+                <!-- ========================================
+                     TARJETAS INFERIORES
+                     ======================================== -->
+
+                <!--
+                    Se conserva la misma fila inferior de Contacto.
+                    Cambia únicamente la información para que corresponda a Sobre mí.
+                -->
+                <div class="sobre-mi-fiel-contacto__canales">
+
+                    <!-- Tarjeta inferior izquierda -->
+                    <article class="sobre-mi-fiel-contacto__canal sobre-mi-fiel-contacto__canal-uno">
+
+                        <!-- Icono textual -->
+                        <div class="sobre-mi-fiel-contacto__canal-icono" aria-hidden="true">
+                            01
+                        </div>
+
+                        <!-- Contenido -->
+                        <div class="sobre-mi-fiel-contacto__canal-contenido">
+
+                            <span class="sobre-mi-fiel-contacto__canal-numero" aria-hidden="true">
+                                01
+                            </span>
+
+                            <p class="sobre-mi-fiel-contacto__canal-etiqueta">
+                                PROCESO
+                            </p>
+
+                            <h3>
+                                Desarrollo y aprendizaje
+                            </h3>
+
+                            <p>
+                                Formación continua, práctica, documentación y construcción progresiva de soluciones.
+                            </p>
+
+                        <!-- Cierre contenido de tarjeta inferior de Sobre mí -->
+                        </div>
+
+                        <!-- Meta técnica -->
+                        <div class="sobre-mi-fiel-contacto__canal-meta" aria-hidden="true">
+                            DESARROLLO<br>
+                            APRENDIZAJE<br>
+                            PRÁCTICA<br>
+                            EVOLUCIÓN
+                        </div>
+
+                    <!-- Cierre tarjeta inferior de Sobre mí -->
+                    </article>
+
+
+                    <!-- Tarjeta inferior derecha -->
+                    <article class="sobre-mi-fiel-contacto__canal sobre-mi-fiel-contacto__canal-dos">
+
+                        <!-- Icono textual -->
+                        <div class="sobre-mi-fiel-contacto__canal-icono" aria-hidden="true">
+                            02
+                        </div>
+
+                        <!-- Contenido -->
+                        <div class="sobre-mi-fiel-contacto__canal-contenido">
+
+                            <span class="sobre-mi-fiel-contacto__canal-numero" aria-hidden="true">
+                                02
+                            </span>
+
+                            <p class="sobre-mi-fiel-contacto__canal-etiqueta">
+                                IDENTIDAD
+                            </p>
+
+                            <h3>
+                                Creatividad y portafolio
+                            </h3>
+
+                            <p>
+                                Diseño, comunicación, experiencia de usuario y una identidad visual conectada con
+                                tecnología.
+                            </p>
+
+                        <!-- Cierre contenido de tarjeta inferior de Sobre mí -->
+                        </div>
+
+                        <!-- Meta técnica -->
+                        <div class="sobre-mi-fiel-contacto__canal-meta" aria-hidden="true">
+                            CREATIVIDAD<br>
+                            PORTAFOLIO<br>
+                            IDENTIDAD<br>
+                            COMUNICACIÓN
+                        </div>
+
+                    <!-- Cierre tarjeta inferior de Sobre mí -->
+                    </article>
+
+                <!-- Cierre tarjetas inferiores de Sobre mí -->
+                </div>
+
+
+                <!-- ========================================
+                     PÍXELES DECORATIVOS
+                     ======================================== -->
+
+                <!-- Superior izquierdo -->
+                <div class="sobre-mi-fiel-contacto__pixeles sobre-mi-fiel-contacto__pixeles-superior-izquierdo"
+                    aria-hidden="true">
+                    <span></span>
+                <!-- Cierre contenido principal de Sobre mí -->
+                </div>
+
+                <!-- Superior derecho -->
+                <div class="sobre-mi-fiel-contacto__pixeles sobre-mi-fiel-contacto__pixeles-superior-derecho"
+                    aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <!-- Lateral izquierdo -->
+                <div class="sobre-mi-fiel-contacto__pixeles sobre-mi-fiel-contacto__pixeles-lateral-izquierdo"
+                    aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <!-- Inferior derecho -->
+                <div class="sobre-mi-fiel-contacto__pixeles sobre-mi-fiel-contacto__pixeles-inferior-derecho"
+                    aria-hidden="true">
+                    <span></span>
+                </div>
+
+            </div>
+
+        <!-- Cierre sección Sobre mí -->
+        </section>
+
+
+        <!-- Aquí se crea la sección Proyectos -->
+        <!-- section = presenta los proyectos dentro de una composición editorial inspirada en la identidad LXL -->
+        <!-- id = identifica este elemento de forma única como proyectos -->
+        <!-- class = conecta este elemento con los estilos definidos para seccion-portafolio proyectos proyectos-editorial -->
+        <section id="proyectos" class="seccion-portafolio proyectos proyectos-editorial">
+
+            <!-- Aquí se agrupa la nueva composición visual de Proyectos -->
+            <div class="proyectos-escena">
+
+                <!-- Aquí se crea el encabezado oscuro de la sección -->
+                <div class="proyectos-banner">
+
+                    <!-- class = conecta este elemento con los estilos definidos para proyectos-banner-pixeles proyectos-banner-pixeles-izquierda -->
+                    <!-- aria = aporta información de accesibilidad para tecnologías de asistencia -->
+                    <div class="proyectos-banner-pixeles proyectos-banner-pixeles-izquierda" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <!-- class = conecta este elemento con los estilos definidos para proyectos-banner-pixeles proyectos-banner-pixeles-derecha -->
+                    <div class="proyectos-banner-pixeles proyectos-banner-pixeles-derecha" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <!-- class = conecta este elemento con los estilos definidos para proyectos-banner-titulo -->
+                    <p class="proyectos-banner-titulo">
+                        PROYECTOS &amp; CÓDIGO
+                    </p>
+
+                    <!-- Cierre encabezado oscuro -->
+                </div>
+
+                <!-- Aquí se crea la gran superficie turquesa que contiene los proyectos -->
+                <!-- class = conecta este elemento con los estilos definidos para proyectos-panel-turquesa -->
+                <div class="proyectos-panel-turquesa">
+                    
+                    <!-- Aquí se muestran los proyectos mediante un componente flip reutilizable -->
+                    <!-- project-flip-grid = organiza automáticamente todas las cards actuales y futuras -->
+                    <div class="project-flip-grid" aria-label="Proyectos principales">
+
+                        <!-- =========================================================
+                             PROJECT CARD REUTILIZABLE · HUELLA VET
+                             Frente = Atención + Interés
+                             Reverso = Deseo + Acción
+                             ========================================================= -->
+                        <article class="project-flip-card project-reference-card"
+                            data-project="huellavet"
+                            data-repository-url="https://github.com/jorgegutierrezvallejo/ProyectoFinalJava13-Grupo6"
+                            aria-label="Tarjeta del proyecto HuellaVet">
+                            <div class="project-flip-card__inner">
+
+                                <!-- Cara frontal de HuellaVet -->
+                                <section class="project-flip-card__face project-flip-card__front" aria-hidden="false">
+                                    <header class="project-reference-card__header">
+                                        <button class="project-flip-card__turn" type="button"
+                                            aria-label="Ver parte trasera de HuellaVet" aria-pressed="false">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+
+                                    <!-- Cierre encabezado de la card de proyecto -->
+                                    </header>
+
+                                    <div class="project-reference-front">
+                                        <div class="project-reference-front__text-block">
+                                            <h3>HUELLAVET</h3>
+                                            <p>Gestión y reserva de<br>servicios veterinarios.</p>
+                                        </div>
+
+                                        <!-- Aquí se crea el panel central de Languages para HuellaVet -->
+                                        <!-- JavaScript leerá data-repository-url desde la card y cargará los datos reales desde GitHub -->
+                                        <div class="project-reference-front__languages"
+                                            data-project-languages="huellavet">
+
+                                            <!-- Aquí se muestra el título del panel -->
+                                            <p class="project-languages__title">
+                                                Languages
+                                            </p>
+
+                                            <!-- Aquí JavaScript generará dinámicamente los segmentos reales -->
+                                            <div class="project-languages__bar"
+                                                role="img"
+                                                aria-label="Cargando lenguajes del proyecto HuellaVet desde GitHub">
+                                                <span class="project-languages__placeholder"></span>
+                                            <!-- Cierre contenido frontal del proyecto -->
+                                            </div>
+
+                                            <!-- Estado temporal mientras se consulta GitHub -->
+                                            <p class="project-languages__status">
+                                                Cargando GitHub…
+                                            </p>
+
+                                        <!-- Cierre contenido interno de la card de proyecto -->
+                                        </div>
+
+                                        <!-- Píxeles decorativos del frente -->
+                                        <span class="project-reference-pixel project-reference-pixel--front-a"
+                                            aria-hidden="true"></span>
+                                        <span class="project-reference-pixel project-reference-pixel--front-b"
+                                            aria-hidden="true"></span>
+                                        <span class="project-reference-pixel project-reference-pixel--front-c"
+                                            aria-hidden="true"></span>
+                                        <span class="project-reference-pixel project-reference-pixel--front-d"
+                                            aria-hidden="true"></span>
+                                        <span class="project-reference-pixel project-reference-pixel--front-e"
+                                            aria-hidden="true"></span>
+                                    <!-- Cierre project cards reutilizables -->
+                                    </div>
+
+                                    <footer class="project-reference-card__footer project-reference-card__footer--front"
+                                        aria-hidden="true"></footer>
+                                <!-- Cierre sección Proyectos -->
+                                </section>
+
+                                <!-- Cara posterior de HuellaVet -->
+                                <section class="project-flip-card__face project-flip-card__back" aria-hidden="true">
+                                    <header class="project-reference-card__header">
+                                        <button class="project-flip-card__turn" type="button"
+                                            aria-label="Volver al frente de HuellaVet" aria-pressed="true"
+                                            tabindex="-1">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+                                        
+                                    <!-- Cierre encabezado de la card de proyecto -->
+                                    </header>
+
+                                    <div class="project-reference-back">
+                                        <!-- Círculo de identidad del proyecto HuellaVet -->
+                                        <!-- Las siglas se ubican dentro del círculo para mantener una identidad visual compacta -->
+                                        <div class="project-reference-back__avatar" aria-hidden="true">
+                                            <span class="project-reference-back__identity">HV</span>
+                                        </div>
+
+                                        <span class="project-reference-pixel project-reference-pixel--back-a"
+                                            aria-hidden="true"></span>
+                                        <span class="project-reference-pixel project-reference-pixel--back-b"
+                                            aria-hidden="true"></span>
+                                        <span class="project-reference-pixel project-reference-pixel--back-c"
+                                            aria-hidden="true"></span>
+
+                                        <p class="project-reference-back__type">PROYECTO COLABORATIVO</p>
+
+                                        <p class="project-reference-back__description">
+                                            Aplicación web desarrollada en equipo para apoyar la gestión de servicios
+                                            veterinarios.
+                                        </p>
+
+                                        <p class="project-reference-back__section-label">PARTICIPACIÓN</p>
+
+                                        <p class="project-reference-back__detail">
+                                            Trabajé progresivamente en vistas del sistema, documentando cambios y
+                                            coordinando avances con el equipo.
+                                        </p>
+
+                                        <!-- Aquí se enlaza directamente HuellaVet con su repositorio colaborativo real -->
+                                        <!-- target="_blank" abre el repositorio en una pestaña nueva -->
+                                        <!-- rel="noopener noreferrer" protege la navegación entre ambas pestañas -->
+                                        <a class="project-reference-back__cta"
+                                            href="https://github.com/jorgegutierrezvallejo/ProyectoFinalJava13-Grupo6"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label="Abrir repositorio colaborativo de HuellaVet en GitHub"
+                                            title="Ver repositorio colaborativo de HuellaVet en GitHub">
+                                            <span>CONOCER +</span>
+                                            <span class="project-reference-back__github">GH<small>GitHub</small></span>
+                                        </a>
+
+                                        <span class="project-reference-pixel project-reference-pixel--back-bottom-a"
+                                            aria-hidden="true"></span>
+                                        <span class="project-reference-pixel project-reference-pixel--back-bottom-b"
+                                            aria-hidden="true"></span>
+                                    <!-- Cierre contenido posterior del proyecto -->
+                                    </div>
+
+
+                                <!-- Cierre cara posterior del proyecto -->
+                                </section>
+
+                                <!-- Cierre contenido interno HuellaVet -->
+                            </div>
+                        </article>
+
+                        <!-- =========================================================
+                             PROJECT CARD REUTILIZABLE · PLANIFICADOR
+                             Usa exactamente la misma arquitectura que HuellaVet.
+                             Para futuros proyectos se reutiliza este mismo patrón.
+                             ========================================================= -->
+                        <article class="project-flip-card project-reference-card"
+                            data-project="planificador"
+                            data-repository-url="https://github.com/Lizeth-Londono/Gen-c13-Planificador-tareas-web"
+                            aria-label="Tarjeta del proyecto Planificador de Tareas Web">
+                            <div class="project-flip-card__inner">
+
+                                <!-- Cara frontal del Planificador -->
+                                <section class="project-flip-card__face project-flip-card__front" aria-hidden="false">
+                                    <header class="project-reference-card__header">
+                                        <button class="project-flip-card__turn" type="button"
+                                            aria-label="Ver parte trasera del Planificador de Tareas Web"
+                                            aria-pressed="false">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de proyecto -->
+</header>
+
+                                    <div class="project-reference-front">
+                                        <div
+                                            class="project-reference-front__text-block project-reference-front__text-block--long">
+                                            <h3>PLANIFICADOR<br>DE TAREAS WEB</h3>
+                                            <p>Crear, visualizar y gestionar<br>tareas desde la web.</p>
+                                        <!-- Cierre contenido frontal del proyecto -->
+                                        </div>
+
+                                        <!-- Aquí se crea el panel central de Languages para el Planificador -->
+                                        <!-- JavaScript leerá data-repository-url desde la card y cargará los datos reales desde GitHub -->
+                                        <div class="project-reference-front__languages"
+                                            data-project-languages="planificador">
+
+                                            <!-- Aquí se muestra el título del panel -->
+                                            <p class="project-languages__title">
+                                                Languages
+                                            </p>
+
+                                            <!-- Aquí JavaScript generará dinámicamente los segmentos reales -->
+                                            <div class="project-languages__bar"
+                                                role="img"
+                                                aria-label="Cargando lenguajes del Planificador de Tareas Web desde GitHub">
+                                                <span class="project-languages__placeholder"></span>
+                                            <!-- Cierre contenido interno de la card de proyecto -->
+                                            </div>
+
+                                            <!-- Estado temporal mientras se consulta GitHub -->
+                                            <p class="project-languages__status">
+                                                Cargando GitHub…
+                                            </p>
+
+                                        </div>
+
+                                        <span class="project-reference-pixel project-reference-pixel--front-a"
+                                            aria-hidden="true"></span>
+                                        <span class="project-reference-pixel project-reference-pixel--front-b"
+                                            aria-hidden="true"></span>
+                                        <span class="project-reference-pixel project-reference-pixel--front-c"
+                                            aria-hidden="true"></span>
+                                        <span class="project-reference-pixel project-reference-pixel--front-d"
+                                            aria-hidden="true"></span>
+                                        <span class="project-reference-pixel project-reference-pixel--front-e"
+                                            aria-hidden="true"></span>
+                                    </div>
+
+                                    <footer class="project-reference-card__footer project-reference-card__footer--front"
+                                        aria-hidden="true"></footer>
+                                </section>
+
+                                <!-- Cara posterior del Planificador -->
+                                <section class="project-flip-card__face project-flip-card__back" aria-hidden="true">
+                                    <header class="project-reference-card__header">
+                                        <button class="project-flip-card__turn" type="button"
+                                            aria-label="Volver al frente del Planificador de Tareas Web"
+                                            aria-pressed="true" tabindex="-1">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de proyecto -->
+</header>
+
+                                    <div class="project-reference-back">
+                                        <!-- Círculo de identidad del proyecto Planificador de Tareas Web -->
+                                        <!-- Las siglas se ubican dentro del círculo para mantener una identidad visual compacta -->
+                                        <div class="project-reference-back__avatar" aria-hidden="true">
+                                            <span class="project-reference-back__identity">TD</span>
+                                        </div>
+
+                                        <span class="project-reference-pixel project-reference-pixel--back-a"
+                                            aria-hidden="true"></span>
+                                        <span class="project-reference-pixel project-reference-pixel--back-b"
+                                            aria-hidden="true"></span>
+                                        <span class="project-reference-pixel project-reference-pixel--back-c"
+                                            aria-hidden="true"></span>
+
+                                        <p class="project-reference-back__type">PROYECTO INDIVIDUAL</p>
+
+                                        <p class="project-reference-back__description">
+                                            Aplicación web desarrollada progresivamente para registrar, visualizar y
+                                            gestionar tareas.
+                                        </p>
+
+                                        <p class="project-reference-back__section-label">ENFOQUE</p>
+
+                                        <p class="project-reference-back__detail">
+                                            Proyecto personal utilizado para practicar estructura visual, interacción y
+                                            persistencia progresiva de información.
+                                        </p>
+
+                                        <!-- Aquí se enlaza directamente el proyecto con su repositorio real en GitHub -->
+                                        <!-- target="_blank" abre el repositorio en una pestaña nueva -->
+                                        <!-- rel="noopener noreferrer" protege la navegación entre ambas pestañas -->
+                                        <a class="project-reference-back__cta"
+                                            href="https://github.com/Lizeth-Londono/Gen-c13-Planificador-tareas-web"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label="Abrir repositorio del Planificador de Tareas Web en GitHub"
+                                            title="Ver repositorio del Planificador de Tareas Web en GitHub">
+                                            <span>CONOCER +</span>
+                                            <span class="project-reference-back__github">GH<small>GitHub</small></span>
+                                        </a>
+
+                                        <span class="project-reference-pixel project-reference-pixel--back-bottom-a"
+                                            aria-hidden="true"></span>
+                                        <span class="project-reference-pixel project-reference-pixel--back-bottom-b"
+                                            aria-hidden="true"></span>
+                                    <!-- Cierre contenido posterior del proyecto -->
+                                    </div>
+
+                                <!-- Cierre cara posterior del proyecto -->
+                                </section>
+
+                                <!-- Cierre contenido interno Planificador -->
+                            </div>
+                        </article>
+
+                        <!-- Cierre project cards reutilizables -->
+                    </div>
+
+                    <!-- Cierre superficie turquesa -->
+                </div>
+
+                <!-- Cierre composición visual de Proyectos -->
+            </div>
+
+            <!-- Cierre sección Proyectos -->
+        </section>
+
+
+        <!-- Aquí se crea la sección Habilidades -->
+        <!-- section = presenta las habilidades dentro de una composición editorial hermana de Proyectos -->
+        <!-- id = identifica este elemento de forma única como habilidades -->
+        <!-- class = conecta este elemento con los estilos definidos para habilidades-seccion habilidades-editorial -->
+        <section id="habilidades" class="habilidades-seccion habilidades-editorial">
+
+            <!-- Aquí se agrupa la composición completa de Habilidades -->
+            <div class="habilidades-editorial-escena">
+
+                <!-- Aquí se crea la gran superficie turquesa que contiene las habilidades -->
+                <div class="habilidades-editorial-panel">
+
+                    <!-- Aquí se organiza la información dentro de tarjetas compactas -->
+                    <!-- class = conecta este elemento con los estilos definidos para habilidades-editorial-tarjetas -->
+                    <!-- aria = aporta información de accesibilidad para tecnologías de asistencia -->
+                    <!-- Aquí se organiza la nueva cuadrícula de diez skills individuales -->
+                    <!-- class = conecta este elemento con los estilos específicos del nuevo grid de Habilidades -->
+                    <!-- aria-label = describe el conjunto de tarjetas para tecnologías de asistencia -->
+                    <div class="skills-grid" aria-label="Habilidades y tecnologías">
+
+                        <!-- Aquí se crea la card flip de Java -->
+                        <!-- article = representa una unidad independiente dentro de la sección -->
+                        <article class="skill-card skill-card--java" data-skill="java">
+
+                            <!-- Aquí se agrupan las dos caras que participan en el giro -->
+                            <div class="skill-card__inner">
+
+                                <!-- Aquí se crea el frente visible inicialmente -->
+                                <div class="skill-card__face skill-card__front" aria-hidden="false">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Ver reverso de Java" aria-pressed="false">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí se muestra el arte frontal creado por Lizeth para esta skill -->
+                                    <div class="skill-card__front-body">
+
+                                        <!-- Decoración pixelada superior derecha del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--top" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--top-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-4"></span>
+                                        </div>
+
+                                        <!-- Círculo central reutilizable que contiene únicamente el logo de la skill -->
+                                        <div class="skill-card__logo-circle">
+                                            <img class="skill-card__logo" src="https://logolook.net/wp-content/uploads/2022/11/Java-Logo.png"
+                                                alt="Java" loading="lazy">
+                                        </div>
+
+                                        <!-- Decoración pixelada inferior izquierda del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--bottom" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-4"></span>
+                                        </div>
+
+                                    <!-- Cierre contenido frontal de la habilidad -->
+                                    </div>
+
+                                    <!-- Franja negra inferior del nuevo frente -->
+                                    <div class="skill-card__front-footer" aria-hidden="true"></div>
+                                <!-- Cierre cara frontal de la habilidad -->
+                                </div>
+
+                                <!-- Aquí se crea el reverso pixelado de la misma card -->
+                                <div class="skill-card__face skill-card__back skill-card__back--1" aria-hidden="true">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Volver al frente de Java" aria-pressed="true" tabindex="-1">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí comienza el contenido visual del reverso de JAVA -->
+                                    <!-- La estructura es reutilizable: solo cambian título, descripción y datos de GitHub -->
+                                    <div class="skill-card__back-body" data-github-scope="personal"
+                                        data-skill-metric="java">
+
+                                        <!-- Bloque negro superior izquierdo del reverso -->
+                                        <div class="skill-card__back-text-block">
+                                            <h3 class="skill-card__back-title">JAVA</h3>
+                                            <p class="skill-card__back-description">Lógica, POO y práctica en proyectos
+                                                personales.</p>
+                                        </div>
+
+                                        <!-- Decoración pixelada superior derecha -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--top"
+                                            aria-hidden="true">
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-1"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-2"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-3"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-4"></span>
+                                        <!-- Cierre cara posterior de la habilidad -->
+                                        </div>
+
+                                        <!-- Panel central inspirado en la sección Languages de GitHub -->
+                                        <div class="skill-card__github-panel">
+
+                                            <!-- Encabezado del panel de evidencia -->
+                                            <p class="skill-card__github-heading">Evidencia GitHub</p>
+
+                                            <!--
+                                                Este panel recibe evidencia verificable desde GitHub.
+                                                El dato visible será compacto y no representa nivel de dominio.
+                                            -->
+                                            <div class="skill-card__github-track" role="img"
+                                                aria-label="Evidencia de GitHub pendiente de cargar">
+                                                <span class="skill-card__github-track-placeholder"></span>
+                                            <!-- Cierre panel de evidencia GitHub -->
+                                            </div>
+
+                                            <!-- JavaScript reemplaza este estado por un dato compacto y verificable -->
+                                            <p class="skill-card__github-status" aria-live="polite">
+                                                —
+                                            </p>
+
+                                        <!-- Cierre caras de la card de habilidad -->
+                                        </div>
+
+                                        <!-- Decoración pixelada lateral media izquierda -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--left"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada lateral media derecha -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--right"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada inferior izquierda -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--bottom"
+                                            aria-hidden="true">
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-1"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-2"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-3"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-4"></span>
+                                        <!-- Cierre cuadrícula de habilidades -->
+                                        </div>
+
+                                        <!-- Franja negra inferior del reverso -->
+                                        <div class="skill-card__back-footer" aria-hidden="true"></div>
+
+                                    <!-- Cierre superficie turquesa de Habilidades -->
+                                    </div>
+
+                                <!-- Cierre composición editorial de Habilidades -->
+                                </div>
+
+                                <!-- Cierre caras de la card -->
+                            </div>
+
+                            <!-- Cierre card de Java -->
+                        </article>
+
+                        <!-- Aquí se crea la card flip de JavaScript -->
+                        <!-- article = representa una unidad independiente dentro de la sección -->
+                        <article class="skill-card skill-card--javascript" data-skill="javascript">
+
+                            <!-- Aquí se agrupan las dos caras que participan en el giro -->
+                            <div class="skill-card__inner">
+
+                                <!-- Aquí se crea el frente visible inicialmente -->
+                                <div class="skill-card__face skill-card__front" aria-hidden="false">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Ver reverso de JavaScript" aria-pressed="false">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí se muestra el arte frontal creado por Lizeth para esta skill -->
+                                    <div class="skill-card__front-body">
+
+                                        <!-- Decoración pixelada superior derecha del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--top" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--top-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-4"></span>
+                                        </div>
+
+                                        <!-- Círculo central reutilizable que contiene únicamente el logo de la skill -->
+                                        <div class="skill-card__logo-circle">
+                                            <img class="skill-card__logo" src="https://logos-world.net/wp-content/uploads/2023/02/JavaScript-Symbol.png"
+                                                alt="JavaScript" loading="lazy">
+                                        </div>
+
+                                        <!-- Decoración pixelada inferior izquierda del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--bottom" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-4"></span>
+                                        </div>
+
+                                    <!-- Cierre contenido frontal de la habilidad -->
+                                    </div>
+
+                                    <!-- Franja negra inferior del nuevo frente -->
+                                    <div class="skill-card__front-footer" aria-hidden="true"></div>
+                                <!-- Cierre cara frontal de la habilidad -->
+                                </div>
+
+                                <!-- Aquí se crea el reverso pixelado de la misma card -->
+                                <div class="skill-card__face skill-card__back skill-card__back--2" aria-hidden="true">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Volver al frente de JavaScript" aria-pressed="true"
+                                            tabindex="-1">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí comienza el contenido visual del reverso de JAVASCRIPT -->
+                                    <!-- La estructura es reutilizable: solo cambian título, descripción y datos de GitHub -->
+                                    <div class="skill-card__back-body" data-github-scope="personal"
+                                        data-skill-metric="javascript">
+
+                                        <!-- Bloque negro superior izquierdo del reverso -->
+                                        <div class="skill-card__back-text-block">
+                                            <h3 class="skill-card__back-title">JAVASCRIPT</h3>
+                                            <p class="skill-card__back-description">Interacción, DOM y lógica de
+                                                aplicaciones web.</p>
+                                        </div>
+
+                                        <!-- Decoración pixelada superior derecha -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--top"
+                                            aria-hidden="true">
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-1"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-2"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-3"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-4"></span>
+                                        <!-- Cierre cara posterior de la habilidad -->
+                                        </div>
+
+                                        <!-- Panel central inspirado en la sección Languages de GitHub -->
+                                        <div class="skill-card__github-panel">
+
+                                            <!-- Encabezado del panel de evidencia -->
+                                            <p class="skill-card__github-heading">Evidencia GitHub</p>
+
+                                            <!--
+                                                Este panel recibe evidencia verificable desde GitHub.
+                                                El dato visible será compacto y no representa nivel de dominio.
+                                            -->
+                                            <div class="skill-card__github-track" role="img"
+                                                aria-label="Evidencia de GitHub pendiente de cargar">
+                                                <span class="skill-card__github-track-placeholder"></span>
+                                            <!-- Cierre panel de evidencia GitHub -->
+                                            </div>
+
+                                            <!-- JavaScript reemplaza este estado por un dato compacto y verificable -->
+                                            <p class="skill-card__github-status" aria-live="polite">
+                                                —
+                                            </p>
+
+                                        <!-- Cierre caras de la card de habilidad -->
+                                        </div>
+
+                                        <!-- Decoración pixelada lateral media izquierda -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--left"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada lateral media derecha -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--right"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada inferior izquierda -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--bottom"
+                                            aria-hidden="true">
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-1"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-2"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-3"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-4"></span>
+                                        </div>
+
+                                        <!-- Franja negra inferior del reverso -->
+                                        <div class="skill-card__back-footer" aria-hidden="true"></div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Cierre caras de la card -->
+                            </div>
+
+                            <!-- Cierre card de JavaScript -->
+                        </article>
+
+                        <!-- Aquí se crea la card flip de HTML -->
+                        <!-- article = representa una unidad independiente dentro de la sección -->
+                        <article class="skill-card skill-card--html" data-skill="html">
+
+                            <!-- Aquí se agrupan las dos caras que participan en el giro -->
+                            <div class="skill-card__inner">
+
+                                <!-- Aquí se crea el frente visible inicialmente -->
+                                <div class="skill-card__face skill-card__front" aria-hidden="false">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Ver reverso de HTML" aria-pressed="false">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí se muestra el arte frontal creado por Lizeth para esta skill -->
+                                    <div class="skill-card__front-body">
+
+                                        <!-- Decoración pixelada superior derecha del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--top" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--top-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-4"></span>
+                                        </div>
+
+                                        <!-- Círculo central reutilizable que contiene únicamente el logo de la skill -->
+                                        <div class="skill-card__logo-circle">
+                                            <img class="skill-card__logo" src="https://pngdownload.io/wp-content/uploads/2023/12/HTML5-Logo-PNG-Symbol-for-Web-Development-Transparent-jpg.webp"
+                                                alt="HTML" loading="lazy">
+                                        </div>
+
+                                        <!-- Decoración pixelada inferior izquierda del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--bottom" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-4"></span>
+                                        </div>
+
+                                    <!-- Cierre contenido frontal de la habilidad -->
+                                    </div>
+
+                                    <!-- Franja negra inferior del nuevo frente -->
+                                    <div class="skill-card__front-footer" aria-hidden="true"></div>
+                                <!-- Cierre cara frontal de la habilidad -->
+                                </div>
+
+                                <!-- Aquí se crea el reverso pixelado de la misma card -->
+                                <div class="skill-card__face skill-card__back skill-card__back--3" aria-hidden="true">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Volver al frente de HTML" aria-pressed="true" tabindex="-1">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí comienza el contenido visual del reverso de HTML5 -->
+                                    <!-- La estructura es reutilizable: solo cambian título, descripción y datos de GitHub -->
+                                    <div class="skill-card__back-body" data-github-scope="personal"
+                                        data-skill-metric="html">
+
+                                        <!-- Bloque negro superior izquierdo del reverso -->
+                                        <div class="skill-card__back-text-block">
+                                            <h3 class="skill-card__back-title">HTML5</h3>
+                                            <p class="skill-card__back-description">Estructura semántica de interfaces
+                                                web.</p>
+                                        </div>
+
+                                        <!-- Decoración pixelada superior derecha -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--top"
+                                            aria-hidden="true">
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-1"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-2"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-3"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-4"></span>
+                                        <!-- Cierre cara posterior de la habilidad -->
+                                        </div>
+
+                                        <!-- Panel central inspirado en la sección Languages de GitHub -->
+                                        <div class="skill-card__github-panel">
+
+                                            <!-- Encabezado del panel de evidencia -->
+                                            <p class="skill-card__github-heading">Evidencia GitHub</p>
+
+                                            <!--
+                                                Este panel recibe evidencia verificable desde GitHub.
+                                                El dato visible será compacto y no representa nivel de dominio.
+                                            -->
+                                            <div class="skill-card__github-track" role="img"
+                                                aria-label="Evidencia de GitHub pendiente de cargar">
+                                                <span class="skill-card__github-track-placeholder"></span>
+                                            <!-- Cierre panel de evidencia GitHub -->
+                                            </div>
+
+                                            <!-- JavaScript reemplaza este estado por un dato compacto y verificable -->
+                                            <p class="skill-card__github-status" aria-live="polite">
+                                                —
+                                            </p>
+
+                                        <!-- Cierre caras de la card de habilidad -->
+                                        </div>
+
+                                        <!-- Decoración pixelada lateral media izquierda -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--left"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada lateral media derecha -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--right"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada inferior izquierda -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--bottom"
+                                            aria-hidden="true">
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-1"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-2"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-3"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-4"></span>
+                                        </div>
+
+                                        <!-- Franja negra inferior del reverso -->
+                                        <div class="skill-card__back-footer" aria-hidden="true"></div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Cierre caras de la card -->
+                            </div>
+
+                            <!-- Cierre card de HTML -->
+                        </article>
+
+                        <!-- Aquí se crea la card flip de CSS -->
+                        <!-- article = representa una unidad independiente dentro de la sección -->
+                        <article class="skill-card skill-card--css" data-skill="css">
+
+                            <!-- Aquí se agrupan las dos caras que participan en el giro -->
+                            <div class="skill-card__inner">
+
+                                <!-- Aquí se crea el frente visible inicialmente -->
+                                <div class="skill-card__face skill-card__front" aria-hidden="false">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Ver reverso de CSS" aria-pressed="false">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí se muestra el arte frontal creado por Lizeth para esta skill -->
+                                    <div class="skill-card__front-body">
+
+                                        <!-- Decoración pixelada superior derecha del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--top" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--top-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-4"></span>
+                                        </div>
+
+                                        <!-- Círculo central reutilizable que contiene únicamente el logo de la skill -->
+                                        <div class="skill-card__logo-circle">
+                                            <img class="skill-card__logo" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/960px-CSS3_logo_and_wordmark.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail" alt="CSS"
+                                                loading="lazy">
+                                        </div>
+
+                                        <!-- Decoración pixelada inferior izquierda del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--bottom" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-4"></span>
+                                        </div>
+
+                                    <!-- Cierre contenido frontal de la habilidad -->
+                                    </div>
+
+                                    <!-- Franja negra inferior del nuevo frente -->
+                                    <div class="skill-card__front-footer" aria-hidden="true"></div>
+                                <!-- Cierre cara frontal de la habilidad -->
+                                </div>
+
+                                <!-- Aquí se crea el reverso pixelado de la misma card -->
+                                <div class="skill-card__face skill-card__back skill-card__back--4" aria-hidden="true">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Volver al frente de CSS" aria-pressed="true" tabindex="-1">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí comienza el contenido visual del reverso de CSS3 -->
+                                    <!-- La estructura es reutilizable: solo cambian título, descripción y datos de GitHub -->
+                                    <div class="skill-card__back-body" data-github-scope="personal"
+                                        data-skill-metric="css">
+
+                                        <!-- Bloque negro superior izquierdo del reverso -->
+                                        <div class="skill-card__back-text-block">
+                                            <h3 class="skill-card__back-title">CSS3</h3>
+                                            <p class="skill-card__back-description">Diseño visual, responsive y
+                                                composición.</p>
+                                        </div>
+
+                                        <!-- Decoración pixelada superior derecha -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--top"
+                                            aria-hidden="true">
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-1"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-2"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-3"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-4"></span>
+                                        <!-- Cierre cara posterior de la habilidad -->
+                                        </div>
+
+                                        <!-- Panel central inspirado en la sección Languages de GitHub -->
+                                        <div class="skill-card__github-panel">
+
+                                            <!-- Encabezado del panel de evidencia -->
+                                            <p class="skill-card__github-heading">Evidencia GitHub</p>
+
+                                            <!--
+                                                Este panel recibe evidencia verificable desde GitHub.
+                                                El dato visible será compacto y no representa nivel de dominio.
+                                            -->
+                                            <div class="skill-card__github-track" role="img"
+                                                aria-label="Evidencia de GitHub pendiente de cargar">
+                                                <span class="skill-card__github-track-placeholder"></span>
+                                            <!-- Cierre panel de evidencia GitHub -->
+                                            </div>
+
+                                            <!-- JavaScript reemplaza este estado por un dato compacto y verificable -->
+                                            <p class="skill-card__github-status" aria-live="polite">
+                                                —
+                                            </p>
+
+                                        <!-- Cierre caras de la card de habilidad -->
+                                        </div>
+
+                                        <!-- Decoración pixelada lateral media izquierda -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--left"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada lateral media derecha -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--right"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada inferior izquierda -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--bottom"
+                                            aria-hidden="true">
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-1"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-2"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-3"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-4"></span>
+                                        </div>
+
+                                        <!-- Franja negra inferior del reverso -->
+                                        <div class="skill-card__back-footer" aria-hidden="true"></div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Cierre caras de la card -->
+                            </div>
+
+                            <!-- Cierre card de CSS -->
+                        </article>
+
+                        <!-- Aquí se crea la card flip de Bootstrap -->
+                        <!-- article = representa una unidad independiente dentro de la sección -->
+                        <article class="skill-card skill-card--bootstrap" data-skill="bootstrap">
+
+                            <!-- Aquí se agrupan las dos caras que participan en el giro -->
+                            <div class="skill-card__inner">
+
+                                <!-- Aquí se crea el frente visible inicialmente -->
+                                <div class="skill-card__face skill-card__front" aria-hidden="false">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Ver reverso de Bootstrap" aria-pressed="false">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí se muestra el arte frontal creado por Lizeth para esta skill -->
+                                    <div class="skill-card__front-body">
+
+                                        <!-- Decoración pixelada superior derecha del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--top" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--top-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-4"></span>
+                                        </div>
+
+                                        <!-- Círculo central reutilizable que contiene únicamente el logo de la skill -->
+                                        <div class="skill-card__logo-circle">
+                                            <img class="skill-card__logo" src="https://www.brcline.com/wp-content/uploads/2016/01/bootstrap-logo.png"
+                                                alt="Bootstrap" loading="lazy">
+                                        </div>
+
+                                        <!-- Decoración pixelada inferior izquierda del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--bottom" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-4"></span>
+                                        </div>
+
+                                    <!-- Cierre contenido frontal de la habilidad -->
+                                    </div>
+
+                                    <!-- Franja negra inferior del nuevo frente -->
+                                    <div class="skill-card__front-footer" aria-hidden="true"></div>
+                                <!-- Cierre cara frontal de la habilidad -->
+                                </div>
+
+                                <!-- Aquí se crea el reverso pixelado de la misma card -->
+                                <div class="skill-card__face skill-card__back skill-card__back--5" aria-hidden="true">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Volver al frente de Bootstrap" aria-pressed="true"
+                                            tabindex="-1">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí comienza el contenido visual del reverso de BOOTSTRAP -->
+                                    <!-- La estructura es reutilizable: solo cambian título, descripción y datos de GitHub -->
+                                    <div class="skill-card__back-body" data-github-scope="personal"
+                                        data-skill-metric="bootstrap">
+
+                                        <!-- Bloque negro superior izquierdo del reverso -->
+                                        <div class="skill-card__back-text-block">
+                                            <h3 class="skill-card__back-title">BOOTSTRAP</h3>
+                                            <p class="skill-card__back-description">Componentes y maquetación
+                                                responsive.</p>
+                                        </div>
+
+                                        <!-- Decoración pixelada superior derecha -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--top"
+                                            aria-hidden="true">
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-1"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-2"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-3"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-4"></span>
+                                        <!-- Cierre cara posterior de la habilidad -->
+                                        </div>
+
+                                        <!-- Panel central inspirado en la sección Languages de GitHub -->
+                                        <div class="skill-card__github-panel">
+
+                                            <!-- Encabezado del panel de evidencia -->
+                                            <p class="skill-card__github-heading">Evidencia GitHub</p>
+
+                                            <!--
+                                                Este panel recibe evidencia verificable desde GitHub.
+                                                El dato visible será compacto y no representa nivel de dominio.
+                                            -->
+                                            <div class="skill-card__github-track" role="img"
+                                                aria-label="Evidencia de GitHub pendiente de cargar">
+                                                <span class="skill-card__github-track-placeholder"></span>
+                                            <!-- Cierre panel de evidencia GitHub -->
+                                            </div>
+
+                                            <!-- JavaScript reemplaza este estado por un dato compacto y verificable -->
+                                            <p class="skill-card__github-status" aria-live="polite">
+                                                —
+                                            </p>
+
+                                        <!-- Cierre caras de la card de habilidad -->
+                                        </div>
+
+                                        <!-- Decoración pixelada lateral media izquierda -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--left"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada lateral media derecha -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--right"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada inferior izquierda -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--bottom"
+                                            aria-hidden="true">
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-1"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-2"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-3"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-4"></span>
+                                        </div>
+
+                                        <!-- Franja negra inferior del reverso -->
+                                        <div class="skill-card__back-footer" aria-hidden="true"></div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Cierre caras de la card -->
+                            </div>
+
+                            <!-- Cierre card de Bootstrap -->
+                        </article>
+
+                        <!-- Aquí se crea la card flip de PostgreSQL -->
+                        <!-- article = representa una unidad independiente dentro de la sección -->
+                        <article class="skill-card skill-card--postgresql" data-skill="postgresql">
+
+                            <!-- Aquí se agrupan las dos caras que participan en el giro -->
+                            <div class="skill-card__inner">
+
+                                <!-- Aquí se crea el frente visible inicialmente -->
+                                <div class="skill-card__face skill-card__front" aria-hidden="false">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Ver reverso de PostgreSQL" aria-pressed="false">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí se muestra el arte frontal creado por Lizeth para esta skill -->
+                                    <div class="skill-card__front-body">
+
+                                        <!-- Decoración pixelada superior derecha del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--top" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--top-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-4"></span>
+                                        </div>
+
+                                        <!-- Círculo central reutilizable que contiene únicamente el logo de la skill -->
+                                        <div class="skill-card__logo-circle">
+                                            <img class="skill-card__logo" src="https://cdn.iconscout.com/icon/free/png-256/free-postgresql-icon-svg-download-png-1175120.png?f=webp&w=128"
+                                                alt="PostgreSQL" loading="lazy">
+                                        </div>
+
+                                        <!-- Decoración pixelada inferior izquierda del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--bottom" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-4"></span>
+                                        </div>
+
+                                    <!-- Cierre contenido frontal de la habilidad -->
+                                    </div>
+
+                                    <!-- Franja negra inferior del nuevo frente -->
+                                    <div class="skill-card__front-footer" aria-hidden="true"></div>
+                                <!-- Cierre cara frontal de la habilidad -->
+                                </div>
+
+                                <!-- Aquí se crea el reverso pixelado de la misma card -->
+                                <div class="skill-card__face skill-card__back skill-card__back--6" aria-hidden="true">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Volver al frente de PostgreSQL" aria-pressed="true"
+                                            tabindex="-1">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí comienza el contenido visual del reverso de POSTGRESQL -->
+                                    <!-- La estructura es reutilizable: solo cambian título, descripción y datos de GitHub -->
+                                    <div class="skill-card__back-body" data-github-scope="personal"
+                                        data-skill-metric="postgresql">
+
+                                        <!-- Bloque negro superior izquierdo del reverso -->
+                                        <div class="skill-card__back-text-block">
+                                            <h3 class="skill-card__back-title">POSTGRESQL</h3>
+                                            <p class="skill-card__back-description">Datos relacionales, consultas y
+                                                modelado.</p>
+                                        </div>
+
+                                        <!-- Decoración pixelada superior derecha -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--top"
+                                            aria-hidden="true">
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-1"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-2"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-3"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-4"></span>
+                                        <!-- Cierre cara posterior de la habilidad -->
+                                        </div>
+
+                                        <!-- Panel central inspirado en la sección Languages de GitHub -->
+                                        <div class="skill-card__github-panel">
+
+                                            <!-- Encabezado del panel de evidencia -->
+                                            <p class="skill-card__github-heading">Evidencia GitHub</p>
+
+                                            <!--
+                                                Este panel recibe evidencia verificable desde GitHub.
+                                                El dato visible será compacto y no representa nivel de dominio.
+                                            -->
+                                            <div class="skill-card__github-track" role="img"
+                                                aria-label="Evidencia de GitHub pendiente de cargar">
+                                                <span class="skill-card__github-track-placeholder"></span>
+                                            <!-- Cierre panel de evidencia GitHub -->
+                                            </div>
+
+                                            <!-- JavaScript reemplaza este estado por un dato compacto y verificable -->
+                                            <p class="skill-card__github-status" aria-live="polite">
+                                                —
+                                            </p>
+
+                                        <!-- Cierre caras de la card de habilidad -->
+                                        </div>
+
+                                        <!-- Decoración pixelada lateral media izquierda -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--left"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada lateral media derecha -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--right"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada inferior izquierda -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--bottom"
+                                            aria-hidden="true">
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-1"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-2"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-3"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-4"></span>
+                                        </div>
+
+                                        <!-- Franja negra inferior del reverso -->
+                                        <div class="skill-card__back-footer" aria-hidden="true"></div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Cierre caras de la card -->
+                            </div>
+
+                            <!-- Cierre card de PostgreSQL -->
+                        </article>
+
+                        <!-- Aquí se crea la card flip de Git -->
+                        <!-- article = representa una unidad independiente dentro de la sección -->
+                        <article class="skill-card skill-card--git" data-skill="git">
+
+                            <!-- Aquí se agrupan las dos caras que participan en el giro -->
+                            <div class="skill-card__inner">
+
+                                <!-- Aquí se crea el frente visible inicialmente -->
+                                <div class="skill-card__face skill-card__front" aria-hidden="false">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Ver reverso de Git" aria-pressed="false">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí se muestra el arte frontal creado por Lizeth para esta skill -->
+                                    <div class="skill-card__front-body">
+
+                                        <!-- Decoración pixelada superior derecha del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--top" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--top-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-4"></span>
+                                        </div>
+
+                                        <!-- Círculo central reutilizable que contiene únicamente el logo de la skill -->
+                                        <div class="skill-card__logo-circle">
+                                            <img class="skill-card__logo" src="https://banner2.cleanpng.com/20190130/iyf/kisspng-logo-product-design-brand-git-colophon-amit-dhamu-writes-code-1713908738417.webp" alt="Git"
+                                                loading="lazy">
+                                        </div>
+
+                                        <!-- Decoración pixelada inferior izquierda del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--bottom" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-4"></span>
+                                        </div>
+
+                                    <!-- Cierre contenido frontal de la habilidad -->
+                                    </div>
+
+                                    <!-- Franja negra inferior del nuevo frente -->
+                                    <div class="skill-card__front-footer" aria-hidden="true"></div>
+                                <!-- Cierre cara frontal de la habilidad -->
+                                </div>
+
+                                <!-- Aquí se crea el reverso pixelado de la misma card -->
+                                <div class="skill-card__face skill-card__back skill-card__back--7" aria-hidden="true">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Volver al frente de Git" aria-pressed="true" tabindex="-1">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí comienza el contenido visual del reverso de GIT -->
+                                    <!-- La estructura es reutilizable: solo cambian título, descripción y datos de GitHub -->
+                                    <div class="skill-card__back-body" data-github-scope="personal"
+                                        data-skill-metric="git">
+
+                                        <!-- Bloque negro superior izquierdo del reverso -->
+                                        <div class="skill-card__back-text-block">
+                                            <h3 class="skill-card__back-title">GIT</h3>
+                                            <p class="skill-card__back-description">Control de versiones y flujo de
+                                                trabajo.</p>
+                                        </div>
+
+                                        <!-- Decoración pixelada superior derecha -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--top"
+                                            aria-hidden="true">
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-1"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-2"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-3"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-4"></span>
+                                        <!-- Cierre cara posterior de la habilidad -->
+                                        </div>
+
+                                        <!-- Panel central inspirado en la sección Languages de GitHub -->
+                                        <div class="skill-card__github-panel">
+
+                                            <!-- Encabezado del panel de evidencia -->
+                                            <p class="skill-card__github-heading">Evidencia GitHub</p>
+
+                                            <!--
+                                                Este panel recibe evidencia verificable desde GitHub.
+                                                El dato visible será compacto y no representa nivel de dominio.
+                                            -->
+                                            <div class="skill-card__github-track" role="img"
+                                                aria-label="Evidencia de GitHub pendiente de cargar">
+                                                <span class="skill-card__github-track-placeholder"></span>
+                                            <!-- Cierre panel de evidencia GitHub -->
+                                            </div>
+
+                                            <!-- JavaScript reemplaza este estado por un dato compacto y verificable -->
+                                            <p class="skill-card__github-status" aria-live="polite">
+                                                —
+                                            </p>
+
+                                        <!-- Cierre caras de la card de habilidad -->
+                                        </div>
+
+                                        <!-- Decoración pixelada lateral media izquierda -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--left"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada lateral media derecha -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--right"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada inferior izquierda -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--bottom"
+                                            aria-hidden="true">
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-1"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-2"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-3"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-4"></span>
+                                        </div>
+
+                                        <!-- Franja negra inferior del reverso -->
+                                        <div class="skill-card__back-footer" aria-hidden="true"></div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Cierre caras de la card -->
+                            </div>
+
+                            <!-- Cierre card de Git -->
+                        </article>
+
+                        <!-- Aquí se crea la card flip de GitHub -->
+                        <!-- article = representa una unidad independiente dentro de la sección -->
+                        <article class="skill-card skill-card--github" data-skill="github">
+
+                            <!-- Aquí se agrupan las dos caras que participan en el giro -->
+                            <div class="skill-card__inner">
+
+                                <!-- Aquí se crea el frente visible inicialmente -->
+                                <div class="skill-card__face skill-card__front" aria-hidden="false">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Ver reverso de GitHub" aria-pressed="false">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí se muestra el arte frontal creado por Lizeth para esta skill -->
+                                    <div class="skill-card__front-body">
+
+                                        <!-- Decoración pixelada superior derecha del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--top" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--top-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-4"></span>
+                                        </div>
+
+                                        <!-- Círculo central reutilizable que contiene únicamente el logo de la skill -->
+                                        <div class="skill-card__logo-circle">
+                                            <img class="skill-card__logo" src="https://logolook.net/wp-content/uploads/2022/12/GitHub-Logo.png"
+                                                alt="GitHub" loading="lazy">
+                                        </div>
+
+                                        <!-- Decoración pixelada inferior izquierda del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--bottom" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-4"></span>
+                                        </div>
+
+                                    <!-- Cierre contenido frontal de la habilidad -->
+                                    </div>
+
+                                    <!-- Franja negra inferior del nuevo frente -->
+                                    <div class="skill-card__front-footer" aria-hidden="true"></div>
+                                <!-- Cierre cara frontal de la habilidad -->
+                                </div>
+
+                                <!-- Aquí se crea el reverso pixelado de la misma card -->
+                                <div class="skill-card__face skill-card__back skill-card__back--8" aria-hidden="true">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Volver al frente de GitHub" aria-pressed="true" tabindex="-1">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí comienza el contenido visual del reverso de GITHUB -->
+                                    <!-- La estructura es reutilizable: solo cambian título, descripción y datos de GitHub -->
+                                    <div class="skill-card__back-body" data-github-scope="personal"
+                                        data-skill-metric="github">
+
+                                        <!-- Bloque negro superior izquierdo del reverso -->
+                                        <div class="skill-card__back-text-block">
+                                            <h3 class="skill-card__back-title">GITHUB</h3>
+                                            <p class="skill-card__back-description">Repositorios, colaboración y
+                                                trazabilidad.</p>
+                                        </div>
+
+                                        <!-- Decoración pixelada superior derecha -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--top"
+                                            aria-hidden="true">
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-1"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-2"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-3"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-4"></span>
+                                        <!-- Cierre cara posterior de la habilidad -->
+                                        </div>
+
+                                        <!-- Panel central inspirado en la sección Languages de GitHub -->
+                                        <div class="skill-card__github-panel">
+
+                                            <!-- Encabezado del panel de evidencia -->
+                                            <p class="skill-card__github-heading">Evidencia GitHub</p>
+
+                                            <!--
+                                                Este panel recibe evidencia verificable desde GitHub.
+                                                El dato visible será compacto y no representa nivel de dominio.
+                                            -->
+                                            <div class="skill-card__github-track" role="img"
+                                                aria-label="Evidencia de GitHub pendiente de cargar">
+                                                <span class="skill-card__github-track-placeholder"></span>
+                                            <!-- Cierre panel de evidencia GitHub -->
+                                            </div>
+
+                                            <!-- JavaScript reemplaza este estado por un dato compacto y verificable -->
+                                            <p class="skill-card__github-status" aria-live="polite">
+                                                —
+                                            </p>
+
+                                        <!-- Cierre caras de la card de habilidad -->
+                                        </div>
+
+                                        <!-- Decoración pixelada lateral media izquierda -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--left"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada lateral media derecha -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--right"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada inferior izquierda -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--bottom"
+                                            aria-hidden="true">
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-1"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-2"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-3"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-4"></span>
+                                        </div>
+
+                                        <!-- Franja negra inferior del reverso -->
+                                        <div class="skill-card__back-footer" aria-hidden="true"></div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Cierre caras de la card -->
+                            </div>
+
+                            <!-- Cierre card de GitHub -->
+                        </article>
+
+                        <!-- Aquí se crea la card flip de Spring -->
+                        <!-- article = representa una unidad independiente dentro de la sección -->
+                        <article class="skill-card skill-card--spring" data-skill="spring">
+
+                            <!-- Aquí se agrupan las dos caras que participan en el giro -->
+                            <div class="skill-card__inner">
+
+                                <!-- Aquí se crea el frente visible inicialmente -->
+                                <div class="skill-card__face skill-card__front" aria-hidden="false">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Ver reverso de Spring" aria-pressed="false">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí se muestra el arte frontal creado por Lizeth para esta skill -->
+                                    <div class="skill-card__front-body">
+
+                                        <!-- Decoración pixelada superior derecha del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--top" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--top-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-4"></span>
+                                        </div>
+
+                                        <!-- Círculo central reutilizable que contiene únicamente el logo de la skill -->
+                                        <div class="skill-card__logo-circle">
+                                            <img class="skill-card__logo" src="https://miro.medium.com/1*os-kEY6vkmhbx3TEznlOng.png"
+                                                alt="Spring" loading="lazy">
+                                        </div>
+
+                                        <!-- Decoración pixelada inferior izquierda del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--bottom" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-4"></span>
+                                        </div>
+
+                                    <!-- Cierre contenido frontal de la habilidad -->
+                                    </div>
+
+                                    <!-- Franja negra inferior del nuevo frente -->
+                                    <div class="skill-card__front-footer" aria-hidden="true"></div>
+                                <!-- Cierre cara frontal de la habilidad -->
+                                </div>
+
+                                <!-- Aquí se crea el reverso pixelado de la misma card -->
+                                <div class="skill-card__face skill-card__back skill-card__back--9" aria-hidden="true">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Volver al frente de Spring" aria-pressed="true" tabindex="-1">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí comienza el contenido visual del reverso de SPRING BOOT -->
+                                    <!-- La estructura es reutilizable: solo cambian título, descripción y datos de GitHub -->
+                                    <div class="skill-card__back-body" data-github-scope="personal"
+                                        data-skill-metric="spring">
+
+                                        <!-- Bloque negro superior izquierdo del reverso -->
+                                        <div class="skill-card__back-text-block">
+                                            <h3 class="skill-card__back-title">SPRING BOOT</h3>
+                                            <p class="skill-card__back-description">Práctica inicial de backend con
+                                                Java.</p>
+                                        </div>
+
+                                        <!-- Decoración pixelada superior derecha -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--top"
+                                            aria-hidden="true">
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-1"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-2"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-3"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-4"></span>
+                                        <!-- Cierre cara posterior de la habilidad -->
+                                        </div>
+
+                                        <!-- Panel central inspirado en la sección Languages de GitHub -->
+                                        <div class="skill-card__github-panel">
+
+                                            <!-- Encabezado del panel de evidencia -->
+                                            <p class="skill-card__github-heading">Evidencia GitHub</p>
+
+                                            <!--
+                                                Este panel recibe evidencia verificable desde GitHub.
+                                                El dato visible será compacto y no representa nivel de dominio.
+                                            -->
+                                            <div class="skill-card__github-track" role="img"
+                                                aria-label="Evidencia de GitHub pendiente de cargar">
+                                                <span class="skill-card__github-track-placeholder"></span>
+                                            <!-- Cierre panel de evidencia GitHub -->
+                                            </div>
+
+                                            <!-- JavaScript reemplaza este estado por un dato compacto y verificable -->
+                                            <p class="skill-card__github-status" aria-live="polite">
+                                                —
+                                            </p>
+
+                                        <!-- Cierre caras de la card de habilidad -->
+                                        </div>
+
+                                        <!-- Decoración pixelada lateral media izquierda -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--left"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada lateral media derecha -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--right"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada inferior izquierda -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--bottom"
+                                            aria-hidden="true">
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-1"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-2"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-3"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-4"></span>
+                                        </div>
+
+                                        <!-- Franja negra inferior del reverso -->
+                                        <div class="skill-card__back-footer" aria-hidden="true"></div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Cierre caras de la card -->
+                            </div>
+
+                            <!-- Cierre card de Spring -->
+                        </article>
+
+                        <!-- Aquí se crea la card flip de Scrum -->
+                        <!-- article = representa una unidad independiente dentro de la sección -->
+                        <article class="skill-card skill-card--scrum" data-skill="scrum">
+
+                            <!-- Aquí se agrupan las dos caras que participan en el giro -->
+                            <div class="skill-card__inner">
+
+                                <!-- Aquí se crea el frente visible inicialmente -->
+                                <div class="skill-card__face skill-card__front" aria-hidden="false">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Ver reverso de Scrum" aria-pressed="false">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí se muestra el arte frontal creado por Lizeth para esta skill -->
+                                    <div class="skill-card__front-body">
+
+                                        <!-- Decoración pixelada superior derecha del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--top" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--top-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--top-4"></span>
+                                        </div>
+
+                                        <!-- Círculo central reutilizable que contiene únicamente el logo de la skill -->
+                                        <div class="skill-card__logo-circle">
+                                            <img class="skill-card__logo" src="https://frenchmarketing.ca/blog/wp-content/uploads/Agile-Scrum-logo-600x300-1.png"
+                                                alt="Scrum" loading="lazy">
+                                        </div>
+
+                                        <!-- Decoración pixelada inferior izquierda del nuevo diseño -->
+                                        <div class="skill-card__pixels skill-card__pixels--bottom" aria-hidden="true">
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-1"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-2"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-3"></span>
+                                            <span class="skill-card__pixel skill-card__pixel--bottom-4"></span>
+                                        </div>
+
+                                    <!-- Cierre contenido frontal de la habilidad -->
+                                    </div>
+
+                                    <!-- Franja negra inferior del nuevo frente -->
+                                    <div class="skill-card__front-footer" aria-hidden="true"></div>
+                                <!-- Cierre cara frontal de la habilidad -->
+                                </div>
+
+                                <!-- Aquí se crea el reverso pixelado de la misma card -->
+                                <div class="skill-card__face skill-card__back skill-card__back--10" aria-hidden="true">
+                                    <div class="skill-card__header">
+                                        <button class="skill-card__flip-button" type="button"
+                                            aria-label="Volver al frente de Scrum" aria-pressed="true" tabindex="-1">
+                                            <span aria-hidden="true">↻</span>
+                                        </button>
+<!-- Cierre encabezado de la card de habilidad -->
+</div>
+
+                                    <!-- Aquí comienza el contenido visual del reverso de SCRUM -->
+                                    <!-- La estructura es reutilizable: solo cambian título, descripción y datos de GitHub -->
+                                    <div class="skill-card__back-body" data-github-scope="personal"
+                                        data-skill-metric="scrum">
+
+                                        <!-- Bloque negro superior izquierdo del reverso -->
+                                        <div class="skill-card__back-text-block">
+                                            <h3 class="skill-card__back-title">SCRUM</h3>
+                                            <p class="skill-card__back-description">Organización iterativa del trabajo
+                                                en equipo.</p>
+                                        </div>
+
+                                        <!-- Decoración pixelada superior derecha -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--top"
+                                            aria-hidden="true">
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-1"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-2"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-3"></span>
+                                            <span class="skill-card__back-pixel skill-card__back-pixel--top-4"></span>
+                                        <!-- Cierre cara posterior de la habilidad -->
+                                        </div>
+
+                                        <!-- Panel central inspirado en la sección Languages de GitHub -->
+                                        <div class="skill-card__github-panel">
+
+                                            <!-- Encabezado del panel de evidencia -->
+                                            <p class="skill-card__github-heading">Evidencia GitHub</p>
+
+                                            <!--
+                                                Este panel recibe evidencia verificable desde GitHub.
+                                                El dato visible será compacto y no representa nivel de dominio.
+                                            -->
+                                            <div class="skill-card__github-track" role="img"
+                                                aria-label="Evidencia de GitHub pendiente de cargar">
+                                                <span class="skill-card__github-track-placeholder"></span>
+                                            <!-- Cierre panel de evidencia GitHub -->
+                                            </div>
+
+                                            <!-- JavaScript reemplaza este estado por un dato compacto y verificable -->
+                                            <p class="skill-card__github-status" aria-live="polite">
+                                                —
+                                            </p>
+
+                                        <!-- Cierre caras de la card de habilidad -->
+                                        </div>
+
+                                        <!-- Decoración pixelada lateral media izquierda -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--left"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada lateral media derecha -->
+                                        <span class="skill-card__back-side-pixel skill-card__back-side-pixel--right"
+                                            aria-hidden="true"></span>
+
+                                        <!-- Decoración pixelada inferior izquierda -->
+                                        <div class="skill-card__back-pixels skill-card__back-pixels--bottom"
+                                            aria-hidden="true">
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-1"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-2"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-3"></span>
+                                            <span
+                                                class="skill-card__back-pixel skill-card__back-pixel--bottom-4"></span>
+                                        </div>
+
+                                        <!-- Franja negra inferior del reverso -->
+                                        <div class="skill-card__back-footer" aria-hidden="true"></div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Cierre caras de la card -->
+                            </div>
+
+                            <!-- Cierre card de Scrum -->
+                        </article>
+
+                        <!-- Cierre nueva cuadrícula de skills -->
+                    </div>
+
+                    <!-- Cierre superficie turquesa -->
+                </div>
+
+                <!-- Aquí se crea el recuadro oscuro inferior con el título de la sección -->
+                <!-- class = conecta este elemento con los estilos definidos para habilidades-editorial-banner -->
+                <!-- aria = aporta información de accesibilidad para tecnologías de asistencia -->
+                <div class="habilidades-editorial-banner" aria-label="Habilidades y código">
+
+                    <div class="habilidades-banner-pixeles habilidades-banner-pixeles-izquierda" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <!-- class = conecta este elemento con los estilos definidos para habilidades-banner-pixeles habilidades-banner-pixeles-derecha -->
+                    <div class="habilidades-banner-pixeles habilidades-banner-pixeles-derecha" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <p>HABILIDADES &amp; CÓDIGO</p>
+
+                    <!-- Cierre banner inferior -->
+                </div>
+
+                <!-- Cierre composición editorial de Habilidades -->
+            </div>
+
+            <!-- Cierre sección Habilidades -->
+        </section>
+
+        <!-- Aquí se crea la sección Contacto -->
+        <!-- section = agrupa los canales profesionales y el cierre principal del portafolio -->
+        <!-- id = identifica este elemento de forma única como contacto -->
+        <!-- class = conecta este elemento con los estilos definidos para contacto-seccion portada-seccion -->
+        <section id="contacto" class="contacto-seccion portada-seccion">
+
+            <!-- Aquí se agrupa el contenido principal de Contacto -->
+            <div class="contacto-contenido">
+
+                <!-- Aquí se crea el título editorial principal de Contacto -->
+                <header class="contacto-encabezado">
+                    <!-- class = conecta este elemento con los estilos definidos para seccion-etiqueta -->
+                    <p class="seccion-etiqueta">
+                        CONTACTO / LXL
+                    </p>
+
+                    <h2>
+                        CONECTEMOS &amp; CODE
+                    </h2>
+
+                    <!-- Cierre encabezado editorial de Contacto -->
+                </header>
+
+
+                <!-- Aquí se crea el bloque visual de identidad LXL -->
+                <!-- class = conecta este elemento con los estilos definidos para contacto-poster contacto-poster-modular -->
+                <article class="contacto-poster contacto-poster-modular"
+                    aria-label="Identidad profesional de Lizeth Londoño">
+
+                    <!-- Aquí se muestra el mensaje superior sobre el fondo real de Contacto -->
+                    <div class="contacto-poster-superior">
+                        <span>IDEAS + CÓDIGO</span>
+                        <span>SIN RUIDO</span>
+                    </div>
+
+                    <!-- Aquí se crea la pieza violeta irregular inspirada en una estructura pixelada -->
+                    <!-- class = conecta este elemento con los estilos definidos para contacto-poster-forma -->
+                    <div class="contacto-poster-forma">
+
+                        <div class="contacto-poster-contenido">
+                            <!-- aria = aporta información de accesibilidad para tecnologías de asistencia -->
+                            <span class="contacto-poster-numero" aria-hidden="true">
+                                4
+                            </span>
+
+                            <!-- class = conecta este elemento con los estilos definidos para contacto-poster-lista -->
+                            <div class="contacto-poster-lista">
+                                <span>DESARROLLO</span>
+                                <span>APRENDIZAJE</span>
+                                <span>CREATIVIDAD</span>
+                                <span>PORTAFOLIO</span>
+                            <!-- Cierre lista de conceptos de Contacto -->
+                            </div>
+                        <!-- Cierre contenido del bloque visual de Contacto -->
+                        </div>
+
+                        <!-- Aquí se crean pequeños vacíos estructurales que dejan ver el fondo de Contacto -->
+                        <!-- class = conecta este elemento con los estilos definidos para contacto-poster-corte contacto-poster-corte-uno -->
+                        <!-- aria = aporta información de accesibilidad para tecnologías de asistencia -->
+                        <span class="contacto-poster-corte contacto-poster-corte-uno" aria-hidden="true"></span>
+                        <span class="contacto-poster-corte contacto-poster-corte-dos" aria-hidden="true"></span>
+                        <span class="contacto-poster-corte contacto-poster-corte-tres" aria-hidden="true"></span>
+
+                        <!-- Aquí se mantiene la identidad LXL en la zona inferior -->
+                        <div class="contacto-poster-marca">
+                            <strong>LXL</strong>
+                            <span>CODE X LIHEN</span>
+                        </div>
+
+                    <!-- Cierre forma principal del bloque visual de Contacto -->
+                    </div>
+
+                    <!-- Cierre bloque visual LXL -->
+                </article>
+
+
+                <!-- Aquí se reserva el espacio donde se colocará la imagen personal -->
+                <!-- class = conecta este elemento con los estilos definidos para contacto-imagen-panel -->
+                <article class="contacto-imagen-panel">
+                    <div class="contacto-imagen-placeholder">
+                        <!-- Aquí irá la imagen de Lizeth Londoño -->
+                        <!-- aria = aporta información de accesibilidad para tecnologías de asistencia -->
+                        <span aria-hidden="true">
+                            ESPACIO PARA IMAGEN
+                        </span>
+                    </div>
+
+                    <!-- Cierre espacio para imagen -->
+                </article>
+
+
+                <!-- Aquí se agrupan los canales profesionales -->
+                <!-- class = conecta este elemento con los estilos definidos para contacto-canales -->
+                <div class="contacto-canales">
+
+                    <!-- Aquí se crea el acceso directo a GitHub -->
+                    <article class="contacto-canal contacto-github">
+                        <!-- aria = aporta información de accesibilidad para tecnologías de asistencia -->
+                        <div class="contacto-canal-icono" aria-hidden="true">
+                            GH
+                        </div>
+
+                        <!-- class = conecta este elemento con los estilos definidos para contacto-canal-contenido -->
+                        <div class="contacto-canal-contenido">
+                            <span class="contacto-canal-numero" aria-hidden="true">
+                                01
+                            </span>
+
+                            <p class="contacto-canal-etiqueta">
+                                GITHUB
+                            </p>
+
+                            <h3>
+                                Código y proyectos
+                            </h3>
+
+                            <p>
+                                Repositorios, prácticas y proyectos desarrollados durante mi proceso de formación.
+                            </p>
+
+                            <a href="https://github.com/Lizeth-Londono"
+                                aria-label="Ver GitHub de Lizeth Londoño, se abre en una pestaña nueva" target="_blank"
+                                rel="noopener noreferrer">
+                                Ver GitHub <span aria-hidden="true">→</span>
+                            </a>
+                        <!-- Cierre contenido del canal profesional -->
+                        </div>
+
+                        <!-- class = conecta este elemento con los estilos definidos para contacto-canal-meta -->
+                        <div class="contacto-canal-meta" aria-hidden="true">
+                            OPEN SOURCE<br>
+                            EXPERIMENTOS<br>
+                            APRENDIZAJE<br>
+                            EN PROGRESO
+                        </div>
+
+                        <!-- Cierre canal GitHub -->
+                    </article>
+
+
+                    <!-- Aquí se crea el acceso directo a LinkedIn -->
+                    <!-- class = conecta este elemento con los estilos definidos para contacto-canal contacto-linkedin -->
+                    <article class="contacto-canal contacto-linkedin">
+                        <!-- aria = aporta información de accesibilidad para tecnologías de asistencia -->
+                        <div class="contacto-canal-icono" aria-hidden="true">
+                            in
+                        </div>
+
+                        <div class="contacto-canal-contenido">
+                            <!-- class = conecta este elemento con los estilos definidos para contacto-canal-numero -->
+                            <span class="contacto-canal-numero" aria-hidden="true">
+                                02
+                            </span>
+
+                            <p class="contacto-canal-etiqueta">
+                                LINKEDIN
+                            </p>
+
+                            <h3>
+                                Perfil profesional
+                            </h3>
+
+                            <p>
+                                Formación, experiencia y evolución profesional en mi transición hacia desarrollo de
+                                software.
+                            </p>
+
+                            <a href="https://www.linkedin.com/in/lina-londono-dev/"
+                                aria-label="Conectar con Lizeth Londoño en LinkedIn, se abre en una pestaña nueva"
+                                target="_blank" rel="noopener noreferrer">
+                                Conectar en LinkedIn <span aria-hidden="true">→</span>
+                            </a>
+                        <!-- Cierre contenido del canal profesional -->
+                        </div>
+
+                        <!-- class = conecta este elemento con los estilos definidos para contacto-canal-meta -->
+                        <div class="contacto-canal-meta" aria-hidden="true">
+                            REDES<br>
+                            COLABORACIÓN<br>
+                            OPORTUNIDADES<br>
+                            CRECIMIENTO
+                        </div>
+
+                        <!-- Cierre canal LinkedIn -->
+                    </article>
+
+                    <!-- Cierre canales profesionales -->
+                </div>
+
+
+                <!-- Aquí se crean los cuadrados decorativos de la identidad LXL -->
+                <!-- class = conecta este elemento con los estilos definidos para contacto-pixeles contacto-pixeles-superior-izquierdo -->
+                <!-- aria = aporta información de accesibilidad para tecnologías de asistencia -->
+                <div class="contacto-pixeles contacto-pixeles-superior-izquierdo" aria-hidden="true">
+                    <span></span>
+                </div>
+
+                <div class="contacto-pixeles contacto-pixeles-superior-derecho" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <!-- class = conecta este elemento con los estilos definidos para contacto-pixeles contacto-pixeles-lateral-izquierdo -->
+                <div class="contacto-pixeles contacto-pixeles-lateral-izquierdo" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <!-- class = conecta este elemento con los estilos definidos para contacto-pixeles contacto-pixeles-inferior-derecho -->
+                <div class="contacto-pixeles contacto-pixeles-inferior-derecho" aria-hidden="true">
+                    <span></span>
+                </div>
+
+                <!-- Cierre contenido principal de Contacto -->
+            </div>
+
+            <!-- Cierre sección Contacto -->
         </section>
 
         <!-- Cierre contenido principal -->
     </main>
 
 
+    <!-- Aquí se crea el pie de página del portafolio -->
+    <!-- footer = contiene información final y enlaces profesionales secundarios -->
+    <!-- class = conecta este elemento con los estilos definidos para pie-pagina -->
+    <footer class="pie-pagina">
+
+        <!-- Aquí se agrupa el contenido del pie de página -->
+        <div class="pie-pagina-contenido">
+            <p>
+                © 2026 Lina Lizeth Londoño Marín · Junior Full-Stack Java Developer en formación
+            </p>
+
+            <!-- class = conecta este elemento con los estilos definidos para pie-pagina-enlaces -->
+            <div class="pie-pagina-enlaces">
+                <span>
+                    Todos los derechos reservados
+                </span>
+
+                <a href="https://github.com/Lizeth-Londono"
+                    aria-label="GitHub de Lizeth Londoño, se abre en una pestaña nueva" target="_blank"
+                    rel="noopener noreferrer">
+                    GitHub
+                </a>
+
+                <a href="https://www.linkedin.com/in/lina-londono-dev/"
+                    aria-label="LinkedIn de Lizeth Londoño, se abre en una pestaña nueva" target="_blank"
+                    rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+
+                <!-- Cierre enlaces del pie de página -->
+            </div>
+
+            <!-- Cierre contenido del pie de página -->
+        </div>
+
+        <!-- Cierre pie de página -->
+    </footer>
+
+
     <!-- Aquí se conecta el archivo principal de JavaScript -->
     <!-- src = indica la ubicación del archivo JavaScript -->
-    <script src="js/index.js"></script>
+    <script type="module" src="js/index.js"></script>
+
+    <!-- Aquí se conecta la lógica independiente para girar las cards de Habilidades -->
+    <script type="module" src="js/skills-cards.js"></script>
+
+    <!-- Aquí se conecta la lógica independiente para girar las cards de Proyectos -->
+    <script type="module" src="js/project-cards.js"></script>
 
 </body>
 
