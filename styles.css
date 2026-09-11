@@ -46,7 +46,118 @@
     /* #151515 = utiliza este valor de color hexadecimal */
     --color-celda: #151515;
 
+    /* ========================================
+       ALIASES SEMÁNTICOS — SISTEMA LXL
+       ======================================== */
+
+    /* --color-codigo = alias semántico de la estructura negra asociada al código */
+    --color-codigo: var(--color-estructura);
+
+    /* --color-superficie = alias semántico para cards y contenedores oscuros */
+    --color-superficie: var(--color-celda);
+
+
+    /* ========================================
+       BOOTSTRAP ADAPTADO A LA IDENTIDAD LXL
+       ======================================== */
+
+    /*
+        Bootstrap aporta estructura y utilidades.
+        LXL define el lenguaje visual.
+
+        Estas variables conectan Bootstrap con la paleta oficial sin cambiar
+        el significado propio de cada color dentro del portafolio.
+    */
+    --bs-primary: var(--color-tecnologia);
+    --bs-primary-rgb: 30, 255, 188;
+
+    --bs-secondary: var(--color-identidad);
+    --bs-secondary-rgb: 56, 2, 59;
+
+    --bs-danger: var(--color-accion);
+    --bs-danger-rgb: 247, 44, 37;
+
+    --bs-light: var(--color-claro);
+    --bs-light-rgb: 255, 255, 255;
+
+    --bs-dark: var(--color-celda);
+    --bs-dark-rgb: 21, 21, 21;
+
+    --bs-body-bg: var(--color-identidad);
+    --bs-body-bg-rgb: 56, 2, 59;
+
+    --bs-body-color: var(--color-claro);
+    --bs-body-color-rgb: 255, 255, 255;
+
+    --bs-border-color: var(--color-reticula);
+    --bs-link-color: var(--color-tecnologia);
+    --bs-link-hover-color: var(--color-calidez);
+
+    /* Bootstrap utiliza Inter como familia sans-serif principal del proyecto. */
+    --bs-font-sans-serif: "Inter", sans-serif;
+
+
 }
+
+/* ========================================
+   BOOTSTRAP + LXL — REGLAS DE INTEGRACIÓN
+   ======================================== */
+
+/*
+    Bootstrap funciona como capa estructural y utilitaria.
+    La estética final continúa definida por los componentes LXL existentes.
+
+    Semántica oficial del color:
+    #38023B = identidad LXL / LIHEN
+    #000000 = estructura / código
+    #1EFFBC = tecnología / transformación
+    #FBD1A2 = calidez y acento
+    #F72C25 = acción
+    #FFFFFF = contraste y lectura
+    #303030 = retícula
+    #151515 = superficies oscuras
+*/
+
+/* Evita que el color de fondo de Bootstrap reemplace la superficie identitaria del proyecto. */
+body {
+    --bs-body-bg: var(--color-identidad);
+    --bs-body-color: var(--color-claro);
+}
+
+/* Los iconos Bootstrap heredan el color del componente LXL que los contiene. */
+.bi {
+    line-height: 1;
+}
+
+/* Mantiene las utilidades container de Bootstrap sin introducir padding extra en escenas editoriales. */
+#sobre-mi .container-fluid.px-0,
+#proyectos .container-fluid.px-0,
+#habilidades .container-fluid.px-0,
+#contacto .container-fluid.px-0 {
+    --bs-gutter-x: 0;
+}
+
+/* Variantes LXL disponibles para componentes Bootstrap que se incorporen progresivamente. */
+.btn-lxl-primary {
+    --bs-btn-color: var(--color-estructura);
+    --bs-btn-bg: var(--color-tecnologia);
+    --bs-btn-border-color: var(--color-tecnologia);
+    --bs-btn-hover-color: var(--color-tecnologia);
+    --bs-btn-hover-bg: transparent;
+    --bs-btn-hover-border-color: var(--color-tecnologia);
+    --bs-btn-focus-shadow-rgb: 30, 255, 188;
+}
+
+.btn-lxl-action {
+    --bs-btn-color: var(--color-claro);
+    --bs-btn-bg: var(--color-accion);
+    --bs-btn-border-color: var(--color-accion);
+    --bs-btn-hover-color: var(--color-estructura);
+    --bs-btn-hover-bg: var(--color-calidez);
+    --bs-btn-hover-border-color: var(--color-calidez);
+    --bs-btn-focus-shadow-rgb: 247, 44, 37;
+}
+
 
 
 /* ========================================
@@ -78,367 +189,6 @@ body {
 
 
 /* ========================================
-   INTRODUCCIÓN LXL
-   ======================================== */
-
-/* Aquí se configura la pantalla inicial de la introducción */
-/* .intro-lxl = contiene toda la secuencia visual previa al hero */
-.intro-lxl {
-
-    /* position = define cómo se posiciona la introducción dentro de Inicio */
-    /* absolute = utiliza el espacio del Hero sin cubrir toda la página */
-    position: absolute;
-
-    /* inset = permite utilizar el área completa de la sección Inicio */
-    /* 0 = ocupa únicamente el espacio del Hero que la contiene */
-    inset: 0;
-
-    /* display = define cómo se organiza el contenido */
-    /* flex = permite centrar la retícula con Flexbox */
-    display: flex;
-
-    /* justify-content = controla la alineación horizontal */
-    /* center = centra la retícula horizontalmente */
-    justify-content: center;
-
-    /* align-items = controla la alineación vertical */
-    /* center = centra la retícula verticalmente */
-    align-items: center;
-
-    /* background-color = define el fondo de la introducción */
-    /* transparent = permite conservar visible el fondo violeta del Hero */
-    background-color: transparent;
-
-    /* color = define el color general de los elementos */
-    /* --color-claro = utiliza blanco como contraste */
-    color: var(--color-claro);
-
-    /* z-index = controla qué elemento aparece por encima dentro del Hero */
-    /* 2 = mantiene la Intro sobre el contenido del Hero pero debajo de la navbar */
-    z-index: 2;
-
-    /* overflow = controla el contenido que pueda salir de la pantalla */
-    /* hidden = evita barras de desplazamiento durante futuras animaciones */
-    overflow: hidden;
-
-    /* box-sizing = controla cómo se calcula el tamaño total */
-    /* border-box = incluye bordes y padding dentro del tamaño */
-    box-sizing: border-box;
-
-}
-
-
-/* ========================================
-   RETÍCULA DE INTRODUCCIÓN
-   ======================================== */
-
-/* Aquí se crea la matriz donde se organizarán las celdas */
-/* .intro-reticula = contiene todas las celdas de la introducción */
-.intro-reticula {
-
-    /* display = define cómo se organizan los elementos internos */
-    /* grid = permite construir una retícula mediante CSS Grid */
-    display: grid;
-
-    /* grid-template-columns = define la cantidad de columnas */
-    /* repeat(14, 1fr) = crea catorce columnas del mismo tamaño */
-    grid-template-columns: repeat(14, 1fr);
-
-    /* width = define el ancho general de la retícula */
-    /* min() = utiliza el menor valor entre las opciones indicadas */
-    /* 94vw = permite que la matriz ocupe casi todo el ancho del banner */
-    /* 1400px = evita que crezca demasiado en pantallas grandes */
-    width: min(94vw, 1400px);
-
-    /* border = crea el borde exterior de la retícula */
-    /* 1px solid = define grosor y estilo */
-    /* --color-reticula = utiliza gris oscuro */
-    border: 1px solid var(--color-reticula);
-
-    /* background-color = define el fondo detrás de las celdas */
-    /* --color-reticula = mantiene visibles las divisiones */
-    background-color: var(--color-reticula);
-
-}
-
-
-/* ========================================
-   CELDAS DE LA RETÍCULA
-   ======================================== */
-
-/* Aquí se configura cada cuadro individual */
-/* .intro-celda = representa una posición dentro de la matriz */
-.intro-celda {
-
-    /* aspect-ratio = mantiene relación entre ancho y alto */
-    /* 1 / 1 = crea una celda cuadrada */
-    aspect-ratio: 1 / 1;
-
-    /* display = define cómo se organiza el contenido interno */
-    /* flex = permite centrar el símbolo dentro de la celda */
-    display: flex;
-
-    /* justify-content = controla la alineación horizontal */
-    /* center = centra el símbolo horizontalmente */
-    justify-content: center;
-
-    /* align-items = controla la alineación vertical */
-    /* center = centra el símbolo verticalmente */
-    align-items: center;
-
-    /* background-color = define el fondo inicial de la celda */
-    /* --color-celda = utiliza un negro ligeramente más claro */
-    background-color: var(--color-celda);
-
-    /* border = crea las líneas internas de la retícula */
-    /* 1px solid = define grosor y estilo */
-    /* --color-reticula = utiliza gris oscuro */
-    border: 1px solid var(--color-reticula);
-
-    /* box-sizing = controla cómo se calcula el tamaño */
-    /* border-box = mantiene el borde dentro del tamaño de la celda */
-    box-sizing: border-box;
-
-}
-
-/* ========================================
-   PRUEBA VISUAL DEL EMBLEMA
-   ======================================== */
-
-/* Aquí se resaltan temporalmente las celdas que forman el emblema */
-/* .intro-celda-emblema = identifica las celdas seleccionadas por el mapa */
-.intro-celda-emblema {
-
-    /* background-color = cambia el fondo para visualizar la forma provisional */
-    /* --color-identidad = utiliza Dark Amethyst como color de identidad */
-    background-color: var(--color-identidad);
-
-    /* border-color = cambia el color del borde de la celda */
-    /* --color-tecnologia = utiliza Tropical Mint para marcar la estructura */
-    border-color: var(--color-tecnologia);
-
-}
-
-
-/* Aquí se resaltan los símbolos que forman parte del emblema */
-.intro-celda-emblema .intro-simbolo {
-
-    /* color = cambia el color del símbolo */
-    /* --color-tecnologia = utiliza Tropical Mint como acento */
-    color: var(--color-tecnologia);
-
-}
-
-/* ========================================
-   SÍMBOLOS DE LA INTRODUCCIÓN
-   ======================================== */
-
-/* Aquí se configura el estilo general de los símbolos */
-/* .intro-simbolo = representa cada carácter dentro de una celda */
-.intro-simbolo {
-
-    /* font-family = define la tipografía de los símbolos */
-    /* Barlow Condensed = conecta los caracteres con la identidad LXL */
-    font-family: "Barlow Condensed", sans-serif;
-
-    /* font-size = define el tamaño de los caracteres */
-    /* 30px = mantiene presencia visual dentro de las celdas */
-    font-size: 30px;
-
-    /* font-weight = define el grosor del texto */
-    /* 600 = mantiene los símbolos visibles */
-    font-weight: 600;
-
-    /* color = define el color inicial */
-    /* --color-claro = utiliza blanco como base */
-    color: var(--color-claro);
-
-    /* line-height = controla la altura de la línea */
-    /* 1 = evita espacios verticales innecesarios */
-    line-height: 1;
-
-}
-
-
-/* ========================================
-   VARIACIÓN VISUAL DE SÍMBOLOS
-   ======================================== */
-
-/* Aquí se aplica un primer acento tecnológico */
-/* nth-child = selecciona celdas según su posición dentro de la retícula */
-.intro-celda:nth-child(4n) .intro-simbolo {
-
-    /* color = cambia el color del símbolo */
-    /* --color-tecnologia = utiliza Tropical Mint */
-    color: var(--color-tecnologia);
-
-}
-
-
-/* Aquí se aplica un segundo acento visual */
-.intro-celda:nth-child(6n) .intro-simbolo {
-
-    /* color = cambia el color del símbolo */
-    /* --color-calidez = utiliza Apricot Cream */
-    color: var(--color-calidez);
-
-}
-
-
-/* ========================================
-   EMBLEMA DE INTRODUCCIÓN
-   ======================================== */
-
-/* Aquí se muestra temporalmente el espacio reservado para el emblema */
-/* .intro-emblema = contiene la retícula utilizada para construir la silueta */
-.intro-emblema {
-
-    /* display = permite visualizar temporalmente la retícula del emblema */
-    /* block = muestra el elemento durante esta etapa de validación */
-    display: block;
-
-}
-
-/* ========================================
-   RETÍCULA INTERNA DEL EMBLEMA
-   ======================================== */
-
-/* Aquí se prepara la retícula de mayor resolución para el emblema */
-/* .intro-emblema-reticula = contendrá las celdas que formarán la silueta LIHEN */
-.intro-emblema-reticula {
-
-    /* display = define cómo se organizarán las celdas */
-    /* grid = permite crear una retícula de filas y columnas */
-    display: grid;
-
-    /* grid-template-columns = define la cantidad de columnas */
-    /* repeat(30, 1fr) = crea treinta columnas del mismo tamaño */
-    grid-template-columns: repeat(30, 1fr);
-
-    /* width = define el ancho máximo de la retícula del emblema */
-    /* min() = utiliza el menor valor entre las opciones indicadas */
-    /* 70vw = permite adaptar la retícula al tamaño de la pantalla */
-    /* 520px = evita que el emblema crezca demasiado en desktop */
-    width: min(70vw, 520px);
-
-    /* aspect-ratio = mantiene la misma relación entre ancho y alto */
-    /* 1 / 1 = crea una retícula cuadrada */
-    aspect-ratio: 1 / 1;
-
-    /* margin = permite centrar horizontalmente el bloque */
-    /* 0 auto = elimina margen vertical y centra horizontalmente */
-    margin: 0 auto;
-
-    /* box-sizing = controla cómo se calcula el tamaño total */
-    /* border-box = incluye bordes dentro del tamaño definido */
-    box-sizing: border-box;
-
-}
-
-/* Aquí se prepara cada celda de la retícula del emblema */
-/* .intro-emblema-celda = representa una posición dentro de la matriz 30 x 30 */
-.intro-emblema-celda {
-
-    /* aspect-ratio = mantiene cada celda completamente cuadrada */
-    /* 1 / 1 = conserva la misma proporción entre ancho y alto */
-    aspect-ratio: 1 / 1;
-
-    /* background-color = permite visualizar temporalmente cada celda */
-    /* --color-celda = utiliza el mismo fondo oscuro de la retícula principal */
-    background-color: var(--color-celda);
-
-    /* border = permite identificar cada posición de la nueva matriz */
-    /* 1px solid = crea una línea delgada alrededor de cada celda */
-    /* --color-reticula = utiliza el gris oscuro definido para la cuadrícula */
-    border: 1px solid var(--color-reticula);
-
-    /* box-sizing = mantiene el tamaño estable aunque se agreguen bordes */
-    box-sizing: border-box;
-
-}
-
-/* Aquí se identifica visualmente cada celda que forma parte del emblema */
-/* .intro-emblema-celda-activa = representa una posición activa dentro de la silueta LIHEN */
-.intro-emblema-celda-activa {
-
-    /* background-color = diferencia las celdas que forman el emblema */
-    /* --color-identidad = utiliza Dark Amethyst como color principal */
-    background-color: var(--color-identidad);
-
-    /* border-color = permite destacar temporalmente la estructura modular */
-    /* --color-tecnologia = utiliza Tropical Mint como acento */
-    border-color: var(--color-tecnologia);
-
-}
-
-/* ========================================
-   IDENTIDAD FINAL DE LA INTRODUCCIÓN
-   ======================================== */
-
-/* Aquí se prepara la identidad que aparecerá después del emblema */
-/* .intro-identidad = contiene LXL, CODE X LIHEN y el nombre */
-.intro-identidad {
-
-    /* display = controla si el bloque se muestra */
-    /* none = lo mantiene oculto durante esta primera etapa */
-    display: none;
-
-}
-
-
-/* Aquí se prepara el estilo de LXL dentro de la intro */
-.intro-identidad-lxl {
-
-    /* font-family = define la tipografía principal */
-    /* Barlow Condensed = conecta con la identidad visual */
-    font-family: "Barlow Condensed", sans-serif;
-
-    /* font-size = define el tamaño del monograma */
-    /* 64px = le da protagonismo a LXL */
-    font-size: 64px;
-
-    /* font-weight = define el grosor */
-    /* 700 = aplica un grosor fuerte */
-    font-weight: 700;
-
-    /* letter-spacing = define la separación entre letras */
-    /* 8px = refuerza la composición visual */
-    letter-spacing: 8px;
-
-    /* color = define el color del texto */
-    /* --color-claro = utiliza blanco */
-    color: var(--color-claro);
-
-}
-
-
-/* Aquí se prepara CODE X LIHEN dentro de la intro */
-.intro-identidad-marca {
-
-    /* font-family = define la tipografía */
-    font-family: "Barlow Condensed", sans-serif;
-
-    /* color = define el color */
-    /* --color-calidez = utiliza Apricot Cream */
-    color: var(--color-calidez);
-
-}
-
-
-/* Aquí se prepara el nombre dentro de la intro */
-.intro-identidad-nombre {
-
-    /* font-family = define la tipografía */
-    font-family: "Barlow Condensed", sans-serif;
-
-    /* color = define el color */
-    /* --color-claro = utiliza blanco */
-    color: var(--color-claro);
-
-}
-
-
-/* ========================================
    ENCABEZADO PRINCIPAL
    ======================================== */
 
@@ -463,7 +213,7 @@ body {
     width: 100%;
 
     /* z-index = controla qué elemento aparece por encima */
-    /* 50 = mantiene la navegación por encima de las secciones y debajo de la Intro LXL */
+    /* 50 = mantiene la navegación por encima del contenido principal del portafolio */
     z-index: 50;
 
     /* background-color = agrega una base oscura semitransparente al encabezado */
@@ -578,11 +328,12 @@ body {
 /* .hero = sección inicial del portafolio */
 .hero {
 
-    /* position = permite utilizar la sección como referencia para la Intro */
-    /* relative = mantiene la Intro contenida dentro de Inicio */
+    /* position = permite utilizar Inicio como referencia para sus elementos internos */
+    /* relative = conserva el posicionamiento de la composición dentro del Hero */
     position: relative;
 
-    /* overflow = evita que elementos visuales de la Intro salgan de la portada */
+    /* overflow = evita que elementos visuales del Hero salgan de la portada */
+    /* hidden = recorta cualquier desbordamiento decorativo fuera de Inicio */
     overflow: hidden;
 
     /* min-height = define una altura mínima */
@@ -888,24 +639,6 @@ body {
     }
 
 
-    /* Aquí se ajusta la retícula de introducción */
-    .intro-reticula {
-
-        /* width = permite aprovechar mejor pantallas pequeñas */
-        width: 88vw;
-
-    }
-
-
-    /* Aquí se ajustan los símbolos */
-    .intro-simbolo {
-
-        /* font-size = reduce el tamaño */
-        font-size: 24px;
-
-    }
-
-
     /* Aquí se ajusta el espacio del hero */
     .hero {
 
@@ -942,45 +675,12 @@ body {
 
 }
 
-/* Aquí se oculta temporalmente la retícula principal durante la prueba del emblema */
-/* Esta regla se retirará después de validar la nueva matriz */
-.intro-reticula {
-
-    /* display = oculta temporalmente la matriz de símbolos */
-    display: none;
-
-}
-
-
 /* ========================================
    RESPONSIVE MÓVIL
    ======================================== */
 
 /* Aquí se realizan ajustes hasta 480 píxeles */
 @media (max-width: 480px) {
-
-    /* Aquí se reorganiza la retícula para celulares pequeños */
-    .intro-reticula {
-
-        /* grid-template-columns = define la cantidad de columnas en móvil */
-        /* repeat(10, 1fr) = reorganiza las 140 celdas en diez columnas */
-        grid-template-columns: repeat(10, 1fr);
-
-        /* width = permite ocupar casi todo el ancho disponible */
-        /* 92vw = mantiene un pequeño margen lateral */
-        width: 92vw;
-
-    }
-
-
-    /* Aquí se ajustan los símbolos */
-    .intro-simbolo {
-
-        /* font-size = reduce el tamaño para las celdas móviles */
-        font-size: 20px;
-
-    }
-
 
     /* Aquí se colocan los botones uno debajo del otro */
     .hero-acciones {
@@ -1016,83 +716,7 @@ body {
 
 }
 
-/* ========================================
-   ESTADOS DE VISIBILIDAD DE LA INTRO LXL
-   ======================================== */
 
-/* Aquí se muestra la Intro LXL cuando la sección Inicio se encuentra visible */
-/* intro-activa = estado utilizado cuando la introducción puede permanecer en pantalla */
-.intro-lxl.intro-activa {
-
-    /* visibility = controla si el elemento puede verse e interactuar */
-    /* visible = mantiene la introducción disponible mientras Inicio está en pantalla */
-    visibility: visible;
-
-    /* opacity = controla la transparencia del elemento */
-    /* 1 = muestra completamente la introducción */
-    opacity: 1;
-
-    /* pointer-events = controla si la Intro bloquea otros elementos */
-    /* none = permite mantener disponible la navegación mientras la Intro está activa */
-    pointer-events: none;
-
-}
-
-
-/* Aquí se oculta visualmente la Intro LXL cuando la persona sale de Inicio */
-/* intro-pausada = conserva la estructura creada sin mantener la capa sobre otras secciones */
-.intro-lxl.intro-pausada {
-
-    /* visibility = evita que la capa permanezca visible sobre el resto del portafolio */
-    visibility: hidden;
-
-    /* opacity = mantiene la introducción completamente transparente */
-    opacity: 0;
-
-    /* pointer-events = evita que una capa invisible bloquee botones o enlaces */
-    pointer-events: none;
-
-}
-
-
-/* Aquí se prepara la pausa de futuras animaciones CSS de la introducción */
-/* animation-play-state = permite detener una animación sin reiniciarla */
-.intro-lxl.intro-pausada .intro-reticula,
-.intro-lxl.intro-pausada .intro-emblema,
-.intro-lxl.intro-pausada .intro-identidad {
-
-    animation-play-state: paused;
-
-}
-
-
-
-
-/* Aquí se oculta temporalmente el contenido final del Hero mientras la Intro está activa */
-/* El Hero permanece en su lugar y podrá revelarse al finalizar la futura secuencia */
-.intro-lxl.intro-activa + .hero-contenido {
-
-    /* opacity = define el nivel de transparencia */
-    /* 0 = establece este valor numérico para la propiedad */
-    opacity: 0;
-    /* visibility = controla si el elemento es visible conservando su espacio */
-    /* hidden = aplica este comportamiento al contenido o visibilidad */
-    visibility: hidden;
-
-}
-
-
-/* Aquí se permite visualizar nuevamente el Hero cuando la Intro deja de estar activa */
-.intro-lxl.intro-pausada + .hero-contenido {
-
-    /* opacity = define el nivel de transparencia */
-    /* 1 = establece este valor numérico para la propiedad */
-    opacity: 1;
-    /* visibility = controla si el elemento es visible conservando su espacio */
-    /* visible = aplica este comportamiento al contenido o visibilidad */
-    visibility: visible;
-
-}
 
 /* ========================================
    NAVEGACIÓN ENTRE SECCIONES
@@ -1258,7 +882,7 @@ html {
     font-family: "Barlow Condensed", sans-serif;
 
     /* font-size = crea una jerarquía visual fuerte */
-    font-size: clamp(42px, 5vw, 72px);
+    font-size: clamp(38px, 4.5vw, 62px);
 
     /* line-height = compacta las líneas del título */
     line-height: 0.95;
@@ -1712,8 +1336,8 @@ html {
     /* "Barlow Condensed", sans-serif = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
     font-family: "Barlow Condensed", sans-serif;
     /* font-size = define el tamaño del texto */
-    /* clamp(46px, 6vw, 78px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-    font-size: clamp(46px, 6vw, 78px);
+    /* clamp(40px, 5vw, 66px) = reduce la escala manteniendo jerarquía y mejor proporción con el texto */
+    font-size: clamp(40px, 5vw, 66px);
     /* line-height = define la altura de línea del texto */
     /* 0.92 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
     line-height: 0.92;
@@ -2252,9 +1876,8 @@ html {
 /* Aquí se configura la portada principal de Habilidades */
 .habilidades-seccion {
 
-    /* min-height = define la altura mínima permitida */
-    /* 100vh = establece esta medida para controlar el tamaño o separación de forma visual */
-    min-height: 100vh;
+    /* min-height = deja que el contenido determine la altura para que Habilidades funcione como complemento de Proyectos */
+    min-height: auto;
     /* display = define cómo se comporta y organiza el elemento */
     /* flex = aplica este modo de visualización u organización */
     display: flex;
@@ -2328,8 +1951,8 @@ html {
     /* "Barlow Condensed", sans-serif = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
     font-family: "Barlow Condensed", sans-serif;
     /* font-size = define el tamaño del texto */
-    /* clamp(52px, 6vw, 84px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-    font-size: clamp(52px, 6vw, 84px);
+    /* clamp(42px, 5.2vw, 70px) = modera la escala sin perder presencia editorial */
+    font-size: clamp(42px, 5.2vw, 70px);
     /* line-height = define la altura de línea del texto */
     /* 0.92 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
     line-height: 0.92;
@@ -2841,8 +2464,8 @@ html {
     /* "Barlow Condensed", sans-serif = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
     font-family: "Barlow Condensed", sans-serif;
     /* font-size = define el tamaño del texto */
-    /* clamp(64px, 9.4vw, 126px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-    font-size: clamp(64px, 9.4vw, 126px);
+    /* clamp(48px, 6.8vw, 88px) = modera la escala manteniendo una jerarquía editorial fuerte */
+    font-size: clamp(48px, 6.8vw, 88px);
     /* font-weight = define el grosor visual de la letra */
     /* 700 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
     font-weight: 700;
@@ -3709,8 +3332,8 @@ html {
 
     .contacto-encabezado h2 {
         /* font-size = define el tamaño del texto */
-        /* clamp(54px, 11.5vw, 88px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-        font-size: clamp(54px, 11.5vw, 88px);
+        /* clamp(42px, 7vw, 66px) = mantiene presencia en tablet con una proporción más contenida */
+        font-size: clamp(42px, 7vw, 66px);
         /* white-space = controla cómo se comportan los espacios y saltos de línea */
         /* normal = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
         white-space: normal;
@@ -3780,9 +3403,8 @@ html {
     }
 
     .contacto-encabezado h2 {
-        /* font-size = define el tamaño del texto */
-        /* clamp(46px, 16vw, 68px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-        font-size: clamp(46px, 16vw, 68px);
+        /* font-size = reduce la escala manteniendo una jerarquía clara y proporcional en móvil */
+        font-size: clamp(34px, 9.5vw, 48px);
         /* -webkit-text-stroke-width = define una característica visual o de comportamiento del elemento */
         /* 1px = establece esta medida para controlar el tamaño o separación de forma visual */
         -webkit-text-stroke-width: 1px;
@@ -4438,8 +4060,8 @@ html {
     /* Aquí se reduce el título principal de Sobre mí */
     .sobre-mi-presentacion h2 {
         /* font-size = define el tamaño del texto */
-        /* clamp(36px, 11vw, 48px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-        font-size: clamp(36px, 11vw, 48px);
+        /* clamp(32px, 9vw, 44px) = reduce el título para mejorar la proporción con los textos en móvil */
+        font-size: clamp(32px, 9vw, 44px);
         /* line-height = define la altura de línea del texto */
         /* 1.02 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
         line-height: 1.02;
@@ -4492,8 +4114,8 @@ html {
     /* Aquí se reduce el título principal de Proyectos */
     .proyectos-encabezado h2 {
         /* font-size = define el tamaño del texto */
-        /* clamp(38px, 12vw, 54px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-        font-size: clamp(38px, 12vw, 54px);
+        /* clamp(32px, 9vw, 46px) = reduce el título para mantener jerarquía sin dominar la pantalla */
+        font-size: clamp(32px, 9vw, 46px);
         /* line-height = define la altura de línea del texto */
         /* 1.02 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
         line-height: 1.02;
@@ -4566,8 +4188,8 @@ html {
     /* Aquí se reduce el título principal de Habilidades */
     .habilidades-encabezado h2 {
         /* font-size = define el tamaño del texto */
-        /* clamp(40px, 12vw, 56px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-        font-size: clamp(40px, 12vw, 56px);
+        /* clamp(34px, 9.5vw, 48px) = reduce el título y conserva una presencia clara en móvil */
+        font-size: clamp(34px, 9.5vw, 48px);
         /* line-height = define la altura de línea del texto */
         /* 1 = establece este valor numérico para la propiedad */
         line-height: 1;
@@ -4929,520 +4551,65 @@ a:focus-visible {
 
 /* Aquí la Intro utiliza perspectiva para dar profundidad sin salir de Inicio */
 /* perspective = distancia simulada entre la persona y el plano 3D */
-.intro-lxl {
-    perspective: 1050px;
-    /* perspective-origin = define una característica visual o de comportamiento del elemento */
-    /* center center = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    perspective-origin: center center;
-}
+
 
 /* Aquí la retícula deja de sentirse como una caja pequeña centrada */
 /* La matriz 14 x 10 se conserva, pero ahora ocupa casi todo el Hero */
-.intro-lxl .intro-reticula {
-    /* display = define cómo se comporta y organiza el elemento */
-    /* grid = aplica este modo de visualización u organización */
-    display: grid;
-    /* grid-template-columns = define la estructura y tamaño de las columnas de CSS Grid */
-    /* repeat(14, 1fr) = repite la estructura indicada para construir la cuadrícula */
-    grid-template-columns: repeat(14, 1fr);
-    /* grid-template-rows = define la estructura y tamaño de las filas de CSS Grid */
-    /* repeat(10, 1fr) = repite la estructura indicada para construir la cuadrícula */
-    grid-template-rows: repeat(10, 1fr);
-    /* width = define el ancho del elemento */
-    /* min(94%, 1500px) = calcula el valor usando la función CSS indicada para mantener el diseño adaptable */
-    width: min(94%, 1500px);
-    /* height = define la altura del elemento */
-    /* min(74%, 720px) = calcula el valor usando la función CSS indicada para mantener el diseño adaptable */
-    height: min(74%, 720px);
-    /* border = define el borde del elemento */
-    /* 0 = establece este valor numérico para la propiedad */
-    border: 0;
-    /* background-color = define el color de fondo */
-    /* transparent = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    background-color: transparent;
-    /* position = define el tipo de posicionamiento del elemento */
-    /* relative = aplica este modo de posicionamiento al elemento */
-    position: relative;
-    /* z-index = define el nivel de superposición del elemento */
-    /* 2 = establece este valor numérico para la propiedad */
-    z-index: 2;
-    /* transform-style = define una característica visual o de comportamiento del elemento */
-    /* preserve-3d = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    transform-style: preserve-3d;
-    /* transform-origin = define el punto desde el que se realiza una transformación */
-    /* center center = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    transform-origin: center center;
-    /* animation-name = define el nombre de la animación que se ejecuta */
-    /* intro-deformar-campo = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-name: intro-deformar-campo;
-    /* animation-duration = define cuánto dura la animación */
-    /* 3.2s = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-duration: 3.2s;
-    /* animation-delay = define cuánto espera la animación antes de iniciar */
-    /* 0.65s = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-delay: 0.65s;
-    /* animation-timing-function = define cómo cambia la velocidad durante la animación */
-    /* cubic-bezier(0.22, 0.7, 0.22, 1) = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-timing-function: cubic-bezier(0.22, 0.7, 0.22, 1);
-    /* animation-fill-mode = define qué estilos conserva la animación antes o después de ejecutarse */
-    /* forwards = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-fill-mode: forwards;
-    /* animation-play-state = permite pausar o reanudar una animación */
-    /* running = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-play-state: running;
-    /* will-change = define una característica visual o de comportamiento del elemento */
-    /* transform = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    will-change: transform;
-}
+
 
 /* Aquí cada celda funciona como un punto del campo visual, no como una caja rígida */
-.intro-lxl .intro-celda {
-    /* min-width = define el ancho mínimo permitido */
-    /* 0 = establece este valor numérico para la propiedad */
-    min-width: 0;
-    /* min-height = define la altura mínima permitida */
-    /* 0 = establece este valor numérico para la propiedad */
-    min-height: 0;
-    /* aspect-ratio = define la proporción entre ancho y alto */
-    /* auto = aplica este comportamiento al contenido o visibilidad */
-    aspect-ratio: auto;
-    /* background-color = define el color de fondo */
-    /* transparent = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    background-color: transparent;
-    /* border = define el borde del elemento */
-    /* 0 = establece este valor numérico para la propiedad */
-    border: 0;
-    /* opacity = define el nivel de transparencia */
-    /* 0 = establece este valor numérico para la propiedad */
-    opacity: 0;
-    /* transform-style = define una característica visual o de comportamiento del elemento */
-    /* preserve-3d = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    transform-style: preserve-3d;
-    transform:
-        translate3d(
-            var(--intro-x-inicial, 0px),
-            var(--intro-y-inicial, 0px),
-            var(--intro-z-inicial, -60px)
-        )
-        scale(var(--intro-escala-inicial, 0.72));
-    /* animation-name = define el nombre de la animación que se ejecuta */
-    /* intro-activar-caracter = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-name: intro-activar-caracter;
-    /* animation-duration = define cuánto dura la animación */
-    /* var(--intro-duracion, 1.55s) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
-    animation-duration: var(--intro-duracion, 1.55s);
-    /* animation-delay = define cuánto espera la animación antes de iniciar */
-    /* var(--intro-retardo, 0.55s) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
-    animation-delay: var(--intro-retardo, 0.55s);
-    /* animation-timing-function = define cómo cambia la velocidad durante la animación */
-    /* cubic-bezier(0.2, 0.72, 0.25, 1) = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-timing-function: cubic-bezier(0.2, 0.72, 0.25, 1);
-    /* animation-fill-mode = define qué estilos conserva la animación antes o después de ejecutarse */
-    /* forwards = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-fill-mode: forwards;
-    /* animation-play-state = permite pausar o reanudar una animación */
-    /* running = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-play-state: running;
-    /* will-change = define una característica visual o de comportamiento del elemento */
-    /* transform, opacity = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    will-change: transform, opacity;
-}
+
 
 /* Aquí los signos se mantienen livianos y legibles sobre el fondo morado */
-.intro-lxl .intro-simbolo {
-    /* display = define cómo se comporta y organiza el elemento */
-    /* inline-flex = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    display: inline-flex;
-    /* align-items = controla la alineación de los elementos en el eje secundario */
-    /* center = utiliza esta forma de alineación o distribución */
-    align-items: center;
-    /* justify-content = controla la alineación de los elementos en el eje principal */
-    /* center = utiliza esta forma de alineación o distribución */
-    justify-content: center;
-    /* width = define el ancho del elemento */
-    /* 100% = establece esta medida para controlar el tamaño o separación de forma visual */
-    width: 100%;
-    /* height = define la altura del elemento */
-    /* 100% = establece esta medida para controlar el tamaño o separación de forma visual */
-    height: 100%;
-    /* font-family = define la familia tipográfica */
-    /* "Inter", sans-serif = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    font-family: "Inter", sans-serif;
-    /* font-size = define el tamaño del texto */
-    /* clamp(13px, 1.35vw, 23px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-    font-size: clamp(13px, 1.35vw, 23px);
-    /* font-weight = define el grosor visual de la letra */
-    /* 500 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    font-weight: 500;
-    /* color = define el color del texto */
-    /* rgba(255, 255, 255, 0.62) = utiliza este color con valores RGB y, cuando aplica, transparencia */
-    color: rgba(255, 255, 255, 0.62);
-    /* opacity = define el nivel de transparencia */
-    /* var(--intro-opacidad, 0.72) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
-    opacity: var(--intro-opacidad, 0.72);
-    /* text-shadow = crea una sombra alrededor del texto */
-    /* 0 0 12px rgba(30, 255, 188, 0.08) = utiliza este color con valores RGB y, cuando aplica, transparencia */
-    text-shadow: 0 0 12px rgba(30, 255, 188, 0.08);
-}
+
 
 /* Aquí se alternan acentos para conservar la identidad tecnológica LXL */
-.intro-lxl .intro-celda:nth-child(5n) .intro-simbolo,
-.intro-lxl .intro-celda:nth-child(11n) .intro-simbolo {
-    /* color = define el color del texto */
-    /* var(--color-tecnologia) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
-    color: var(--color-tecnologia);
-}
 
-.intro-lxl .intro-celda:nth-child(7n) .intro-simbolo,
-.intro-lxl .intro-celda:nth-child(13n) .intro-simbolo {
-    /* color = define el color del texto */
-    /* #B777E8 = utiliza este valor de color hexadecimal */
-    color: #B777E8;
-}
 
 /* Aquí se conserva C6 en el proyecto sin convertirlo en protagonista de esta fase */
-.intro-lxl .intro-emblema {
-    /* display = define cómo se comporta y organiza el elemento */
-    /* none = aplica este modo de visualización u organización */
-    display: none;
-}
+
 
 /* Aquí se muestra brevemente la identidad antes de abrir el campo de símbolos */
-.intro-lxl .intro-identidad {
-    /* display = define cómo se comporta y organiza el elemento */
-    /* flex = aplica este modo de visualización u organización */
-    display: flex;
-    /* flex-direction = define la dirección en la que se organizan los elementos Flexbox */
-    /* column = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    flex-direction: column;
-    /* align-items = controla la alineación de los elementos en el eje secundario */
-    /* center = utiliza esta forma de alineación o distribución */
-    align-items: center;
-    /* justify-content = controla la alineación de los elementos en el eje principal */
-    /* center = utiliza esta forma de alineación o distribución */
-    justify-content: center;
-    /* gap = define el espacio entre elementos de una cuadrícula o contenedor flexible */
-    /* 10px = establece esta medida para controlar el tamaño o separación de forma visual */
-    gap: 10px;
-    /* position = define el tipo de posicionamiento del elemento */
-    /* absolute = aplica este modo de posicionamiento al elemento */
-    position: absolute;
-    /* inset = define de forma abreviada las distancias superior, derecha, inferior e izquierda */
-    /* 0 = establece este valor numérico para la propiedad */
-    inset: 0;
-    /* z-index = define el nivel de superposición del elemento */
-    /* 3 = establece este valor numérico para la propiedad */
-    z-index: 3;
-    /* pointer-events = controla si el elemento puede recibir eventos del puntero */
-    /* none = aplica este modo de visualización u organización */
-    pointer-events: none;
-    /* animation-name = define el nombre de la animación que se ejecuta */
-    /* intro-identidad-a-campo = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-name: intro-identidad-a-campo;
-    /* animation-duration = define cuánto dura la animación */
-    /* 1.15s = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-duration: 1.15s;
-    /* animation-timing-function = define cómo cambia la velocidad durante la animación */
-    /* ease = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-timing-function: ease;
-    /* animation-fill-mode = define qué estilos conserva la animación antes o después de ejecutarse */
-    /* forwards = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-fill-mode: forwards;
-    /* animation-play-state = permite pausar o reanudar una animación */
-    /* running = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-play-state: running;
-}
+
 
 /* Aquí LXL se mantiene como punto de partida de la secuencia */
-.intro-lxl .intro-identidad-lxl {
-    /* font-size = define el tamaño del texto */
-    /* clamp(58px, 7vw, 98px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-    font-size: clamp(58px, 7vw, 98px);
-    /* letter-spacing = define el espacio entre caracteres */
-    /* 12px = establece esta medida para controlar el tamaño o separación de forma visual */
-    letter-spacing: 12px;
-}
+
 
 /* Aquí se mantiene CODE X LIHEN como parte de la identidad inicial */
-.intro-lxl .intro-identidad-marca {
-    /* font-size = define el tamaño del texto */
-    /* clamp(16px, 1.8vw, 24px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-    font-size: clamp(16px, 1.8vw, 24px);
-    /* letter-spacing = define el espacio entre caracteres */
-    /* 7px = establece esta medida para controlar el tamaño o separación de forma visual */
-    letter-spacing: 7px;
-}
+
 
 /* El nombre se reserva para la fase final de revelación */
-.intro-lxl .intro-identidad-nombre {
-    /* display = define cómo se comporta y organiza el elemento */
-    /* none = aplica este modo de visualización u organización */
-    display: none;
-}
+
 
 /* Aquí la identidad inicial cede el espacio al campo amplio de caracteres */
-@keyframes intro-identidad-a-campo {
-    0%,
-    52% {
-        /* opacity = define el nivel de transparencia */
-        /* 1 = establece este valor numérico para la propiedad */
-        opacity: 1;
-        /* transform = aplica transformaciones como mover, escalar o rotar */
-        /* scale(1) = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-        transform: scale(1);
-    }
 
-    100% {
-        /* opacity = define el nivel de transparencia */
-        /* 0 = establece este valor numérico para la propiedad */
-        opacity: 0;
-        /* transform = aplica transformaciones como mover, escalar o rotar */
-        /* scale(0.94) = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-        transform: scale(0.94);
-        /* visibility = controla si el elemento es visible conservando su espacio */
-        /* hidden = aplica este comportamiento al contenido o visibilidad */
-        visibility: hidden;
-    }
-}
 
 /* Aquí cada carácter aparece desde una profundidad y desplazamiento calculados */
-@keyframes intro-activar-caracter {
-    0% {
-        /* opacity = define el nivel de transparencia */
-        /* 0 = establece este valor numérico para la propiedad */
-        opacity: 0;
-        transform:
-            translate3d(
-                var(--intro-x-inicial, 0px),
-                var(--intro-y-inicial, 0px),
-                var(--intro-z-inicial, -60px)
-            )
-            scale(var(--intro-escala-inicial, 0.72));
-    }
 
-    38% {
-        /* opacity = define el nivel de transparencia */
-        /* 0.42 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-        opacity: 0.42;
-    }
-
-    100% {
-        opacity: var(--intro-opacidad, 0.72);
-        transform:
-            translate3d(0, 0, var(--intro-z-final, 0px))
-            scale(1);
-    }
-}
 
 /* Aquí el campo completo gana profundidad, se pliega suavemente y vuelve a estabilizarse */
 /* La rotación es moderada para evitar el efecto de tarjeta 3D */
-@keyframes intro-deformar-campo {
-    0%,
-    18% {
-        transform:
-            rotateX(0deg)
-            rotateY(0deg)
-            scale(1);
-    }
 
-    45% {
-        transform:
-            rotateX(7deg)
-            rotateY(-9deg)
-            scale(1.035);
-    }
-
-    68% {
-        transform:
-            rotateX(-5deg)
-            rotateY(7deg)
-            scale(0.985);
-    }
-
-    100% {
-        transform:
-            rotateX(0deg)
-            rotateY(0deg)
-            scale(1);
-    }
-}
 
 /* Aquí el campo de caracteres cede el espacio al logo LIHEN sin corte brusco */
-.intro-lxl .intro-reticula {
-    /* animation-name = define el nombre de la animación que se ejecuta */
-    /* intro-deformar-campo, intro-ocultar-campo-para-logo = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-name: intro-deformar-campo, intro-ocultar-campo-para-logo;
-    /* animation-duration = define cuánto dura la animación */
-    /* 3.2s, 1.15s = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-duration: 3.2s, 1.15s;
-    /* animation-delay = define cuánto espera la animación antes de iniciar */
-    /* 0.65s, 3.45s = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-delay: 0.65s, 3.45s;
-    /* animation-timing-function = define cómo cambia la velocidad durante la animación */
-    /* cubic-bezier(0.22, 0.7, 0.22, 1), ease = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-timing-function: cubic-bezier(0.22, 0.7, 0.22, 1), ease;
-    /* animation-fill-mode = define qué estilos conserva la animación antes o después de ejecutarse */
-    /* forwards, forwards = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-fill-mode: forwards, forwards;
-}
 
-@keyframes intro-ocultar-campo-para-logo {
-    0% {
-        /* opacity = define el nivel de transparencia */
-        /* 1 = establece este valor numérico para la propiedad */
-        opacity: 1;
-        /* filter = define una característica visual o de comportamiento del elemento */
-        /* blur(0) = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-        filter: blur(0);
-    }
-
-    100% {
-        /* opacity = define el nivel de transparencia */
-        /* 0 = establece este valor numérico para la propiedad */
-        opacity: 0;
-        /* filter = define una característica visual o de comportamiento del elemento */
-        /* blur(2px) = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-        filter: blur(2px);
-    }
-}
 
 /* Aquí el logo LIHEN se revela como resultado del campo de código */
-@keyframes intro-revelar-logo-lihen {
-    0% {
-        /* opacity = define el nivel de transparencia */
-        /* 0 = establece este valor numérico para la propiedad */
-        opacity: 0;
-        /* transform = aplica transformaciones como mover, escalar o rotar */
-        /* translate(-50%, -50%) scale(0.9) rotateX(5deg) = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-        transform: translate(-50%, -50%) scale(0.9) rotateX(5deg);
-    }
 
-    45% {
-        /* opacity = define el nivel de transparencia */
-        /* 1 = establece este valor numérico para la propiedad */
-        opacity: 1;
-        /* transform = aplica transformaciones como mover, escalar o rotar */
-        /* translate(-50%, -50%) scale(1.025) rotateX(0deg) = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-        transform: translate(-50%, -50%) scale(1.025) rotateX(0deg);
-    }
-
-    100% {
-        /* opacity = define el nivel de transparencia */
-        /* 1 = establece este valor numérico para la propiedad */
-        opacity: 1;
-        /* transform = aplica transformaciones como mover, escalar o rotar */
-        /* translate(-50%, -50%) scale(1) rotateX(0deg) = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-        transform: translate(-50%, -50%) scale(1) rotateX(0deg);
-    }
-}
 
 /* Aquí se pausa exactamente el estado visual cuando Inicio sale del viewport */
-.intro-lxl.intro-pausada .intro-reticula,
-.intro-lxl.intro-pausada .intro-celda,
-.intro-lxl.intro-pausada .intro-identidad,
-.intro-lxl.intro-pausada .intro-logo-code-wrapper {
-    /* animation-play-state = permite pausar o reanudar una animación */
-    /* paused = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-play-state: paused;
-}
+
 
 /* Aquí se reanuda desde el mismo punto cuando Inicio vuelve a ser visible */
-.intro-lxl.intro-activa .intro-reticula,
-.intro-lxl.intro-activa .intro-celda,
-.intro-lxl.intro-activa .intro-identidad,
-.intro-lxl.intro-activa .intro-logo-code-wrapper {
-    /* animation-play-state = permite pausar o reanudar una animación */
-    /* running = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-play-state: running;
-}
+
 
 /* Aquí se adapta el campo visual a tablet sin convertirlo en una mini retícula */
-@media (min-width: 601px) and (max-width: 1024px) {
-    .intro-lxl .intro-reticula {
-        /* width = define el ancho del elemento */
-        /* 94% = establece esta medida para controlar el tamaño o separación de forma visual */
-        width: 94%;
-        /* height = define la altura del elemento */
-        /* 70% = establece esta medida para controlar el tamaño o separación de forma visual */
-        height: 70%;
-    }
 
-    .intro-lxl .intro-simbolo {
-        /* font-size = define el tamaño del texto */
-        /* clamp(12px, 2vw, 19px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-        font-size: clamp(12px, 2vw, 19px);
-    }
-}
 
 /* Aquí se reduce la carga visual en móvil manteniendo el campo amplio */
-@media (max-width: 600px) {
-    .intro-lxl {
-        /* perspective = define una característica visual o de comportamiento del elemento */
-        /* 760px = establece esta medida para controlar el tamaño o separación de forma visual */
-        perspective: 760px;
-    }
 
-    .intro-lxl .intro-reticula {
-        /* grid-template-columns = define la estructura y tamaño de las columnas de CSS Grid */
-        /* repeat(14, 1fr) = repite la estructura indicada para construir la cuadrícula */
-        grid-template-columns: repeat(14, 1fr);
-        /* grid-template-rows = define la estructura y tamaño de las filas de CSS Grid */
-        /* repeat(10, 1fr) = repite la estructura indicada para construir la cuadrícula */
-        grid-template-rows: repeat(10, 1fr);
-        /* width = define el ancho del elemento */
-        /* 94% = establece esta medida para controlar el tamaño o separación de forma visual */
-        width: 94%;
-        /* height = define la altura del elemento */
-        /* 68% = establece esta medida para controlar el tamaño o separación de forma visual */
-        height: 68%;
-    }
-
-    .intro-lxl .intro-simbolo {
-        /* font-size = define el tamaño del texto */
-        /* clamp(8px, 2.35vw, 12px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-        font-size: clamp(8px, 2.35vw, 12px);
-    }
-
-    .intro-lxl .intro-identidad-lxl {
-        font-size: 58px;
-        /* letter-spacing = define el espacio entre caracteres */
-        /* 9px = establece esta medida para controlar el tamaño o separación de forma visual */
-        letter-spacing: 9px;
-    }
-
-    .intro-lxl .intro-identidad-marca {
-        /* font-size = define el tamaño del texto */
-        /* 15px = establece esta medida para controlar el tamaño o separación de forma visual */
-        font-size: 15px;
-        /* letter-spacing = define el espacio entre caracteres */
-        /* 5px = establece esta medida para controlar el tamaño o separación de forma visual */
-        letter-spacing: 5px;
-    }
-}
 
 /* Aquí se evita la secuencia larga cuando el sistema solicita menos movimiento */
-@media (prefers-reduced-motion: reduce) {
-    .intro-lxl {
-        /* visibility = controla si el elemento es visible conservando su espacio */
-        /* hidden !important = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-        visibility: hidden !important;
-        /* opacity = define el nivel de transparencia */
-        /* 0 !important = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-        opacity: 0 !important;
-    }
-
-    .intro-lxl + .hero-contenido,
-    .intro-lxl.intro-activa + .hero-contenido,
-    .intro-lxl.intro-pausada + .hero-contenido {
-        /* opacity = define el nivel de transparencia */
-        /* 1 !important = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-        opacity: 1 !important;
-        /* visibility = controla si el elemento es visible conservando su espacio */
-        /* visible !important = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-        visibility: visible !important;
-    }
-}
-
 
 
 /* ========================================
@@ -5451,111 +4618,10 @@ a:focus-visible {
 
 /* Aquí se prepara el contenedor del logo modular dentro de Inicio */
 /* El logo aparece después del campo 3D para que el cambio sea visible en esta fase */
-.intro-logo-code-wrapper {
-    /* --logo-size = crea una variable CSS reutilizable para este valor */
-    /* min(70vmin, 680px) = calcula el valor usando la función CSS indicada para mantener el diseño adaptable */
-    --logo-size: min(70vmin, 680px);
-    /* width = define el ancho del elemento */
-    /* var(--logo-size) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
-    width: var(--logo-size);
-    /* max-width = define el ancho máximo permitido */
-    /* 82% = establece esta medida para controlar el tamaño o separación de forma visual */
-    max-width: 82%;
-    /* aspect-ratio = define la proporción entre ancho y alto */
-    /* 1 / 1 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    aspect-ratio: 1 / 1;
-    /* position = define el tipo de posicionamiento del elemento */
-    /* absolute = aplica este modo de posicionamiento al elemento */
-    position: absolute;
-    /* left = define la distancia desde la parte izquierda */
-    /* 50% = establece esta medida para controlar el tamaño o separación de forma visual */
-    left: 50%;
-    /* top = define la distancia desde la parte superior */
-    /* 50% = establece esta medida para controlar el tamaño o separación de forma visual */
-    top: 50%;
-    /* transform = aplica transformaciones como mover, escalar o rotar */
-    /* translate(-50%, -50%) scale(0.9) = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    transform: translate(-50%, -50%) scale(0.9);
-    /* display = define cómo se comporta y organiza el elemento */
-    /* grid = aplica este modo de visualización u organización */
-    display: grid;
-    /* place-items = permite alinear elementos horizontal y verticalmente en una sola propiedad */
-    /* center = utiliza esta forma de alineación o distribución */
-    place-items: center;
-    /* opacity = define el nivel de transparencia */
-    /* 0 = establece este valor numérico para la propiedad */
-    opacity: 0;
-    /* visibility = controla si el elemento es visible conservando su espacio */
-    /* visible = aplica este comportamiento al contenido o visibilidad */
-    visibility: visible;
-    /* pointer-events = controla si el elemento puede recibir eventos del puntero */
-    /* none = aplica este modo de visualización u organización */
-    pointer-events: none;
-    /* z-index = define el nivel de superposición del elemento */
-    /* 4 = establece este valor numérico para la propiedad */
-    z-index: 4;
-    /* animation-name = define el nombre de la animación que se ejecuta */
-    /* intro-revelar-logo-lihen = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-name: intro-revelar-logo-lihen;
-    /* animation-duration = define cuánto dura la animación */
-    /* 1.65s = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-duration: 1.65s;
-    /* animation-delay = define cuánto espera la animación antes de iniciar */
-    /* 3.55s = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-delay: 3.55s;
-    /* animation-timing-function = define cómo cambia la velocidad durante la animación */
-    /* cubic-bezier(0.2, 0.72, 0.25, 1) = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-timing-function: cubic-bezier(0.2, 0.72, 0.25, 1);
-    /* animation-fill-mode = define qué estilos conserva la animación antes o después de ejecutarse */
-    /* forwards = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-fill-mode: forwards;
-    /* animation-play-state = permite pausar o reanudar una animación */
-    /* running = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-play-state: running;
-    /* will-change = define una característica visual o de comportamiento del elemento */
-    /* transform, opacity = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    will-change: transform, opacity;
-}
+
 
 /* Aquí se crea la cuadrícula lógica 72 x 72 del logo */
-.pixel-code-logo {
-    /* --logo-columnas = crea una variable CSS reutilizable para este valor */
-    /* 72 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    --logo-columnas: 72;
-    /* --logo-filas = crea una variable CSS reutilizable para este valor */
-    /* 72 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    --logo-filas: 72;
-    /* width = define el ancho del elemento */
-    /* 100% = establece esta medida para controlar el tamaño o separación de forma visual */
-    width: 100%;
-    /* aspect-ratio = define la proporción entre ancho y alto */
-    /* var(--logo-columnas) / var(--logo-filas) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
-    aspect-ratio: var(--logo-columnas) / var(--logo-filas);
-    /* display = define cómo se comporta y organiza el elemento */
-    /* grid = aplica este modo de visualización u organización */
-    display: grid;
-    /* grid-template-columns = define la estructura y tamaño de las columnas de CSS Grid */
-    /* repeat(var(--logo-columnas), minmax(0, 1fr)) = calcula el valor usando la función CSS indicada para mantener el diseño adaptable */
-    grid-template-columns: repeat(var(--logo-columnas), minmax(0, 1fr));
-    /* grid-template-rows = define la estructura y tamaño de las filas de CSS Grid */
-    /* repeat(var(--logo-filas), minmax(0, 1fr)) = calcula el valor usando la función CSS indicada para mantener el diseño adaptable */
-    grid-template-rows: repeat(var(--logo-filas), minmax(0, 1fr));
-    /* gap = define el espacio entre elementos de una cuadrícula o contenedor flexible */
-    /* 0 = establece este valor numérico para la propiedad */
-    gap: 0;
-    /* margin = controla el espacio exterior del elemento */
-    /* 0 = establece este valor numérico para la propiedad */
-    margin: 0;
-    /* padding = agrega espacio interno entre el contenido y los bordes */
-    /* 0 = establece este valor numérico para la propiedad */
-    padding: 0;
-    /* background = permite definir varias características del fondo en una sola propiedad */
-    /* transparent = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    background: transparent;
-    /* overflow = controla qué ocurre con el contenido que supera los límites */
-    /* hidden = aplica este comportamiento al contenido o visibilidad */
-    overflow: hidden;
-}
+
 
 /* Aquí se mantiene cada posición de la matriz completamente cuadrada */
 .logo-slot {
@@ -5590,164 +4656,34 @@ a:focus-visible {
 }
 
 /* Aquí se configura cada píxel lógico visible del logo */
-.logo-cell {
-    /* display = define cómo se comporta y organiza el elemento */
-    /* flex = aplica este modo de visualización u organización */
-    display: flex;
-    /* align-items = controla la alineación de los elementos en el eje secundario */
-    /* center = utiliza esta forma de alineación o distribución */
-    align-items: center;
-    /* justify-content = controla la alineación de los elementos en el eje principal */
-    /* center = utiliza esta forma de alineación o distribución */
-    justify-content: center;
-    /* width = define el ancho del elemento */
-    /* 100% = establece esta medida para controlar el tamaño o separación de forma visual */
-    width: 100%;
-    /* height = define la altura del elemento */
-    /* 100% = establece esta medida para controlar el tamaño o separación de forma visual */
-    height: 100%;
-    /* margin = controla el espacio exterior del elemento */
-    /* 0 = establece este valor numérico para la propiedad */
-    margin: 0;
-    /* padding = agrega espacio interno entre el contenido y los bordes */
-    /* 0 = establece este valor numérico para la propiedad */
-    padding: 0;
-    /* border-radius = redondea las esquinas del elemento */
-    /* 0 = establece este valor numérico para la propiedad */
-    border-radius: 0;
-    /* line-height = define la altura de línea del texto */
-    /* 1 = establece este valor numérico para la propiedad */
-    line-height: 1;
-    /* overflow = controla qué ocurre con el contenido que supera los límites */
-    /* hidden = aplica este comportamiento al contenido o visibilidad */
-    overflow: hidden;
-    /* font-family = define la familia tipográfica */
-    /* "JetBrains Mono", "Fira Code", "Courier New", monospace = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
-    /* font-size = define el tamaño del texto */
-    /* clamp(3px, calc(var(--logo-size) / 96), 10px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-    font-size: clamp(3px, calc(var(--logo-size) / 96), 10px);
-    /* font-weight = define el grosor visual de la letra */
-    /* 700 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    font-weight: 700;
-    /* text-align = define la alineación horizontal del texto */
-    /* center = utiliza esta forma de alineación o distribución */
-    text-align: center;
-    /* white-space = controla cómo se comportan los espacios y saltos de línea */
-    /* nowrap = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    white-space: nowrap;
-    /* user-select = define una característica visual o de comportamiento del elemento */
-    /* none = aplica este modo de visualización u organización */
-    user-select: none;
-    /* transform = aplica transformaciones como mover, escalar o rotar */
-    /* scale(1.015) = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    transform: scale(1.015);
-    /* transform-origin = define el punto desde el que se realiza una transformación */
-    /* center = utiliza esta forma de alineación o distribución */
-    transform-origin: center;
-}
+
 
 /* Aquí se aplica el estado verde del logo */
-.logo-cell.green {
-    /* background = permite definir varias características del fondo en una sola propiedad */
-    /* #084332 = utiliza este valor de color hexadecimal */
-    background: #084332;
-    /* border = define el borde del elemento */
-    /* 1px solid #129870 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    border: 1px solid #129870;
-}
+
 
 /* Aquí se aplica el estado púrpura conectado con la identidad LXL */
-.logo-cell.purple {
-    /* background = permite definir varias características del fondo en una sola propiedad */
-    /* var(--color-identidad) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
-    background: var(--color-identidad);
-    /* border = define el borde del elemento */
-    /* 1px solid #2D7475 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    border: 1px solid #2D7475;
-}
+
 
 /* Aquí los fragmentos largos reducen su tamaño para evitar desbordamiento */
-.logo-cell.long-symbol {
-    /* font-size = define el tamaño del texto */
-    /* clamp(2px, calc(var(--logo-size) / 122), 8px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-    font-size: clamp(2px, calc(var(--logo-size) / 122), 8px);
-    /* letter-spacing = define el espacio entre caracteres */
-    /* -0.08em = establece esta medida para controlar el tamaño o separación de forma visual */
-    letter-spacing: -0.08em;
-}
+
 
 /* Aquí se oculta la Intro después de completar la primera secuencia */
-.intro-lxl.intro-finalizada {
-    /* visibility = controla si el elemento es visible conservando su espacio */
-    /* hidden = aplica este comportamiento al contenido o visibilidad */
-    visibility: hidden;
-    /* opacity = define el nivel de transparencia */
-    /* 0 = establece este valor numérico para la propiedad */
-    opacity: 0;
-    /* pointer-events = controla si el elemento puede recibir eventos del puntero */
-    /* none = aplica este modo de visualización u organización */
-    pointer-events: none;
-}
+
 
 /* Aquí se muestra el Hero final cuando termina la secuencia */
-.intro-lxl.intro-finalizada + .hero-contenido {
-    /* opacity = define el nivel de transparencia */
-    /* 1 = establece este valor numérico para la propiedad */
-    opacity: 1;
-    /* visibility = controla si el elemento es visible conservando su espacio */
-    /* visible = aplica este comportamiento al contenido o visibilidad */
-    visibility: visible;
-}
+
 
 /* Aquí se adapta el tamaño preparado del logo a tablet */
-@media (min-width: 601px) and (max-width: 1024px) {
-    .intro-logo-code-wrapper {
-        /* --logo-size = crea una variable CSS reutilizable para este valor */
-        /* min(72vmin, 600px) = calcula el valor usando la función CSS indicada para mantener el diseño adaptable */
-        --logo-size: min(72vmin, 600px);
-        /* max-width = define el ancho máximo permitido */
-        /* 86% = establece esta medida para controlar el tamaño o separación de forma visual */
-        max-width: 86%;
-    }
-}
+
 
 /* Aquí se adapta el logo a móvil sin modificar su matriz lógica */
-@media (max-width: 600px) {
-    .intro-logo-code-wrapper {
-        /* --logo-size = crea una variable CSS reutilizable para este valor */
-        /* min(88vw, 430px) = calcula el valor usando la función CSS indicada para mantener el diseño adaptable */
-        --logo-size: min(88vw, 430px);
-        /* max-width = define el ancho máximo permitido */
-        /* 90% = establece esta medida para controlar el tamaño o separación de forma visual */
-        max-width: 90%;
-    }
-}
+
 
 /* Aquí se elimina cualquier transición futura si se solicita menos movimiento */
-@media (prefers-reduced-motion: reduce) {
-    .intro-logo-code-wrapper,
-    .logo-cell {
-        /* transition = define una transición suave entre cambios de estilos */
-        /* none !important = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-        transition: none !important;
-        /* animation = configura una animación CSS de forma abreviada */
-        /* none !important = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-        animation: none !important;
-    }
-}
 
-/* ========================================
-   ESTADO TEMPORAL - HERO DIRECTO
-   ======================================== */
 
-/* Aquí se desactiva temporalmente la Intro sin borrar su estructura histórica. */
 /* El componente queda reservado para integrar después la animación aprobada. */
-#intro-lxl {
-    /* display = define cómo se comporta y organiza el elemento */
-    /* none !important = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    display: none !important;
-}
+
 
 /* Aquí se garantiza que el Hero final sea visible desde la carga inicial. */
 #inicio .hero-contenido {
@@ -5760,235 +4696,7 @@ a:focus-visible {
 }
 
 /* ========================================
-   LIHEN PIXEL CODE REVEAL - COMPONENTE
-   ======================================== */
-
-.lihen-reveal {
-    /* --lihen-page-bg = crea una variable CSS reutilizable para este valor */
-    /* #02140f = utiliza este valor de color hexadecimal */
-    --lihen-page-bg: #02140f;
-    /* --lihen-green-bg = crea una variable CSS reutilizable para este valor */
-    /* #084332 = utiliza este valor de color hexadecimal */
-    --lihen-green-bg: #084332;
-    /* --lihen-green-edge = crea una variable CSS reutilizable para este valor */
-    /* #129870 = utiliza este valor de color hexadecimal */
-    --lihen-green-edge: #129870;
-    /* --lihen-purple-bg = crea una variable CSS reutilizable para este valor */
-    /* #38023b = utiliza este valor de color hexadecimal */
-    --lihen-purple-bg: #38023b;
-    /* --lihen-purple-edge = crea una variable CSS reutilizable para este valor */
-    /* #2d7475 = utiliza este valor de color hexadecimal */
-    --lihen-purple-edge: #2d7475;
-    /* --lihen-focus = crea una variable CSS reutilizable para este valor */
-    /* #d5fff6 = utiliza este valor de color hexadecimal */
-    --lihen-focus: #d5fff6;
-    /* position = define el tipo de posicionamiento del elemento */
-    /* relative = aplica este modo de posicionamiento al elemento */
-    position: relative;
-    /* display = define cómo se comporta y organiza el elemento */
-    /* block = aplica este modo de visualización u organización */
-    display: block;
-    /* overflow = controla qué ocurre con el contenido que supera los límites */
-    /* hidden = aplica este comportamiento al contenido o visibilidad */
-    overflow: hidden;
-    /* isolation = define una característica visual o de comportamiento del elemento */
-    /* isolate = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    isolation: isolate;
-    /* contain = define una característica visual o de comportamiento del elemento */
-    /* layout paint style = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    contain: layout paint style;
-    /* background = permite definir varias características del fondo en una sola propiedad */
-    /* var(--lihen-page-bg) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
-    background: var(--lihen-page-bg);
-    /* font-family = define la familia tipográfica */
-    /* "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
-
-.lihen-reveal,
-.lihen-reveal *,
-.lihen-reveal *::before,
-.lihen-reveal *::after {
-    /* box-sizing = define cómo se calcula el tamaño total del elemento */
-    /* border-box = utiliza este modelo para calcular el tamaño del elemento */
-    box-sizing: border-box;
-}
-
-.lihen-reveal__viewport {
-    /* position = define el tipo de posicionamiento del elemento */
-    /* absolute = aplica este modo de posicionamiento al elemento */
-    position: absolute;
-    /* inset = define de forma abreviada las distancias superior, derecha, inferior e izquierda */
-    /* 0 = establece este valor numérico para la propiedad */
-    inset: 0;
-    /* overflow = controla qué ocurre con el contenido que supera los límites */
-    /* hidden = aplica este comportamiento al contenido o visibilidad */
-    overflow: hidden;
-    /* background = permite definir varias características del fondo en una sola propiedad */
-    /* var(--lihen-page-bg) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
-    background: var(--lihen-page-bg);
-}
-
-.lihen-reveal__grid {
-    /* --lihen-cell-font-size = crea una variable CSS reutilizable para este valor */
-    /* 10px = establece esta medida para controlar el tamaño o separación de forma visual */
-    --lihen-cell-font-size: 10px;
-    /* position = define el tipo de posicionamiento del elemento */
-    /* absolute = aplica este modo de posicionamiento al elemento */
-    position: absolute;
-    /* inset = define de forma abreviada las distancias superior, derecha, inferior e izquierda */
-    /* 0 = establece este valor numérico para la propiedad */
-    inset: 0;
-    /* display = define cómo se comporta y organiza el elemento */
-    /* grid = aplica este modo de visualización u organización */
-    display: grid;
-    /* gap = define el espacio entre elementos de una cuadrícula o contenedor flexible */
-    /* 0 = establece este valor numérico para la propiedad */
-    gap: 0;
-    /* margin = controla el espacio exterior del elemento */
-    /* 0 = establece este valor numérico para la propiedad */
-    margin: 0;
-    /* padding = agrega espacio interno entre el contenido y los bordes */
-    /* 0 = establece este valor numérico para la propiedad */
-    padding: 0;
-    /* background = permite definir varias características del fondo en una sola propiedad */
-    /* var(--lihen-page-bg) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
-    background: var(--lihen-page-bg);
-}
-
-.lihen-reveal__cell {
-    /* min-width = define el ancho mínimo permitido */
-    /* 0 = establece este valor numérico para la propiedad */
-    min-width: 0;
-    /* min-height = define la altura mínima permitida */
-    /* 0 = establece este valor numérico para la propiedad */
-    min-height: 0;
-    /* display = define cómo se comporta y organiza el elemento */
-    /* flex = aplica este modo de visualización u organización */
-    display: flex;
-    /* align-items = controla la alineación de los elementos en el eje secundario */
-    /* center = utiliza esta forma de alineación o distribución */
-    align-items: center;
-    /* justify-content = controla la alineación de los elementos en el eje principal */
-    /* center = utiliza esta forma de alineación o distribución */
-    justify-content: center;
-    /* overflow = controla qué ocurre con el contenido que supera los límites */
-    /* hidden = aplica este comportamiento al contenido o visibilidad */
-    overflow: hidden;
-    /* margin = controla el espacio exterior del elemento */
-    /* 0 = establece este valor numérico para la propiedad */
-    margin: 0;
-    /* padding = agrega espacio interno entre el contenido y los bordes */
-    /* 0 = establece este valor numérico para la propiedad */
-    padding: 0;
-    /* border = define el borde del elemento */
-    /* 0 = establece este valor numérico para la propiedad */
-    border: 0;
-    /* border-radius = redondea las esquinas del elemento */
-    /* 0 = establece este valor numérico para la propiedad */
-    border-radius: 0;
-    /* line-height = define la altura de línea del texto */
-    /* 1 = establece este valor numérico para la propiedad */
-    line-height: 1;
-    /* font-size = define el tamaño del texto */
-    /* var(--lihen-cell-font-size) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
-    font-size: var(--lihen-cell-font-size);
-    /* font-weight = define el grosor visual de la letra */
-    /* 700 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    font-weight: 700;
-    /* user-select = define una característica visual o de comportamiento del elemento */
-    /* none = aplica este modo de visualización u organización */
-    user-select: none;
-    /* opacity = define el nivel de transparencia */
-    /* 1 = establece este valor numérico para la propiedad */
-    opacity: 1;
-    /* transition = define una transición suave entre cambios de estilos */
-    /* opacity 520ms ease var(--lihen-fade-delay, 0ms) = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    transition: opacity 520ms ease var(--lihen-fade-delay, 0ms);
-}
-
-.lihen-reveal__cell.is-green {
-    /* background = permite definir varias características del fondo en una sola propiedad */
-    /* var(--lihen-green-bg) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
-    background: var(--lihen-green-bg);
-    /* box-shadow = crea una sombra alrededor del elemento */
-    /* inset 0 0 0 0.5px var(--lihen-green-edge) = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    box-shadow: inset 0 0 0 0.5px var(--lihen-green-edge);
-}
-
-.lihen-reveal__cell.is-purple {
-    /* background = permite definir varias características del fondo en una sola propiedad */
-    /* var(--lihen-purple-bg) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
-    background: var(--lihen-purple-bg);
-    /* box-shadow = crea una sombra alrededor del elemento */
-    /* inset 0 0 0 0.5px var(--lihen-purple-edge) = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    box-shadow: inset 0 0 0 0.5px var(--lihen-purple-edge);
-}
-
-.lihen-reveal__cell.is-long-symbol {
-    /* font-size = define el tamaño del texto */
-    /* max(5px, calc(var(--lihen-cell-font-size) * 0.78)) = calcula el valor usando la función CSS indicada para mantener el diseño adaptable */
-    font-size: max(5px, calc(var(--lihen-cell-font-size) * 0.78));
-    /* letter-spacing = define el espacio entre caracteres */
-    /* -0.08em = establece esta medida para controlar el tamaño o separación de forma visual */
-    letter-spacing: -0.08em;
-}
-
-.lihen-reveal__cell.is-blinking {
-    /* animation = configura una animación CSS de forma abreviada */
-    /* lihen-cell-blink 760ms ease-in-out infinite alternate = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation: lihen-cell-blink 760ms ease-in-out infinite alternate;
-    /* animation-delay = define cuánto espera la animación antes de iniciar */
-    /* var(--lihen-blink-delay, 0ms) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
-    animation-delay: var(--lihen-blink-delay, 0ms);
-}
-
-.lihen-reveal__cell.is-logo {
-    /* opacity = define el nivel de transparencia */
-    /* 1 = establece este valor numérico para la propiedad */
-    opacity: 1;
-}
-
-.lihen-reveal__cell.is-logo.is-locking {
-    /* animation = configura una animación CSS de forma abreviada */
-    /* lihen-logo-pulse 520ms ease-out var(--lihen-lock-delay, 0ms) 1 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation: lihen-logo-pulse 520ms ease-out var(--lihen-lock-delay, 0ms) 1;
-}
-
-.lihen-reveal__cell.is-background-fading {
-    /* opacity = define el nivel de transparencia */
-    /* 0 = establece este valor numérico para la propiedad */
-    opacity: 0;
-}
-
-.lihen-reveal__cell.is-background-hidden {
-    opacity: 0;
-    /* visibility = controla si el elemento es visible conservando su espacio */
-    /* hidden = aplica este comportamiento al contenido o visibilidad */
-    visibility: hidden;
-    /* transition = define una transición suave entre cambios de estilos */
-    /* none = aplica este modo de visualización u organización */
-    transition: none;
-}
-
-.lihen-reveal--paused .lihen-reveal__cell {
-    /* animation-play-state = permite pausar o reanudar una animación */
-    /* paused !important = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    animation-play-state: paused !important;
-}
-
-@keyframes lihen-cell-blink {
-    from { opacity: 0.72; }
-    to { opacity: 1; }
-}
-
-@keyframes lihen-logo-pulse {
-    0% { opacity: 0.72; }
-    100% { opacity: 1; }
-}
-
-/* ========================================
-   INTEGRACIÓN DEL REVEAL DENTRO DE INICIO
+   INTEGRACIÓN DE LA ENTRADA LXL DENTRO DE INICIO
    ======================================== */
 
 /* Aquí se crea una capa temporal contenida únicamente dentro del Hero. */
@@ -6015,8 +4723,8 @@ a:focus-visible {
     /* visible = aplica este comportamiento al contenido o visibilidad */
     visibility: visible;
     /* transition = define una transición suave entre cambios de estilos */
-    /* opacity 420ms ease = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    transition: opacity 420ms ease;
+    /* opacity 280ms ease-out = retira la capa con un cruce más breve para evitar una pausa perceptible antes del Hero */
+    transition: opacity 280ms ease-out;
 }
 
 .inicio-experiencia[hidden] {
@@ -6025,7 +4733,7 @@ a:focus-visible {
     display: none !important;
 }
 
-/* Aquí se muestra la identidad LXL antes de iniciar el Reveal. */
+/* Aquí se muestra la identidad LXL antes de revelar el Hero final. */
 .inicio-lxl-inicial {
     /* position = define el tipo de posicionamiento del elemento */
     /* absolute = aplica este modo de posicionamiento al elemento */
@@ -6227,31 +4935,6 @@ a:focus-visible {
     }
 }
 
-/* Aquí se reserva toda el área útil del Hero para el componente LIHEN. */
-.inicio-lihen-reveal {
-    /* position = define el tipo de posicionamiento del elemento */
-    /* absolute = aplica este modo de posicionamiento al elemento */
-    position: absolute;
-    /* inset = define de forma abreviada las distancias superior, derecha, inferior e izquierda */
-    /* 0 = establece este valor numérico para la propiedad */
-    inset: 0;
-    /* opacity = define el nivel de transparencia */
-    /* 0 = establece este valor numérico para la propiedad */
-    opacity: 0;
-    /* visibility = controla si el elemento es visible conservando su espacio */
-    /* hidden = aplica este comportamiento al contenido o visibilidad */
-    visibility: hidden;
-}
-
-.inicio-experiencia--reveal .inicio-lihen-reveal {
-    /* opacity = define el nivel de transparencia */
-    /* 1 = establece este valor numérico para la propiedad */
-    opacity: 1;
-    /* visibility = controla si el elemento es visible conservando su espacio */
-    /* visible = aplica este comportamiento al contenido o visibilidad */
-    visibility: visible;
-}
-
 /* Aquí se pausa la presentación inicial cuando Inicio sale del viewport. */
 .inicio-experiencia--pausada .inicio-lxl-inicial {
     /* animation-play-state = permite pausar o reanudar una animación */
@@ -6259,7 +4942,7 @@ a:focus-visible {
     animation-play-state: paused !important;
 }
 
-/* Aquí se retira la capa después de que el componente informa complete. */
+/* Aquí se retira la capa después de finalizar la presentación breve de identidad. */
 .inicio-experiencia--finalizando {
     /* opacity = define el nivel de transparencia */
     /* 0 = establece este valor numérico para la propiedad */
@@ -6301,8 +4984,7 @@ a:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
     .inicio-experiencia,
-    .inicio-lxl-inicial,
-    .lihen-reveal__cell {
+    .inicio-lxl-inicial {
         /* animation = configura una animación CSS de forma abreviada */
         /* none !important = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
         animation: none !important;
@@ -8102,8 +6784,8 @@ a:focus-visible {
     /* var(--fuente-display) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
     font-family: var(--fuente-display);
     /* font-size = define el tamaño del texto */
-    /* clamp(2.8rem, 5vw, 5.4rem) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-    font-size: clamp(2.8rem, 5vw, 5.4rem);
+    /* clamp(2.5rem, 4.4vw, 4.5rem) = modera la escala para equilibrarla con el contenido del panel */
+    font-size: clamp(2.5rem, 4.4vw, 4.5rem);
     /* line-height = define la altura de línea del texto */
     /* 0.95 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
     line-height: 0.95;
@@ -8525,8 +7207,8 @@ a:focus-visible {
         /* 100% = establece esta medida para controlar el tamaño o separación de forma visual */
         max-width: 100%;
         /* font-size = define el tamaño del texto */
-        /* clamp(2.2rem, 10vw, 3.4rem) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-        font-size: clamp(2.2rem, 10vw, 3.4rem);
+        /* clamp(2rem, 8.5vw, 3rem) = reduce la escala en móvil sin perder jerarquía */
+        font-size: clamp(2rem, 8.5vw, 3rem);
     }
 
     #habilidades .habilidades-encabezado-panel > p:last-child {
@@ -8682,8 +7364,8 @@ a:focus-visible {
     /* grid = aplica este modo de visualización u organización */
     display: grid;
     /* grid-template-rows = define la estructura y tamaño de las filas de CSS Grid */
-    /* 2.35rem 1fr = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
-    grid-template-rows: 2.35rem 1fr;
+    /* 2rem 1fr = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
+    grid-template-rows: 2rem 1fr;
     /* overflow = controla qué ocurre con el contenido que supera los límites */
     /* hidden = aplica este comportamiento al contenido o visibilidad */
     overflow: hidden;
@@ -9394,18 +8076,26 @@ a:focus-visible {
    La composición se divide en un banner oscuro y una gran superficie turquesa.
 */
 #proyectos.proyectos-editorial {
-    /* min-height = define la altura mínima permitida */
-    /* 100vh = establece esta medida para controlar el tamaño o separación de forma visual */
-    min-height: 100vh;
+    /* min-height = permite que la altura dependa del contenido real de Proyectos */
+    /* auto = evita que la sección reserve una pantalla completa y deje una franja negra antes de Habilidades */
+    min-height: auto;
     /* display = define cómo se comporta y organiza el elemento */
     /* block = aplica este modo de visualización u organización */
     display: block;
-    /* padding = agrega espacio interno entre el contenido y los bordes */
-    /* 92px 0 72px = establece esta medida para controlar el tamaño o separación de forma visual */
-    padding: 92px 0 72px;
-    /* background-color = define el color de fondo */
-    /* #080808 = utiliza este valor de color hexadecimal */
-    background-color: #080808;
+    /* padding = conserva la respiración superior y elimina el espacio inferior externo */
+    /* 92px 0 0 = permite que Proyectos conecte directamente con Habilidades sin franja negra */
+    padding: 92px 0 0;
+    /* background = replica exactamente la superficie oscura utilizada en Habilidades */
+    /* Las capas aportan profundidad y una retícula vertical muy sutil sin cambiar la identidad LXL */
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.86)),
+        repeating-linear-gradient(
+            90deg,
+            transparent 0,
+            transparent 79px,
+            rgba(255, 255, 255, 0.025) 80px
+        ),
+        #0b0b0b;
     /* box-sizing = define cómo se calcula el tamaño total del elemento */
     /* border-box = utiliza este modelo para calcular el tamaño del elemento */
     box-sizing: border-box;
@@ -9446,9 +8136,16 @@ a:focus-visible {
     /* box-sizing = define cómo se calcula el tamaño total del elemento */
     /* border-box = utiliza este modelo para calcular el tamaño del elemento */
     box-sizing: border-box;
+    /* background = utiliza la misma profundidad oscura y retícula sutil de Habilidades */
     background:
-        linear-gradient(rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.018)),
-        var(--color-celda);
+        linear-gradient(rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.86)),
+        repeating-linear-gradient(
+            90deg,
+            transparent 0,
+            transparent 79px,
+            rgba(255, 255, 255, 0.025) 80px
+        ),
+        #0b0b0b;
     /* overflow = controla qué ocurre con el contenido que supera los límites */
     /* visible = aplica este comportamiento al contenido o visibilidad */
     overflow: visible;
@@ -9476,8 +8173,8 @@ a:focus-visible {
     /* font-family = utiliza la tipografía principal de identidad */
     font-family: "Barlow Condensed", sans-serif;
 
-    /* font-size = adapta el tamaño entre un mínimo y un máximo */
-    font-size: clamp(64px, 8vw, 118px);
+    /* font-size = adapta el tamaño con una escala editorial más contenida */
+    font-size: clamp(48px, 6.2vw, 84px);
 
     /* font-weight = aplica un grosor fuerte al título */
     font-weight: 700;
@@ -9573,9 +8270,12 @@ a:focus-visible {
     /* box-sizing = define cómo se calcula el tamaño total del elemento */
     /* border-box = utiliza este modelo para calcular el tamaño del elemento */
     box-sizing: border-box;
-    /* background-color = define el color de fondo */
-    /* var(--color-tecnologia) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
-    background-color: var(--color-tecnologia);
+    /* background-color = iguala exactamente el panel tecnológico utilizado en Habilidades */
+    /* rgba(30, 255, 188, 0.72) = permite que la profundidad del fondo oscuro se perciba de forma sutil */
+    background-color: rgba(30, 255, 188, 0.72);
+
+    /* color = utiliza negro estructural para conservar contraste sobre la superficie tecnológica */
+    /* var(--color-estructura) = reutiliza el color oficial definido en :root */
     color: var(--color-estructura);
 }
 
@@ -10025,9 +8725,9 @@ a:focus-visible {
 @media (max-width: 600px) {
 
     #proyectos.proyectos-editorial {
-        /* padding = agrega espacio interno entre el contenido y los bordes */
-        /* 78px 0 52px = establece esta medida para controlar el tamaño o separación de forma visual */
-        padding: 78px 0 52px;
+        /* padding = conserva el espacio superior y elimina el espacio inferior en móvil */
+        /* 78px 0 0 = permite que Proyectos conecte directamente con Habilidades */
+        padding: 78px 0 0;
     }
 
     #proyectos .proyectos-escena {
@@ -10047,9 +8747,8 @@ a:focus-visible {
 
     #proyectos .proyectos-banner-titulo {
         padding: 8px 12px;
-        /* font-size = define el tamaño del texto */
-        /* clamp(40px, 13vw, 58px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-        font-size: clamp(40px, 13vw, 58px);
+        /* font-size = reduce el protagonismo del título y mejora su proporción en móvil */
+        font-size: clamp(32px, 9vw, 44px);
         /* line-height = define la altura de línea del texto */
         /* 0.94 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
         line-height: 0.94;
@@ -10314,15 +9013,15 @@ a:focus-visible {
    La gran superficie turquesa va arriba y el recuadro oscuro con el título va abajo.
 */
 #habilidades.habilidades-editorial {
-    /* min-height = define la altura mínima permitida */
-    /* 100vh = establece esta medida para controlar el tamaño o separación de forma visual */
-    min-height: 100vh;
-    /* display = define cómo se comporta y organiza el elemento */
-    /* block = aplica este modo de visualización u organización */
+    /* min-height = deja que el contenido determine la altura para que Habilidades complemente a Proyectos */
+    min-height: auto;
+    /* display = conserva la composición editorial existente */
     display: block;
-    /* padding = agrega espacio interno entre el contenido y los bordes */
-    /* 92px 0 72px = establece esta medida para controlar el tamaño o separación de forma visual */
-    padding: 92px 0 72px;
+    /* padding = elimina el espacio superior para unir visualmente Habilidades con Proyectos */
+    /* 0 0 58px = mantiene únicamente la respiración inferior de la sección */
+    padding: 0 0 58px;
+    /* background = construye la superficie oscura tecnológica de Habilidades */
+    /* La primera capa aporta profundidad y la segunda crea una retícula vertical muy sutil */
     background:
         linear-gradient(rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.86)),
         repeating-linear-gradient(
@@ -10357,18 +9056,15 @@ a:focus-visible {
     /* position = define el tipo de posicionamiento del elemento */
     /* relative = aplica este modo de posicionamiento al elemento */
     position: relative;
-    /* min-height = define la altura mínima permitida */
-    /* 620px = establece esta medida para controlar el tamaño o separación de forma visual */
-    min-height: 620px;
-    /* padding = agrega espacio interno entre el contenido y los bordes */
-    /* 72px 7vw 76px = establece esta medida para controlar el tamaño o separación de forma visual */
-    padding: 72px 7vw 76px;
+    /* min-height = permite que la franja se adapte al conjunto real de tecnologías */
+    min-height: auto;
+    /* padding = conserva respiración, pero reduce el peso visual de la sección */
+    padding: 48px 6vw 54px;
     /* box-sizing = define cómo se calcula el tamaño total del elemento */
     /* border-box = utiliza este modelo para calcular el tamaño del elemento */
     box-sizing: border-box;
-    /* background-color = define el color de fondo */
-    /* var(--color-tecnologia) = utiliza una variable CSS definida para mantener la identidad visual y reutilizar el valor */
-    background-color: var(--color-tecnologia);
+    /* background-color = mantiene la relación con Proyectos con una presencia menta más contenida */
+    background-color: rgba(30, 255, 188, 0.72);
     color: var(--color-estructura);
 }
 
@@ -10712,7 +9408,7 @@ a:focus-visible {
     font-family: "Barlow Condensed", sans-serif;
 
     /* font-size = adapta el tamaño entre un mínimo y un máximo */
-    font-size: clamp(64px, 8vw, 118px);
+    font-size: clamp(50px, 6.5vw, 94px);
 
     /* font-weight = aplica un grosor fuerte al título */
     font-weight: 700;
@@ -10801,9 +9497,9 @@ a:focus-visible {
 @media (max-width: 900px) {
 
     #habilidades.habilidades-editorial {
-        /* padding-top = agrega espacio interno superior */
-        /* 86px = establece esta medida para controlar el tamaño o separación de forma visual */
-        padding-top: 86px;
+        /* padding-top = mantiene unida la sección con Proyectos también en tablet */
+        /* 0 = elimina la franja negra entre ambas superficies editoriales */
+        padding-top: 0;
     }
 
     #habilidades .habilidades-editorial-escena {
@@ -10882,9 +9578,9 @@ a:focus-visible {
 @media (max-width: 600px) {
 
     #habilidades.habilidades-editorial {
-        /* padding = agrega espacio interno entre el contenido y los bordes */
-        /* 78px 0 52px = establece esta medida para controlar el tamaño o separación de forma visual */
-        padding: 78px 0 52px;
+        /* padding = elimina el espacio superior también en móvil y conserva el cierre inferior */
+        /* 0 0 52px = evita que reaparezca una franja negra entre Proyectos y Habilidades */
+        padding: 0 0 52px;
     }
 
     #habilidades .habilidades-editorial-escena {
@@ -10945,8 +9641,8 @@ a:focus-visible {
     #habilidades .habilidades-editorial-banner > p {
         padding: 8px 12px;
         /* font-size = define el tamaño del texto */
-        /* clamp(38px, 12vw, 56px) = limita el valor entre un mínimo, un valor adaptable y un máximo */
-        font-size: clamp(38px, 12vw, 56px);
+        /* clamp(34px, 9.5vw, 48px) = reduce la escala en móvil manteniendo una jerarquía clara */
+        font-size: clamp(34px, 9.5vw, 48px);
         /* line-height = define la altura de línea del texto */
         /* 0.94 = valor aplicado a esta propiedad para conseguir el comportamiento visual definido */
         line-height: 0.94;
@@ -11796,8 +10492,8 @@ a:focus-visible {
 */
 #habilidades .skills-grid {
     /* width = define el ancho máximo útil del conjunto de cards */
-    /* min(1080px, 100%) = usa hasta 1080px sin superar el ancho disponible */
-    width: min(1080px, 100%);
+    /* min(960px, 100%) = reduce la presencia del conjunto para que complemente a Proyectos */
+    width: min(960px, 100%);
     /* margin = centra horizontalmente la cuadrícula */
     margin: 0 auto;
     /* display = define cómo se organizan visualmente los elementos */
@@ -11805,8 +10501,8 @@ a:focus-visible {
     display: grid;
     /* grid-template-columns = crea doce columnas iguales para poder formar 6 + 4 centradas */
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    /* gap = define la separación entre las cards */
-    gap: 14px;
+    /* gap = compacta el conjunto sin perder separación entre controles interactivos */
+    gap: 12px;
     /* align-items = mantiene todas las cards alineadas dentro de cada fila */
     align-items: stretch;
 }
@@ -11817,8 +10513,8 @@ a:focus-visible {
     grid-column: span 2;
     /* min-width = evita que la card se comprima por debajo de un tamaño legible */
     min-width: 0;
-    /* aspect-ratio = conserva una proporción vertical similar al diseño original */
-    aspect-ratio: 11 / 14;
+    /* aspect-ratio = reduce ligeramente la altura visual manteniendo espacio para ambas caras */
+    aspect-ratio: 11 / 13.2;
     /* perspective = crea profundidad visual para que el giro 3D pueda percibirse */
     perspective: 1000px;
 }
@@ -13822,17 +12518,22 @@ a:focus-visible {
 
 #proyectos .project-reference-front__text-block h3 {
     margin: 0 0 12px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: clamp(25px, 2.2vw, 34px);
+    /* font-family = aplica la misma identidad tipográfica utilizada en el manifiesto de Sobre mí */
+    /* "Barlow Condensed", sans-serif = conecta los títulos de Proyectos con el lenguaje editorial LXL */
+    font-family: "Barlow Condensed", sans-serif;
+
+    font-size: clamp(29px, 2.6vw, 40px);
     line-height: 1;
-    font-weight: 400;
+    /* font-weight = refuerza la presencia visual sin modificar el tamaño responsive ya definido */
+    /* 700 = replica el peso tipográfico utilizado en "Acta non verba, con propósito." */
+    font-weight: 700;
     letter-spacing: 0.2px;
     color: #ffffff;
 }
 
 #proyectos .project-reference-front__text-block p {
     margin: 0;
-    font-size: clamp(13px, 1.15vw, 16px);
+    font-size: clamp(11px, 1vw, 14px);
     line-height: 1.25;
     font-weight: 400;
     color: #ffffff;
@@ -13853,7 +12554,7 @@ a:focus-visible {
 }
 
 #proyectos .project-reference-front__text-block--long h3 {
-    font-size: clamp(20px, 1.9vw, 28px);
+    font-size: clamp(24px, 2.2vw, 34px);
     line-height: 1.02;
     margin-bottom: 9px;
 }
@@ -14138,23 +12839,38 @@ a:focus-visible {
     line-height: 1.25;
 }
 
-/* CTA CONOCER + preparado para enlazar un repositorio real cuando esté validado. */
+/* CTA de proyecto: conserva el enlace real y ahora comunica claramente que es una acción. */
 #proyectos .project-reference-back__cta {
     position: absolute;
     z-index: 12;
-    right: 0;
+    right: 12px;
     bottom: 42px;
     display: flex;
     align-items: stretch;
-    background: #171919;
-    color: #ffffff;
+    overflow: hidden;
+    border: 2px solid #171919;
+    border-radius: 7px;
+    background: var(--color-calidez);
+    color: #171919;
+    text-decoration: none;
+    box-shadow: 0 4px 0 rgba(23, 25, 25, 0.18);
+
+    /* min-height = amplía ligeramente el área clicable sin sobredimensionar la card */
+    min-height: 42px;
+
+    /* cursor = comunica de forma inequívoca que el CTA es interactivo */
+    cursor: pointer;
+
+    transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
 }
 
 #proyectos .project-reference-back__cta > span:first-child {
-    padding: 7px 10px 6px;
+    padding: 9px 14px 8px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: clamp(15px, 1.35vw, 20px);
     line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.3px;
     white-space: nowrap;
 }
 
@@ -14166,7 +12882,7 @@ a:focus-visible {
     align-items: center;
     justify-content: center;
     gap: 1px;
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(23, 25, 25, 0.24);
     font-size: 10px;
     font-weight: 700;
 }
@@ -14175,6 +12891,25 @@ a:focus-visible {
     font-size: 5px;
     line-height: 1;
     font-weight: 400;
+}
+
+/* El hover refuerza el carácter de botón sin interferir con el giro de la card. */
+#proyectos .project-reference-back__cta:hover {
+    background-color: #ffe0bb;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 rgba(23, 25, 25, 0.2);
+}
+
+/* El estado activo aporta respuesta táctil y refuerza la sensación de botón presionable. */
+#proyectos .project-reference-back__cta:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 0 rgba(23, 25, 25, 0.18);
+}
+
+/* El foco visible mantiene una ruta de teclado inequívoca sobre la acción del proyecto. */
+#proyectos .project-reference-back__cta:focus-visible {
+    outline: 3px solid var(--color-identidad);
+    outline-offset: 3px;
 }
 
 #proyectos .project-reference-pixel--back-bottom-a {
@@ -14383,7 +13118,9 @@ a:focus-visible {
     margin: 0;
 
     /* font-family = utiliza la fuente principal de lectura del portafolio */
-    font-family: "Inter", sans-serif;
+    /* font-family = aplica la misma identidad tipográfica utilizada en el manifiesto de Sobre mí */
+    /* "Barlow Condensed", sans-serif = unifica las cards de Habilidades con el sistema editorial LXL */
+    font-family: "Barlow Condensed", sans-serif;
 
     /* font-size = adapta el título al tamaño disponible de la card */
     /* clamp() = mantiene una escala segura sin permitir que el título invada otras zonas */
@@ -14391,7 +13128,9 @@ a:focus-visible {
 
     /* font-weight = define el grosor visual del título */
     /* 400 = conserva una apariencia limpia y cercana a la referencia */
-    font-weight: 400;
+    /* font-weight = refuerza la jerarquía del nombre de cada tecnología */
+    /* 700 = replica el peso visual del manifiesto sin alterar la escala de la card */
+    font-weight: 700;
 
     /* line-height = controla la distancia vertical entre líneas */
     /* 0.96 = compacta títulos de dos líneas como SPRING BOOT */
@@ -14414,19 +13153,19 @@ a:focus-visible {
 #habilidades .skill-card__back-description {
 
     /* margin = crea una separación breve entre el título y la descripción */
-    margin: 8px 0 0;
+    margin: 6px 0 0;
 
     /* max-width = limita el ancho de lectura dentro del bloque negro */
     /* 94% = deja una pequeña respiración junto al borde derecho */
-    max-width: 94%;
+    max-width: 99%;
 
     /* font-size = define el tamaño de la descripción */
-    /* 8px = permite que la información sea legible sin competir con el título */
-    font-size: 8px;
+    /* 7px = permite que la información sea legible sin competir con el título */
+    font-size: 7px;
 
     /* line-height = controla la separación vertical entre líneas */
     /* 1.28 = mantiene varias líneas compactas y evita que bajen hacia el panel blanco */
-    line-height: 1.28;
+    line-height: 1.10;
 
     /* color = suaviza ligeramente el blanco para diferenciar descripción y título */
     color: rgba(255, 255, 255, 0.90);
@@ -14799,8 +13538,6 @@ a:focus-visible {
 }
 
 
-
-
 /* ========================================
    HABILIDADES — COLOR IDENTIFICADOR POR TECNOLOGÍA
    ======================================== */
@@ -15002,28 +13739,28 @@ a:focus-visible {
     left: 50%;
 
     /* width = controla el ancho total del panel */
-    /* 52% = mantiene una proporción cercana al antiguo mockup central */
-    width: 52%;
+    /* 47% = reduce ligeramente el protagonismo del módulo sin perder legibilidad */
+    width: 47%;
 
     /* min-height = reserva espacio suficiente para título, barra y estado */
-    /* 31% = mantiene una presencia visual similar al panel blanco de Habilidades */
-    min-height: 31%;
+    /* 28% = compacta el panel de forma moderada dentro de la card */
+    min-height: 28%;
 
     /* transform = corrige el centrado horizontal y vertical */
     /* translate(-50%, -10%) = centra el panel y lo baja ligeramente para evitar tocar el bloque superior */
     transform: translate(-50%, -10%);
 
     /* padding = crea espacio interno entre el contenido y el marco negro */
-    /* 12px = deja respiración para el título, la barra y el estado */
-    padding: 12px;
+    /* 10px = mantiene respiración interna con una escala más compacta */
+    padding: 10px;
 
     /* background-color = define la superficie blanca interior */
     /* #ffffff = conserva la referencia visual del módulo de GitHub */
     background-color: #ffffff;
 
     /* border = crea el marco negro que conserva la estética de la card */
-    /* 10px solid #171919 = forma el borde grueso oscuro alrededor del panel */
-    border: 10px solid #171919;
+    /* 8px solid #171919 = mantiene el carácter visual con menor peso */
+    border: 8px solid #171919;
 
     /* box-sizing = incluye padding y borde dentro del ancho total */
     /* border-box = evita que el panel crezca más de lo esperado */
@@ -15045,7 +13782,7 @@ a:focus-visible {
     font-family: "Inter", sans-serif;
 
     /* font-size = mantiene el título compacto dentro del panel */
-    font-size: 13px;
+    font-size: 12px;
 
     /* font-weight = refuerza la jerarquía del encabezado */
     font-weight: 700;
@@ -15068,8 +13805,8 @@ a:focus-visible {
     width: 100%;
 
     /* height = define el grosor visual de la barra */
-    /* 8px = mantiene una proporción similar a la referencia de GitHub */
-    height: 8px;
+    /* 7px = conserva la lectura de porcentajes con un perfil más compacto */
+    height: 7px;
 
     /* margin-bottom = separa la barra del texto de estado */
     margin-bottom: 10px;
@@ -15284,22 +14021,22 @@ a:focus-visible {
     /* Aquí se adapta el panel principal de Languages */
     #proyectos .project-reference-front__languages {
 
-        /* width = aumenta el espacio disponible cuando la card se reduce */
-        width: 58%;
+        /* width = mantiene espacio suficiente sin recuperar demasiado protagonismo */
+        width: 54%;
 
-        /* padding = reduce ligeramente el espacio interno */
-        padding: 10px;
+        /* padding = compacta ligeramente el contenido interno */
+        padding: 9px;
 
-        /* border-width = reduce el grosor del marco negro */
-        border-width: 8px;
+        /* border-width = reduce de forma moderada el grosor del marco negro */
+        border-width: 7px;
     }
 
 
     /* Aquí se adapta el título del panel */
     #proyectos .project-languages__title {
 
-        /* font-size = mantiene legible el encabezado en cards pequeñas */
-        font-size: 11px;
+        /* font-size = mantiene legible el encabezado con una escala más contenida */
+        font-size: 10px;
     }
 
 
@@ -15442,8 +14179,8 @@ a:focus-visible {
     /* font-family = utiliza la misma fuente que Contacto */
     font-family: "Barlow Condensed", sans-serif;
 
-    /* font-size = copia la misma escala adaptable de Contacto */
-    font-size: clamp(64px, 9.4vw, 126px);
+    /* font-size = mantiene la escala editorial de Contacto con una proporción más contenida */
+    font-size: clamp(48px, 6.8vw, 88px);
 
     /* font-weight = copia el mismo grosor */
     font-weight: 700;
@@ -15548,24 +14285,40 @@ a:focus-visible {
 }
 
 
+/* ========================================
+   MÓDULO IZQUIERDO — IMAGEN SOBRE MÍ
+   ======================================== */
+
+/*
+    Este bloque controla la forma pixelada de la fotografía,
+    los cortes decorativos y la firma LXL inferior.
+
+    La fotografía se mantiene dentro de la misma silueta
+    utilizada por la composición visual de Contacto.
+*/
+
+
 /* Aquí se construye la misma silueta escalonada del póster de Contacto */
 #sobre-mi .sobre-mi-fiel-contacto__imagen-forma {
 
     /* position = ocupa el cuerpo principal del módulo izquierdo */
     position: absolute;
 
-    /* inset = replica exactamente la posición de la figura */
+    /* inset = conserva la posición actual de la figura */
     inset: 56px 0 0 0;
 
-    /* overflow = recorta el contenido con la silueta */
+    /* overflow = evita que la fotografía salga de la silueta */
     overflow: hidden;
 
-    /* background = crea la base clara para la imagen */
+    /* background = crea una base clara detrás de la imagen */
     background:
-        linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)),
+        linear-gradient(
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0.06)
+        ),
         var(--color-claro);
 
-    /* clip-path = copia la silueta modular exacta de Contacto */
+    /* clip-path = construye la silueta modular/pixelada */
     clip-path: polygon(
         0 9%,
         39% 9%,
@@ -15591,159 +14344,372 @@ a:focus-visible {
 }
 
 
-/* Aquí se crea la cuadrícula blanca para la futura fotografía */
+/* ========================================
+   FOTOGRAFÍA PERSONAL
+   ======================================== */
+
+/*
+    Este contenedor ocupa toda la forma pixelada.
+    La fotografía debe llenar el espacio sin deformarse.
+*/
+
 #sobre-mi .sobre-mi-fiel-contacto__imagen-placeholder {
 
-    /* position = llena toda la figura */
+    /* position = llena completamente la figura */
     position: absolute;
 
-    /* inset = ocupa el espacio interior completo */
+    /* inset = ocupa todo el contenedor disponible */
     inset: 0;
 
-    /* display = permite centrar el texto provisional */
-    display: grid;
+    /* overflow = impide que la imagen salga del área */
+    overflow: hidden;
 
-    /* place-items = centra el texto */
-    place-items: center;
-
-    /* background = replica el cuadriculado blanco de Contacto */
-    background:
-        linear-gradient(rgba(48, 48, 48, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(48, 48, 48, 0.08) 1px, transparent 1px),
-        var(--color-claro);
-
-    /* background-size = utiliza la misma retícula de Contacto */
-    background-size: 26px 26px;
+    /* background-color = mantiene una base limpia */
+    background-color: var(--color-claro);
 }
 
 
-/* Aquí se configura el texto provisional */
-#sobre-mi .sobre-mi-fiel-contacto__imagen-placeholder > span {
+/* Aquí se configura la fotografía real */
+#sobre-mi .sobre-mi-fiel-contacto__imagen-placeholder img {
 
-    /* font-family = utiliza Barlow Condensed */
-    font-family: "Barlow Condensed", sans-serif;
+    /* width = utiliza todo el ancho disponible */
+    width: 100%;
 
-    /* font-size = replica el tamaño de Contacto */
-    font-size: 14px;
+    /* height = utiliza toda la altura disponible */
+    height: 100%;
 
-    /* letter-spacing = conserva la estética técnica */
-    letter-spacing: 3px;
+    /* display = elimina espacios inferiores propios de las imágenes inline */
+    display: block;
 
-    /* color = mantiene el texto discreto */
-    color: rgba(56, 2, 59, 0.42);
+    /* object-fit = llena el área sin deformar la fotografía */
+    object-fit: cover;
+
+    /*
+        object-position = controla el encuadre interno.
+
+        center center mantiene el rostro equilibrado
+        sin alterar las dimensiones del contenedor.
+    */
+    object-position: center center;
 }
 
 
-/* Aquí se preparan los vacíos cuadrados internos */
+/* ========================================
+   CORTES PIXELADOS DECORATIVOS
+   ======================================== */
+
+/*
+    Estos elementos generan los vacíos cuadrados
+    característicos de la identidad visual LXL.
+*/
+
 #sobre-mi .sobre-mi-fiel-contacto__imagen-corte {
 
-    /* position = permite ubicar cada vacío */
+    /* position = permite colocar libremente cada corte */
     position: absolute;
 
-    /* z-index = lo mantiene visible */
+    /* z-index = mantiene los cortes por encima de la fotografía */
     z-index: 3;
 
-    /* background-color = deja ver el violeta del fondo */
+    /* background-color = utiliza el violeta exterior */
     background-color: var(--color-identidad);
 }
 
 
-/* Primer vacío */
+/* Primer vacío decorativo */
 #sobre-mi .sobre-mi-fiel-contacto__imagen-corte-uno {
+
+    /* width = define el ancho del cuadrado */
     width: 28px;
+
+    /* height = define la altura del cuadrado */
     height: 28px;
+
+    /* right = lo posiciona desde el lado derecho */
     right: 8%;
+
+    /* top = lo posiciona desde la parte superior */
     top: 10%;
 }
 
 
-/* Segundo vacío */
+/* Segundo vacío decorativo */
 #sobre-mi .sobre-mi-fiel-contacto__imagen-corte-dos {
+
+    /* width = define el ancho del cuadrado */
     width: 24px;
+
+    /* height = define la altura del cuadrado */
     height: 24px;
+
+    /* right = controla su ubicación horizontal */
     right: 23%;
+
+    /* top = controla su ubicación vertical */
     top: 47%;
 }
 
 
-/* Tercer vacío */
+/* Tercer vacío decorativo */
 #sobre-mi .sobre-mi-fiel-contacto__imagen-corte-tres {
+
+    /* width = define el ancho del cuadrado */
     width: 28px;
+
+    /* height = define la altura del cuadrado */
     height: 28px;
+
+    /* left = controla su posición desde la izquierda */
     left: 13%;
+
+    /* bottom = controla su posición desde la parte inferior */
     bottom: 7%;
 }
 
 
-/* Aquí se coloca la firma LXL inferior */
+/* ========================================
+   FIRMA LXL SOBRE LA FOTOGRAFÍA
+   ======================================== */
+
+/*
+    Aquí se ubica la firma:
+
+    LXL
+    CODE X LIHEN
+
+    El bloque queda contenido en la esquina inferior derecha
+    de la fotografía, dentro del área visual destinada a la marca.
+
+    Este ajuste modifica únicamente la firma.
+    No cambia la fotografía, la silueta pixelada ni los cortes decorativos.
+*/
+
 #sobre-mi .sobre-mi-fiel-contacto__imagen-marca {
 
-    /* position = replica la ubicación inferior derecha de Contacto */
+    /* position = permite superponer la firma sobre la fotografía */
     position: absolute;
 
-    /* right = mantiene la firma cerca del borde */
-    right: 4%;
+    /*
+        right = acerca la firma al borde derecho de la fotografía.
 
-    /* bottom = mantiene la firma cerca del borde inferior */
-    bottom: 4%;
+        Se utiliza right en lugar de left para controlar con mayor precisión
+        la posición dentro de la esquina inferior derecha.
+    */
+    right: 3.8%;
 
-    /* z-index = la mantiene por encima de la imagen */
+    /*
+        bottom = conserva la firma cerca de la zona inferior
+        sin tocar el borde de la silueta.
+    */
+    bottom: 3.6%;
+
+    /*
+        left = se desactiva para evitar conflictos
+        con la nueva posición controlada mediante right.
+    */
+    left: auto;
+
+    /*
+        transform = se elimina el desplazamiento horizontal anterior,
+        porque la firma ya no se centra a partir de un punto intermedio.
+    */
+    transform: none;
+
+    /*
+        width = limita el ancho real de la firma.
+
+        Este valor evita que el bloque ocupe una franja demasiado amplia
+        y mantiene LXL + CODE X LIHEN compactos dentro del área marcada.
+    */
+    width: 84px;
+
+    /* z-index = mantiene la firma por encima de la fotografía y los cortes */
     z-index: 4;
 
-    /* width = replica el ancho de la firma */
-    width: 25%;
+    /*
+        display = utiliza Flexbox para organizar
+        LXL y CODE X LIHEN en sentido vertical.
+    */
+    display: flex;
 
-    /* display = organiza las dos líneas */
-    display: grid;
+    /* flex-direction = coloca las dos líneas una debajo de la otra */
+    flex-direction: column;
 
-    /* justify-items = alinea el texto a la izquierda */
-    justify-items: start;
+    /* align-items = centra horizontalmente ambas líneas */
+    align-items: center;
 
-    /* gap = mantiene una separación mínima */
-    gap: 1px;
+    /* justify-content = centra el contenido dentro del bloque */
+    justify-content: center;
 
-    /* color = utiliza blanco */
+    /* text-align = centra el texto de la firma */
+    text-align: center;
+
+    /* gap = elimina separación innecesaria entre las dos líneas */
+    gap: 0;
+
+    /* color = utiliza blanco como color base */
     color: var(--color-claro);
 }
 
 
-/* Aquí se configura LXL */
+/* ========================================
+   TEXTO PRINCIPAL — LXL
+   ======================================== */
+
+/* Aquí se configura el monograma principal LXL */
 #sobre-mi .sobre-mi-fiel-contacto__imagen-marca strong {
 
-    /* font-family = utiliza la misma fuente de Contacto */
+    /* font-family = conserva la tipografía tecnológica/editorial */
     font-family: "Barlow Condensed", sans-serif;
 
-    /* font-size = replica la escala original */
-    font-size: clamp(32px, 3.2vw, 46px);
+    /* font-size = adapta LXL entre diferentes resoluciones */
+    font-size: clamp(30px, 3vw, 42px);
 
-    /* line-height = compacta el monograma */
-    line-height: 0.8;
+    /* font-weight = mantiene una jerarquía visual fuerte */
+    font-weight: 700;
 
-    /* letter-spacing = mantiene la separación */
-    letter-spacing: 4px;
+    /* line-height = compacta verticalmente el monograma */
+    line-height: 0.82;
 
-    /* color = utiliza turquesa */
+    /* letter-spacing = mantiene separación entre las letras */
+    letter-spacing: 2px;
+
+    /* color = utiliza Tropical Mint */
     color: var(--color-tecnologia);
+
+    /* display = permite controlar mejor su espacio vertical */
+    display: block;
+
+    /* margin = elimina márgenes automáticos */
+    margin: 0;
+
+    /* padding = elimina espacios internos innecesarios */
+    padding: 0;
 }
 
 
-/* Aquí se configura CODE X LIHEN */
+/* ========================================
+   TEXTO SECUNDARIO — CODE X LIHEN
+   ======================================== */
+
+/* Aquí se configura la segunda línea de la firma */
 #sobre-mi .sobre-mi-fiel-contacto__imagen-marca span {
 
-    /* font-family = utiliza Barlow Condensed */
+    /* font-family = conserva Barlow Condensed */
     font-family: "Barlow Condensed", sans-serif;
 
-    /* font-size = replica Contacto */
-    font-size: 10px;
+    /* font-size = mantiene una escala secundaria */
+    font-size: 8px;
 
     /* line-height = mantiene la línea compacta */
     line-height: 1;
 
-    /* letter-spacing = conserva el ritmo gráfico */
-    letter-spacing: 2px;
+    /* letter-spacing = conserva el lenguaje gráfico de la marca */
+    letter-spacing: 1.4px;
+
+    /* white-space = evita saltos de línea en CODE X LIHEN */
+    white-space: nowrap;
 
     /* color = utiliza blanco */
     color: var(--color-claro);
+
+    /* display = permite controlar correctamente el bloque */
+    display: block;
+
+    /*
+        margin-top = aproxima ligeramente la segunda línea
+        al monograma sin generar superposición.
+    */
+    margin-top: -1px;
+}
+
+
+/* ========================================
+   RESPONSIVE — TABLET
+   ======================================== */
+
+@media (max-width: 900px) {
+
+    /*
+        En tablet se conserva la misma lógica:
+        firma compacta en la esquina inferior derecha.
+    */
+    #sobre-mi .sobre-mi-fiel-contacto__imagen-marca {
+
+        /* right = mantiene una separación segura respecto al borde derecho */
+        right: 4%;
+
+        /* bottom = aumenta ligeramente la separación inferior */
+        bottom: 4%;
+
+        /* width = reduce el ancho de la firma proporcionalmente */
+        width: 78px;
+    }
+
+
+    /* Aquí se ajusta LXL para tablet */
+    #sobre-mi .sobre-mi-fiel-contacto__imagen-marca strong {
+
+        /* font-size = mantiene una escala legible */
+        font-size: 32px;
+    }
+
+
+    /* Aquí se ajusta CODE X LIHEN para tablet */
+    #sobre-mi .sobre-mi-fiel-contacto__imagen-marca span {
+
+        /* font-size = mantiene legibilidad sin competir con LXL */
+        font-size: 7.5px;
+
+        /* letter-spacing = reduce ligeramente la separación */
+        letter-spacing: 1.2px;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE — MÓVIL
+   ======================================== */
+
+@media (max-width: 600px) {
+
+    /*
+        En móvil la firma sigue contenida dentro de la fotografía
+        y mantiene una posición segura respecto a los bordes.
+    */
+    #sobre-mi .sobre-mi-fiel-contacto__imagen-marca {
+
+        /* right = conserva la firma dentro del área visible */
+        right: 4.5%;
+
+        /* bottom = aumenta la separación inferior */
+        bottom: 4.5%;
+
+        /* width = adapta el bloque a pantallas angostas */
+        width: 72px;
+    }
+
+
+    /* Aquí se ajusta el tamaño del monograma */
+    #sobre-mi .sobre-mi-fiel-contacto__imagen-marca strong {
+
+        /* font-size = evita que LXL domine demasiado en móvil */
+        font-size: 28px;
+
+        /* letter-spacing = reduce ligeramente la separación */
+        letter-spacing: 1.5px;
+    }
+
+
+    /* Aquí se ajusta CODE X LIHEN para pantallas pequeñas */
+    #sobre-mi .sobre-mi-fiel-contacto__imagen-marca span {
+
+        /* font-size = conserva legibilidad */
+        font-size: 7px;
+
+        /* letter-spacing = reduce el espacio entre caracteres */
+        letter-spacing: 1px;
+    }
 }
 
 
@@ -15979,89 +14945,247 @@ a:focus-visible {
    TÍTULO Y PÁRRAFOS
    ======================================== */
 
-/* Aquí se configura la frase principal */
+/* Aquí se configura la frase principal del panel narrativo */
 #sobre-mi .sobre-mi-fiel-contacto__historia-contenido h3 {
 
-    /* margin = elimina margen superior y deja separación inferior */
-    margin: 0 0 20px;
+    /* margin = elimina márgenes heredados que puedan alterar la composición */
+    margin: 0 0 18px;
 
-    /* font-family = utiliza Barlow Condensed */
+    /* font-family = mantiene la familia condensada utilizada en la identidad gráfica */
     font-family: "Barlow Condensed", sans-serif;
 
-    /* font-size = mantiene una jerarquía fuerte sin desbordar */
-    font-size: clamp(40px, 4.2vw, 58px);
+    /* font-weight = refuerza el título para acercarlo al tratamiento de “Acta non verba” */
+    font-weight: 800;
 
-    /* font-weight = conserva un peso limpio */
-    font-weight: 400;
+    /* font-size = conserva jerarquía sin ocupar tanta altura dentro del panel */
+    font-size: clamp(32px, 2.8vw, 46px);
 
-    /* line-height = compacta las líneas */
-    line-height: 0.92;
+    /* line-height = compacta las dos líneas del título */
+    line-height: 0.94;
 
-    /* color = utiliza blanco */
+    /* letter-spacing = evita una separación excesiva entre caracteres */
+    letter-spacing: 0.01em;
+
+    /* color = mantiene el título en blanco */
     color: var(--color-claro);
+
+    /* font-style = evita estilos itálicos heredados */
+    font-style: normal;
+
+    /* text-transform = conserva la escritura natural del texto */
+    text-transform: none;
+
+    /* text-align = mantiene la alineación izquierda del panel */
+    text-align: left;
 }
 
 
-/* Aquí se organizan los cuatro párrafos */
+/* ========================================
+   BLOQUES 01 - 04 DE LA HISTORIA
+   ======================================== */
+
+/*
+    Aquí se reorganizan los cuatro mensajes principales
+    para que no se vean como columnas demasiado angostas.
+
+    La corrección principal consiste en pasar de 4 columnas
+    estrechas a una retícula de 2 columnas en escritorio,
+    logrando bloques más horizontales y legibles.
+*/
+
+
+/* Aquí se organizan los cuatro mensajes principales de la historia */
 #sobre-mi .sobre-mi-fiel-contacto__textos {
 
-    /* display = activa una cuadrícula */
+    /* display = activa una cuadrícula para distribuir los bloques */
     display: grid;
 
-    /* grid-template-columns = crea dos columnas iguales */
+    /*
+        grid-template-columns = ahora usa 2 columnas equivalentes
+        para que cada bloque tenga más ancho y el texto se lea
+        en horizontal, no comprimido verticalmente
+    */
     grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    /* gap = replica un ritmo compacto */
-    gap: 16px 24px;
+    /* gap = aumenta un poco la separación entre bloques */
+    gap: 14px;
+
+    /* align-items = hace que los bloques mantengan una altura ordenada */
+    align-items: stretch;
 }
 
 
-/* Aquí se configura cada párrafo */
-#sobre-mi .sobre-mi-fiel-contacto__textos p {
+/* Aquí se configura cada mini panel narrativo */
+#sobre-mi .sobre-mi-fiel-contacto__historia-bloque {
 
-    /* margin = elimina márgenes automáticos */
-    margin: 0;
-
-    /* padding-left = reserva espacio para el marcador */
-    padding-left: 13px;
-
-    /* position = permite ubicar el marcador */
+    /* position = permite controlar detalles internos del bloque */
     position: relative;
 
-    /* font-size = mantiene una lectura compacta */
-    font-size: 10px;
+    /* display = organiza índice y texto en columna */
+    display: flex;
+    flex-direction: column;
 
-    /* line-height = mejora la lectura */
-    line-height: 1.55;
+    /* gap = separa el número del contenido */
+    gap: 10px;
 
-    /* color = utiliza blanco suavizado */
-    color: rgba(255, 255, 255, 0.72);
+    /* min-width = evita que el contenido se desborde */
+    min-width: 0;
+
+    /*
+        min-height = da una altura más cómoda
+        sin obligar a que el bloque se vea estrecho
+    */
+    min-height: 150px;
+
+    /* padding = da más aire interno para mejorar lectura */
+    padding: 14px 16px 16px;
+
+    /* border = mantiene el lenguaje visual actual */
+    border: 1px solid rgba(44, 235, 188, 0.22);
+    border-top: 2px solid rgba(44, 235, 188, 0.72);
+
+    /* background = conserva la estética tecnológica oscura */
+    background: rgba(4, 14, 15, 0.58);
+
+    /* box-sizing = mantiene el cálculo correcto del tamaño */
+    box-sizing: border-box;
 }
 
 
-/* Aquí se crea el pequeño marcador turquesa */
-#sobre-mi .sobre-mi-fiel-contacto__textos p::before {
+/* Aquí se configura el número de cada bloque */
+#sobre-mi .sobre-mi-fiel-contacto__historia-indice {
 
-    /* content = crea el marcador */
-    content: "";
+    /* display = permite tratar el índice como caja */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-    /* position = permite ubicarlo */
-    position: absolute;
+    /* width = mantiene el número compacto */
+    width: fit-content;
 
-    /* left = lo coloca al inicio */
-    left: 0;
+    /* font-family = conserva la familia visual de la sección */
+    font-family: "Barlow Condensed", sans-serif;
 
-    /* top = lo alinea con la primera línea */
-    top: 5px;
+    /* font-size = hace más legible el índice */
+    font-size: 11px;
 
-    /* width = define el tamaño */
-    width: 5px;
+    /* font-weight = mantiene presencia visual */
+    font-weight: 600;
 
-    /* height = define el tamaño */
-    height: 5px;
+    /* letter-spacing = refuerza el estilo editorial */
+    letter-spacing: 0.16em;
 
-    /* background-color = utiliza turquesa */
-    background-color: var(--color-tecnologia);
+    /* color = usa el acento turquesa */
+    color: var(--color-tecnologia);
+}
+
+
+/* Aquí se configura el texto de cada bloque */
+#sobre-mi .sobre-mi-fiel-contacto__historia-bloque p {
+
+    /* margin = elimina márgenes por defecto */
+    margin: 0;
+
+    /*
+        font-size = aumenta ligeramente el tamaño
+        para evitar que se vea demasiado apretado
+    */
+    font-size: clamp(12px, 0.9vw, 14px);
+
+    /*
+        line-height = mejora la lectura del párrafo
+        manteniendo una composición compacta
+    */
+    line-height: 1.55;
+
+    /* color = mantiene el blanco suavizado */
+    color: rgba(255, 255, 255, 0.82);
+}
+
+
+/* Aquí se resaltan las palabras clave */
+#sobre-mi .sobre-mi-fiel-contacto__historia-bloque strong {
+
+    /* font-weight = conserva el énfasis */
+    font-weight: 600;
+
+    /* color = mejora el contraste de ideas importantes */
+    color: rgba(255, 255, 255, 0.96);
+}
+
+
+/* ========================================
+   RESPONSIVE — TABLET
+   ======================================== */
+
+/*
+    En tablet se conservan 2 columnas
+    porque aún hay espacio suficiente.
+*/
+@media (min-width: 601px) and (max-width: 980px) {
+
+    #sobre-mi .sobre-mi-fiel-contacto__textos {
+
+        /* grid-template-columns = mantiene 2 columnas legibles */
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        /* gap = ajusta separación */
+        gap: 12px;
+    }
+
+    #sobre-mi .sobre-mi-fiel-contacto__historia-bloque {
+
+        /* min-height = se adapta sin comprimir demasiado */
+        min-height: 138px;
+
+        /* padding = reduce ligeramente el espacio interno */
+        padding: 13px 14px 14px;
+    }
+
+    #sobre-mi .sobre-mi-fiel-contacto__historia-bloque p {
+
+        /* font-size = mantiene legibilidad */
+        font-size: 12px;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE — MÓVIL
+   ======================================== */
+
+/*
+    En móvil los cuatro bloques pasan a una sola columna
+    para evitar columnas estrechas y texto comprimido.
+*/
+@media (max-width: 600px) {
+
+    #sobre-mi .sobre-mi-fiel-contacto__textos {
+
+        /* grid-template-columns = una sola columna */
+        grid-template-columns: 1fr;
+
+        /* gap = mantiene separación cómoda */
+        gap: 10px;
+    }
+
+    #sobre-mi .sobre-mi-fiel-contacto__historia-bloque {
+
+        /* min-height = permite crecimiento natural del contenido */
+        min-height: auto;
+
+        /* padding = ajusta aire interno */
+        padding: 12px 13px 14px;
+    }
+
+    #sobre-mi .sobre-mi-fiel-contacto__historia-bloque p {
+
+        /* font-size = mantiene lectura clara en móvil */
+        font-size: 12px;
+
+        /* line-height = conserva buena lectura */
+        line-height: 1.5;
+    }
 }
 
 
@@ -16076,7 +15200,7 @@ a:focus-visible {
    "Ideas que se convierten en soluciones digitales reales."
 
    Se ubica dentro del panel negro derecho de Sobre mí,
-   después de los cuatro párrafos principales y antes
+   después de los cuatro bloques principales y antes
    de las tarjetas inferiores.
 
    La propiedad margin-top: auto aprovecha que
@@ -16093,11 +15217,11 @@ a:focus-visible {
 #sobre-mi .sobre-mi-fiel-contacto__manifiesto {
 
     /* margin-top = empuja el bloque hacia la zona inferior libre del panel */
-    /* auto = utiliza todo el espacio vertical disponible entre los párrafos y el manifiesto */
+    /* auto = utiliza todo el espacio vertical disponible entre los bloques narrativos y el manifiesto */
     margin-top: auto;
 
     /* padding-top = crea separación interna sobre el mensaje */
-    /* 16px = evita que el manifiesto quede pegado a los párrafos anteriores */
+    /* 16px = evita que el manifiesto quede pegado a los bloques anteriores */
     padding-top: 16px;
 
     /* display = organiza la línea turquesa y el contenido textual */
@@ -16173,7 +15297,7 @@ a:focus-visible {
     font-family: "Barlow Condensed", sans-serif;
 
     /* font-size = da protagonismo sin competir con el título principal del panel */
-    font-size: 18px;
+    font-size: 32px;
 
     /* font-weight = refuerza visualmente la frase principal */
     font-weight: 700;
@@ -16199,7 +15323,7 @@ a:focus-visible {
     font-family: "Inter", sans-serif;
 
     /* font-size = mantiene la frase como información secundaria */
-    font-size: 10px;
+    font-size: 14px;
 
     /* line-height = mejora la lectura de la frase */
     line-height: 1.4;
@@ -16865,10 +15989,10 @@ a:focus-visible {
         white-space: normal;
 
         /* font-size = adapta el tamaño del título entre un mínimo y un máximo */
-        /* 58px = tamaño mínimo */
-        /* 12vw = tamaño flexible según el ancho de pantalla */
-        /* 96px = tamaño máximo */
-        font-size: clamp(58px, 12vw, 96px);
+        /* 42px = tamaño mínimo */
+        /* 7vw = tamaño flexible según el ancho de pantalla */
+        /* 66px = tamaño máximo */
+        font-size: clamp(42px, 7vw, 66px);
     }
 
 
@@ -16950,8 +16074,8 @@ a:focus-visible {
     /* Aquí se adapta el título principal para pantallas pequeñas */
     #sobre-mi .sobre-mi-fiel-contacto__encabezado h2 {
 
-        /* font-size = adapta el título sin perder jerarquía */
-        font-size: clamp(52px, 17vw, 78px);
+        /* font-size = adapta el título manteniendo jerarquía y una relación más armónica con el texto */
+        font-size: clamp(34px, 9.5vw, 48px);
 
         /* line-height = controla la separación vertical de las líneas */
         /* 0.84 = mantiene el título compacto */
@@ -17012,19 +16136,33 @@ a:focus-visible {
     /* Aquí se reduce el título interno de la historia */
     #sobre-mi .sobre-mi-fiel-contacto__historia-contenido h3 {
 
-        /* font-size = adapta el título entre 36px y 50px */
-        font-size: clamp(36px, 11vw, 50px);
+        /* font-size = adapta el título entre 30px y 42px */
+        font-size: clamp(30px, 9vw, 42px);
     }
 
 
-    /* Aquí los cuatro párrafos pasan a una sola columna */
+    /* Aquí los cuatro mensajes pasan a una sola columna */
     #sobre-mi .sobre-mi-fiel-contacto__textos {
 
         /* grid-template-columns = crea una única columna */
         grid-template-columns: 1fr;
 
-        /* gap = deja 14px entre cada bloque narrativo */
-        gap: 14px;
+        /* gap = mantiene separación cómoda entre los bloques narrativos */
+        gap: 10px;
+    }
+
+
+    /* Aquí cada bloque recupera una altura natural para lectura móvil */
+    #sobre-mi .sobre-mi-fiel-contacto__historia-bloque {
+        min-height: auto;
+        padding: 12px 13px 14px;
+    }
+
+
+    /* Aquí el texto gana tamaño en móvil para priorizar legibilidad */
+    #sobre-mi .sobre-mi-fiel-contacto__historia-bloque p {
+        font-size: 12px;
+        line-height: 1.5;
     }
 
 
@@ -17369,16 +16507,26 @@ a:focus-visible {
 }
 
 
-/* CTA principal: Racing Red oficial */
+/* CTA principal: Apricot Cream prioriza la lectura indicada en el feedback docente. */
 #inicio .boton-proyectos {
-    /* background-color = comunica acción principal */
-    background-color: var(--color-accion);
+    /* background-color = utiliza el tono cálido de la paleta sin introducir un color ajeno a la identidad */
+    background-color: var(--color-calidez);
 
-    /* color = negro para alto contraste sobre Racing Red */
+    /* color = negro para mantener contraste alto sobre el fondo crema */
     color: var(--color-estructura);
 
-    /* border = mantiene dimensiones equivalentes con el CTA secundario */
-    border: 2px solid var(--color-accion);
+    /* border = conserva dimensiones equivalentes con el CTA secundario */
+    border: 2px solid var(--color-calidez);
+
+    /* box-shadow = separa ligeramente el CTA del fondo sin convertirlo en un elemento dominante */
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.16);
+
+    /* transform = deja preparado el movimiento sutil de hover sin provocar reflujo */
+    transform: translateY(0);
+
+    /* transition = integra fondo, borde, sombra y desplazamiento en una respuesta breve */
+    transition: background-color 180ms ease, border-color 180ms ease,
+        box-shadow 180ms ease, transform 180ms ease;
 }
 
 
@@ -17395,13 +16543,19 @@ a:focus-visible {
 }
 
 
-/* Aquí se conserva una respuesta clara al pasar sobre el CTA principal */
+/* Aquí se aplica una respuesta de hover sutil al CTA principal. */
 #inicio .boton-proyectos:hover {
-    /* background-color = cambia a Apricot Cream, color oficial de calidez */
-    background-color: var(--color-calidez);
+    /* background-color = aclara mínimamente el crema sin cambiar la identidad del botón */
+    background-color: #ffe0bb;
 
-    /* border-color = mantiene coherencia con el nuevo fondo */
-    border-color: var(--color-calidez);
+    /* border-color = acompaña el cambio suave del fondo */
+    border-color: #ffe0bb;
+
+    /* transform = eleva un píxel el CTA sin alterar el layout */
+    transform: translateY(-1px);
+
+    /* box-shadow = refuerza la respuesta visual con una sombra moderada */
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -17500,7 +16654,7 @@ a:focus-visible {
     /* Aquí se adapta el nombre a la escala móvil */
     #inicio .hero-contenido h1 {
         margin-bottom: 22px;
-        font-size: clamp(32px, 10vw, 42px);
+        font-size: clamp(30px, 9vw, 40px);
     }
 
 
@@ -17669,8 +16823,8 @@ a:focus-visible {
     /* white-space = mantiene la fuente en una sola línea */
     white-space: nowrap;
 
-    /* font-size = mantiene la fuente secundaria discreta */
-    font-size: 10px;
+    /* font-size = conserva la fuente secundaria discreta y responsive */
+    font-size: clamp(8px, 1.2vw, 9px);
 }
 
 
@@ -17694,8 +16848,8 @@ a:focus-visible {
     /* white-space = evita cortes incómodos entre nombre y porcentaje */
     white-space: nowrap;
 
-    /* font-size = adapta mejor varios lenguajes al pequeño panel */
-    font-size: 10px;
+    /* font-size = adapta mejor varios lenguajes al panel ligeramente más compacto */
+    font-size: clamp(8px, 1.2vw, 9px);
 }
 
 
@@ -17843,4 +16997,2150 @@ a:focus-visible {
     white-space: normal;
 
     line-height: 1.15;
+}
+
+/* ========================================
+   SOBRE MÍ — VARIANTE INFORMATIVA DE LAS CARDS DE CONTACTO
+   ======================================== */
+
+/*
+   Estas reglas NO recrean el componente. Las tarjetas de Sobre mí usan directamente
+   .contacto-canal, .contacto-canal-icono, .contacto-canal-contenido,
+   .contacto-canal-numero, .contacto-canal-etiqueta y .contacto-canal-meta.
+   Aquí solo se ajusta lo que cambia porque estas cards no tienen CTA.
+*/
+#sobre-mi .sobre-mi-canal-informativo .contacto-canal-contenido > p:not(.contacto-canal-etiqueta) {
+    margin-bottom: 0;
+}
+
+/* En Sobre mí el identificador es numérico, por eso se compacta ligeramente. */
+#sobre-mi .sobre-mi-canal-informativo .contacto-canal-icono {
+    font-size: 16px;
+}
+
+/* Mantiene la fila integrada al ancho completo de la composición de Sobre mí. */
+#sobre-mi .sobre-mi-fiel-contacto__canales.contacto-canales {
+    grid-column: 1 / -1;
+}
+/* ========================================
+   SOBRE MÍ — FOTOGRAFÍA PERSONAL REAL
+   ======================================== */
+
+/*
+   Este bloque conecta la fotografía real de la sección Sobre mí
+   con la figura pixelada que anteriormente funcionaba como placeholder.
+
+   IMPORTANTE:
+   - La ruta de la fotografía se mantiene en el HTML mediante src.
+   - CSS controla únicamente tamaño, encuadre, recorte y comportamiento responsive.
+   - La imagen respeta el clip-path de .sobre-mi-fiel-contacto__imagen-forma
+     porque permanece dentro de ese contenedor.
+*/
+
+
+/* Aquí se prepara el contenedor interno que recibe la fotografía */
+#sobre-mi .sobre-mi-fiel-contacto__imagen-placeholder {
+
+    /* position = mantiene el contenedor ocupando toda la figura pixelada */
+    position: absolute;
+
+    /* inset = utiliza todo el ancho y alto disponible dentro de la figura */
+    inset: 0;
+
+    /* overflow = evita que la fotografía salga visualmente de la figura */
+    overflow: hidden;
+
+    /* display = permite que la imagen utilice todo el espacio disponible */
+    display: block;
+
+    /* background-color = conserva una base clara mientras carga la fotografía */
+    background-color: var(--color-claro);
+
+}
+
+
+/* Aquí se configura la fotografía personal de Lizeth dentro de Sobre mí */
+#sobre-mi .sobre-mi-fiel-contacto__foto {
+
+    /* display = elimina el espacio inferior que generan las imágenes inline */
+    display: block;
+
+    /* width = ocupa todo el ancho disponible de la figura */
+    width: 100%;
+
+    /* height = ocupa toda la altura disponible de la figura */
+    height: 100%;
+
+    /* object-fit = cubre completamente la figura sin deformar la fotografía */
+    object-fit: cover;
+
+    /* object-position = mantiene el punto principal de la fotografía centrado */
+    object-position: center center;
+
+    /* position = permite controlar correctamente la capa de la fotografía */
+    position: relative;
+
+    /* z-index = mantiene la imagen sobre la retícula de fondo
+       y debajo de cortes decorativos y firma LXL */
+    z-index: 1;
+
+    /* max-width = evita que alguna regla global limite accidentalmente la imagen */
+    max-width: none;
+
+    /* user-select = evita seleccionar accidentalmente la fotografía */
+    user-select: none;
+
+    /* -webkit-user-drag = evita arrastrar la imagen en navegadores WebKit */
+    -webkit-user-drag: none;
+
+}
+
+
+/* Si todavía existe el texto provisional ESPACIO PARA IMAGEN, se oculta */
+#sobre-mi .sobre-mi-fiel-contacto__imagen-placeholder > span {
+
+    /* display = elimina únicamente el mensaje provisional */
+    display: none;
+
+}
+
+
+/* ========================================
+   SOBRE MÍ — CAPAS DECORATIVAS SOBRE FOTO
+   ======================================== */
+
+/*
+   Estas reglas aseguran que los vacíos pixelados y la firma LXL
+   continúen visibles después de incorporar la fotografía.
+*/
+
+
+/* Aquí se mantienen los cortes decorativos por encima de la fotografía */
+#sobre-mi .sobre-mi-fiel-contacto__imagen-corte {
+
+    /* z-index = coloca los recortes por encima de la imagen */
+    z-index: 3;
+
+}
+
+
+/* Aquí se mantiene la firma LXL visible en la esquina inferior */
+#sobre-mi .sobre-mi-fiel-contacto__imagen-marca {
+
+    /* z-index = coloca la firma por encima de la fotografía y de los cortes */
+    z-index: 4;
+
+}
+
+
+/* ========================================
+   RESPONSIVE TABLET — FOTOGRAFÍA SOBRE MÍ
+   ======================================== */
+
+@media (max-width: 900px) {
+
+    /* Aquí se conserva un encuadre equilibrado al reducir el ancho */
+    #sobre-mi .sobre-mi-fiel-contacto__foto {
+
+        /* object-position = mantiene el centro visual de la fotografía */
+        object-position: center center;
+
+    }
+
+}
+
+
+/* ========================================
+   RESPONSIVE MÓVIL — FOTOGRAFÍA SOBRE MÍ
+   ======================================== */
+
+@media (max-width: 600px) {
+
+    /* Aquí se prioriza la parte superior de la fotografía en pantallas angostas */
+    #sobre-mi .sobre-mi-fiel-contacto__foto {
+
+        /* object-position = desplaza ligeramente el encuadre hacia arriba
+           para evitar que el rostro quede demasiado bajo si la foto es vertical */
+        object-position: center 38%;
+
+    }
+
+}
+
+
+/* Los iconos de marca de Contacto utilizan Bootstrap Icons dentro del círculo existente. */
+.contacto-canal-icono .bi {
+    font-size: 20px;
+    color: currentColor;
+    line-height: 1;
+}
+
+
+/* ========================================
+   SOBRE MÍ — CARDS VISUALES + BOOTSTRAP ICONS
+   ======================================== */
+
+/*
+    Estas reglas completan la variante gráfica de las dos cards inferiores.
+    La estructura base sigue reutilizando .contacto-canal, mientras Bootstrap Icons
+    aporta iconografía consistente sin reemplazar la identidad visual LXL.
+*/
+
+#sobre-mi .sobre-mi-canal-visual {
+    min-height: 210px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    column-gap: 18px;
+    row-gap: 16px;
+    align-items: center;
+    padding: 20px 22px 18px;
+    overflow: hidden;
+}
+
+#sobre-mi .sobre-mi-canal-visual--proceso {
+    background: linear-gradient(135deg, rgba(16, 18, 20, 0.99), rgba(0, 0, 0, 0.98));
+}
+
+#sobre-mi .sobre-mi-canal-visual--identidad {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.98), rgba(3, 39, 35, 0.94));
+}
+
+#sobre-mi .sobre-mi-canal-visual .contacto-canal-icono {
+    width: 58px;
+    aspect-ratio: 1;
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 17px;
+    z-index: 2;
+}
+
+#sobre-mi .sobre-mi-canal-visual .contacto-canal-contenido {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+    padding-right: 82px;
+}
+
+#sobre-mi .sobre-mi-canal-visual .contacto-canal-etiqueta {
+    margin: 0 0 5px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3.4px;
+}
+
+#sobre-mi .sobre-mi-canal-visual .contacto-canal-contenido h3 {
+    margin: 0;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: clamp(27px, 2.1vw, 34px);
+    font-weight: 700;
+    line-height: 0.9;
+    color: var(--color-claro);
+}
+
+#sobre-mi .sobre-mi-canal-visual .contacto-canal-numero {
+    top: 12px;
+    right: 14px;
+    font-size: 9px;
+    z-index: 3;
+}
+
+/* Pequeña matriz pixelada: conserva el lenguaje modular LXL. */
+#sobre-mi .sobre-mi-canal-visual__matriz {
+    position: absolute;
+    top: 43px;
+    right: 27px;
+    display: grid;
+    grid-template-columns: repeat(4, 6px);
+    gap: 4px;
+    opacity: 0.72;
+    z-index: 1;
+}
+
+#sobre-mi .sobre-mi-canal-visual__matriz span {
+    width: 6px;
+    height: 6px;
+    border: 1px solid rgba(30, 255, 188, 0.16);
+    box-sizing: border-box;
+}
+
+#sobre-mi .sobre-mi-canal-visual__matriz span:nth-child(1),
+#sobre-mi .sobre-mi-canal-visual__matriz span:nth-child(5),
+#sobre-mi .sobre-mi-canal-visual__matriz span:nth-child(6),
+#sobre-mi .sobre-mi-canal-visual__matriz span:nth-child(9),
+#sobre-mi .sobre-mi-canal-visual__matriz span:nth-child(10),
+#sobre-mi .sobre-mi-canal-visual__matriz span:nth-child(11),
+#sobre-mi .sobre-mi-canal-visual__matriz span:nth-child(13),
+#sobre-mi .sobre-mi-canal-visual__matriz span:nth-child(14) {
+    background-color: var(--color-tecnologia);
+    border-color: var(--color-tecnologia);
+}
+
+/* Flujo de cuatro conceptos de cada card. */
+#sobre-mi .sobre-mi-canal-visual__flujo {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr) auto
+        minmax(0, 1fr) auto
+        minmax(0, 1fr) auto
+        minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(30, 255, 188, 0.14);
+}
+
+#sobre-mi .sobre-mi-canal-visual__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 0;
+    text-align: center;
+}
+
+/* Bootstrap Icons hereda el color semántico del contenedor LXL. */
+#sobre-mi .sobre-mi-canal-visual__icono {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    color: var(--color-tecnologia);
+    filter: drop-shadow(0 0 4px rgba(30, 255, 188, 0.26));
+}
+
+#sobre-mi .sobre-mi-canal-visual__icono--violeta {
+    color: #9B5CFF;
+    filter: drop-shadow(0 0 4px rgba(155, 92, 255, 0.30));
+}
+
+#sobre-mi .sobre-mi-canal-visual__icono .bi {
+    font-size: 40px;
+    color: currentColor;
+    line-height: 1;
+}
+
+#sobre-mi .sobre-mi-canal-visual__texto {
+    font-family: "Inter", sans-serif;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    color: rgba(255, 255, 255, 0.76);
+    white-space: nowrap;
+}
+
+#sobre-mi .sobre-mi-canal-visual__separador {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--color-tecnologia);
+    line-height: 1;
+    transform: translateY(-7px);
+}
+
+@media (max-width: 980px) {
+    #sobre-mi .sobre-mi-canal-visual {
+        min-height: 190px;
+        padding: 18px 18px 16px;
+        column-gap: 14px;
+        row-gap: 14px;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual .contacto-canal-icono {
+        width: 52px;
+        font-size: 15px;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual .contacto-canal-contenido h3 {
+        font-size: clamp(24px, 3vw, 30px);
+    }
+
+    #sobre-mi .sobre-mi-canal-visual .contacto-canal-contenido {
+        padding-right: 58px;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual__matriz {
+        right: 18px;
+        grid-template-columns: repeat(4, 5px);
+        gap: 3px;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual__matriz span {
+        width: 5px;
+        height: 5px;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual__icono {
+        width: 38px;
+        height: 38px;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual__icono .bi {
+        font-size: 34px;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual__texto {
+        font-size: 7px;
+        letter-spacing: 1.2px;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual__separador {
+        font-size: 23px;
+    }
+}
+
+@media (max-width: 600px) {
+    #sobre-mi .sobre-mi-canal-visual {
+        min-height: auto;
+        grid-template-columns: 48px minmax(0, 1fr);
+        padding: 16px;
+        column-gap: 12px;
+        row-gap: 14px;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual .contacto-canal-icono {
+        width: 46px;
+        font-size: 14px;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual .contacto-canal-contenido h3 {
+        font-size: 25px;
+        line-height: 0.92;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual__matriz {
+        display: none;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual .contacto-canal-contenido {
+        padding-right: 28px;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual__flujo {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px 12px;
+        padding-top: 14px;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual__separador {
+        display: none;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual__icono {
+        width: 42px;
+        height: 42px;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual__icono .bi {
+        font-size: 38px;
+    }
+
+    #sobre-mi .sobre-mi-canal-visual__texto {
+        font-size: 7.5px;
+        letter-spacing: 1.15px;
+    }
+}
+
+/* ========================================
+   CONTACTO — CANALES PROFESIONALES TIPO INFOCARD
+   ======================================== */
+
+/*
+    Estas reglas transforman únicamente las dos tarjetas inferiores
+    de Contacto para acercarlas a las referencias aprobadas.
+
+    La composición se divide en cuatro zonas:
+    1. identificador circular;
+    2. contenido textual + CTA;
+    3. ilustración construida con Bootstrap Icons;
+    4. conceptos clave en lista lateral.
+
+    Bootstrap aporta iconografía.
+    LXL conserva color, jerarquía, geometría y lenguaje visual.
+*/
+
+
+/* ========================================
+   ESTRUCTURA GENERAL
+   ======================================== */
+
+/* Aquí se prepara cada canal para la nueva composición horizontal */
+#contacto .contacto-canal-referencia {
+
+    /* min-height = permite una composición más gráfica sin comprimir el contenido */
+    min-height: 190px;
+
+    /* position = mantiene numeración y detalles decorativos dentro de la tarjeta */
+    position: relative;
+
+    /* display = activa Grid para construir las cuatro zonas visuales */
+    display: grid;
+
+    /*
+        grid-template-columns:
+        - círculo identificador;
+        - información principal;
+        - ilustración;
+        - conceptos clave.
+    */
+    grid-template-columns:
+        62px
+        minmax(180px, 1.35fr)
+        minmax(120px, 0.78fr)
+        minmax(112px, 0.62fr);
+
+    /* align-items = centra verticalmente la composición */
+    align-items: center;
+
+    /* column-gap = separa las zonas sin romper la lectura continua */
+    column-gap: 16px;
+
+    /* padding = mantiene respiración en el interior */
+    padding: 18px 20px;
+
+    /* overflow = contiene los elementos decorativos */
+    overflow: hidden;
+
+    /* box-sizing = incluye padding dentro del tamaño total */
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   IDENTIFICADOR CIRCULAR 01 / 02
+   ======================================== */
+
+/* Aquí se crea el identificador grande que reemplaza el icono pequeño anterior */
+#contacto .contacto-canal-badge {
+
+    /* width = define el diámetro */
+    width: 58px;
+
+    /* aspect-ratio = mantiene círculo perfecto */
+    aspect-ratio: 1;
+
+    /* display = centra el número */
+    display: grid;
+
+    /* place-items = centra en ambos ejes */
+    place-items: center;
+
+    /* border = utiliza el color tecnológico oficial */
+    border: 2px solid var(--color-tecnologia);
+
+    /* border-radius = convierte el bloque en círculo */
+    border-radius: 50%;
+
+    /* font-family = conserva la familia condensada de LXL */
+    font-family: "Barlow Condensed", sans-serif;
+
+    /* font-size = da jerarquía al identificador */
+    font-size: 20px;
+
+    /* font-weight = mantiene el número fuerte */
+    font-weight: 700;
+
+    /* color = utiliza Tropical Mint */
+    color: var(--color-tecnologia);
+
+    /* box-shadow = reproduce el halo tecnológico de la referencia */
+    box-shadow:
+        0 0 0 1px rgba(30, 255, 188, 0.18),
+        0 0 14px rgba(30, 255, 188, 0.34);
+
+    /* z-index = mantiene el badge sobre decoraciones */
+    z-index: 2;
+}
+
+
+/* ========================================
+   CONTENIDO PRINCIPAL
+   ======================================== */
+
+/* Aquí se agrupan etiqueta, título, descripción y CTA */
+#contacto .contacto-canal-referencia__contenido {
+
+    /* min-width = permite que el contenido reduzca ancho dentro de Grid */
+    min-width: 0;
+
+    /* padding-right = evita acercarse demasiado a la ilustración */
+    padding-right: 2px;
+}
+
+
+/* Etiqueta GITHUB / LINKEDIN */
+#contacto .contacto-canal-referencia .contacto-canal-etiqueta {
+
+    /* margin = separa la etiqueta del título */
+    margin: 0 0 5px;
+
+    /* font-size = la mantiene secundaria */
+    font-size: 10px;
+
+    /* font-weight = mejora legibilidad */
+    font-weight: 600;
+
+    /* letter-spacing = conserva la estética editorial tecnológica */
+    letter-spacing: 3.2px;
+
+    /* color = utiliza Tropical Mint */
+    color: var(--color-tecnologia);
+}
+
+
+/* Títulos principales */
+#contacto .contacto-canal-referencia h3 {
+
+    /* margin = separa título y descripción */
+    margin: 0 0 7px;
+
+    /* font-family = mantiene Barlow Condensed */
+    font-family: "Barlow Condensed", sans-serif;
+
+    /* font-size = acerca la jerarquía a la referencia */
+    font-size: clamp(27px, 2.1vw, 34px);
+
+    /* font-weight = crea una presencia fuerte y compacta */
+    font-weight: 700;
+
+    /* line-height = controla altura vertical */
+    line-height: 0.96;
+
+    /* color = conserva contraste máximo */
+    color: var(--color-claro);
+}
+
+
+/* Descripción breve */
+#contacto .contacto-canal-referencia .contacto-canal-descripcion {
+
+    /* margin = elimina márgenes heredados */
+    margin: 0 0 12px;
+
+    /* max-width = evita que la descripción invada la ilustración */
+    max-width: 330px;
+
+    /* font-family = usa Inter para lectura */
+    font-family: "Inter", sans-serif;
+
+    /* font-size = mantiene el texto secundario y compacto */
+    font-size: 9px;
+
+    /* line-height = conserva legibilidad */
+    line-height: 1.5;
+
+    /* color = utiliza blanco suavizado */
+    color: rgba(255, 255, 255, 0.72);
+}
+
+
+/* ========================================
+   CTA
+   ======================================== */
+
+/* Aquí se configura el botón visible de cada canal */
+#contacto .contacto-canal-referencia__cta {
+
+    /* display = alinea texto e icono de flecha */
+    display: inline-flex;
+
+    /* align-items = centra verticalmente */
+    align-items: center;
+
+    /* justify-content = mantiene el contenido centrado */
+    justify-content: center;
+
+    /* gap = separa texto y flecha */
+    gap: 8px;
+
+    /* min-height = aumenta ligeramente el área de interacción */
+    min-height: 38px;
+
+    /* padding = da presencia al CTA */
+    padding: 0 18px;
+
+    /* border = utiliza Tropical Mint */
+    border: 2px solid var(--color-tecnologia);
+
+    /* border-radius = conserva una forma técnica suavizada */
+    border-radius: 6px;
+
+    /* color = mantiene el CTA en Tropical Mint */
+    color: var(--color-tecnologia);
+
+    /* background-color = conserva el fondo integrado a la tarjeta */
+    background-color: transparent;
+
+    /* text-decoration = elimina subrayado */
+    text-decoration: none;
+
+    /* font-family = conecta con la identidad condensada */
+    font-family: "Barlow Condensed", sans-serif;
+
+    /* font-size = aumenta claridad del CTA */
+    font-size: 13px;
+
+    /* font-weight = refuerza la acción */
+    font-weight: 600;
+
+    /* letter-spacing = da un acabado editorial discreto */
+    letter-spacing: 0.3px;
+
+    /* transition = suaviza hover y focus */
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Hover del CTA */
+#contacto .contacto-canal-referencia__cta:hover {
+
+    /* background-color = convierte Tropical Mint en superficie activa */
+    background-color: var(--color-tecnologia);
+
+    /* color = utiliza estructura negra para contraste */
+    color: var(--color-estructura);
+
+    /* box-shadow = refuerza el estado interactivo */
+    box-shadow: 0 0 14px rgba(30, 255, 188, 0.22);
+}
+
+
+/* Foco accesible del CTA */
+#contacto .contacto-canal-referencia__cta:focus-visible {
+
+    /* outline = mantiene navegación por teclado claramente visible */
+    outline: 3px solid var(--color-calidez);
+
+    /* outline-offset = separa el foco del borde */
+    outline-offset: 3px;
+}
+
+
+/* ========================================
+   ILUSTRACIÓN CENTRAL
+   ======================================== */
+
+/*
+    La ilustración no utiliza una imagen externa.
+    Se construye con Bootstrap Icons y pequeños elementos CSS
+    para mantener el proyecto ligero y coherente.
+*/
+#contacto .contacto-canal-referencia__visual {
+
+    /* position = permite superponer iconos y detalles */
+    position: relative;
+
+    /* min-width = evita que la ilustración se comprima demasiado */
+    min-width: 0;
+
+    /* height = reserva una zona gráfica consistente */
+    height: 126px;
+
+    /* display = centra el conjunto */
+    display: grid;
+
+    /* place-items = centra la pieza principal */
+    place-items: center;
+
+    /* color = establece Tropical Mint como acento principal */
+    color: var(--color-tecnologia);
+
+    /* z-index = mantiene la ilustración sobre el fondo */
+    z-index: 2;
+}
+
+
+/* Icono principal: GitHub o LinkedIn */
+#contacto .contacto-canal-referencia__visual-principal {
+
+    /* position = permite ubicarlo dentro del conjunto */
+    position: absolute;
+
+    /* top = lo sitúa en la zona superior */
+    top: 5px;
+
+    /* left = centra horizontalmente */
+    left: 50%;
+
+    /* transform = corrige el centrado */
+    transform: translateX(-50%);
+
+    /* font-size = lo convierte en protagonista */
+    font-size: 58px;
+
+    /* line-height = elimina altura extra */
+    line-height: 1;
+
+    /* color = utiliza blanco para separar el icono de la base turquesa */
+    color: var(--color-claro);
+
+    /* filter = genera halo sutil */
+    filter:
+        drop-shadow(0 0 2px rgba(255, 255, 255, 0.26))
+        drop-shadow(0 0 8px rgba(155, 92, 255, 0.20));
+}
+
+
+/* LinkedIn utiliza un acento violeta/azulado como en la referencia */
+#contacto .contacto-canal-referencia__visual--linkedin .contacto-canal-referencia__visual-principal {
+    color: #7B8CFF;
+}
+
+
+/* ========================================
+   GITHUB — LAPTOP + CÓDIGO
+   ======================================== */
+
+/* Aquí se construye la base de laptop debajo de GitHub */
+#contacto .contacto-canal-referencia__laptop {
+
+    /* position = ubica la laptop en la mitad inferior */
+    position: absolute;
+
+    /* left = centra horizontalmente */
+    left: 50%;
+
+    /* bottom = la acerca al borde inferior */
+    bottom: 0;
+
+    /* transform = corrige el centrado */
+    transform: translateX(-50%);
+
+    /* width = da un área estable al conjunto */
+    width: 82px;
+
+    /* height = reserva espacio para superponer código */
+    height: 58px;
+
+    /* display = centra el icono de laptop */
+    display: grid;
+
+    /* place-items = centra el contenido */
+    place-items: center;
+
+    /* color = usa Tropical Mint */
+    color: var(--color-tecnologia);
+}
+
+
+/* Laptop */
+#contacto .contacto-canal-referencia__laptop > .bi-laptop {
+
+    /* font-size = define la escala del dispositivo */
+    font-size: 74px;
+
+    /* line-height = elimina altura extra */
+    line-height: 1;
+}
+
+
+/* Código dentro de la pantalla */
+#contacto .contacto-canal-referencia__codigo {
+
+    /* position = lo coloca encima de la laptop */
+    position: absolute;
+
+    /* top = lo centra dentro de la pantalla */
+    top: 11px;
+
+    /* left = centra horizontalmente */
+    left: 50%;
+
+    /* transform = corrige el centrado */
+    transform: translateX(-50%);
+
+    /* font-size = mantiene el símbolo visible */
+    font-size: 31px;
+
+    /* color = utiliza Tropical Mint */
+    color: var(--color-tecnologia);
+}
+
+
+/* ========================================
+   LINKEDIN — PERSONA + MALETÍN
+   ======================================== */
+
+/* Persona */
+#contacto .contacto-canal-referencia__persona {
+
+    /* position = ubica la persona bajo LinkedIn */
+    position: absolute;
+
+    /* left = desplaza la persona hacia la izquierda */
+    left: 19%;
+
+    /* bottom = la apoya en la base visual */
+    bottom: 0;
+
+    /* font-size = crea una silueta clara */
+    font-size: 58px;
+
+    /* color = utiliza Tropical Mint */
+    color: var(--color-tecnologia);
+
+    /* line-height = evita espacio extra */
+    line-height: 1;
+}
+
+
+/* Maletín */
+#contacto .contacto-canal-referencia__maletin {
+
+    /* position = ubica la oportunidad profesional a la derecha */
+    position: absolute;
+
+    /* right = mantiene separación del borde */
+    right: 13%;
+
+    /* bottom = alinea la base con la persona */
+    bottom: 3px;
+
+    /* font-size = mantiene equilibrio con la persona */
+    font-size: 43px;
+
+    /* color = usa el acento cálido-violeta */
+    color: #B49CFF;
+
+    /* line-height = evita altura extra */
+    line-height: 1;
+}
+
+
+/* ========================================
+   DETALLES GRÁFICOS
+   ======================================== */
+
+/* Signos + */
+#contacto .contacto-canal-referencia__plus {
+
+    /* position = permite ubicar cada signo libremente */
+    position: absolute;
+
+    /* font-family = mantiene lenguaje condensado */
+    font-family: "Barlow Condensed", sans-serif;
+
+    /* font-size = da presencia decorativa */
+    font-size: 25px;
+
+    /* font-weight = refuerza el símbolo */
+    font-weight: 700;
+
+    /* color = utiliza Tropical Mint */
+    color: var(--color-tecnologia);
+
+    /* line-height = compacta el elemento */
+    line-height: 1;
+}
+
+
+/* Primera posición */
+#contacto .contacto-canal-referencia__plus--uno {
+    top: 4px;
+    left: 6%;
+}
+
+
+/* Segunda posición */
+#contacto .contacto-canal-referencia__plus--dos {
+    top: 20px;
+    right: 5%;
+}
+
+
+/* Píxeles decorativos */
+#contacto .contacto-canal-referencia__pixel {
+
+    /* position = permite ubicar cada bloque */
+    position: absolute;
+
+    /* width = tamaño modular */
+    width: 8px;
+
+    /* height = mantiene forma cuadrada */
+    height: 8px;
+
+    /* background-color = utiliza Tropical Mint */
+    background-color: var(--color-tecnologia);
+
+    /* opacity = integra el detalle sin competir con la ilustración */
+    opacity: 0.78;
+}
+
+
+/* Distribución de los tres píxeles */
+#contacto .contacto-canal-referencia__pixel--uno {
+    left: 4%;
+    bottom: 24px;
+}
+
+#contacto .contacto-canal-referencia__pixel--dos {
+    right: 2%;
+    bottom: 17px;
+    background-color: #9B5CFF;
+}
+
+#contacto .contacto-canal-referencia__pixel--tres {
+    right: 10%;
+    bottom: 3px;
+    width: 11px;
+    height: 11px;
+}
+
+
+/* ========================================
+   LISTA LATERAL DE CONCEPTOS
+   ======================================== */
+
+/* Aquí se muestra la lista equivalente a OPEN SOURCE / REDES de las referencias */
+#contacto .contacto-canal-referencia__meta {
+
+    /* margin = elimina espacio automático */
+    margin: 0;
+
+    /* padding = crea espacio respecto a la línea divisoria */
+    padding: 5px 0 5px 17px;
+
+    /* border-left = separa visualmente ilustración y conceptos */
+    border-left: 1px solid rgba(30, 255, 188, 0.48);
+
+    /* list-style = elimina viñetas nativas */
+    list-style: none;
+
+    /* display = organiza los conceptos en vertical */
+    display: flex;
+
+    /* flex-direction = apila los items */
+    flex-direction: column;
+
+    /* gap = separa cada concepto */
+    gap: 8px;
+
+    /* min-width = evita compresión excesiva */
+    min-width: 0;
+
+    /* z-index = mantiene el bloque visible */
+    z-index: 2;
+}
+
+
+/* Cada concepto */
+#contacto .contacto-canal-referencia__meta li {
+
+    /* position = permite crear el cuadrado manual */
+    position: relative;
+
+    /* padding-left = deja espacio para el indicador */
+    padding-left: 13px;
+
+    /* font-family = utiliza Inter para lectura */
+    font-family: "Inter", sans-serif;
+
+    /* font-size = mantiene jerarquía secundaria */
+    font-size: 8px;
+
+    /* font-weight = mejora reconocimiento */
+    font-weight: 600;
+
+    /* line-height = compacta la lista */
+    line-height: 1.2;
+
+    /* letter-spacing = refuerza la estética técnica */
+    letter-spacing: 0.55px;
+
+    /* color = utiliza blanco suavizado */
+    color: rgba(255, 255, 255, 0.82);
+
+    /* white-space = conserva cada concepto en una línea cuando hay espacio */
+    white-space: nowrap;
+}
+
+
+/* Cuadro turquesa que antecede cada concepto */
+#contacto .contacto-canal-referencia__meta li::before {
+
+    /* content = genera el indicador */
+    content: "";
+
+    /* position = permite alinearlo con el texto */
+    position: absolute;
+
+    /* left = lo ubica al inicio */
+    left: 0;
+
+    /* top = centra aproximadamente con la altura del texto */
+    top: 50%;
+
+    /* transform = corrige el centrado vertical */
+    transform: translateY(-50%);
+
+    /* width = tamaño del indicador */
+    width: 7px;
+
+    /* height = crea el cuadrado */
+    height: 7px;
+
+    /* background-color = utiliza Tropical Mint */
+    background-color: var(--color-tecnologia);
+
+    /* box-shadow = añade brillo mínimo */
+    box-shadow: 0 0 5px rgba(30, 255, 188, 0.30);
+}
+
+
+/* ========================================
+   NUMERACIÓN EDITORIAL
+   ======================================== */
+
+/* Número pequeño superior derecho */
+#contacto .contacto-canal-referencia .contacto-canal-numero {
+
+    /* top = mantiene el número próximo al borde */
+    top: 10px;
+
+    /* right = conserva su posición editorial */
+    right: 12px;
+
+    /* z-index = lo mantiene sobre la tarjeta */
+    z-index: 5;
+}
+
+
+/* ========================================
+   RESPONSIVE — TABLET
+   ======================================== */
+
+@media (max-width: 1100px) {
+
+    /*
+        En tablet cada tarjeta utiliza una fila completa mediante
+        las reglas existentes de .contacto-canales.
+        Se aprovecha ese ancho para mantener la composición horizontal.
+    */
+    #contacto .contacto-canal-referencia {
+        grid-template-columns:
+            58px
+            minmax(220px, 1.25fr)
+            minmax(130px, 0.78fr)
+            minmax(120px, 0.62fr);
+        min-height: 180px;
+        column-gap: 14px;
+        padding: 18px;
+    }
+
+    /* La descripción puede recuperar un poco más de ancho */
+    #contacto .contacto-canal-referencia .contacto-canal-descripcion {
+        max-width: 390px;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE — MÓVIL / TABLET ANGOSTA
+   ======================================== */
+
+@media (max-width: 760px) {
+
+    /*
+        En pantallas angostas la ilustración y la lista pasan debajo
+        del encabezado para evitar compresión y overflow.
+    */
+    #contacto .contacto-canal-referencia {
+        grid-template-columns: 54px minmax(0, 1fr);
+        grid-template-rows: auto auto;
+        row-gap: 18px;
+        min-height: auto;
+        padding: 18px;
+    }
+
+    /* Badge */
+    #contacto .contacto-canal-badge {
+        grid-column: 1;
+        grid-row: 1;
+        width: 50px;
+        font-size: 17px;
+    }
+
+    /* Contenido */
+    #contacto .contacto-canal-referencia__contenido {
+        grid-column: 2;
+        grid-row: 1;
+        padding-right: 24px;
+    }
+
+    /* Título */
+    #contacto .contacto-canal-referencia h3 {
+        font-size: 28px;
+    }
+
+    /* Descripción */
+    #contacto .contacto-canal-referencia .contacto-canal-descripcion {
+        max-width: none;
+        font-size: 9px;
+    }
+
+    /*
+        La ilustración y la meta comparten la segunda fila.
+        Se usa subgrid visual mediante columnas proporcionales.
+    */
+    #contacto .contacto-canal-referencia__visual {
+        grid-column: 1;
+        grid-row: 2;
+        width: 96px;
+        height: 116px;
+        justify-self: center;
+
+        /* Mueve todo el conjunto ligeramente hacia la izquierda */
+    transform: translateX(-10px);
+    }
+
+    #contacto .contacto-canal-referencia__meta {
+        grid-column: 2;
+        grid-row: 2;
+        align-self: center;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE — CELULAR
+   ======================================== */
+
+@media (max-width: 480px) {
+
+    /* La tarjeta se convierte en una composición vertical clara */
+    #contacto .contacto-canal-referencia {
+        grid-template-columns: 48px minmax(0, 1fr);
+        grid-template-rows: auto auto auto;
+        row-gap: 16px;
+        padding: 16px;
+    }
+
+    /* Badge */
+    #contacto .contacto-canal-badge {
+        width: 46px;
+        font-size: 15px;
+    }
+
+    /* Contenido */
+    #contacto .contacto-canal-referencia__contenido {
+        padding-right: 20px;
+    }
+
+    /* Título */
+    #contacto .contacto-canal-referencia h3 {
+        font-size: 25px;
+    }
+
+    /* CTA */
+    #contacto .contacto-canal-referencia__cta {
+        min-height: 36px;
+        padding: 0 14px;
+        font-size: 12px;
+    }
+
+    /* Ilustración ocupa el ancho completo en una fila independiente */
+    #contacto .contacto-canal-referencia__visual {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-self: center;
+        width: 180px;
+        height: 120px;
+    }
+
+    /* Conceptos se convierten en una retícula 2 x 2 */
+    #contacto .contacto-canal-referencia__meta {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        border-left: 0;
+        border-top: 1px solid rgba(30, 255, 188, 0.36);
+        padding: 14px 0 0;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px 14px;
+    }
+
+    /* Cada concepto puede ocupar su propia celda */
+    #contacto .contacto-canal-referencia__meta li {
+        white-space: normal;
+    }
+}
+
+/* ========================================
+   CONTACTO — AJUSTE DE CENTRADO Y ARMONÍA
+   ======================================== */
+
+/*
+    Este bloque corrige únicamente la distribución interna de las
+    tarjetas GitHub y LinkedIn.
+
+    OBJETIVO:
+    - centrar visualmente badge, contenido, ilustración y conceptos;
+    - evitar que el título quede comprimido innecesariamente;
+    - equilibrar espacios internos;
+    - mantener las dos tarjetas en una misma fila en desktop;
+    - conservar la identidad LXL y los Bootstrap Icons existentes.
+
+    No modifica textos, enlaces, colores oficiales ni estructura HTML.
+*/
+
+
+/* ========================================
+   TARJETA — DISTRIBUCIÓN DESKTOP
+   ======================================== */
+
+/* Aquí se equilibra el ancho disponible entre las cuatro zonas internas */
+#contacto .contacto-canal-referencia {
+
+    /*
+        grid-template-columns:
+        52px = identificador 01 / 02;
+        minmax(185px, 1fr) = información principal;
+        96px = ilustración;
+        102px = conceptos clave.
+    */
+    grid-template-columns:
+        52px
+        minmax(185px, 1fr)
+        96px
+        102px;
+
+    /* min-height = mantiene ambas cards con una altura visual equivalente */
+    min-height: 184px;
+
+    /* column-gap = reduce espacios muertos entre zonas */
+    column-gap: 10px;
+
+    /* padding = centra la composición sin acercarla demasiado a los bordes */
+    padding: 16px 16px;
+
+    /* align-items = centra verticalmente todas las zonas */
+    align-items: center;
+}
+
+
+/* ========================================
+   BADGE 01 / 02
+   ======================================== */
+
+/* Aquí se reduce ligeramente el círculo para integrarlo mejor con el contenido */
+#contacto .contacto-canal-badge {
+
+    /* width = mantiene presencia sin desplazar demasiado el bloque textual */
+    width: 52px;
+
+    /* justify-self = centra el badge dentro de su propia columna */
+    justify-self: center;
+
+    /* align-self = centra el badge verticalmente */
+    align-self: center;
+
+    /* font-size = mantiene el número legible */
+    font-size: 18px;
+}
+
+
+/* ========================================
+   BLOQUE DE TEXTO
+   ======================================== */
+
+/* Aquí se centra verticalmente GITHUB / LINKEDIN, título, texto y CTA */
+#contacto .contacto-canal-referencia__contenido {
+
+    /* display = convierte el bloque en una columna controlada */
+    display: flex;
+
+    /* flex-direction = organiza todos sus elementos de arriba hacia abajo */
+    flex-direction: column;
+
+    /* justify-content = centra el conjunto en la altura de la card */
+    justify-content: center;
+
+    /* align-items = conserva la alineación editorial hacia la izquierda */
+    align-items: flex-start;
+
+    /* min-height = crea una altura común para GitHub y LinkedIn */
+    min-height: 138px;
+
+    /* padding-right = elimina la reserva excesiva de espacio */
+    padding-right: 0;
+
+    /* box-sizing = mantiene el tamaño estable */
+    box-sizing: border-box;
+}
+
+
+/* Etiqueta superior */
+#contacto .contacto-canal-referencia .contacto-canal-etiqueta {
+
+    /* margin = acerca la etiqueta al título */
+    margin: 0 0 4px;
+
+    /* line-height = elimina altura adicional */
+    line-height: 1;
+}
+
+
+/* Título */
+#contacto .contacto-canal-referencia h3 {
+
+    /* margin = mantiene una separación regular con la descripción */
+    margin: 0 0 6px;
+
+    /*
+        font-size = reduce ligeramente la escala para evitar
+        saltos de línea innecesarios dentro de las cards gemelas.
+    */
+    font-size: clamp(24px, 1.8vw, 30px);
+
+    /* line-height = mantiene la composición compacta */
+    line-height: 0.96;
+
+    /* white-space = intenta conservar el título en una sola línea en desktop */
+    white-space: nowrap;
+}
+
+
+/* Descripción */
+#contacto .contacto-canal-referencia .contacto-canal-descripcion {
+
+    /* margin = separa la descripción del CTA con una distancia uniforme */
+    margin: 0 0 10px;
+
+    /* max-width = utiliza el ancho real disponible del bloque */
+    max-width: 100%;
+
+    /* font-size = mejora la lectura sin competir con el título */
+    font-size: 8.5px;
+
+    /* line-height = mantiene el párrafo compacto */
+    line-height: 1.45;
+}
+
+
+/* CTA */
+#contacto .contacto-canal-referencia__cta {
+
+    /* min-height = mantiene el botón compacto */
+    min-height: 34px;
+
+    /* padding = equilibra espacio interno horizontal */
+    padding: 0 15px;
+
+    /* font-size = conserva lectura clara */
+    font-size: 12px;
+
+    /* align-self = evita que el botón se estire */
+    align-self: flex-start;
+}
+
+
+/* ========================================
+   ILUSTRACIÓN CENTRAL
+   ======================================== */
+
+/* Aquí se centra el grupo gráfico dentro de una zona de ancho estable */
+#contacto .contacto-canal-referencia__visual {
+
+    /* width = fija una caja visual idéntica en ambas tarjetas */
+    width: 96px;
+
+    /* height = mantiene proporción con la altura general */
+    height: 118px;
+
+    /* justify-self = centra la ilustración dentro de su columna */
+    justify-self: center;
+
+    /* align-self = centra verticalmente todo el conjunto */
+    align-self: center;
+}
+
+
+/* Icono principal GitHub / LinkedIn */
+#contacto .contacto-canal-referencia__visual-principal {
+
+    /* top = baja ligeramente el icono para equilibrar la composición */
+    top: 7px;
+
+    /* font-size = adapta la escala al nuevo ancho */
+    font-size: 52px;
+}
+
+
+/* Laptop */
+#contacto .contacto-canal-referencia__laptop {
+
+    /* width = reduce ligeramente el conjunto */
+    width: 76px;
+
+    /* height = mantiene proporción */
+    height: 54px;
+
+    /* bottom = separa la laptop del borde inferior */
+    bottom: 2px;
+}
+
+
+/* Icono de laptop */
+#contacto .contacto-canal-referencia__laptop > .bi-laptop {
+
+    /* font-size = adapta el equipo al espacio disponible */
+    font-size: 68px;
+}
+
+
+/* Símbolo de código dentro de la laptop */
+#contacto .contacto-canal-referencia__codigo {
+
+    /* top = mantiene el símbolo visualmente centrado */
+    top: 10px;
+
+    /* font-size = equilibra el código con la laptop */
+    font-size: 28px;
+}
+
+
+/* Persona de LinkedIn */
+#contacto .contacto-canal-referencia__persona {
+
+    /* left = acerca la figura al centro */
+    left: 18%;
+
+    /* bottom = la alinea con el maletín */
+    bottom: 3px;
+
+    /* font-size = adapta la silueta al nuevo ancho */
+    font-size: 52px;
+}
+
+
+/* Maletín de LinkedIn */
+#contacto .contacto-canal-referencia__maletin {
+
+    /* right = acerca el maletín al centro del conjunto */
+    right: 9%;
+
+    /* bottom = mantiene una base común */
+    bottom: 6px;
+
+    /* font-size = equilibra su tamaño con la persona */
+    font-size: 38px;
+}
+
+
+/* ========================================
+   SIGNOS + Y PÍXELES
+   ======================================== */
+
+/* Aquí se reduce ligeramente el protagonismo de los signos decorativos */
+#contacto .contacto-canal-referencia__plus {
+
+    /* font-size = evita que compitan con los iconos principales */
+    font-size: 20px;
+}
+
+
+/* Primer + */
+#contacto .contacto-canal-referencia__plus--uno {
+    top: 8px;
+    left: 2%;
+}
+
+
+/* Segundo + */
+#contacto .contacto-canal-referencia__plus--dos {
+    top: 22px;
+    right: 2%;
+}
+
+
+/* ========================================
+   LISTA DE CONCEPTOS
+   ======================================== */
+
+/* Aquí se centra verticalmente la lista lateral */
+#contacto .contacto-canal-referencia__meta {
+
+    /* align-self = centra la lista respecto a toda la tarjeta */
+    align-self: center;
+
+    /* justify-self = utiliza todo el ancho asignado a su columna */
+    justify-self: stretch;
+
+    /* padding = mantiene separación uniforme desde la línea divisoria */
+    padding: 5px 0 5px 12px;
+
+    /* gap = compacta ligeramente los cuatro conceptos */
+    gap: 7px;
+}
+
+
+/* Cada concepto */
+#contacto .contacto-canal-referencia__meta li {
+
+    /* font-size = mantiene lectura sin ocupar demasiado ancho */
+    font-size: 7.5px;
+
+    /* letter-spacing = reduce apertura para evitar cortes */
+    letter-spacing: 0.4px;
+
+    /* padding-left = mantiene espacio para el cuadrito */
+    padding-left: 12px;
+}
+
+
+/* ========================================
+   NÚMERO EDITORIAL SUPERIOR
+   ======================================== */
+
+/* Aquí se mantiene 01 / 02 pequeño sin interferir con el contenido */
+#contacto .contacto-canal-referencia .contacto-canal-numero {
+
+    /* top = respeta el margen superior */
+    top: 9px;
+
+    /* right = respeta el margen lateral */
+    right: 11px;
+}
+
+
+/* ========================================
+   AJUSTE PARA DESKTOP INTERMEDIO
+   ======================================== */
+
+@media (min-width: 1101px) and (max-width: 1450px) {
+
+    /*
+        En pantallas donde las dos tarjetas siguen compartiendo fila,
+        se compacta ligeramente cada zona para evitar saltos de línea.
+    */
+    #contacto .contacto-canal-referencia {
+        grid-template-columns:
+            48px
+            minmax(165px, 1fr)
+            86px
+            92px;
+        column-gap: 8px;
+        padding: 15px 14px;
+    }
+
+    #contacto .contacto-canal-badge {
+        width: 48px;
+        font-size: 16px;
+    }
+
+    #contacto .contacto-canal-referencia h3 {
+        font-size: clamp(22px, 1.65vw, 27px);
+    }
+
+    #contacto .contacto-canal-referencia .contacto-canal-descripcion {
+        font-size: 8px;
+    }
+
+    #contacto .contacto-canal-referencia__visual {
+        width: 86px;
+        height: 110px;
+    }
+
+    #contacto .contacto-canal-referencia__visual-principal {
+        font-size: 47px;
+    }
+
+    #contacto .contacto-canal-referencia__laptop > .bi-laptop {
+        font-size: 61px;
+    }
+
+    #contacto .contacto-canal-referencia__codigo {
+        font-size: 25px;
+    }
+
+    #contacto .contacto-canal-referencia__persona {
+        font-size: 47px;
+    }
+
+    #contacto .contacto-canal-referencia__maletin {
+        font-size: 34px;
+    }
+
+    #contacto .contacto-canal-referencia__meta li {
+        font-size: 7px;
+        letter-spacing: 0.3px;
+    }
+}
+
+
+/* ========================================
+   TABLET — RESTAURA SALTO DE LÍNEA NATURAL
+   ======================================== */
+
+@media (max-width: 1100px) {
+
+    /*
+        Cuando las tarjetas disponen de una fila completa,
+        el título puede volver a comportarse de forma natural.
+    */
+    #contacto .contacto-canal-referencia h3 {
+        white-space: normal;
+    }
+}
+
+
+/* ========================================
+   MÓVIL
+   ======================================== */
+
+@media (max-width: 760px) {
+
+    /* El bloque textual vuelve a altura automática en pantallas angostas */
+    #contacto .contacto-canal-referencia__contenido {
+        min-height: auto;
+    }
+
+    /* La ilustración mantiene su centrado en la nueva retícula responsive */
+    #contacto .contacto-canal-referencia__visual {
+        justify-self: center;
+        align-self: center;
+    }
+}
+
+/* ========================================
+   CONTACTO — CENTRADO HORIZONTAL DE LOS GRUPOS DE ICONOS
+   ======================================== */
+
+/*
+    Este ajuste mueve únicamente los conjuntos gráficos completos
+    de GitHub y LinkedIn hacia el centro visual de cada tarjeta.
+
+    No modifica:
+    - tamaños de los iconos;
+    - textos;
+    - CTA;
+    - estructura Grid;
+    - responsive general;
+    - colores LXL.
+
+    Se desplaza la caja completa para conservar alineados:
+    icono principal + laptop/persona + maletín + signos + píxeles.
+*/
+
+
+/* GitHub se desplaza hacia la derecha para quedar centrado en el área visual aprobada */
+#contacto .contacto-canal-referencia__visual--github {
+
+    /*
+        transform = desplaza el conjunto gráfico completo sin alterar su estructura interna.
+        translateX positivo = mueve el grupo hacia la derecha.
+        55px = acerca GitHub + laptop + código a la posición visual aprobada dentro de la card.
+    */
+    transform: translateX(55px);
+}
+
+
+/* LinkedIn utiliza un desplazamiento ligeramente menor para conservar equilibrio visual */
+#contacto .contacto-canal-referencia__visual--linkedin {
+
+    /*
+        transform = desplaza el conjunto gráfico completo sin modificar tamaños ni proporciones.
+        50px = mueve LinkedIn + persona + maletín hacia la derecha para conservar equilibrio
+        con la card de GitHub y mantener la composición visual aprobada.
+    */
+    transform: translateX(50px);
+}
+
+
+/* ========================================
+   RESPONSIVE — RESTAURAR CENTRADO NATURAL
+   ======================================== */
+
+@media (max-width: 760px) {
+
+    /*
+        En tablet angosta y móvil las cards cambian de estructura,
+        por eso se elimina el desplazamiento manual y se conserva
+        el centrado definido por la retícula responsive.
+    */
+    #contacto .contacto-canal-referencia__visual--github,
+    #contacto .contacto-canal-referencia__visual--linkedin {
+        transform: none;
+    }
+}
+
+/* ========================================
+   CONTACTO — VIDEO EN PÓSTER IZQUIERDO
+   ======================================== */
+
+/*
+    Este bloque adapta el módulo gráfico izquierdo de Contacto
+    para mostrar un video en lugar del contenido textual anterior:
+
+    4 / DESARROLLO / APRENDIZAJE /
+    CREATIVIDAD / PORTAFOLIO.
+
+    La silueta pixelada exterior se conserva.
+    También permanecen visibles:
+    - los cortes cuadrados decorativos;
+    - la firma LXL / CODE X LIHEN;
+    - el lenguaje visual general de Contacto.
+
+    El video funciona como contenido visual de fondo
+    dentro de .contacto-poster-forma.
+*/
+
+
+/* ========================================
+   CONTENEDOR DEL VIDEO
+   ======================================== */
+
+/* Aquí se hace que el video ocupe toda la figura pixelada */
+.contacto-poster-video {
+
+    /* position = permite cubrir toda la superficie disponible */
+    /* absolute = posiciona el video respecto a .contacto-poster-forma */
+    position: absolute;
+
+    /*
+        inset = utiliza los cuatro bordes de la figura.
+        0 = ocupa todo el ancho y toda la altura disponibles.
+    */
+    inset: 0;
+
+    /* z-index = mantiene el video detrás de cortes y firma LXL */
+    z-index: 1;
+
+    /* overflow = evita que el contenido visual salga de la figura */
+    overflow: hidden;
+
+    /* background-color = actúa como respaldo mientras carga el archivo */
+    background-color: var(--color-estructura);
+
+    /* pointer-events = evita que el video interfiera con otras capas decorativas */
+    pointer-events: none;
+}
+
+
+/* ========================================
+   ELEMENTO VIDEO
+   ======================================== */
+
+/* Aquí se configura el archivo audiovisual dentro de la figura */
+.contacto-poster-video__elemento {
+
+    /* width = utiliza todo el ancho del contenedor */
+    width: 100%;
+
+    /* height = utiliza toda la altura del contenedor */
+    height: 100%;
+
+    /*
+        object-fit = mantiene la proporción del video.
+        cover = llena completamente la figura y recorta
+        únicamente lo necesario, sin deformar la imagen.
+    */
+    object-fit: cover;
+
+    /*
+        object-position = define qué zona del video permanece
+        como centro visual cuando se necesita recortar.
+    */
+    object-position: center center;
+
+    /* display = elimina espacios propios de elementos inline */
+    display: block;
+
+    /*
+        filter = integra el video con la atmósfera oscura de Contacto
+        sin cambiar su identidad ni alterar los colores oficiales.
+    */
+    filter: brightness(0.88) contrast(1.04);
+}
+
+
+/* ========================================
+   CAPA DE INTEGRACIÓN VISUAL
+   ======================================== */
+
+/*
+    Esta capa oscurece suavemente los bordes del video
+    para mantener coherencia con el lenguaje tecnológico LXL.
+*/
+.contacto-poster-video::after {
+
+    /* content = crea la capa visual */
+    content: "";
+
+    /* position = permite superponerla sobre el video */
+    position: absolute;
+
+    /* inset = cubre toda la superficie */
+    inset: 0;
+
+    /*
+        background = combina:
+        - una ligera sombra vertical;
+        - un viñeteado lateral discreto.
+    */
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.04) 0%,
+            rgba(0, 0, 0, 0.08) 58%,
+            rgba(0, 0, 0, 0.24) 100%
+        ),
+        linear-gradient(
+            90deg,
+            rgba(56, 2, 59, 0.14) 0%,
+            transparent 28%,
+            transparent 72%,
+            rgba(0, 0, 0, 0.14) 100%
+        );
+
+    /* pointer-events = evita bloquear cualquier interacción externa */
+    pointer-events: none;
+}
+
+
+/* ========================================
+   JERARQUÍA SOBRE EL VIDEO
+   ======================================== */
+
+/*
+    Los cortes decorativos permanecen por encima del video.
+    Estas reglas refuerzan explícitamente la jerarquía visual
+    ya utilizada por el componente original.
+*/
+.contacto-poster-corte {
+
+    /* z-index = coloca los cortes sobre el video */
+    z-index: 3;
+}
+
+
+/* La firma LXL sigue siendo la capa superior del módulo */
+.contacto-poster-marca {
+
+    /* z-index = mantiene la firma completamente visible */
+    z-index: 4;
+}
+
+
+/* ========================================
+   LIMPIEZA DEL CONTENIDO ANTERIOR
+   ======================================== */
+
+/*
+    El HTML actualizado ya no incluye el número 4 ni la lista anterior.
+    Estas reglas se conservan como protección adicional en caso de
+    que quede alguna versión antigua del bloque durante una prueba local.
+*/
+.contacto-poster-forma > .contacto-poster-contenido {
+
+    /* display = evita mostrar accidentalmente el contenido antiguo */
+    display: none;
+}
+
+
+/* ========================================
+   RESPONSIVE — TABLET
+   ======================================== */
+
+@media (max-width: 900px) {
+
+    /*
+        En tablet el video continúa llenando la figura,
+        pero se prioriza ligeramente la zona central.
+    */
+    .contacto-poster-video__elemento {
+        object-position: center center;
+    }
+}
+
+
+/* ========================================
+   RESPONSIVE — MÓVIL
+   ======================================== */
+
+@media (max-width: 600px) {
+
+    /*
+        En móvil se mantiene cover para evitar franjas vacías.
+        La posición central conserva el contenido principal
+        aunque cambie la proporción del póster.
+    */
+    .contacto-poster-video__elemento {
+        object-fit: cover;
+        object-position: center center;
+    }
+}
+
+/* ========================================
+   CONTACTO — FIRMA LXL ALINEADA CON SOBRE MÍ
+   ======================================== */
+
+/*
+    Este ajuste replica en Contacto la misma lógica de ubicación
+    utilizada por la firma LXL dentro de la fotografía de Sobre mí.
+
+    La firma queda contenida en la esquina inferior derecha interna
+    de la figura pixelada, sin modificar el video, los cortes
+    decorativos ni la estructura general del póster.
+*/
+.contacto-poster-marca {
+
+    /* position = permite superponer la firma dentro de la figura pixelada */
+    position: absolute;
+
+    /* right = acerca la firma al borde derecho interno */
+    right: 3.8%;
+
+    /* bottom = conserva una separación equivalente a Sobre mí */
+    bottom: 3.6%;
+
+    /* left = evita conflictos con posiciones heredadas */
+    left: auto;
+
+    /* transform = elimina desplazamientos anteriores */
+    transform: none;
+
+    /* width = mantiene LXL + CODE X LIHEN como una firma compacta */
+    width: 84px;
+
+    /* z-index = mantiene la identidad por encima del video */
+    z-index: 4;
+
+    /* display = organiza el monograma y la línea secundaria en columna */
+    display: flex;
+
+    /* flex-direction = coloca ambos textos uno debajo del otro */
+    flex-direction: column;
+
+    /* align-items = centra horizontalmente el conjunto */
+    align-items: center;
+
+    /* justify-content = centra el contenido dentro de su caja */
+    justify-content: center;
+
+    /* text-align = mantiene ambas líneas centradas */
+    text-align: center;
+
+    /* gap = elimina espacios innecesarios */
+    gap: 0;
+
+    /* color = conserva blanco como base */
+    color: var(--color-claro);
+}
+
+
+/* Monograma LXL del póster de Contacto */
+.contacto-poster-marca strong {
+
+    /* font-family = conserva la tipografía editorial de la identidad */
+    font-family: "Barlow Condensed", sans-serif;
+
+    /* font-size = replica la escala responsive utilizada en Sobre mí */
+    font-size: clamp(30px, 3vw, 42px);
+
+    /* font-weight = mantiene jerarquía fuerte */
+    font-weight: 700;
+
+    /* line-height = compacta verticalmente el monograma */
+    line-height: 0.82;
+
+    /* letter-spacing = mantiene separación controlada entre letras */
+    letter-spacing: 2px;
+
+    /* color = utiliza Tropical Mint */
+    color: var(--color-tecnologia);
+
+    /* display = permite controlar el espacio vertical */
+    display: block;
+
+    /* margin = elimina márgenes heredados */
+    margin: 0;
+
+    /* padding = elimina espacio interno innecesario */
+    padding: 0;
+}
+
+
+/* Línea CODE X LIHEN del póster de Contacto */
+.contacto-poster-marca span {
+
+    /* font-family = conserva Barlow Condensed */
+    font-family: "Barlow Condensed", sans-serif;
+
+    /* font-size = mantiene una escala secundaria */
+    font-size: 8px;
+
+    /* line-height = mantiene la línea compacta */
+    line-height: 1;
+
+    /* letter-spacing = conserva el lenguaje gráfico de la marca */
+    letter-spacing: 1.4px;
+
+    /* white-space = evita saltos de línea */
+    white-space: nowrap;
+
+    /* color = utiliza blanco */
+    color: var(--color-claro);
+
+    /* display = permite controlar correctamente el bloque */
+    display: block;
+
+    /* margin-top = acerca ligeramente la segunda línea a LXL */
+    margin-top: -1px;
+}
+
+
+/* ========================================
+   RESPONSIVE — FIRMA LXL DE CONTACTO
+   ======================================== */
+
+@media (max-width: 900px) {
+
+    /* En tablet se conserva la misma relación espacial de la firma */
+    .contacto-poster-marca {
+        right: 4%;
+        bottom: 4%;
+        width: 78px;
+    }
+
+    /* Se adapta el monograma sin perder jerarquía */
+    .contacto-poster-marca strong {
+        font-size: 32px;
+    }
+
+    /* Se adapta la línea secundaria */
+    .contacto-poster-marca span {
+        font-size: 7.5px;
+        letter-spacing: 1.2px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    /* En móvil se mantiene la firma dentro de la esquina inferior derecha */
+    .contacto-poster-marca {
+        right: 4.5%;
+        bottom: 4.5%;
+        width: 72px;
+    }
+
+    /* Escala móvil del monograma */
+    .contacto-poster-marca strong {
+        font-size: 28px;
+        letter-spacing: 1.5px;
+    }
+
+    /* Escala móvil de CODE X LIHEN */
+    .contacto-poster-marca span {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
 }

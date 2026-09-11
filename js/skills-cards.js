@@ -84,7 +84,7 @@ const SKILL_EVIDENCE = {
             "Lizeth-Londono/gen-c13-Taller-Bootstrap",
         type: "repository",
         description:
-            "Repositorio de práctica donde Bootstrap está integrado mediante CDN y clases del framework."
+            "Bootstrap también está integrado en este portafolio mediante CDN, utilidades responsive e iconografía; este repositorio conserva evidencia adicional de práctica."
     },
 
     postgresql: {
