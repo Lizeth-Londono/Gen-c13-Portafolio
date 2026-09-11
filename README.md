@@ -1,156 +1,156 @@
-**# LXL — CODE x LIHEN**
+# LXL — CODE x LIHEN
 
-**## Portafolio profesional de Lina Lizeth Londoño Marín**
+## Portafolio profesional de Lina Lizeth Londoño Marín
 
-![Estado]\(https\://img.shields.io/badge/Estado-En%20desarrollo-A855F7)
+![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-A855F7)
 
-![Proyecto]\(https\://img.shields.io/badge/Proyecto-Portafolio%20personal-22D3D3)
+![Proyecto](https://img.shields.io/badge/Proyecto-Portafolio%20personal-22D3D3)
 
-![Perfil]\(https\://img.shields.io/badge/Perfil-Junior%20Full--Stack%20Java%20Developer-0D1324)
+![Perfil](https://img.shields.io/badge/Perfil-Junior%20Full--Stack%20Java%20Developer-0D1324)
 
-Portafolio personal desarrollado como parte de mi proceso de formación en el **\*\*Bootcamp Full Stack Java de Generation Colombia - Cohorte 13\*\***.
+Portafolio personal desarrollado como parte de mi proceso de formación en el ****Bootcamp Full Stack Java de Generation Colombia - Cohorte 13****.
 
 El proyecto reúne identidad visual, experiencia de usuario, proyectos, habilidades técnicas, documentación y evidencia verificable desde repositorios reales.
 
-*>* **\*\*Acta non verba, con propósito.\*\***
+> ****Acta non verba, con propósito.****
 
-*>*
+> 
 
 *> Ideas que se convierten en soluciones digitales reales.*
 
-**---**
+---
 
-**## 📑 Tabla de contenidos**
+## 📑 Tabla de contenidos
 
-\- [Objetivo]\(#-objetivo)
+- [Objetivo](#-objetivo)
 
-\- [Identidad visual]\(#-identidad-visual)
+- [Identidad visual](#-identidad-visual)
 
-\- [Sistema de color LXL]\(#-sistema-de-color-lxl)
+- [Sistema de color LXL](#-sistema-de-color-lxl)
 
-\- [Tipografías]\(#-tipografías)
+- [Tipografías](#-tipografías)
 
-\- [Tecnologías utilizadas]\(#-tecnologías-utilizadas)
+- [Tecnologías utilizadas](#-tecnologías-utilizadas)
 
-\- [Bootstrap 5 en el portafolio]\(#-bootstrap-5-en-el-portafolio)
+- [Bootstrap 5 en el portafolio](#-bootstrap-5-en-el-portafolio)
 
-\- [Estructura actual del portafolio]\(#-estructura-actual-del-portafolio)
+- [Estructura actual del portafolio](#-estructura-actual-del-portafolio)
 
-\- [Inicio]\(#1-inicio)
+- [Inicio](#1-inicio)
 
-\- [Sobre mí]\(#2-sobre-mí)
+- [Sobre mí](#2-sobre-mí)
 
-\- [Proyectos]\(#3-proyectos)
+- [Proyectos](#3-proyectos)
 
-\- [Habilidades]\(#4-habilidades)
+- [Habilidades](#4-habilidades)
 
-\- [Contacto]\(#5-contacto)
+- [Contacto](#5-contacto)
 
-\- [JavaScript actual]\(#-javascript-actual)
+- [JavaScript actual](#-javascript-actual)
 
-\- [Instalación]\(#-instalación)
+- [Instalación](#-instalación)
 
-\- [Uso]\(#-uso)
+- [Uso](#-uso)
 
-\- [Estructura actual del repositorio]\(#-estructura-actual-del-repositorio)
+- [Estructura actual del repositorio](#-estructura-actual-del-repositorio)
 
-\- [Demo]\(#-demo---github-pages)
+- [Demo](#-demo---github-pages)
 
-\- [Figma]\(#-figma)
+- [Figma](#-figma)
 
-\- [Estado actual]\(#-estado-actual)
+- [Estado actual](#-estado-actual)
 
-\- [Mejoras futuras]\(#-mejoras-futuras)
+- [Mejoras futuras](#-mejoras-futuras)
 
-\- [Autora]\(#-autora)
+- [Autora](#-autora)
 
-\- [Contacto profesional]\(#-contacto-profesional)
+- [Contacto profesional](#-contacto-profesional)
 
-**---**
+---
 
-**# 🎯 Objetivo**
+# 🎯 Objetivo
 
 Mi objetivo es desarrollar un portafolio que muestre evidencia real de mis conocimientos, proyectos y evolución como desarrolladora.
 
 El sitio busca comunicar de forma clara:
 
-\- quién soy;
+- quién soy;
 
-\- qué estoy aprendiendo;
+- qué estoy aprendiendo;
 
-\- qué proyectos he desarrollado;
+- qué proyectos he desarrollado;
 
-\- qué tecnologías utilizo;
+- qué tecnologías utilizo;
 
-\- dónde puede consultarse el código;
+- dónde puede consultarse el código;
 
-\- qué evidencia existe para cada habilidad;
+- qué evidencia existe para cada habilidad;
 
-\- cómo conecto desarrollo, comunicación, experiencia de usuario e identidad visual.
+- cómo conecto desarrollo, comunicación, experiencia de usuario e identidad visual.
 
 El portafolio está dirigido principalmente a:
 
-\- reclutadores;
+- reclutadores;
 
-\- empresas de tecnología;
+- empresas de tecnología;
 
-\- líderes técnicos;
+- líderes técnicos;
 
-\- docentes;
+- docentes;
 
-\- compañeros del bootcamp;
+- compañeros del bootcamp;
 
-\- posibles clientes;
+- posibles clientes;
 
-\- personas interesadas en conocer mi trabajo.
+- personas interesadas en conocer mi trabajo.
 
 Por esta razón, el proyecto busca ser:
 
-\- profesional;
+- profesional;
 
-\- responsive;
+- responsive;
 
-\- accesible;
+- accesible;
 
-\- visualmente coherente;
+- visualmente coherente;
 
-\- documentado;
+- documentado;
 
-\- fácil de navegar;
+- fácil de navegar;
 
-\- verificable;
+- verificable;
 
-\- susceptible de mejora continua.
+- susceptible de mejora continua.
 
-**---**
+---
 
-**# 🎨 Identidad visual**
+# 🎨 Identidad visual
 
-**## Concepto LXL**
+## Concepto LXL
 
-**\*\*LXL\*\*** es la identidad visual principal del portafolio.
+****LXL**** es la identidad visual principal del portafolio.
 
 La composición se inspira en:
 
-\- programación;
+- programación;
 
-\- interfaces digitales;
+- interfaces digitales;
 
-\- bloques modulares;
+- bloques modulares;
 
-\- sistemas gráficos;
+- sistemas gráficos;
 
-\- retículas;
+- retículas;
 
-\- símbolos;
+- símbolos;
 
-\- números;
+- números;
 
-\- contraste entre superficies oscuras y colores tecnológicos.
+- contraste entre superficies oscuras y colores tecnológicos.
 
-**## Identidad profesional**
+## Identidad profesional
 
-\`\`\`text
+```text
 
 LXL
 
@@ -162,25 +162,25 @@ Junior Full-Stack Java Developer en formación
 
 Cofundadora de LIHEN.CO
 
-\`\`\`
+```
 
-**## Frase principal**
+## Frase principal
 
-*>* **\*\*Acta non verba, con propósito.\*\***
+> ****Acta non verba, con propósito.****
 
-**## Mensaje complementario**
+## Mensaje complementario
 
 *> Ideas que se convierten en soluciones digitales reales.*
 
-**---**
+---
 
-**# 🎨 Sistema de color LXL**
+# 🎨 Sistema de color LXL
 
 La paleta principal se define mediante Custom Properties:
 
-\`\`\`css
+```css
 
-\:root {
+:root {
 
     --color-identidad: #38023B;
 
@@ -200,81 +200,81 @@ La paleta principal se define mediante Custom Properties:
 
 }
 
-\`\`\`
+```
 
-\| Color | Significado | Uso principal |
+| Color | Significado | Uso principal |
 
-\|---|---|---|
+|---|---|---|
 
-\| \`#38023B\` | Identidad LXL / LIHEN | Fondos identitarios y marca |
+| `#38023B` | Identidad LXL / LIHEN | Fondos identitarios y marca |
 
-\| \`#000000\` | Estructura / código | Paneles y base estructural |
+| `#000000` | Estructura / código | Paneles y base estructural |
 
-\| \`#1EFFBC\` | Tecnología / transformación | Bordes, iconos, numeración e indicadores |
+| `#1EFFBC` | Tecnología / transformación | Bordes, iconos, numeración e indicadores |
 
-\| \`#FBD1A2\` | Calidez y acento | Superficies y detalles editoriales |
+| `#FBD1A2` | Calidez y acento | Superficies y detalles editoriales |
 
-\| \`#F72C25\` | Acción | CTA y estados de acción |
+| `#F72C25` | Acción | CTA y estados de acción |
 
-\| \`#FFFFFF\` | Contraste y lectura | Textos y títulos |
+| `#FFFFFF` | Contraste y lectura | Textos y títulos |
 
-\| \`#303030\` | Retícula | Líneas y divisores |
+| `#303030` | Retícula | Líneas y divisores |
 
-\| \`#151515\` | Superficies oscuras | Cards y contenedores |
+| `#151515` | Superficies oscuras | Cards y contenedores |
 
-*>* **\*\*Bootstrap aporta estructura y utilidades. LXL define el lenguaje visual.\*\***
+> ****Bootstrap aporta estructura y utilidades. LXL define el lenguaje visual.****
 
-**---**
+---
 
-**# ✍️ Tipografías**
+# ✍️ Tipografías
 
 El portafolio utiliza principalmente:
 
-**## Barlow Condensed**
+## Barlow Condensed
 
 Se utiliza para:
 
-\- identidad LXL;
+- identidad LXL;
 
-\- títulos principales;
+- títulos principales;
 
-\- títulos de cards;
+- títulos de cards;
 
-\- manifiestos;
+- manifiestos;
 
-\- etiquetas;
+- etiquetas;
 
-\- elementos editoriales de alto impacto.
+- elementos editoriales de alto impacto.
 
-Actualmente los títulos de las cards de **\*\*Proyectos\*\*** y **\*\*Habilidades\*\*** comparten esta familia para mantener coherencia visual.
+Actualmente los títulos de las cards de ****Proyectos**** y ****Habilidades**** comparten esta familia para mantener coherencia visual.
 
-**## Inter**
+## Inter
 
 Se utiliza principalmente para:
 
-\- navegación;
+- navegación;
 
-\- párrafos;
+- párrafos;
 
-\- contenido;
+- contenido;
 
-\- descripciones;
+- descripciones;
 
-\- textos secundarios;
+- textos secundarios;
 
-\- lectura general.
+- lectura general.
 
-**## Tipografía manuscrita del Hero**
+## Tipografía manuscrita del Hero
 
 El nombre personal del Hero mantiene una familia manuscrita independiente para diferenciar la firma personal de la identidad técnica del resto del portafolio.
 
-**---**
+---
 
-**# 🛠️ Tecnologías utilizadas**
+# 🛠️ Tecnologías utilizadas
 
 Actualmente el proyecto utiliza:
 
-\`\`\`text
+```text
 
 HTML5
 
@@ -298,11 +298,11 @@ Figma
 
 Visual Studio Code
 
-\`\`\`
+```
 
 En la implementación se utilizan:
 
-\`\`\`text
+```text
 
 CSS Grid
 
@@ -326,39 +326,39 @@ Fetch API
 
 Bootstrap Utilities
 
-\`\`\`
+```
 
-**---**
+---
 
-**# 🅱️ Bootstrap 5 en el portafolio**
+# 🅱️ Bootstrap 5 en el portafolio
 
-El proyecto integra **\*\*Bootstrap 5.3.8\*\*** mediante CDN y utiliza **\*\*Bootstrap Icons 1.13.1\*\***.
+El proyecto integra ****Bootstrap 5.3.8**** mediante CDN y utiliza ****Bootstrap Icons 1.13.1****.
 
 Bootstrap se utiliza como apoyo para:
 
-\- layout;
+- layout;
 
-\- flexbox;
+- flexbox;
 
-\- espaciado;
+- espaciado;
 
-\- responsive;
+- responsive;
 
-\- utilidades;
+- utilidades;
 
-\- iconografía no identitaria.
+- iconografía no identitaria.
 
-Los componentes principales continúan siendo personalizados mediante \`styles.css\`.
+Los componentes principales continúan siendo personalizados mediante `styles.css`.
 
-La hoja \`styles.css\` se carga después de Bootstrap para conservar la prioridad visual de LXL.
+La hoja `styles.css` se carga después de Bootstrap para conservar la prioridad visual de LXL.
 
-**---**
+---
 
-**# 🧭 Estructura actual del portafolio**
+# 🧭 Estructura actual del portafolio
 
 La navegación principal está organizada así:
 
-\`\`\`text
+```text
 
 Inicio
 
@@ -382,131 +382,131 @@ Contacto
 
 Footer
 
-\`\`\`
+```
 
 La navegación superior contiene:
 
-\`\`\`text
+```text
 
 Inicio | Sobre mí | Proyectos | Habilidades | Contacto
 
-\`\`\`
+```
 
-**---**
+---
 
-**## 1. Inicio**
+## 1. Inicio
 
 Inicio contiene la presentación de identidad y el Hero principal.
 
 La entrada vigente utiliza:
 
-\`\`\`text
+```text
 
 LXL / CODE X LIHEN
 
 → Hero
 
-\`\`\`
+```
 
 El Hero presenta:
 
-\- identidad LXL;
+- identidad LXL;
 
-\- nombre personal;
+- nombre personal;
 
-\- perfil profesional;
+- perfil profesional;
 
-\- CTA hacia Proyectos;
+- CTA hacia Proyectos;
 
-\- CTA hacia Contacto.
+- CTA hacia Contacto.
 
-**---**
+---
 
-**## 2. Sobre mí**
+## 2. Sobre mí
 
-La sección **\*\*Sobre mí\*\*** utiliza una composición editorial para presentar el perfil profesional y personal.
+La sección ****Sobre mí**** utiliza una composición editorial para presentar el perfil profesional y personal.
 
 Actualmente incluye:
 
-\- fotografía personal;
+- fotografía personal;
 
-\- bloque \`MI HISTORIA & CÓDIGO\`;
+- bloque `MI HISTORIA & CÓDIGO`;
 
-\- narrativa organizada en cuatro bloques;
+- narrativa organizada en cuatro bloques;
 
-\- experiencia previa aplicada al desarrollo;
+- experiencia previa aplicada al desarrollo;
 
-\- relación con LIHEN.CO;
+- relación con LIHEN.CO;
 
-\- manifiesto \`Acta non verba, con propósito.\`;
+- manifiesto `Acta non verba, con propósito.`;
 
-\- cards visuales inferiores de proceso e identidad;
+- cards visuales inferiores de proceso e identidad;
 
-\- elementos gráficos LXL.
+- elementos gráficos LXL.
 
 La sección busca explicar el perfil más allá de una lista de tecnologías.
 
-**---**
+---
 
-**## 3. Proyectos**
+## 3. Proyectos
 
 La sección presenta actualmente dos proyectos:
 
-\`\`\`text
+```text
 
 HUELLAVET
 
 PLANIFICADOR DE TAREAS WEB
 
-\`\`\`
+```
 
 Las cards utilizan una arquitectura flip.
 
-**### Frente**
+### Frente
 
 Cada frente contiene:
 
-\- control de giro;
+- control de giro;
 
-\- nombre del proyecto;
+- nombre del proyecto;
 
-\- descripción breve;
+- descripción breve;
 
-\- módulo \`Languages\`;
+- módulo `Languages`;
 
-\- datos reales de GitHub cuando están disponibles;
+- datos reales de GitHub cuando están disponibles;
 
-\- composición gráfica pixelada.
+- composición gráfica pixelada.
 
-Los títulos utilizan **\*\*Barlow Condensed\*\*** con una jerarquía fuerte y consistente con el resto de LXL.
+Los títulos utilizan ****Barlow Condensed**** con una jerarquía fuerte y consistente con el resto de LXL.
 
-**### Reverso**
+### Reverso
 
 Cada reverso permite consultar:
 
-\- contexto;
+- contexto;
 
-\- participación o enfoque;
+- participación o enfoque;
 
-\- información complementaria;
+- información complementaria;
 
-\- CTA \`VER PROYECTO\`;
+- CTA `VER PROYECTO`;
 
-\- repositorio real;
+- repositorio real;
 
-\- control de giro.
+- control de giro.
 
 El CTA está diseñado visualmente como botón para comunicar de forma clara que abre el proyecto.
 
 No se inventan enlaces, métricas, demos ni autoría.
 
-**---**
+---
 
-**## 4. Habilidades**
+## 4. Habilidades
 
 La sección utiliza diez cards individuales:
 
-\`\`\`text
+```text
 
 JAVA
 
@@ -528,59 +528,59 @@ SPRING BOOT
 
 SCRUM
 
-\`\`\`
+```
 
 Cada card puede girarse.
 
 El reverso incluye:
 
-\- título;
+- título;
 
-\- descripción breve;
+- descripción breve;
 
-\- evidencia GitHub;
+- evidencia GitHub;
 
-\- indicador visual relacionado con la tecnología.
+- indicador visual relacionado con la tecnología.
 
-Los títulos utilizan **\*\*Barlow Condensed\*\*** para mantener continuidad tipográfica con Proyectos, Contacto y Sobre mí.
+Los títulos utilizan ****Barlow Condensed**** para mantener continuidad tipográfica con Proyectos, Contacto y Sobre mí.
 
 La evidencia visual se utiliza como apoyo verificable y no como una escala automática de dominio.
 
-**---**
+---
 
-**## 5. Contacto**
+## 5. Contacto
 
 La sección Contacto combina identidad visual y canales profesionales.
 
 Actualmente integra:
 
-\- video visual en el módulo izquierdo;
+- video visual en el módulo izquierdo;
 
-\- imagen principal de identidad en el módulo derecho;
+- imagen principal de identidad en el módulo derecho;
 
-\- composición pixelada;
+- composición pixelada;
 
-\- marca LXL / CODE X LIHEN;
+- marca LXL / CODE X LIHEN;
 
-\- card de GitHub;
+- card de GitHub;
 
-\- card de LinkedIn;
+- card de LinkedIn;
 
-\- CTA independientes;
+- CTA independientes;
 
-\- Bootstrap Icons.
+- Bootstrap Icons.
 
 Los grupos gráficos de GitHub y LinkedIn cuentan con ajustes de posición específicos en desktop y recuperan su disposición responsive en pantallas pequeñas.
 
 Los enlaces externos utilizan apertura segura en una pestaña nueva.
 
-**---**
+---
 
-**# ⚙️ JavaScript actual**
+# ⚙️ JavaScript actual
 
-Los scripts cargados por \`index.html\` son:
+Los scripts cargados por `index.html` son:
 
-\`\`\`text
+```text
 
 Bootstrap Bundle
 
@@ -590,290 +590,263 @@ js/skills-cards.js
 
 js/project-cards.js
 
-\`\`\`
+```
 
-**## \`js/index.js\`**
+## `js/index.js`
 
 Responsable de la experiencia de Inicio y la transición hacia el Hero.
 
-**## \`js/project-cards.js\`**
+## `js/project-cards.js`
 
 Responsable de:
 
-\- interacción flip de Proyectos;
+- interacción flip de Proyectos;
 
-\- control de giro;
+- control de giro;
 
-\- consulta y representación de GitHub Languages;
+- consulta y representación de GitHub Languages;
 
-\- actualización de estados del módulo Languages.
+- actualización de estados del módulo Languages.
 
-**## \`js/skills-cards.js\`**
+## `js/skills-cards.js`
 
 Responsable de:
 
-\- interacción flip de Habilidades;
+- interacción flip de Habilidades;
 
-\- control de giro;
+- control de giro;
 
-\- evidencia GitHub asociada a las skills.
+- evidencia GitHub asociada a las skills.
 
-\`index.intro-reserva.js\` está presente en la carpeta \`js\`, pero **\*\*no se carga desde \`index.html\`\*\***.
+`index.intro-reserva.js` está presente en la carpeta `js`, pero ****no se carga desde `index.html`****.
 
-**---**
+---
 
-**# 📥 Instalación**
+# 📥 Instalación
 
-**## 1. Clonar el repositorio**
+## 1. Clonar el repositorio
 
-\`\`\`bash
+```bash
 
-git clone https\://github.com/Lizeth-Londono/Gen-c13-Portafolio.git
+git clone https://github.com/Lizeth-Londono/Gen-c13-Portafolio.git
 
-\`\`\`
+```
 
-**## 2. Ingresar al proyecto**
+## 2. Ingresar al proyecto
 
-\`\`\`bash
+```bash
 
 cd Gen-c13-Portafolio
 
-\`\`\`
+```
 
-**## 3. Abrir en Visual Studio Code**
+## 3. Abrir en Visual Studio Code
 
-\`\`\`bash
+```bash
 
 code .
 
-\`\`\`
+```
 
-**## 4. Ejecutar**
+## 4. Ejecutar
 
-Abrir \`index.html\` directamente o utilizar una herramienta como **\*\*Live Server\*\***.
+Abrir `index.html` directamente o utilizar una herramienta como ****Live Server****.
 
 Las funciones que consultan GitHub requieren conexión a Internet.
 
-**---**
+---
 
-**# 🚀 Uso**
+# 🚀 Uso
 
 El recorrido principal es:
 
-\`\`\`text
+```text
 
-1\. Abrir el portafolio.
+1. Abrir el portafolio.
 
-2\. Visualizar Inicio y el Hero.
+2. Visualizar Inicio y el Hero.
 
-3\. Consultar Sobre mí.
+3. Consultar Sobre mí.
 
-4\. Consultar Proyectos.
+4. Consultar Proyectos.
 
-5\. Girar las cards de Proyectos cuando se requiera.
+5. Girar las cards de Proyectos cuando se requiera.
 
-6\. Utilizar VER PROYECTO para abrir el repositorio correspondiente.
+6. Utilizar VER PROYECTO para abrir el repositorio correspondiente.
 
-7\. Consultar Habilidades.
+7. Consultar Habilidades.
 
-8\. Girar las cards de Habilidades.
+8. Girar las cards de Habilidades.
 
-9\. Consultar Contacto.
+9. Consultar Contacto.
 
-10\. Llegar al Footer.
+10. Llegar al Footer.
 
-\`\`\`
+```
 
 Las cards de Proyectos y Habilidades utilizan:
 
-\`\`\`text
+```text
 
 ↻
 
-\`\`\`
+```
 
 como control de giro entre frente y reverso.
 
-**---**
+---
 
-**# 📁 Estructura actual del repositorio**
+# 📁 Estructura actual del repositorio
 
-La estructura visible dentro del ZIP actual es:
+La estructura principal del repositorio es:
 
-\`\`\`text
+```text
 
 Gen-c13-Portafolio/
-
 │
-
 ├── img/
-
-│   ├── imgContactoLizeth.png
-
-│   ├── imgSobreMiLizeth.png
-
-│   └── skills/
-
+│   ├── imgContactoLizeth.png
+│   ├── imgSobreMiLizeth.png
+│   └── skills/
 │
-
 ├── js/
-
-│   ├── index.intro-reserva.js
-
-│   ├── index.js
-
-│   ├── project-cards.js
-
-│   └── skills-cards.js
-
+│   ├── index.intro-reserva.js
+│   ├── index.js
+│   ├── project-cards.js
+│   └── skills-cards.js
 │
-
-├── Material de Estudio/
-
-│   ├── Bacukp Dia 15 - 14072026.docx
-
-│   ├── Bacukp Dia 21 - 23072026.docx
-
-│   └── EE-PF1 - Portfolio Checklist\_v1\_nrv.docx.pdf
-
-│
-
 ├── video/
-
-│   └── video-portafolio.mp4
-
+│   └── video-portafolio.mp4
 │
 ├── index.html
-
 ├── README.md
-
 └── styles.css
 
-\`\`\`
+```
 
 
-**---**
+---
 
-**# 🌐 Demo - GitHub Pages**
+# 🌐 Demo - GitHub Pages
 
-[GitHub Pages]\(https\://lizeth-londono.github.io/Gen-c13-Portafolio/)
+[GitHub Pages](https://lizeth-londono.github.io/Gen-c13-Portafolio/)
 
-**---**
+---
 
-**# 🎨 Figma**
+# 🎨 Figma
 
 Los wireframes, exploraciones visuales y prototipos se encuentran en:
 
-[Ver diseño del portafolio en Figma]\(https\://www\.figma.com/design/1ukITbrseKkFJCGqMj0SDz/Curso-de-Figma-desde-Cero-%7C-Clase-1--Bases-Fundamentales--2025--con-UI3---Community-?node-id=2006-14&p=f&t=3pqvDqq20oyAsVIF-0)
+[Ver diseño del portafolio en Figma](https://www.figma.com/design/1ukITbrseKkFJCGqMj0SDz/Curso-de-Figma-desde-Cero-%7C-Clase-1--Bases-Fundamentales--2025--con-UI3---Community-?node-id=2006-14&p=f&t=3pqvDqq20oyAsVIF-0)
 
-**---**
+---
 
-**# 🎨 Coolors**
+# 🎨 Coolors
 
-[Paleta LXL en Coolors]\(https\://coolors.co/f72c25-fbd1a2-1effbc-000000-38023b)
+[Paleta LXL en Coolors](https://coolors.co/f72c25-fbd1a2-1effbc-000000-38023b)
 
-**---**
+---
 
-**# 📊 Estado actual**
+# 📊 Estado actual
 
 El portafolio cuenta actualmente con una página vertical completa.
 
 Entre las características vigentes se encuentran:
 
-\- identidad LXL consolidada;
+- identidad LXL consolidada;
 
-\- Hero principal;
+- Hero principal;
 
-\- sección Sobre mí editorial;
+- sección Sobre mí editorial;
 
-\- cards flip de Proyectos;
+- cards flip de Proyectos;
 
-\- GitHub Languages;
+- GitHub Languages;
 
-\- CTA \`VER PROYECTO\`;
+- CTA `VER PROYECTO`;
 
-\- cards flip de Habilidades;
+- cards flip de Habilidades;
 
-\- evidencia GitHub;
+- evidencia GitHub;
 
-\- títulos de cards unificados con Barlow Condensed;
+- títulos de cards unificados con Barlow Condensed;
 
-\- continuidad visual entre Proyectos y Habilidades;
+- continuidad visual entre Proyectos y Habilidades;
 
-\- Contacto con video, imagen y cards profesionales;
+- Contacto con video, imagen y cards profesionales;
 
-\- Bootstrap 5.3.8;
+- Bootstrap 5.3.8;
 
-\- Bootstrap Icons 1.13.1;
+- Bootstrap Icons 1.13.1;
 
-\- responsive;
+- responsive;
 
-\- navegación por anclas;
+- navegación por anclas;
 
-\- documentación pedagógica en español.
+- documentación pedagógica en español.
 
-**---**
+---
 
-**# 🔭 Mejoras futuras**
+# 🔭 Mejoras futuras
 
 El proyecto puede continuar mejorando en:
 
-\- accesibilidad;
+- accesibilidad;
 
-\- contraste;
+- contraste;
 
-\- responsive;
+- responsive;
 
-\- optimización de imágenes y video;
+- optimización de imágenes y video;
 
-\- manejo de errores de GitHub API;
+- manejo de errores de GitHub API;
 
-\- microinteracciones;
+- microinteracciones;
 
-\- pruebas con usuarios;
+- pruebas con usuarios;
 
-\- incorporación de nuevos proyectos;
+- incorporación de nuevos proyectos;
 
-\- contenido profesional;
+- contenido profesional;
 
-\- rendimiento;
+- rendimiento;
 
-\- publicación de una versión estable.
+- publicación de una versión estable.
 
 La intención es que el portafolio evolucione con mi proceso profesional.
 
-**---**
+---
 
-**# 👩‍💻 Autora**
+# 👩‍💻 Autora
 
-**\*\*Lina Lizeth Londoño Marín\*\***
+****Lina Lizeth Londoño Marín****
 
-\- Junior Full-Stack Java Developer en formación.
+- Junior Full-Stack Java Developer en formación.
 
-\- Cofundadora de LIHEN.CO.
+- Cofundadora de LIHEN.CO.
 
-\- Estudiante del Bootcamp Full Stack Java de Generation Colombia - Cohorte 13.
+- Estudiante del Bootcamp Full Stack Java de Generation Colombia - Cohorte 13.
 
-**---**
+---
 
-**# 📬 Contacto profesional**
+# 📬 Contacto profesional
 
-\| Medio | Enlace |
+| Medio | Enlace |
 
-\|---|---|
+|---|---|
 
-\| GitHub | [github.com/Lizeth-Londono]\(https\://github.com/Lizeth-Londono) |
+| GitHub | [github.com/Lizeth-Londono](https://github.com/Lizeth-Londono) |
 
-\| LinkedIn | [linkedin.com/in/lina-londono-dev]\(https\://www\.linkedin.com/in/lina-londono-dev/) |
+| LinkedIn | [linkedin.com/in/lina-londono-dev](https://www.linkedin.com/in/lina-londono-dev/) |
 
-\| Correo | [linalizethlondonomarin\@gmail.com]\(mailto\:linalizethlondonomarin\@gmail.com) |
+| Correo | [linalizethlondonomarin@gmail.com](mailto:linalizethlondonomarin@gmail.com) |
 
-\| Repositorio | [Gen-c13-Portafolio]\(https\://github.com/Lizeth-Londono/Gen-c13-Portafolio) |
+| Repositorio | [Gen-c13-Portafolio](https://github.com/Lizeth-Londono/Gen-c13-Portafolio) |
 
-\| Figma | [Prototipo y wireframes]\(https\://www\.figma.com/design/1ukITbrseKkFJCGqMj0SDz/Curso-de-Figma-desde-Cero-%7C-Clase-1--Bases-Fundamentales--2025--con-UI3---Community-?node-id=2006-14&p=f&t=3pqvDqq20oyAsVIF-0) |
+| Figma | [Prototipo y wireframes](https://www.figma.com/design/1ukITbrseKkFJCGqMj0SDz/Curso-de-Figma-desde-Cero-%7C-Clase-1--Bases-Fundamentales--2025--con-UI3---Community-?node-id=2006-14&p=f&t=3pqvDqq20oyAsVIF-0) |
 
-\| Portafolio web | [GitHub Pages]\(https\://lizeth-londono.github.io/Gen-c13-Portafolio/) |
+| Portafolio web | [GitHub Pages](https://lizeth-londono.github.io/Gen-c13-Portafolio/) |
 
-**---**
+---
 
-*>* **\*\*Tecnología con propósito. Código que transforma. Ideas que dejan huella.\*\***
+> ****Tecnología con propósito. Código que transforma. Ideas que dejan huella.****
