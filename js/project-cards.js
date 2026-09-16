@@ -12,16 +12,15 @@ const projectCards = document.querySelectorAll(
 // CACHÉ COMPARTIDO DE GITHUB
 // ========================================
 
-// Aquí se crea un caché global reutilizable.
-//
-// Esto permite que si diferentes componentes solicitan el mismo endpoint
-// durante una misma carga del portafolio, no sea necesario consultar
-// repetidamente la API de GitHub.
+// Aquí se reutiliza el mismo caché global que también puede utilizar skills-cards.js.
+// De esta forma, si dos componentes consultan el mismo endpoint durante una misma carga,
+// se reutiliza la misma Promise y evitamos repetir llamadas innecesarias a GitHub.
 if (!window.__lihenGithubCache) {
     window.__lihenGithubCache = new Map();
 }
 
-// Aquí se guarda una referencia corta al caché compartido.
+// Aquí se guarda una referencia corta al caché compartido para usarlo
+// durante las consultas de Languages de cada proyecto.
 const githubCache = window.__lihenGithubCache;
 
 
@@ -29,12 +28,9 @@ const githubCache = window.__lihenGithubCache;
 // COLORES DE LANGUAGES
 // ========================================
 
-// Aquí se relacionan lenguajes frecuentes con colores visuales.
-//
-// Estos colores sirven solamente para representar la composición
-// del repositorio.
-//
-// NO representan nivel de conocimiento.
+// Aquí se relacionan algunos lenguajes frecuentes con un color visual.
+// Estos colores sirven únicamente para diferenciar tecnologías detectadas
+// y NO representan nivel de conocimiento, importancia ni porcentaje.
 const PROJECT_LANGUAGE_COLORS = {
     HTML: "#e34c26",
     CSS: "#1572b6",
@@ -53,8 +49,9 @@ const PROJECT_LANGUAGE_COLORS = {
 // COLORES DE RESPALDO
 // ========================================
 
-// Si GitHub devuelve un lenguaje que todavía no está declarado
-// en PROJECT_LANGUAGE_COLORS, se utilizará uno de estos colores.
+// Si GitHub detecta un lenguaje que todavía no está declarado arriba,
+// aquí se conserva una lista de colores de respaldo para poder representarlo
+// sin dejar el segmento sin identidad visual.
 const PROJECT_LANGUAGE_FALLBACK_COLORS = [
     "#1EFFBC",
     "#F72C25",
@@ -69,15 +66,19 @@ const PROJECT_LANGUAGE_FALLBACK_COLORS = [
 // FUNCIÓN — NORMALIZAR NOMBRE PARA CSS
 // ========================================
 
-// Aquí se convierte el nombre del lenguaje en una cadena segura.
+// Aquí se convierte el nombre de un lenguaje en una cadena segura
+// para poder utilizarla al construir clases CSS dinámicas.
 //
-// Ejemplo:
+// El proceso hace lo siguiente:
+// 1. convierte el texto a minúsculas;
+// 2. separa marcas Unicode con normalize("NFD");
+// 3. elimina acentos o marcas combinadas;
+// 4. reemplaza símbolos y espacios por guiones;
+// 5. elimina guiones sobrantes al inicio o al final.
 //
-// JavaScript
-// → javascript
-//
-// C++
-// → c
+// Ejemplos:
+// JavaScript → javascript
+// C++ → c
 function normalizeLanguageClass(language) {
 
     return language
@@ -93,10 +94,9 @@ function normalizeLanguageClass(language) {
 // FUNCIÓN — OBTENER COLOR
 // ========================================
 
-// Aquí se devuelve el color correspondiente al lenguaje.
-//
-// Si el lenguaje no está registrado,
-// se utiliza uno de los colores de respaldo.
+// Aquí se busca primero el color definido para el lenguaje.
+// Si todavía no existe una coincidencia en el mapa principal,
+// se toma uno de los colores de respaldo según la posición del lenguaje.
 function getLanguageColor(language, index) {
 
     return (
@@ -112,30 +112,27 @@ function getLanguageColor(language, index) {
 // FUNCIÓN — EXTRAER REPOSITORIO DESDE URL
 // ========================================
 
-// Aquí se transforma:
+// Aquí se transforma una URL completa de GitHub en el formato owner/repository.
 //
+// Ejemplo:
 // https://github.com/usuario/repositorio
+// → usuario/repositorio
 //
-// en:
-//
-// usuario/repositorio
-//
-// También acepta:
-//
-// https://github.com/usuario/repositorio.git
+// También acepta una URL terminada en .git.
 function getRepositoryFromUrl(repositoryUrl) {
 
-    // Si no existe una URL, no se puede continuar.
+    // Si no existe una URL configurada, no hay información suficiente para continuar.
     if (!repositoryUrl) {
         return null;
     }
 
     try {
 
-        // URL permite interpretar de forma segura la dirección.
+        // new URL() permite interpretar de forma segura la dirección recibida.
         const url = new URL(repositoryUrl);
 
-        // Aquí se comprueba que realmente sea una dirección de GitHub.
+        // Aquí se comprueba que la dirección realmente pertenezca a GitHub.
+        // Si pertenece a otro dominio, se devuelve null y no se intenta consultar la API.
         if (
             url.hostname !== "github.com"
             && url.hostname !== "www.github.com"
@@ -143,33 +140,27 @@ function getRepositoryFromUrl(repositoryUrl) {
             return null;
         }
 
-        // Aquí se divide la ruta:
-        //
-        // /usuario/repositorio
-        //
-        // en:
-        //
-        // ["usuario", "repositorio"]
+        // Aquí se toma pathname, se elimina una posible terminación .git,
+        // se divide la ruta por "/" y se descartan partes vacías.
+        // Así obtenemos algo como ["usuario", "repositorio"].
         const parts = url.pathname
             .replace(/\.git$/i, "")
             .split("/")
             .filter(Boolean);
 
-        // Se requieren por lo menos:
-        //
-        // usuario
-        // repositorio
+        // Para formar owner/repository necesitamos como mínimo dos partes.
+        // Si faltan, la URL no tiene la estructura esperada.
         if (parts.length < 2) {
             return null;
         }
 
-        // Aquí se devuelve únicamente owner/repository.
+        // Aquí se devuelve únicamente la información que necesita la API de GitHub.
         return `${parts[0]}/${parts[1]}`;
 
     } catch (error) {
 
-        // Si la URL no puede interpretarse correctamente,
-        // se devuelve null sin romper la página.
+        // Si la URL es inválida y new URL() no puede interpretarla,
+        // se devuelve null para mantener la página funcionando normalmente.
         return null;
     }
 }
@@ -179,20 +170,16 @@ function getRepositoryFromUrl(repositoryUrl) {
 // FUNCIÓN — OBTENER REPOSITORIO DE LA CARD
 // ========================================
 
-// Aquí se obtiene el repositorio correspondiente a cada proyecto.
-//
-// La fuente principal será:
-//
-// data-repository-url
-//
-// colocado en el article de la card.
+// Aquí se obtiene el repositorio asociado a la card actual.
+// La URL viene desde data-repository-url en el HTML y luego se transforma
+// al formato owner/repository que utiliza la API.
 function getProjectRepository(projectCard) {
 
-    // Aquí se obtiene la URL configurada en el HTML.
+    // dataset permite leer el valor configurado en data-repository-url.
     const repositoryUrl =
         projectCard.dataset.repositoryUrl;
 
-    // Aquí se convierte la URL en owner/repository.
+    // Aquí se reutiliza la función anterior para validar y simplificar la URL.
     return getRepositoryFromUrl(
         repositoryUrl
     );
@@ -203,21 +190,17 @@ function getProjectRepository(projectCard) {
 // FUNCIÓN — CONSULTA GITHUB CON CACHÉ
 // ========================================
 
-// Aquí se realiza una consulta pública a GitHub.
-//
-// No se utiliza token privado.
-//
-// La respuesta se almacena en memoria para evitar
-// solicitudes duplicadas durante la misma carga.
+// Aquí se consulta la API pública de GitHub sin utilizar un token privado.
+// La Promise se guarda en memoria para reutilizarla si otro componente
+// solicita exactamente el mismo endpoint durante esta carga del portafolio.
 async function fetchGitHubJson(url) {
 
-    // Si ya existe esta solicitud en caché,
-    // se reutiliza inmediatamente.
+    // Si la URL ya tiene una Promise en caché, se reutiliza inmediatamente.
     if (githubCache.has(url)) {
         return githubCache.get(url);
     }
 
-    // Aquí se crea la solicitud como Promise.
+    // Aquí se crea la solicitud HTTP y se conserva como Promise.
     const request = fetch(
         url,
         {
@@ -228,8 +211,9 @@ async function fetchGitHubJson(url) {
     )
         .then(async function (response) {
 
-            // Si GitHub responde con un error HTTP,
-            // se genera un error controlado.
+            // Si GitHub responde con un estado diferente a 2xx,
+            // se genera un error controlado para que el flujo pueda manejarlo
+            // sin romper las demás cards.
             if (!response.ok) {
 
                 throw new Error(
@@ -237,105 +221,72 @@ async function fetchGitHubJson(url) {
                 );
             }
 
-            // Aquí se convierte la respuesta a JSON.
+            // Aquí se convierte la respuesta a JSON para trabajar con sus datos.
             return response.json();
         })
 
         .catch(function (error) {
 
-            // Si la consulta falla,
-            // se elimina del caché para permitir otro intento
-            // en una futura carga de página.
+            // Si la Promise falla, se elimina del caché.
+            // De esta forma una carga futura podrá volver a intentar la consulta
+            // en lugar de quedarse reutilizando una Promise rechazada.
             githubCache.delete(url);
 
             throw error;
         });
 
-    // Aquí se guarda la solicitud en caché.
+    // Aquí se guarda la relación URL → Promise dentro del Map compartido.
     githubCache.set(
         url,
         request
     );
 
+    // Se devuelve la misma Promise para que el resto del código
+    // pueda esperar la respuesta de GitHub normalmente.
     return request;
 }
 
 
 // ========================================
-// FUNCIÓN — CONVERTIR BYTES A PORCENTAJES
+// FUNCIÓN — OBTENER LENGUAJES DETECTADOS
 // ========================================
 
-// GitHub Languages devuelve una estructura similar a:
+// GitHub Languages devuelve bytes por lenguaje.
+// Aquí esos bytes se utilizan solamente para comprobar qué lenguajes existen
+// y para mantener un orden consistente según su presencia en el repositorio.
 //
-// {
-//     "HTML": 12000,
-//     "JavaScript": 9000,
-//     "CSS": 3000
-// }
-//
-// Los números representan bytes.
-//
-// Aquí se convierten esos bytes en porcentajes.
-function calculateLanguagePercentages(languageBytes) {
+// NO se convierten en porcentajes visibles.
+// NO representan dominio, experiencia ni una calificación personal.
+function getDetectedLanguages(languageBytes) {
 
-    // Aquí se convierten las propiedades del objeto en pares:
-    //
-    // [lenguaje, bytes]
-    const entries =
-        Object.entries(languageBytes)
+    return Object.entries(languageBytes)
 
-            // Se conservan solamente valores válidos.
-            .filter(function ([, bytes]) {
+        // Aquí se conservan únicamente lenguajes con un valor numérico válido
+        // y mayor que cero.
+        .filter(function ([, bytes]) {
 
-                return (
-                    Number.isFinite(bytes)
-                    && bytes > 0
-                );
-            })
+            return (
+                Number.isFinite(bytes)
+                && bytes > 0
+            );
+        })
 
-            // Se ordenan de mayor a menor cantidad.
-            .sort(function (a, b) {
+        // GitHub sigue determinando el orden de presencia mediante los bytes.
+        // Este orden se utiliza solo para mantener una salida consistente;
+        // visualmente todos los lenguajes recibirán el mismo peso.
+        .sort(function (a, b) {
 
-                return b[1] - a[1];
-            });
+            return b[1] - a[1];
+        })
 
-
-    // Aquí se calcula el total de bytes.
-    const totalBytes =
-        entries.reduce(
-            function (total, [, bytes]) {
-
-                return total + bytes;
-            },
-            0
-        );
-
-
-    // Si GitHub no detecta contenido,
-    // se devuelve una lista vacía.
-    if (totalBytes <= 0) {
-        return [];
-    }
-
-
-    // Aquí cada lenguaje se transforma en:
-    //
-    // {
-    //     language: "HTML",
-    //     percentage: 40.2
-    // }
-    return entries.map(
-        function ([language, bytes]) {
+        // Aquí se descartan los bytes y se conserva únicamente
+        // el nombre del lenguaje que realmente fue detectado.
+        .map(function ([language]) {
 
             return {
-
-                language: language,
-
-                percentage:
-                    (bytes / totalBytes) * 100
+                language: language
             };
-        }
-    );
+        });
 }
 
 
@@ -343,21 +294,19 @@ function calculateLanguagePercentages(languageBytes) {
 // FUNCIÓN — CREAR DESCRIPCIÓN ACCESIBLE
 // ========================================
 
-// Aquí se genera una descripción como:
+// Aquí se genera una descripción accesible con los nombres
+// de todos los lenguajes detectados, por ejemplo:
+// HTML, JavaScript, CSS.
 //
-// HTML 40.2%, JavaScript 34.6%, CSS 25.2%
-//
-// para utilizarla mediante aria-label.
+// No se incluyen porcentajes porque el panel comunica tecnologías presentes
+// en el repositorio y no una calificación personal.
 function createLanguagesAriaLabel(languages) {
 
     return languages
         .map(
             function (item) {
 
-                return (
-                    `${item.language} `
-                    + `${item.percentage.toFixed(1)}%`
-                );
+                return item.language;
             }
         )
         .join(", ");
@@ -368,46 +317,46 @@ function createLanguagesAriaLabel(languages) {
 // FUNCIÓN — RENDERIZAR LANGUAGES
 // ========================================
 
-// Aquí se dibuja dinámicamente:
+// Aquí se construye dinámicamente el panel de Languages de cada proyecto.
+// Se crean la señal tecnológica, sus segmentos, la leyenda y la fuente GitHub.
 //
-// barra
-// segmentos
-// leyenda
-// porcentajes
-// fuente
+// Todos los lenguajes reciben el mismo peso visual para evitar que la señal
+// pueda interpretarse como porcentaje, dominio o nivel profesional.
 function renderProjectLanguages(
     projectCard,
     repository,
     languages
 ) {
 
-    // Aquí se busca el panel Languages de la card.
+    // Aquí se busca el panel Languages dentro de la card actual.
     const panel =
         projectCard.querySelector(
             ".project-reference-front__languages"
         );
 
+    // Si esta card no contiene el panel esperado, no se intenta modificarla.
     if (!panel) {
         return;
     }
 
 
-    // Aquí se busca la pista donde se dibujará la barra.
+    // Aquí se obtiene la pista donde se dibujarán los segmentos
+    // correspondientes a los lenguajes detectados.
     const bar =
         panel.querySelector(
             ".project-languages__bar"
         );
 
 
-    // Aquí se busca el texto de estado.
+    // Aquí se obtiene el espacio donde se muestra el estado o la fuente.
     const status =
         panel.querySelector(
             ".project-languages__status"
         );
 
 
-    // Si falta una parte esencial,
-    // se evita continuar.
+    // Si falta una parte esencial del panel, se detiene el render
+    // para evitar trabajar sobre una estructura incompleta.
     if (!bar || !status) {
         return;
     }
@@ -417,12 +366,13 @@ function renderProjectLanguages(
     // LIMPIAR CONTENIDO ANTERIOR
     // ========================================
 
-    // Aquí se elimina el placeholder.
+    // Aquí se elimina el placeholder o cualquier señal anterior
+    // antes de construir la información actualizada.
     bar.innerHTML = "";
 
 
-    // Si ya existía una leyenda,
-    // se elimina antes de reconstruirla.
+    // Si ya existía una leyenda de una carga anterior,
+    // se elimina para poder reconstruirla sin duplicados.
     const previousLegend =
         panel.querySelector(
             ".project-languages__legend"
@@ -434,39 +384,42 @@ function renderProjectLanguages(
 
 
     // ========================================
-    // CREAR SEGMENTOS DE LA BARRA
+    // CREAR SEGMENTOS DE LA SEÑAL
     // ========================================
 
     languages.forEach(
         function (item, index) {
 
-            // Aquí se crea un segmento por lenguaje.
+            // Aquí se crea un segmento visual por cada lenguaje detectado.
             const segment =
                 document.createElement("span");
 
 
-            // Aquí se obtiene una clase segura.
+            // Aquí se obtiene una versión segura del nombre
+            // para construir la clase CSS dinámica del segmento.
             const languageClass =
                 normalizeLanguageClass(
                     item.language
                 );
 
 
-            // Aquí se agregan las clases correspondientes.
+            // Aquí se agregan la clase base y la clase específica del lenguaje.
             segment.classList.add(
                 "project-languages__segment",
                 `project-languages__segment--${languageClass}`
             );
 
 
-            // El ancho representa la proporción real
-            // calculada a partir de los bytes de GitHub.
-            segment.style.width =
-                `${item.percentage}%`;
+            // Todos los lenguajes reciben exactamente el mismo espacio visual.
+            // "1 1 0" permite que los segmentos compartan la pista de forma equitativa,
+            // sin utilizar los bytes de GitHub para definir su ancho.
+            // Por eso la señal deja de funcionar como medidor y solo comunica presencia.
+            segment.style.flex =
+                "1 1 0";
 
 
-            // Aquí se garantiza un color incluso
-            // para lenguajes nuevos.
+            // Aquí se utiliza el color asociado al lenguaje para reconocerlo visualmente.
+            // El color identifica la tecnología y no representa nivel de conocimiento.
             segment.style.backgroundColor =
                 getLanguageColor(
                     item.language,
@@ -474,20 +427,21 @@ function renderProjectLanguages(
                 );
 
 
-            // Aquí se agrega información al pasar el cursor.
+            // Aquí se identifica el lenguaje al pasar el mouse
+            // sin mostrar ninguna cifra o porcentaje.
             segment.title =
-                `${item.language}: `
-                + `${item.percentage.toFixed(1)}%`;
+                `${item.language} detectado en GitHub`;
 
 
-            // El segmento es decorativo.
+            // El segmento individual es decorativo porque la información completa
+            // ya se comunica desde la barra mediante aria-label.
             segment.setAttribute(
                 "aria-hidden",
                 "true"
             );
 
 
-            // Aquí se incorpora a la barra.
+            // Aquí se incorpora el segmento a la señal tecnológica.
             bar.appendChild(
                 segment
             );
@@ -499,13 +453,15 @@ function renderProjectLanguages(
     // ACCESIBILIDAD DE LA BARRA
     // ========================================
 
-    // Aquí se comunica mediante aria-label
-    // la información completa de Languages.
+    // Aquí aria-label comunica los nombres de los lenguajes detectados
+    // sin depender únicamente de colores o elementos decorativos.
     bar.setAttribute(
         "aria-label",
-        createLanguagesAriaLabel(
-            languages
-        )
+        `Lenguajes detectados en GitHub: ${
+            createLanguagesAriaLabel(
+                languages
+            )
+        }`
     );
 
 
@@ -513,7 +469,8 @@ function renderProjectLanguages(
     // CREAR LEYENDA
     // ========================================
 
-    // Aquí se crea el contenedor de la leyenda.
+    // Aquí se crea el contenedor que agrupará
+    // todos los lenguajes detectados por GitHub.
     const legend =
         document.createElement("div");
 
@@ -521,7 +478,7 @@ function renderProjectLanguages(
         "project-languages__legend";
 
 
-    // Aquí se crea un elemento por lenguaje.
+    // Aquí se crea un elemento de leyenda por cada lenguaje.
     languages.forEach(
         function (item, index) {
 
@@ -531,7 +488,7 @@ function renderProjectLanguages(
                 );
 
 
-            // Aquí se crea el elemento de leyenda.
+            // Aquí se crea el contenedor individual del lenguaje.
             const legendItem =
                 document.createElement("span");
 
@@ -539,10 +496,14 @@ function renderProjectLanguages(
                 "project-languages__item";
 
 
-            // Aquí se crea el punto de color.
+            // ========================================
+            // PUNTO DE COLOR
+            // ========================================
+
+            // Aquí se crea el punto que conecta visualmente
+            // el nombre del lenguaje con su color dentro de la señal.
             const dot =
                 document.createElement("span");
-
 
             dot.classList.add(
                 "project-languages__dot",
@@ -550,6 +511,8 @@ function renderProjectLanguages(
             );
 
 
+            // Aquí se reutiliza exactamente el mismo color
+            // empleado para el segmento correspondiente.
             dot.style.backgroundColor =
                 getLanguageColor(
                     item.language,
@@ -557,23 +520,32 @@ function renderProjectLanguages(
                 );
 
 
+            // El punto es decorativo porque el nombre del lenguaje
+            // ya aparece como texto dentro de la leyenda.
             dot.setAttribute(
                 "aria-hidden",
                 "true"
             );
 
 
-            // Aquí se crea el texto.
+            // ========================================
+            // NOMBRE DEL LENGUAJE
+            // ========================================
+
+            // Aquí se crea el texto visible del lenguaje.
             const label =
                 document.createElement("span");
 
 
+            // Antes este espacio podía mostrar algo como "JavaScript 37.2%".
+            // Ahora se muestra únicamente el nombre porque GitHub aporta evidencia técnica,
+            // no una calificación personal de conocimiento.
             label.textContent =
-                `${item.language} `
-                + `${item.percentage.toFixed(1)}%`;
+                item.language;
 
 
-            // Aquí se construye el elemento completo.
+            // Aquí se construye el elemento completo de la leyenda:
+            // punto de color + nombre del lenguaje.
             legendItem.appendChild(
                 dot
             );
@@ -583,7 +555,7 @@ function renderProjectLanguages(
             );
 
 
-            // Aquí se incorpora a la leyenda.
+            // Aquí se agrega el lenguaje terminado al contenedor de la leyenda.
             legend.appendChild(
                 legendItem
             );
@@ -591,8 +563,8 @@ function renderProjectLanguages(
     );
 
 
-    // La leyenda se coloca inmediatamente
-    // después de la barra.
+    // La leyenda se coloca inmediatamente después de la señal
+    // para mantener juntas ambas formas de lectura.
     bar.insertAdjacentElement(
         "afterend",
         legend
@@ -600,32 +572,30 @@ function renderProjectLanguages(
 
 
     // ========================================
-    // ESTADO CORRECTO — COMPACTO
+    // ESTADO CORRECTO — GITHUB
     // ========================================
 
-    // Aquí se muestra solamente una fuente corta
-    // para evitar que owner/repository se salga
-    // del recuadro blanco.
+    // Aquí se muestra una referencia breve indicando la fuente de los datos.
     status.textContent =
         "Fuente: GitHub";
 
 
-    // El repositorio completo se conserva
-    // como información adicional al pasar el cursor.
+    // El repositorio completo se conserva en title para poder consultarlo
+    // al pasar el cursor sin ocupar más espacio dentro del panel.
     status.title =
         repository;
 
 
-    // También se agrega una descripción accesible
-    // sin ocupar espacio visual.
+    // Aquí se agrega la misma fuente mediante aria-label
+    // para mantener disponible el contexto de forma accesible.
     status.setAttribute(
         "aria-label",
         `Fuente GitHub: ${repository}`
     );
 
 
-    // Si anteriormente hubo un error,
-    // se elimina el estado visual.
+    // Si anteriormente existió un error, aquí se elimina ese estado visual
+    // porque la información se cargó correctamente.
     status.classList.remove(
         "is-error"
     );
@@ -636,37 +606,35 @@ function renderProjectLanguages(
 // FUNCIÓN — ERROR DE GITHUB
 // ========================================
 
-// Aquí se maneja cualquier problema sin romper la card.
-//
-// Ejemplos:
-//
-// GitHub no responde.
-// Rate limit.
-// Repositorio inexistente.
-// Sin conexión.
+// Aquí se controla cualquier problema al consultar GitHub sin romper la card.
+// Esto cubre casos como falta de conexión, rate limit,
+// repositorio inexistente o una respuesta temporalmente fallida.
 function renderProjectLanguagesError(
     projectCard,
     message
 ) {
 
-    // Aquí se localiza el panel correspondiente.
+    // Aquí se localiza el panel Languages correspondiente a la card actual.
     const panel =
         projectCard.querySelector(
             ".project-reference-front__languages"
         );
 
 
+    // Si la card no contiene este panel, no se intenta modificar nada.
     if (!panel) {
         return;
     }
 
 
+    // Aquí se obtiene la pista donde normalmente aparece la señal tecnológica.
     const bar =
         panel.querySelector(
             ".project-languages__bar"
         );
 
 
+    // Aquí se obtiene el espacio donde se mostrará el mensaje de estado.
     const status =
         panel.querySelector(
             ".project-languages__status"
@@ -679,26 +647,27 @@ function renderProjectLanguagesError(
 
     if (bar) {
 
-        // Aquí se elimina cualquier contenido anterior.
+        // Aquí se elimina cualquier contenido anterior de la pista.
         bar.innerHTML = "";
 
 
-        // Aquí se crea un placeholder que NO representa
-        // ningún porcentaje.
+        // Aquí se crea un placeholder neutral para conservar la estructura visual.
+        // Este elemento NO representa porcentaje, nivel ni experiencia.
         const placeholder =
             document.createElement("span");
-
 
         placeholder.className =
             "project-languages__placeholder";
 
 
+        // El placeholder se incorpora nuevamente a la pista.
         bar.appendChild(
             placeholder
         );
 
 
-        // Aquí se actualiza la accesibilidad.
+        // Aquí se comunica el mismo mensaje mediante aria-label
+        // para que el estado de error también sea accesible.
         bar.setAttribute(
             "aria-label",
             message
@@ -710,11 +679,12 @@ function renderProjectLanguagesError(
     // ELIMINAR LEYENDA ANTERIOR
     // ========================================
 
+    // Si existía una leyenda de una carga correcta anterior,
+    // se elimina para no dejar información desactualizada junto al error.
     const previousLegend =
         panel.querySelector(
             ".project-languages__legend"
         );
-
 
     if (previousLegend) {
         previousLegend.remove();
@@ -727,23 +697,27 @@ function renderProjectLanguagesError(
 
     if (status) {
 
+        // Aquí se muestra el mensaje controlado dentro del panel.
         status.textContent =
             message;
 
 
-        // Se elimina cualquier title anterior
-        // que correspondiera a un repositorio cargado correctamente.
+        // Se elimina cualquier title anterior correspondiente
+        // a un repositorio que había cargado correctamente.
         status.removeAttribute(
             "title"
         );
 
 
+        // El mensaje también se comunica mediante aria-label
+        // sin necesitar contenido visual adicional.
         status.setAttribute(
             "aria-label",
             message
         );
 
 
+        // Esta clase permite que CSS represente visualmente el estado de error.
         status.classList.add(
             "is-error"
         );
@@ -756,18 +730,20 @@ function renderProjectLanguagesError(
 // ========================================
 
 // Aquí se conecta cada card con la API pública de GitHub.
+// El endpoint Languages se utiliza para comprobar qué tecnologías
+// están realmente presentes en el repositorio, sin calcular porcentajes visibles.
 async function loadProjectLanguages(projectCard) {
 
-    // Aquí se obtiene el repositorio configurado
-    // en data-repository-url.
+    // Aquí se obtiene y valida el repositorio configurado
+    // mediante data-repository-url en la card.
     const repository =
         getProjectRepository(
             projectCard
         );
 
 
-    // Si no existe repositorio,
-    // se muestra un mensaje claro.
+    // Si la card no tiene un repositorio válido, se muestra un estado controlado
+    // y no se intenta construir una URL de API incorrecta.
     if (!repository) {
 
         renderProjectLanguagesError(
@@ -779,32 +755,36 @@ async function loadProjectLanguages(projectCard) {
     }
 
 
-    // Aquí se localiza el estado visual.
+    // Aquí se localiza el elemento de estado que mostrará
+    // la carga, la fuente correcta o un posible error.
     const status =
         projectCard.querySelector(
             ".project-languages__status"
         );
 
 
-    // Mientras GitHub responde,
-    // se muestra un mensaje temporal corto.
+    // Mientras GitHub responde, se muestra un mensaje temporal corto.
     if (status) {
 
         status.textContent =
             "Cargando GitHub…";
 
 
+        // Aquí se elimina un title anterior para no conservar
+        // información vieja durante una nueva consulta.
         status.removeAttribute(
             "title"
         );
 
 
+        // El estado de carga también se comunica de forma accesible.
         status.setAttribute(
             "aria-label",
             `Cargando datos desde GitHub para ${repository}`
         );
 
 
+        // Si existía un error anterior, se limpia mientras comienza el nuevo intento.
         status.classList.remove(
             "is-error"
         );
@@ -815,22 +795,26 @@ async function loadProjectLanguages(projectCard) {
     // ENDPOINT OFICIAL DE LANGUAGES
     // ========================================
 
+    // Este endpoint devuelve bytes de código por lenguaje.
+    // Aquí esos bytes se utilizan únicamente para saber qué lenguajes existen
+    // y conservar un orden consistente; no se convierten en porcentajes visibles.
     const languagesUrl =
         `https://api.github.com/repos/${repository}/languages`;
 
 
     try {
 
-        // Aquí se consulta GitHub.
+        // Aquí se consulta GitHub y se espera la respuesta antes de continuar.
         const languageBytes =
             await fetchGitHubJson(
                 languagesUrl
             );
 
 
-        // Aquí se convierten bytes a porcentajes.
+        // Aquí se transforma la respuesta en una lista de lenguajes detectados.
+        // Los bytes dejan de formar parte del resultado que se renderiza en pantalla.
         const languages =
-            calculateLanguagePercentages(
+            getDetectedLanguages(
                 languageBytes
             );
 
@@ -839,6 +823,8 @@ async function loadProjectLanguages(projectCard) {
         // SIN LANGUAGES
         // ========================================
 
+        // Si GitHub no devuelve ningún lenguaje válido,
+        // se conserva un estado neutral en lugar de inventar información.
         if (languages.length === 0) {
 
             renderProjectLanguagesError(
@@ -854,6 +840,8 @@ async function loadProjectLanguages(projectCard) {
         // RENDER CORRECTO
         // ========================================
 
+        // Si existen lenguajes válidos, aquí se construye
+        // la señal y la leyenda correspondientes a la card.
         renderProjectLanguages(
             projectCard,
             repository,
@@ -862,14 +850,16 @@ async function loadProjectLanguages(projectCard) {
 
     } catch (error) {
 
-        // Si ocurre cualquier problema,
-        // se conserva la funcionalidad completa de la card.
+        // Si ocurre cualquier excepción, se conserva el detalle en consola
+        // para depuración sin romper la funcionalidad de la card.
         console.error(
             `No fue posible cargar Languages de ${repository}:`,
             error
         );
 
 
+        // Visualmente se presenta un mensaje controlado
+        // y se recupera el placeholder neutral.
         renderProjectLanguagesError(
             projectCard,
             "No fue posible actualizar GitHub."
@@ -882,26 +872,29 @@ async function loadProjectLanguages(projectCard) {
 // CONFIGURAR CADA CARD
 // ========================================
 
-// Aquí se recorre cada proyecto de forma independiente.
+// Aquí se recorre cada proyecto de forma independiente
+// para configurar su giro, accesibilidad y carga de Languages.
 projectCards.forEach(
     function (projectCard) {
 
-        // Aquí se buscan los dos botones de giro
-        // que pertenecen únicamente a la card actual.
+        // Aquí se buscan los dos botones de giro que pertenecen únicamente
+        // a la card que estamos configurando.
         const turnButtons =
             projectCard.querySelectorAll(
                 ".project-flip-card__turn"
             );
 
 
-        // Aquí se guarda la cara frontal.
+        // Aquí se guarda la referencia de la cara frontal
+        // para controlar su estado durante el giro.
         const frontFace =
             projectCard.querySelector(
                 ".project-flip-card__front"
             );
 
 
-        // Aquí se guarda la cara posterior.
+        // Aquí se guarda la referencia de la cara posterior
+        // para controlar su estado durante el giro.
         const backFace =
             projectCard.querySelector(
                 ".project-flip-card__back"
@@ -912,8 +905,8 @@ projectCards.forEach(
         // VALIDACIÓN DE ESTRUCTURA
         // ========================================
 
-        // Si falta alguno de los elementos esenciales,
-        // se evita configurar esa card.
+        // Si falta algún botón o alguna de las dos caras,
+        // se detiene la configuración de esa card para evitar errores.
         if (
             turnButtons.length < 2
             || !frontFace
@@ -927,15 +920,14 @@ projectCards.forEach(
         // FUNCIÓN — ESTADO DE LA CARD
         // ========================================
 
-        // Aquí se centraliza el cambio
-        // entre frente y reverso.
+        // Aquí se centraliza todo lo que debe cambiar
+        // cuando la card pasa del frente al reverso o regresa al frente.
         function setProjectCardState(
             isFlipped,
             moveFocus = true
         ) {
 
-            // is-flipped controla visualmente
-            // la rotación de la tarjeta.
+            // is-flipped controla visualmente la rotación de la tarjeta.
             projectCard.classList.toggle(
                 "is-flipped",
                 isFlipped
@@ -946,16 +938,16 @@ projectCards.forEach(
             // ACCESIBILIDAD — CARAS
             // ========================================
 
-            // Cuando la card está girada,
-            // el frente queda oculto.
+            // aria-hidden comunica a tecnologías de asistencia cuál cara está visible.
+            // Cuando la card está girada, el frente queda marcado como oculto.
             frontFace.setAttribute(
                 "aria-hidden",
                 String(isFlipped)
             );
 
 
-            // Cuando la card está girada,
-            // el reverso queda visible.
+            // Aquí se aplica el estado contrario al reverso:
+            // cuando la card está girada, esta cara queda visible.
             backFace.setAttribute(
                 "aria-hidden",
                 String(!isFlipped)
@@ -966,6 +958,8 @@ projectCards.forEach(
             // ACCESIBILIDAD — BOTONES
             // ========================================
 
+            // aria-pressed comunica el estado actual del control de giro
+            // sin depender únicamente de la animación visual.
             turnButtons[0].setAttribute(
                 "aria-pressed",
                 String(isFlipped)
@@ -982,8 +976,8 @@ projectCards.forEach(
             // CONTROL DEL FOCO
             // ========================================
 
-            // El botón de la cara oculta
-            // queda fuera de la navegación con Tab.
+            // tabIndex evita que la navegación con Tab llegue
+            // al botón perteneciente a una cara que está oculta.
             turnButtons[0].tabIndex =
                 isFlipped
                     ? -1
@@ -1000,8 +994,9 @@ projectCards.forEach(
             // MOVER FOCO
             // ========================================
 
-            // El foco solamente se mueve
-            // cuando el giro proviene de interacción.
+            // El foco solo se mueve cuando el giro viene de una interacción.
+            // De esta forma, después de girar, el teclado continúa
+            // en el botón que pertenece a la cara visible.
             if (moveFocus) {
 
                 const visibleButton =
@@ -1019,8 +1014,7 @@ projectCards.forEach(
         // EVENTOS — GIRO
         // ========================================
 
-        // Aquí ambas flechas utilizan
-        // exactamente la misma lógica.
+        // Aquí los dos botones utilizan la misma lógica de giro.
         turnButtons.forEach(
             function (turnButton) {
 
@@ -1028,16 +1022,15 @@ projectCards.forEach(
                     "click",
                     function () {
 
-                        // Aquí se identifica
-                        // el estado actual.
+                        // Aquí se comprueba si la card se encuentra actualmente girada.
                         const isCurrentlyFlipped =
                             projectCard.classList.contains(
                                 "is-flipped"
                             );
 
 
-                        // Aquí se cambia
-                        // al estado contrario.
+                        // Aquí se invierte el estado actual para mostrar
+                        // la cara contraria de la card.
                         setProjectCardState(
                             !isCurrentlyFlipped
                         );
@@ -1051,8 +1044,8 @@ projectCards.forEach(
         // ESTADO INICIAL
         // ========================================
 
-        // Todas las cards comienzan
-        // mostrando la cara frontal.
+        // Todas las cards comienzan mostrando la cara frontal.
+        // moveFocus se envía como false para no mover el foco durante la carga inicial.
         setProjectCardState(
             false,
             false
@@ -1063,13 +1056,9 @@ projectCards.forEach(
         // CARGAR DATOS REALES DE GITHUB
         // ========================================
 
-        // Aquí se inicia una única consulta
-        // al cargar/configurar la card.
-        //
+        // Aquí se consulta Languages una sola vez al cargar/configurar la card.
         // NO existe setInterval.
-        //
-        // Cuando la persona vuelva a abrir
-        // o recargar el portafolio,
+        // Cuando la persona vuelva a abrir o recargar el portafolio,
         // GitHub volverá a consultarse.
         loadProjectLanguages(
             projectCard

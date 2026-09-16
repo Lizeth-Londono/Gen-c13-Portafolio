@@ -12,15 +12,15 @@ const skillCards = document.querySelectorAll(
 // CACHÉ COMPARTIDO DE GITHUB
 // ========================================
 
-// Aquí se reutiliza el mismo caché global que utiliza project-cards.js.
-//
-// Esto evita repetir solicitudes a GitHub durante una misma carga
-// cuando diferentes componentes necesitan consultar el mismo endpoint.
+// Aquí se reutiliza el mismo caché global que también utiliza project-cards.js.
+// De esta forma evitamos consultar GitHub varias veces por el mismo endpoint
+// durante una sola carga del portafolio.
 if (!window.__lihenGithubCache) {
     window.__lihenGithubCache = new Map();
 }
 
-// Aquí se guarda una referencia corta al caché compartido.
+// Aquí se guarda una referencia corta al caché compartido para utilizarlo
+// durante las consultas de evidencia de las cards.
 const githubCache = window.__lihenGithubCache;
 
 
@@ -28,20 +28,18 @@ const githubCache = window.__lihenGithubCache;
 // CONFIGURACIÓN DE EVIDENCIA POR HABILIDAD
 // ========================================
 
-// IMPORTANTE:
-//
+// Aquí se define qué evidencia pública se utiliza para cada habilidad.
 // Esta configuración NO representa nivel de dominio.
 //
 // type = "language"
-// → GitHub sí devuelve un porcentaje real mediante /languages.
+// → GitHub permite comprobar si el lenguaje está presente mediante /languages.
 //
 // type = "repository"
-// → existe evidencia pública relacionada con la tecnología,
-//   pero GitHub no proporciona un porcentaje equivalente.
+// → se valida la existencia de un repositorio relacionado con la tecnología.
 //
 // type = "repository-note"
-// → existe evidencia contextual del trabajo realizado,
-//   sin convertirla artificialmente en una métrica porcentual.
+// → se conserva evidencia contextual del trabajo realizado sin convertirla
+//   en una métrica o porcentaje artificial.
 const SKILL_EVIDENCE = {
 
     java: {
@@ -133,9 +131,8 @@ const SKILL_EVIDENCE = {
 // COLORES VISUALES POR HABILIDAD
 // ========================================
 
-// Estos colores identifican visualmente cada tecnología.
-//
-// NO representan nivel de conocimiento.
+// Aquí se asigna un color a cada tecnología para poder reconocerla visualmente.
+// El color funciona solamente como identidad gráfica y NO representa nivel de conocimiento.
 const SKILL_ACCENT_COLORS = {
 
     java: "#e76f00",
@@ -164,22 +161,20 @@ const SKILL_ACCENT_COLORS = {
 // FUNCIÓN — CONSULTAR GITHUB CON CACHÉ
 // ========================================
 
-// Aquí se realiza una consulta pública a GitHub.
-//
-// No se utiliza ningún token privado.
-//
-// La Promise queda guardada en caché para evitar
-// solicitudes duplicadas durante la misma carga.
+// Aquí se consulta la API pública de GitHub sin utilizar un token privado.
+// La Promise se guarda en caché para reutilizar la misma respuesta
+// si otra parte del portafolio necesita exactamente el mismo endpoint.
 async function fetchGitHubJson(url) {
 
-    // Si esta consulta ya existe,
-    // se reutiliza la respuesta.
+    // Si esta consulta ya existe en el caché,
+    // se reutiliza la misma Promise y así evitamos hacer
+    // una solicitud duplicada a GitHub.
     if (githubCache.has(url)) {
         return githubCache.get(url);
     }
 
 
-    // Aquí se crea la solicitud.
+    // Aquí se crea la solicitud HTTP que traerá la información desde GitHub.
     const request = fetch(
         url,
         {
@@ -191,8 +186,9 @@ async function fetchGitHubJson(url) {
         .then(
             async function (response) {
 
-                // Si GitHub devuelve un error HTTP,
-                // se genera un error controlado.
+                // Si GitHub responde con un estado diferente a 2xx,
+                // se genera un error controlado para que el flujo pueda manejarlo
+                // sin romper las demás cards.
                 if (!response.ok) {
 
                     throw new Error(
@@ -201,7 +197,8 @@ async function fetchGitHubJson(url) {
                 }
 
 
-                // Aquí se convierte la respuesta a JSON.
+                // Aquí se convierte la respuesta de GitHub a JSON
+                // para poder trabajar con sus datos desde JavaScript.
                 return response.json();
             }
         )
@@ -209,11 +206,9 @@ async function fetchGitHubJson(url) {
         .catch(
             function (error) {
 
-                // Si la consulta falla,
-                // se elimina del caché.
-                //
-                // De esta forma una carga futura
-                // podrá volver a intentarlo.
+                // Si la consulta falla, se elimina del caché.
+                // De esta forma una carga futura podrá volver a intentar
+                // la solicitud en lugar de reutilizar una Promise rechazada.
                 githubCache.delete(url);
 
                 throw error;
@@ -221,81 +216,43 @@ async function fetchGitHubJson(url) {
         );
 
 
-    // Aquí se almacena la solicitud.
+    // Aquí se guarda la Promise en el caché antes de devolverla,
+    // para que cualquier consulta igual pueda reutilizarla.
     githubCache.set(
         url,
         request
     );
 
 
+    // Se devuelve la misma Promise para que el resto del código
+    // pueda esperar normalmente la respuesta de GitHub.
     return request;
 }
 
 
 // ========================================
-// FUNCIÓN — CALCULAR PORCENTAJES DE LANGUAGES
+// FUNCIÓN — VERIFICAR LENGUAJE EN GITHUB
 // ========================================
 
-// GitHub devuelve bytes por lenguaje:
-//
-// {
-//     "HTML": 10000,
-//     "JavaScript": 8000,
-//     "CSS": 4000
-// }
-//
-// Aquí se convierten esos bytes en porcentajes.
-function calculateLanguagePercentages(languageBytes) {
+// Aquí solo comprobamos si GitHub detecta el lenguaje dentro del repositorio.
+// Los bytes se utilizan únicamente para confirmar que existe contenido
+// y no se convierten en porcentajes ni en una medida de conocimiento.
+function hasLanguageEvidence(
+    languageBytes,
+    language
+) {
 
-    // Aquí se conservan únicamente valores válidos.
-    const entries =
-        Object.entries(languageBytes)
-            .filter(
-                function ([, bytes]) {
-
-                    return (
-                        Number.isFinite(bytes)
-                        && bytes > 0
-                    );
-                }
-            );
+    // Aquí se obtiene el número de bytes que GitHub asocia
+    // específicamente con el lenguaje que estamos verificando.
+    const bytes =
+        languageBytes[language];
 
 
-    // Aquí se calcula el total de bytes.
-    const totalBytes =
-        entries.reduce(
-            function (total, [, bytes]) {
-
-                return total + bytes;
-            },
-            0
-        );
-
-
-    // Si no existe información,
-    // se devuelve un objeto vacío.
-    if (totalBytes <= 0) {
-        return {};
-    }
-
-
-    // Aquí se genera:
-    //
-    // {
-    //     HTML: 40.2,
-    //     JavaScript: 34.6
-    // }
-    return Object.fromEntries(
-
-        entries.map(
-            function ([language, bytes]) {
-
-                return [
-                    language,
-                    (bytes / totalBytes) * 100
-                ];
-            }
-        )
+    // Si el valor existe, es numérico y es mayor que cero,
+    // entonces sí existe evidencia de ese lenguaje en el repositorio.
+    return (
+        Number.isFinite(bytes)
+        && bytes > 0
     );
 }
 
@@ -304,28 +261,35 @@ function calculateLanguagePercentages(languageBytes) {
 // FUNCIÓN — OBTENER ELEMENTOS DEL PANEL
 // ========================================
 
-// Aquí se centraliza la búsqueda de los elementos
-// utilizados por cada panel de evidencia.
+// Aquí se buscan y agrupan los elementos principales del panel de evidencia.
+// De esta forma las demás funciones pueden reutilizar las mismas referencias
+// sin repetir querySelector varias veces.
 function getSkillEvidenceElements(skillCard) {
 
+    // Aquí se obtiene el panel completo que contiene la evidencia de GitHub.
     const panel =
         skillCard.querySelector(
             ".skill-card__github-panel"
         );
 
 
+    // Aquí se obtiene la pista visual donde aparece la señal tecnológica.
     const track =
         skillCard.querySelector(
             ".skill-card__github-track"
         );
 
 
+    // Aquí se obtiene el elemento donde mostramos el estado compacto,
+    // por ejemplo “GitHub ✓” o “GitHub !”.
     const status =
         skillCard.querySelector(
             ".skill-card__github-status"
         );
 
 
+    // Se devuelven juntos para poder reutilizarlos
+    // en las demás funciones sin volver a buscarlos.
     return {
         panel,
         track,
@@ -338,8 +302,8 @@ function getSkillEvidenceElements(skillCard) {
 // FUNCIÓN — LIMPIAR PISTA
 // ========================================
 
-// Aquí se elimina el placeholder
-// antes de generar una barra dinámica.
+// Aquí se limpia la pista antes de dibujar un nuevo estado visual.
+// Si la pista no existe, se detiene la función para evitar errores.
 function clearSkillTrack(track) {
 
     if (!track) {
@@ -347,6 +311,7 @@ function clearSkillTrack(track) {
     }
 
 
+    // Aquí se elimina cualquier contenido anterior de la pista.
     track.innerHTML = "";
 }
 
@@ -355,55 +320,42 @@ function clearSkillTrack(track) {
 // FUNCIÓN — CREAR SEGMENTO VISUAL
 // ========================================
 
-// Aquí se genera la barra visual.
-//
-// En las habilidades tipo language,
-// su ancho corresponde al porcentaje real
-// detectado por GitHub.
-//
-// En otras tecnologías,
-// la barra únicamente representa
-// que existe evidencia asociada.
-//
-// Nunca representa nivel de dominio.
+// Aquí se crea el segmento visual que acompaña la evidencia de la habilidad.
+// Todas las señales utilizan la misma longitud para evitar que se interpreten
+// como una comparación de nivel o porcentaje.
 function createEvidenceSegment(
-    metric,
-    width = 100
+    metric
 ) {
 
+    // Aquí se crea el elemento que funcionará como señal visual.
     const segment =
         document.createElement("span");
 
 
+    // Aquí se aplica la clase que conecta el segmento
+    // con los estilos definidos en styles.css.
     segment.className =
         "skill-card__github-track-segment";
 
 
-    // Aquí se garantiza que el segmento
-    // permanezca entre 2% y 100%.
-    const safeWidth =
-        Math.min(
-            100,
-            Math.max(
-                2,
-                width
-            )
-        );
-
-
+    // Todas las habilidades utilizan exactamente la misma longitud visual.
+    // Con esto la pista comunica evidencia y actividad,
+    // pero nunca nivel de dominio.
     segment.style.width =
-        `${safeWidth}%`;
+        "100%";
 
 
-    // Aquí se utiliza el color propio
-    // de la habilidad.
+    // Aquí se utiliza el color propio de cada habilidad
+    // para identificar visualmente la tecnología
+    // sin convertir el color en una calificación.
     segment.style.backgroundColor =
         SKILL_ACCENT_COLORS[metric]
         || "#1EFFBC";
 
 
-    // La información se comunica mediante
-    // la pista y el estado, no desde el segmento.
+    // El segmento es decorativo.
+    // La información accesible se comunica desde la pista y el estado
+    // para no duplicar contenido.
     segment.setAttribute(
         "aria-hidden",
         "true"
@@ -415,56 +367,50 @@ function createEvidenceSegment(
 
 
 // ========================================
-// FUNCIÓN — MOSTRAR PORCENTAJE COMPACTO
+// FUNCIÓN — MOSTRAR EVIDENCIA DE LENGUAJE
 // ========================================
 
-// Aquí se presenta únicamente:
-//
-// 40.2%
-//
-// 34.6%
-//
-// 100.0%
-//
-// sin párrafos adicionales dentro de la card.
-function renderCompactPercentage(
+// Aquí se muestra el estado cuando GitHub sí detecta el lenguaje.
+// La evidencia se presenta como confirmación pública
+// y no como una medida de nivel.
+function renderLanguageEvidenceStatus(
     status,
-    percentage,
     language,
     evidence
 ) {
 
+    // Si no existe el elemento donde debe mostrarse el estado,
+    // se evita continuar para no generar errores.
     if (!status) {
         return;
     }
 
 
-    // Aquí se muestra únicamente el porcentaje.
+    // En lugar de mostrar una cifra de GitHub Languages,
+    // se utiliza “GitHub ✓”.
+    // Así se confirma evidencia real sin convertirla en autocalificación.
     status.textContent =
-        `${percentage.toFixed(1)}%`;
+        "GitHub ✓";
 
 
-    // El repositorio completo queda disponible
-    // al pasar el cursor sobre el dato.
+    // Aquí se conserva la explicación completa dentro de title.
+    // De esta forma sigue disponible al pasar el mouse
+    // sin ocupar espacio permanente en la card.
     status.title =
-        `Fuente: GitHub · ${evidence.repository}`;
+        `${evidence.description} Fuente: GitHub · ${evidence.repository}`;
 
 
-    // Aquí se conserva la explicación completa
-    // para tecnologías de asistencia
-    // sin ocupar espacio visual.
+    // Aquí se agrega contexto accesible mediante aria-label.
+    // Con esto también se deja claro que la señal no representa dominio.
     status.setAttribute(
         "aria-label",
-        `${language}: `
-        + `${percentage.toFixed(1)}% del contenido `
-        + `detectado por GitHub en ${evidence.repository}. `
-        + "El porcentaje representa composición del repositorio, "
-        + "no nivel de dominio."
+        `${language} fue detectado en GitHub dentro de ${evidence.repository}. `
+        + "La señal visual confirma evidencia y no representa nivel de dominio."
     );
 
 
-    // Aquí se elimina cualquier estado
-    // visual de error anterior.
+    // Si anteriormente se había mostrado un error,
+    // aquí se elimina ese estado porque la evidencia cargó correctamente.
     status.classList.remove(
         "is-error"
     );
@@ -475,38 +421,37 @@ function renderCompactPercentage(
 // FUNCIÓN — MOSTRAR EVIDENCIA COMPACTA
 // ========================================
 
-// Aquí se utilizan tecnologías que GitHub
-// no representa mediante Languages.
-//
-// En lugar de inventar porcentajes,
-// se muestra:
-//
-// GitHub ✓
+// Aquí se manejan tecnologías que GitHub no representa directamente
+// dentro del endpoint Languages.
+// En estos casos se confirma la existencia de evidencia pública
+// con “GitHub ✓” sin inventar porcentajes.
 function renderCompactRepositoryEvidence(
     status,
     evidence
 ) {
 
+    // Si no existe el espacio destinado al estado,
+    // no se intenta modificar la card.
     if (!status) {
         return;
     }
 
 
-    // Aquí se muestra únicamente
-    // una confirmación breve.
+    // Aquí se muestra una confirmación breve
+    // para no recargar visualmente la card.
     status.textContent =
         "GitHub ✓";
 
 
-    // La evidencia detallada queda disponible
-    // mediante el tooltip del navegador.
+    // La evidencia detallada queda disponible mediante title,
+    // por eso no ocupa espacio adicional dentro de la card.
     status.title =
         `${evidence.description} `
         + `Fuente: GitHub · ${evidence.repository}`;
 
 
-    // Aquí se conserva una descripción
-    // accesible más completa.
+    // Aquí se agrega una descripción accesible más completa mediante aria-label,
+    // para que el significado de la evidencia no dependa solo de lo visual.
     status.setAttribute(
         "aria-label",
         `${evidence.description} `
@@ -516,8 +461,8 @@ function renderCompactRepositoryEvidence(
     );
 
 
-    // Aquí se elimina un posible estado
-    // de error anterior.
+    // Aquí se elimina un posible estado de error anterior
+    // porque la evidencia ya fue cargada correctamente.
     status.classList.remove(
         "is-error"
     );
@@ -528,14 +473,10 @@ function renderCompactRepositoryEvidence(
 // FUNCIÓN — LANGUAGE NO DETECTADO
 // ========================================
 
-// Si GitHub no devuelve actualmente
-// el lenguaje asociado a una card:
-//
-// NO se muestra 100%.
-//
-// NO se inventa un porcentaje.
-//
-// Se conserva simplemente un estado neutral.
+// Si GitHub no detecta actualmente el lenguaje asociado a la card,
+// se mantiene un estado neutral.
+// No se muestra 100% ni se inventa ningún porcentaje
+// para completar visualmente la información.
 function renderLanguageNotDetected(
     track,
     status,
@@ -544,24 +485,31 @@ function renderLanguageNotDetected(
 
     if (track) {
 
-        // Aquí se elimina cualquier barra anterior.
+        // Aquí se elimina cualquier señal anterior
+        // antes de recuperar el placeholder neutral de la card.
         track.innerHTML = "";
 
 
-        // Se recupera el placeholder neutral.
+        // Aquí se crea nuevamente el placeholder neutral
+        // para mostrar que no hay evidencia de lenguaje disponible
+        // en ese momento.
         const placeholder =
             document.createElement("span");
 
 
+        // Aquí se aplica la clase visual correspondiente al placeholder.
         placeholder.className =
             "skill-card__github-track-placeholder";
 
 
+        // El placeholder se incorpora nuevamente dentro de la pista.
         track.appendChild(
             placeholder
         );
 
 
+        // Aquí se explica mediante aria-label
+        // por qué no aparece una señal activa.
         track.setAttribute(
             "aria-label",
             `${evidence.language} no fue detectado actualmente `
@@ -572,18 +520,21 @@ function renderLanguageNotDetected(
 
     if (status) {
 
-        // Se mantiene un dato visual mínimo.
+        // Aquí se mantiene un dato visual mínimo
+        // para no presentar información falsa.
         status.textContent =
             "—";
 
 
-        // La explicación completa queda
-        // disponible al pasar el cursor.
+        // La explicación completa queda disponible en title
+        // al pasar el cursor, sin ocupar espacio permanente.
         status.title =
             `${evidence.language} no fue detectado actualmente `
             + `por GitHub en ${evidence.repository}.`;
 
 
+        // Aquí se conserva la misma explicación
+        // para tecnologías de asistencia.
         status.setAttribute(
             "aria-label",
             `${evidence.language} no fue detectado actualmente `
@@ -591,6 +542,8 @@ function renderLanguageNotDetected(
         );
 
 
+        // Este estado no se considera un error técnico,
+        // por eso se elimina la clase is-error si existía.
         status.classList.remove(
             "is-error"
         );
@@ -602,22 +555,21 @@ function renderLanguageNotDetected(
 // FUNCIÓN — EVIDENCIA BASADA EN LANGUAGE
 // ========================================
 
-// Esta función se utiliza para:
-//
-// Java
-// JavaScript
-// HTML
-// CSS
-//
-// GitHub devuelve datos reales mediante:
+// Aquí se valida la evidencia de Java, JavaScript, HTML y CSS.
+// Para estas habilidades GitHub permite consultar datos reales mediante:
 //
 // /repos/{owner}/{repo}/languages
+//
+// Los bytes solo se utilizan para comprobar presencia
+// y nunca para medir dominio.
 async function renderLanguageEvidence(
     skillCard,
     metric,
     evidence
 ) {
 
+    // Aquí se recuperan la pista y el estado
+    // correspondientes a la card que estamos procesando.
     const {
         track,
         status
@@ -626,6 +578,8 @@ async function renderLanguageEvidence(
     );
 
 
+    // Si la estructura necesaria no existe,
+    // se detiene el flujo para evitar errores.
     if (!track || !status) {
         return;
     }
@@ -635,83 +589,77 @@ async function renderLanguageEvidence(
     // ENDPOINT LANGUAGES
     // ========================================
 
+    // Aquí se construye el endpoint público de GitHub
+    // correspondiente a los lenguajes del repositorio.
     const languagesUrl =
         `https://api.github.com/repos/`
         + `${evidence.repository}/languages`;
 
 
-    // Aquí se consulta GitHub.
+    // Aquí se consulta GitHub y se espera la respuesta
+    // antes de continuar con la validación de la habilidad.
     const languageBytes =
         await fetchGitHubJson(
             languagesUrl
         );
 
 
-    // Aquí se convierten los bytes
-    // a porcentajes.
-    const percentages =
-        calculateLanguagePercentages(
-            languageBytes
-        );
-
-
-    // Aquí se obtiene únicamente
-    // el lenguaje correspondiente
-    // a esta habilidad.
-    const percentage =
-        percentages[
+    // Aquí se comprueba únicamente si GitHub detecta el lenguaje
+    // asociado a esta habilidad dentro del repositorio configurado.
+    const languageDetected =
+        hasLanguageEvidence(
+            languageBytes,
             evidence.language
-        ];
+        );
 
 
     // ========================================
     // LANGUAGE DETECTADO
     // ========================================
 
-    if (
-        typeof percentage === "number"
-    ) {
+    if (languageDetected) {
 
-        // Aquí se elimina el placeholder.
+        // Aquí se elimina el placeholder
+        // porque ya existe evidencia válida para mostrar en la pista.
         clearSkillTrack(
             track
         );
 
 
-        // Aquí se crea la barra
-        // con el porcentaje real.
+        // Aquí se crea una señal visual de longitud uniforme.
+        // GitHub confirma la presencia del lenguaje,
+        // pero esa evidencia no se cuantifica visualmente.
         const segment =
             createEvidenceSegment(
-                metric,
-                percentage
+                metric
             );
 
 
+        // Aquí se agrega una descripción corta
+        // para identificar el lenguaje al pasar el mouse.
         segment.title =
-            `${evidence.language}: `
-            + `${percentage.toFixed(1)}%`;
+            `${evidence.language} detectado en GitHub`;
 
 
+        // El segmento se agrega a la pista visual de la card.
         track.appendChild(
             segment
         );
 
 
-        // Aquí se comunica de forma accesible
-        // el significado de la barra.
+        // Aquí se explica mediante aria-label qué significa la señal,
+        // para que tecnologías de asistencia también reciban el contexto completo.
         track.setAttribute(
             "aria-label",
-            `${evidence.language}: `
-            + `${percentage.toFixed(1)}% `
-            + "del contenido detectado por GitHub."
+            `${evidence.language} detectado en GitHub. `
+            + "La señal visual representa evidencia, no nivel de dominio."
         );
 
 
-        // Aquí se muestra únicamente
-        // el porcentaje dentro de la card.
-        renderCompactPercentage(
+        // Aquí se muestra una confirmación breve de evidencia
+        // sin utilizar porcentajes.
+        renderLanguageEvidenceStatus(
             status,
-            percentage,
             evidence.language,
             evidence
         );
@@ -725,8 +673,9 @@ async function renderLanguageEvidence(
     // LANGUAGE NO DETECTADO
     // ========================================
 
-    // Si GitHub no lo detecta,
-    // se evita presentar cualquier porcentaje falso.
+    // Si GitHub no detecta el lenguaje,
+    // se muestra el estado neutral y se evita presentar
+    // cualquier porcentaje o nivel inventado.
     renderLanguageNotDetected(
         track,
         status,
@@ -739,23 +688,20 @@ async function renderLanguageEvidence(
 // FUNCIÓN — EVIDENCIA BASADA EN REPOSITORIO
 // ========================================
 
-// Algunas tecnologías no aparecen
-// dentro de GitHub Languages:
+// Bootstrap, PostgreSQL, Git, GitHub, Spring Boot y Scrum
+// no se validan mediante GitHub Languages en este flujo.
 //
-// Bootstrap
-// PostgreSQL
-// Git
-// GitHub
-// Spring Boot
-// Scrum
-//
-// Por eso aquí NO se calcula ningún porcentaje.
+// Por eso aquí se comprueba únicamente la existencia pública
+// del repositorio relacionado como evidencia,
+// sin generar una métrica de nivel.
 async function renderRepositoryEvidence(
     skillCard,
     metric,
     evidence
 ) {
 
+    // Aquí se recuperan los elementos del panel
+    // correspondiente a la card actual.
     const {
         track,
         status
@@ -764,6 +710,8 @@ async function renderRepositoryEvidence(
     );
 
 
+    // Si falta la pista o el estado,
+    // se evita continuar con una estructura incompleta.
     if (!track || !status) {
         return;
     }
@@ -773,13 +721,16 @@ async function renderRepositoryEvidence(
     // VALIDAR REPOSITORIO
     // ========================================
 
+    // Aquí se construye la URL pública del repositorio
+    // que funciona como evidencia de esta habilidad.
     const repositoryUrl =
         `https://api.github.com/repos/`
         + `${evidence.repository}`;
 
 
-    // Aquí se comprueba que el repositorio
-    // continúe existiendo públicamente.
+    // Aquí se comprueba que el repositorio relacionado
+    // continúe existiendo públicamente
+    // antes de mostrar la señal de evidencia.
     await fetchGitHubJson(
         repositoryUrl
     );
@@ -789,31 +740,36 @@ async function renderRepositoryEvidence(
     // CREAR BARRA DE EVIDENCIA
     // ========================================
 
+    // Aquí se elimina cualquier placeholder o señal anterior.
     clearSkillTrack(
         track
     );
 
 
-    // La barra completa comunica solamente
-    // que existe evidencia asociada.
-//
-// NO significa 100% de conocimiento.
+    // Aquí se crea la misma señal visual
+    // utilizada por las demás habilidades.
+    // La pista completa confirma evidencia asociada
+    // y NO significa 100% de conocimiento.
     const segment =
         createEvidenceSegment(
-            metric,
-            100
+            metric
         );
 
 
+    // Aquí se agrega una explicación corta
+    // disponible al pasar el cursor.
     segment.title =
         "Existe evidencia pública asociada";
 
 
+    // El segmento se incorpora a la pista visual.
     track.appendChild(
         segment
     );
 
 
+    // Aquí se deja claro mediante aria-label
+    // que la pista representa evidencia y no nivel.
     track.setAttribute(
         "aria-label",
         "Existe evidencia pública asociada a esta habilidad. "
@@ -825,13 +781,10 @@ async function renderRepositoryEvidence(
     // ESTADO COMPACTO
     // ========================================
 
-    // Aquí ya NO se inserta:
-    //
-    // descripción
-    // owner/repository
-    // explicación
-    //
-    // dentro de la card.
+    // Aquí se mantiene el estado compacto dentro de la card.
+    // La descripción y el repositorio siguen disponibles
+    // como información adicional, pero no se insertan
+    // como texto permanente para evitar saturar el diseño.
     renderCompactRepositoryEvidence(
         status,
         evidence
@@ -843,20 +796,21 @@ async function renderRepositoryEvidence(
 // FUNCIÓN — ERROR DE EVIDENCIA
 // ========================================
 
-// Aquí se controla cualquier error
-// sin romper la tarjeta.
+// Aquí se controla cualquier problema al consultar GitHub
+// sin romper la card.
 //
-// Ejemplos:
-//
-// sin conexión;
-// GitHub temporalmente no disponible;
-// rate limit;
-// repositorio no disponible.
+// Esto cubre casos como:
+// - falta de conexión;
+// - rate limit;
+// - repositorio no disponible;
+// - una respuesta temporalmente fallida.
 function renderSkillEvidenceError(
     skillCard,
     message
 ) {
 
+    // Aquí se recuperan los elementos visuales
+    // que deben actualizarse si ocurre el error.
     const {
         track,
         status
@@ -871,24 +825,31 @@ function renderSkillEvidenceError(
 
     if (track) {
 
+        // Aquí se limpia cualquier señal que hubiera quedado anteriormente.
         track.innerHTML = "";
 
 
+        // Aquí se crea nuevamente el placeholder neutral
+        // para que la card no quede visualmente vacía.
         const placeholder =
             document.createElement(
                 "span"
             );
 
 
+        // Aquí se aplica la clase visual del placeholder.
         placeholder.className =
             "skill-card__github-track-placeholder";
 
 
+        // El placeholder se agrega nuevamente a la pista.
         track.appendChild(
             placeholder
         );
 
 
+        // Aquí se conserva el mensaje del error
+        // como información accesible.
         track.setAttribute(
             "aria-label",
             message
@@ -902,24 +863,28 @@ function renderSkillEvidenceError(
 
     if (status) {
 
-        // Se utiliza un texto corto
-        // para no deformar la card.
+        // Aquí se utiliza un texto corto
+        // para indicar el error sin deformar la card.
         status.textContent =
             "GitHub !";
 
 
-        // El mensaje completo permanece
-        // disponible como información adicional.
+        // El mensaje completo permanece disponible en title
+        // para conservar el detalle sin recargar visualmente la interfaz.
         status.title =
             message;
 
 
+        // Aquí se ofrece el mismo contexto
+        // a tecnologías de asistencia.
         status.setAttribute(
             "aria-label",
             message
         );
 
 
+        // Esta clase permite que CSS represente visualmente
+        // el estado de error.
         status.classList.add(
             "is-error"
         );
@@ -931,50 +896,52 @@ function renderSkillEvidenceError(
 // FUNCIÓN — CARGAR EVIDENCIA
 // ========================================
 
-// Aquí se identifica la habilidad
+// Aquí se identifica qué habilidad pertenece a la card
 // mediante data-skill-metric.
+//
+// Ese valor permite buscar su configuración
+// dentro de SKILL_EVIDENCE.
 async function loadSkillEvidence(
     skillCard
 ) {
 
-    // Aquí se busca el cuerpo posterior.
+    // Aquí se busca el cuerpo posterior de la card
+    // porque allí está guardado data-skill-metric,
+    // que identifica la habilidad.
     const backBody =
         skillCard.querySelector(
             ".skill-card__back-body"
         );
 
 
+    // Si no existe el cuerpo posterior,
+    // no hay una métrica segura que podamos consultar.
     if (!backBody) {
         return;
     }
 
 
-    // Aquí se obtiene:
-//
-// java
-// javascript
-// html
-// css
-// bootstrap
-// postgresql
-// git
-// github
-// springboot
-// scrum
+    // Aquí se obtiene desde dataset la clave de la habilidad.
+    //
+    // El valor puede ser:
+    // java, javascript, html, css, bootstrap,
+    // postgresql, git, github, springboot o scrum.
     const metric =
         backBody.dataset.skillMetric;
 
 
-    // Aquí se busca la configuración
-    // asociada a la habilidad.
+    // Aquí se busca dentro de SKILL_EVIDENCE
+    // la configuración asociada a la clave obtenida desde la card.
     const evidence =
         SKILL_EVIDENCE[
             metric
         ];
 
 
-    // Si la habilidad no tiene configuración,
-    // se presenta un estado controlado.
+    // Si la card no tiene una métrica válida
+    // o no existe configuración para ella,
+    // se muestra un error controlado
+    // en lugar de continuar con datos incompletos.
     if (
         !metric
         || !evidence
@@ -994,6 +961,8 @@ async function loadSkillEvidence(
     // ESTADO DE CARGA COMPACTO
     // ========================================
 
+    // Aquí se obtiene el estado visual
+    // que se mostrará mientras GitHub responde.
     const {
         status
     } = getSkillEvidenceElements(
@@ -1003,23 +972,30 @@ async function loadSkillEvidence(
 
     if (status) {
 
-        // Aquí se utiliza únicamente
-        // un marcador breve mientras GitHub responde.
+        // Mientras GitHub responde,
+        // aquí se utiliza un marcador breve
+        // para indicar que la evidencia todavía está cargando.
         status.textContent =
             "—";
 
 
+        // Aquí se elimina cualquier title anterior
+        // para no conservar información vieja durante la nueva consulta.
         status.removeAttribute(
             "title"
         );
 
 
+        // Aquí se comunica también de forma accesible
+        // que la evidencia está cargando.
         status.setAttribute(
             "aria-label",
             "Cargando evidencia desde GitHub"
         );
 
 
+        // Si existía un estado de error anterior,
+        // se elimina mientras comienza el nuevo intento.
         status.classList.remove(
             "is-error"
         );
@@ -1032,6 +1008,8 @@ async function loadSkillEvidence(
         // EVIDENCIA POR LANGUAGE
         // ========================================
 
+        // Si la evidencia está configurada como language,
+        // se utiliza el endpoint /languages.
         if (
             evidence.type === "language"
         ) {
@@ -1051,6 +1029,8 @@ async function loadSkillEvidence(
         // EVIDENCIA POR REPOSITORIO
         // ========================================
 
+        // Para los demás tipos se valida
+        // la existencia pública del repositorio asociado.
         await renderRepositoryEvidence(
             skillCard,
             metric,
@@ -1059,16 +1039,17 @@ async function loadSkillEvidence(
 
     } catch (error) {
 
-        // Aquí el error permanece disponible
-        // en consola para depuración.
+        // Si ocurre un error, aquí se conserva en consola
+        // para poder depurarlo sin mostrar información técnica
+        // innecesaria dentro de la interfaz.
         console.error(
             `No fue posible cargar evidencia de ${metric}:`,
             error
         );
 
 
-        // Visualmente se mantiene
-        // un estado muy corto.
+        // Visualmente se mantiene un estado corto
+        // para no deformar la card.
         renderSkillEvidenceError(
             skillCard,
             "No fue posible actualizar la evidencia desde GitHub."
@@ -1081,27 +1062,29 @@ async function loadSkillEvidence(
 // CONFIGURAR CADA CARD
 // ========================================
 
-// Aquí se recorre cada card
-// de forma independiente.
+// Aquí se recorre cada card de habilidades de forma independiente
+// para configurar su giro, accesibilidad y carga de evidencia.
 skillCards.forEach(
     function (skillCard) {
 
-        // Aquí se buscan los dos botones
-        // de giro de la card actual.
+        // Aquí se buscan los dos botones de giro de la card actual,
+        // uno para cada cara.
         const flipButtons =
             skillCard.querySelectorAll(
                 ".skill-card__flip-button"
             );
 
 
-        // Aquí se guarda el frente.
+        // Aquí se guarda la referencia de la cara frontal
+        // para controlar su visibilidad y accesibilidad durante el giro.
         const frontFace =
             skillCard.querySelector(
                 ".skill-card__front"
             );
 
 
-        // Aquí se guarda el reverso.
+        // Aquí se guarda la referencia de la cara posterior
+        // para controlar su visibilidad y accesibilidad durante el giro.
         const backFace =
             skillCard.querySelector(
                 ".skill-card__back"
@@ -1112,8 +1095,9 @@ skillCards.forEach(
         // VALIDACIÓN DE ESTRUCTURA
         // ========================================
 
-        // Si falta cualquiera de los elementos
-        // esenciales, se evita continuar.
+        // Si falta algún elemento esencial de la estructura,
+        // se detiene la configuración de esa card
+        // para evitar errores.
         if (
             flipButtons.length < 2
             || !frontFace
@@ -1127,13 +1111,16 @@ skillCards.forEach(
         // FUNCIÓN — ESTADO DE LA CARD
         // ========================================
 
+        // Aquí se centraliza todo lo que cambia
+        // cuando una card pasa del frente al reverso
+        // o regresa nuevamente al frente.
         function setSkillCardState(
             isFlipped,
             moveFocus = true
         ) {
 
-            // Aquí se activa o elimina
-            // la rotación visual.
+            // Aquí se activa o elimina la clase is-flipped,
+            // que controla visualmente qué cara de la card se muestra.
             skillCard.classList.toggle(
                 "is-flipped",
                 isFlipped
@@ -1144,6 +1131,10 @@ skillCards.forEach(
             // ACCESIBILIDAD — CARAS
             // ========================================
 
+            // aria-hidden comunica a tecnologías de asistencia
+            // cuál cara está visible.
+            // Cuando una cara se oculta visualmente,
+            // también se marca como oculta aquí.
             frontFace.setAttribute(
                 "aria-hidden",
                 String(isFlipped)
@@ -1160,6 +1151,8 @@ skillCards.forEach(
             // ACCESIBILIDAD — BOTONES
             // ========================================
 
+            // aria-pressed comunica el estado actual del botón de giro
+            // sin cambiar el comportamiento visual de la card.
             flipButtons[0].setAttribute(
                 "aria-pressed",
                 String(isFlipped)
@@ -1176,6 +1169,10 @@ skillCards.forEach(
             // CONTROL DEL FOCO
             // ========================================
 
+            // tabIndex evita que el teclado entre en el botón
+            // de una cara que actualmente está oculta.
+            // Solo el botón perteneciente a la cara visible
+            // queda disponible mediante Tab.
             flipButtons[0].tabIndex =
                 isFlipped
                     ? -1
@@ -1192,16 +1189,22 @@ skillCards.forEach(
             // MOVER FOCO
             // ========================================
 
-            // Solo se mueve el foco
-            // cuando el giro viene de una interacción.
+            // El foco solo se mueve cuando el giro
+            // viene de una interacción.
+            // De esta forma el teclado continúa
+            // en el botón de la cara que quedó visible.
             if (moveFocus) {
 
+                // Aquí se identifica cuál botón pertenece
+                // a la cara que terminó visible.
                 const visibleButton =
                     isFlipped
                         ? flipButtons[1]
                         : flipButtons[0];
 
 
+                // Aquí se mueve el foco hacia ese botón
+                // para mantener una navegación coherente por teclado.
                 visibleButton.focus();
             }
         }
@@ -1211,6 +1214,8 @@ skillCards.forEach(
         // EVENTOS — GIRO
         // ========================================
 
+        // Aquí se configura el mismo evento click
+        // para los dos botones de giro de la card.
         flipButtons.forEach(
             function (flipButton) {
 
@@ -1218,12 +1223,17 @@ skillCards.forEach(
                     "click",
                     function () {
 
+                        // Aquí se consulta si la card
+                        // ya se encuentra girada.
                         const isCurrentlyFlipped =
                             skillCard.classList.contains(
                                 "is-flipped"
                             );
 
 
+                        // Entonces se envía el estado contrario:
+                        // si estaba girada vuelve al frente,
+                        // y si estaba al frente muestra el reverso.
                         setSkillCardState(
                             !isCurrentlyFlipped
                         );
@@ -1237,8 +1247,9 @@ skillCards.forEach(
         // ESTADO INICIAL
         // ========================================
 
-        // Todas las cards comienzan
-        // mostrando el frente.
+        // Todas las cards comienzan mostrando la cara frontal.
+        // Por eso el estado inicial se configura
+        // sin mover el foco.
         setSkillCardState(
             false,
             false
@@ -1249,14 +1260,13 @@ skillCards.forEach(
         // CARGAR EVIDENCIA REAL
         // ========================================
 
-        // Aquí se realiza la consulta
-        // una sola vez al configurar la card.
+        // Aquí se carga la evidencia una sola vez
+        // al configurar cada card.
         //
         // NO existe setInterval.
         //
-        // Cuando el portafolio se vuelva
-        // a abrir o recargar,
-        // GitHub será consultado nuevamente.
+        // GitHub vuelve a consultarse cuando el portafolio
+        // se abre nuevamente o se recarga.
         loadSkillEvidence(
             skillCard
         );
