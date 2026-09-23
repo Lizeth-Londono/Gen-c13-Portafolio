@@ -10551,17 +10551,17 @@ a:focus-visible {
    Estas reglas están encapsuladas dentro de #habilidades para evitar afectar otras secciones.
 */
 #habilidades .skills-grid {
-    /* width = controla el ancho disponible para este elemento máximo útil del conjunto de cards */
-    /* min(960px, 100%) = reduce la presencia del conjunto para que complemente a Proyectos */
-    width: min(960px, 100%);
+    /* width = utiliza el ancho disponible del panel sin superar el límite editorial */
+    /* min(1180px, 100%) = conserva el ancho general aprobado de la sección */
+    width: min(1180px, 100%);
     /* margin = centra horizontalmente la cuadrícula */
     margin: 0 auto;
     /* display = define cómo se organizan visualmente los elementos */
     /* grid = organiza las cards mediante filas y columnas */
     display: grid;
-    /* grid-template-columns = crea doce columnas iguales para poder formar 6 + 4 centradas */
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    /* gap = compacta el conjunto sin perder separación entre controles interactivos */
+    /* grid-template-columns = prioriza legibilidad con cinco cards amplias por fila en desktop */
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    /* gap = mantiene separación clara sin volver a crear el exceso de espacio vacío original */
     gap: 12px;
     /* align-items = mantiene todas las cards alineadas dentro de cada fila */
     align-items: stretch;
@@ -10569,31 +10569,23 @@ a:focus-visible {
 
 /* Aquí se define el espacio general que ocupa cada card. */
 #habilidades .skill-card {
-    /* grid-column = hace que cada card ocupe dos de las doce columnas */
-    grid-column: span 2;
-    /* min-width = evita que la card se comprima por debajo de un tamaño legible */
+    /* grid-column = hace que cada card ocupe una columna completa de la retícula activa */
+    grid-column: span 1;
+    /* min-width = permite que la card se adapte al ancho de su columna sin provocar desbordamiento */
     min-width: 0;
-    /* aspect-ratio = reduce ligeramente la altura visual manteniendo espacio para ambas caras */
+    /* aspect-ratio = conserva la proporción exterior ya aprobada de cada card */
     aspect-ratio: 11 / 13.2;
-    /* perspective = crea profundidad visual para que el giro 3D pueda percibirse */
-    perspective: 1000px;
+    /* perspective = iguala la profundidad 3D utilizada actualmente por las cards de Proyectos */
+    perspective: 1500px;
 }
 
-/* Aquí se centra la segunda fila de cuatro cards dentro de la retícula de doce columnas. */
-#habilidades .skill-card:nth-child(7) {
-    grid-column: 3 / span 2;
-}
-
-#habilidades .skill-card:nth-child(8) {
-    grid-column: 5 / span 2;
-}
-
-#habilidades .skill-card:nth-child(9) {
-    grid-column: 7 / span 2;
-}
-
+/* En desktop las diez cards forman dos filas completas de cinco elementos.
+   No se necesitan desplazamientos especiales porque ambas filas ocupan el mismo número de columnas. */
+#habilidades .skill-card:nth-child(7),
+#habilidades .skill-card:nth-child(8),
+#habilidades .skill-card:nth-child(9),
 #habilidades .skill-card:nth-child(10) {
-    grid-column: 9 / span 2;
+    grid-column: span 1;
 }
 
 /* Aquí se agrupan las dos caras y se aplica el giro. */
@@ -10606,8 +10598,8 @@ a:focus-visible {
     position: relative;
     /* transform-style = conserva las dos caras dentro del mismo espacio 3D */
     transform-style: preserve-3d;
-    /* transition = crea un giro breve y suave */
-    transition: transform 420ms ease;
+    /* transition = iguala el ritmo y la curva de giro de las cards actuales de Proyectos */
+    transition: transform 0.68s cubic-bezier(0.2, 0.72, 0.25, 1);
 }
 
 /* is-flipped = estado que indica que la card debe mostrar el reverso. */
@@ -10630,12 +10622,23 @@ a:focus-visible {
     overflow: hidden;
     /* background-color = crea el marco negro de la card */
     background-color: #151515;
+    /* border = replica la base visual utilizada por las cards de Proyectos */
+    border: 1px solid #242626;
     /* border-radius = conserva las esquinas suavemente redondeadas del diseño */
     border-radius: 6px;
+    /* box-sizing = mantiene el borde dentro de las dimensiones actuales de la card */
+    box-sizing: border-box;
+    /* transition = replica el cambio de borde del hover de las cards de Proyectos */
+    transition: border-color 0.22s ease;
     /* backface-visibility = oculta la cara que queda mirando hacia atrás */
     backface-visibility: hidden;
     /* -webkit-backface-visibility = mantiene compatibilidad con navegadores basados en WebKit */
     -webkit-backface-visibility: hidden;
+}
+
+/* Al pasar el cursor, Habilidades replica el mismo refuerzo de borde de Proyectos. */
+#habilidades .skill-card:hover .skill-card__face {
+    border-color: rgba(30, 255, 188, 0.7);
 }
 
 /* Aquí se prepara el reverso para que inicialmente quede orientado hacia atrás. */
@@ -11057,38 +11060,50 @@ a:focus-visible {
    HABILIDADES — RESPONSIVE DE LAS NUEVAS CARDS
    ======================================== */
 
-/* En pantallas medianas se muestran cuatro columnas legibles. */
-@media (max-width: 1180px) {
+/* En laptop se utilizan cuatro columnas para impedir que las cards pierdan legibilidad.
+   Las dos últimas cards se centran en la tercera fila para evitar un vacío visual lateral. */
+@media (max-width: 1100px) {
     #habilidades .skills-grid {
-        grid-template-columns: repeat(8, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
     }
 
     #habilidades .skill-card,
     #habilidades .skill-card:nth-child(7),
-    #habilidades .skill-card:nth-child(8),
-    #habilidades .skill-card:nth-child(9),
+    #habilidades .skill-card:nth-child(8) {
+        grid-column: span 1;
+    }
+
+    #habilidades .skill-card:nth-child(9) {
+        grid-column: 2;
+    }
+
     #habilidades .skill-card:nth-child(10) {
-        grid-column: span 2;
+        grid-column: 3;
     }
 }
 
-/* En tablet se muestran tres columnas cuando el ancho lo permite. */
+/* En tablet se muestran tres columnas amplias.
+   La décima card ocupa la columna central de la última fila para mantener el equilibrio visual. */
 @media (max-width: 860px) {
     #habilidades .habilidades-editorial-panel {
         padding-inline: 5vw;
     }
 
     #habilidades .skills-grid {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 12px;
     }
 
     #habilidades .skill-card,
     #habilidades .skill-card:nth-child(7),
     #habilidades .skill-card:nth-child(8),
-    #habilidades .skill-card:nth-child(9),
+    #habilidades .skill-card:nth-child(9) {
+        grid-column: span 1;
+    }
+
     #habilidades .skill-card:nth-child(10) {
-        grid-column: span 2;
+        grid-column: 2;
     }
 }
 
@@ -13178,8 +13193,8 @@ a:focus-visible {
     font-family: "Barlow Condensed", sans-serif;
 
     /* font-size = adapta el título al tamaño disponible de la card */
-    /* clamp() = mantiene una escala segura sin permitir que el título invada otras zonas */
-    font-size: clamp(12px, 1.25vw, 18px);
+    /* clamp() = aprovecha el mayor ancho recuperado sin permitir que el título invada otras zonas */
+    font-size: clamp(16px, 1.35vw, 21px);
 
     /* font-weight = define el grosor visual del título */
     /* 400 = conserva una apariencia limpia y cercana a la referencia */
@@ -13215,12 +13230,12 @@ a:focus-visible {
     max-width: 99%;
 
     /* font-size = define el tamaño de la descripción */
-    /* 7px = permite que la información sea legible sin competir con el título */
-    font-size: 7px;
+    /* 9px = recupera legibilidad ahora que la card dispone de mayor ancho útil */
+    font-size: 9px;
 
     /* line-height = controla la separación vertical entre líneas */
-    /* 1.28 = mantiene varias líneas compactas y evita que bajen hacia el panel blanco */
-    line-height: 1.10;
+    /* 1.24 = mantiene varias líneas compactas sin volverlas difíciles de leer */
+    line-height: 1.24;
 
     /* color = suaviza ligeramente el blanco para diferenciar descripción y título */
     color: rgba(255, 255, 255, 0.90);
@@ -13307,8 +13322,8 @@ a:focus-visible {
     /* color = utiliza negro para lectura sobre fondo blanco */
     color: #151515;
 
-    /* font-size = mantiene el encabezado compacto */
-    font-size: 10px;
+    /* font-size = mantiene el encabezado compacto pero claramente legible */
+    font-size: 11px;
 
     /* font-weight = refuerza la jerarquía del encabezado */
     font-weight: 700;
@@ -13377,8 +13392,8 @@ a:focus-visible {
     /* color = utiliza gris para diferenciarlo del encabezado */
     color: #626b79;
 
-    /* font-size = mantiene el texto discreto */
-    font-size: 7px;
+    /* font-size = mantiene el texto discreto sin sacrificar lectura */
+    font-size: 8px;
 
     /* line-height = conserva buena lectura si el texto ocupa dos líneas */
     line-height: 1.3;
@@ -13744,11 +13759,11 @@ a:focus-visible {
         font-size: 14px;
     }
 
-    /* Aquí se reduce la descripción */
+    /* Aquí se mantiene una descripción compacta pero legible */
     #habilidades .skill-card__back-description {
 
         /* font-size = conserva legibilidad sin empujar el texto hacia el panel inferior */
-        font-size: 7.5px;
+        font-size: 8px;
     }
 
     /* Aquí se amplía ligeramente el panel para que siga siendo legible */
@@ -19954,4 +19969,270 @@ a:focus-visible {
     left: calc(26.5% - 9% - 3px);
     width: calc(9% + 3px);
     z-index: 8;
+}
+
+/* ========================================
+   FEEDBACK FINAL DE PORTAFOLIO — AJUSTES PUNTUALES
+   ======================================== */
+
+/*
+   Este bloque aplica únicamente los ajustes visuales derivados del feedback final:
+   1. separa ligeramente la composición del Hero de la navegación fija;
+   2. compacta y aprovecha mejor el espacio del módulo Languages;
+   3. organiza por separado las acciones Ver demo y Ver repositorio.
+
+   No modifica la lógica de project-cards.js, la identidad LXL, Contacto,
+   Habilidades ni las animaciones existentes de las cards.
+*/
+
+
+/* ========================================
+   HERO — SEPARACIÓN RESPECTO A LA NAVBAR
+   ======================================== */
+
+/* Se desplaza la composición completa unos píxeles hacia abajo.
+   Se conserva el centrado, la estructura LXL y la altura del Hero. */
+#inicio.hero .hero-contenido {
+    transform: translateY(clamp(14px, 2.4vh, 28px));
+}
+
+
+/* ========================================
+   PROYECTOS — LANGUAGES MÁS COMPACTO
+   ======================================== */
+
+/* El panel utiliza mejor el ancho disponible y elimina altura vacía innecesaria. */
+#proyectos .project-reference-front__languages {
+    width: min(76%, 360px);
+    min-height: 0;
+    top: auto;
+    bottom: 20%;
+    padding: 8px 10px;
+    border-width: 6px;
+    transform: translateX(-50%);
+}
+
+/* Se reduce ligeramente el espacio interno del título. */
+#proyectos .project-languages__title {
+    margin-bottom: 7px;
+}
+
+/* La barra conserva la evidencia dinámica proveniente de GitHub,
+   pero ocupa menos altura visual dentro del panel. */
+#proyectos .project-languages__bar {
+    margin-bottom: 7px;
+}
+
+/* En anchos suficientes los lenguajes se mantienen en una sola línea.
+   Si el contenido supera el ancho disponible, el desbordamiento queda contenido
+   dentro del propio módulo y no genera scroll horizontal de la página. */
+#proyectos .project-languages__legend {
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 5px 10px;
+    margin-top: 6px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 2px;
+    scrollbar-width: thin;
+}
+
+/* Cada lenguaje conserva su nombre y punto de color sin comprimirse artificialmente. */
+#proyectos .project-languages__item {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   PROYECTOS — DEMO + REPOSITORIO
+   ======================================== */
+
+/* El nuevo contenedor agrupa las dos acciones en una misma zona estable del reverso. */
+#proyectos .project-reference-back__actions {
+    position: absolute;
+    z-index: 12;
+    right: 20px;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    pointer-events: none;
+}
+
+/* Los CTA dejan de posicionarse individualmente de forma absoluta
+   porque ahora su posición la controla el contenedor de acciones. */
+#proyectos .project-reference-back__actions .project-reference-back__cta {
+    position: static;
+    right: auto;
+    bottom: auto;
+    pointer-events: auto;
+}
+
+/* Demo recibe un tratamiento visual distinto para diferenciar
+   la experiencia desplegada del acceso al código fuente. */
+#proyectos .project-reference-back__cta--demo {
+    background-color: var(--color-tecnologia);
+    border-color: var(--color-tecnologia);
+    color: var(--project-card-dark, var(--color-estructura));
+}
+
+/* El hover de Demo invierte el contraste sin introducir una estética nueva. */
+#proyectos .project-reference-back__cta--demo:hover {
+    background-color: var(--project-card-dark, var(--color-estructura));
+    border-color: var(--color-tecnologia);
+    color: var(--color-tecnologia);
+}
+
+
+/* ========================================
+   FEEDBACK FINAL — RESPONSIVE TABLET / MÓVIL
+   ======================================== */
+
+@media (max-width: 900px) {
+
+    /* En tablet el desplazamiento del Hero se mantiene moderado. */
+    #inicio.hero .hero-contenido {
+        transform: translateY(16px);
+    }
+
+    /* Languages conserva un ancho útil sin invadir los bordes de la card. */
+    #proyectos .project-reference-front__languages {
+        width: min(80%, 330px);
+        bottom: 6%;
+        padding: 8px;
+        border-width: 6px;
+    }
+
+    /* Las dos acciones mantienen la misma zona inferior del reverso. */
+    #proyectos .project-reference-back__actions {
+        right: 18px;
+        bottom: 18px;
+        left: 18px;
+    }
+}
+
+@media (max-width: 430px) {
+
+    /* En móvil pequeño el movimiento es menor para no comprimir el contenido inferior. */
+    #inicio.hero .hero-contenido {
+        transform: translateY(10px);
+    }
+
+    /* El panel aprovecha casi todo el ancho disponible de la card. */
+    #proyectos .project-reference-front__languages {
+        width: 84%;
+        bottom: 5%;
+        padding: 7px;
+        border-width: 5px;
+    }
+
+    /* Si la leyenda ya no cabe cómodamente en una sola línea,
+       puede envolver sin crear desbordamiento horizontal en la página. */
+    #proyectos .project-languages__legend {
+        flex-wrap: wrap;
+        overflow-x: visible;
+        gap: 4px 8px;
+    }
+
+    /* Las acciones pueden pasar a una segunda línea únicamente si el ancho lo exige. */
+    #proyectos .project-reference-back__actions {
+        right: 14px;
+        bottom: 16px;
+        left: 14px;
+        gap: 6px;
+    }
+
+    #proyectos .project-reference-back__actions .project-reference-back__cta {
+        min-height: 34px;
+        padding-inline: 11px;
+        font-size: 12px;
+    }
+}
+
+
+
+
+/* ========================================
+   PROYECTOS — PREVIEW REAL REUTILIZABLE
+   ======================================== */
+
+/*
+   Este componente se integra únicamente en la cara frontal de las project cards.
+   La card conserva su proporción 390 / 500, header, footer, píxeles y sistema de giro.
+   La preview se adapta al espacio beige disponible: la card no cambia para alojarla.
+*/
+#proyectos .project-reference-front__preview {
+    position: absolute;
+    z-index: 7;
+    top: 30%;
+    left: 50%;
+    width: 76%;
+    height: 25%;
+    overflow: hidden;
+    border: 5px solid var(--project-card-dark, #151515);
+    background: #ffffff;
+    box-sizing: border-box;
+    transform: translateX(-50%);
+}
+
+/*
+   El sitio real se renderiza a una escala de 1:4 dentro del contenedor.
+   width/height al 400% conservan un viewport amplio antes de miniaturizarlo,
+   evitando deformar la interfaz del proyecto.
+*/
+#proyectos .project-reference-front__preview iframe {
+    width: 400%;
+    height: 400%;
+    display: block;
+    border: 0;
+    margin: 0;
+    background: #ffffff;
+    transform: scale(0.25);
+    transform-origin: top left;
+    pointer-events: none;
+}
+
+@media (max-width: 900px) {
+    #proyectos .project-reference-front__preview {
+        top: 33%;
+        width: 72%;
+        height: 25%;
+    }
+}
+
+@media (max-width: 720px) {
+    #proyectos .project-reference-front__preview {
+        width: 74%;
+    }
+}
+
+@media (max-width: 430px) {
+    #proyectos .project-reference-front__preview {
+        top: 34%;
+        width: 76%;
+        height: 24%;
+        border-width: 4px;
+    }
+}
+
+/* ========================================
+   FEEDBACK FINAL — MOVIMIENTO REDUCIDO
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    /* Se conserva el ajuste espacial del Hero, pero sin añadir nuevas transiciones. */
+    #inicio.hero .hero-contenido {
+        transition: none;
+    }
+
+    /* Los CTA nuevos respetan la misma preferencia de movimiento reducido. */
+    #proyectos .project-reference-back__actions .project-reference-back__cta,
+    #proyectos .project-reference-back__actions .project-reference-back__cta-arrow {
+        transition: none;
+    }
 }
