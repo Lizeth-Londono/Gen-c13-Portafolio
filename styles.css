@@ -19963,12 +19963,12 @@ a:focus-visible {
     background-color: var(--project-card-dark);
 }
 
-/* Aquí el píxel lateral se solapa ligeramente con el marco de Languages.
-   Los 3px de solapamiento eliminan la línea beige/antialias que todavía podía percibirse entre ambas piezas. */
+/* Aquí el píxel lateral conserva el solapamiento visual con el marco,
+   pero permanece por debajo de la preview y de Languages para no cubrir contenido real. */
 #proyectos .project-reference-pixel--front-c {
     left: calc(26.5% - 9% - 3px);
     width: calc(9% + 3px);
-    z-index: 8;
+    z-index: 6;
 }
 
 /* ========================================
@@ -20001,15 +20001,17 @@ a:focus-visible {
    PROYECTOS — LANGUAGES MÁS COMPACTO
    ======================================== */
 
-/* El panel utiliza mejor el ancho disponible y elimina altura vacía innecesaria. */
+/* El panel conserva su escala compacta, pero baja ligeramente para separar con claridad
+   la evidencia de Languages de la preview real del proyecto. */
 #proyectos .project-reference-front__languages {
-    width: min(76%, 360px);
+    width: min(72%, 340px);
     min-height: 0;
     top: auto;
-    bottom: 20%;
+    bottom: 12%;
     padding: 8px 10px;
-    border-width: 6px;
+    border-width: 5px;
     transform: translateX(-50%);
+    z-index: 7;
 }
 
 /* Se reduce ligeramente el espacio interno del título. */
@@ -20099,12 +20101,12 @@ a:focus-visible {
         transform: translateY(16px);
     }
 
-    /* Languages conserva un ancho útil sin invadir los bordes de la card. */
+    /* Languages conserva un ancho útil y una separación estable respecto a la preview. */
     #proyectos .project-reference-front__languages {
-        width: min(80%, 330px);
-        bottom: 6%;
+        width: min(76%, 330px);
+        bottom: 7%;
         padding: 8px;
-        border-width: 6px;
+        border-width: 5px;
     }
 
     /* Las dos acciones mantienen la misma zona inferior del reverso. */
@@ -20122,12 +20124,12 @@ a:focus-visible {
         transform: translateY(10px);
     }
 
-    /* El panel aprovecha casi todo el ancho disponible de la card. */
+    /* El panel conserva lectura en móvil sin competir con la preview ni tocar los bordes. */
     #proyectos .project-reference-front__languages {
-        width: 84%;
+        width: 80%;
         bottom: 5%;
         padding: 7px;
-        border-width: 5px;
+        border-width: 4px;
     }
 
     /* Si la leyenda ya no cabe cómodamente en una sola línea,
@@ -20168,12 +20170,12 @@ a:focus-visible {
 #proyectos .project-reference-front__preview {
     position: absolute;
     z-index: 7;
-    top: 30%;
+    top: 40%;
     left: 50%;
-    width: 76%;
-    height: 25%;
+    width: 72%;
+    height: 27%;
     overflow: hidden;
-    border: 5px solid var(--project-card-dark, #151515);
+    border: 4px solid var(--project-card-dark, #151515);
     background: #ffffff;
     box-sizing: border-box;
     transform: translateX(-50%);
@@ -20198,23 +20200,25 @@ a:focus-visible {
 
 @media (max-width: 900px) {
     #proyectos .project-reference-front__preview {
-        top: 33%;
+        top: 36%;
         width: 72%;
-        height: 25%;
+        height: 26%;
     }
 }
 
 @media (max-width: 720px) {
     #proyectos .project-reference-front__preview {
-        width: 74%;
+        top: 35%;
+        width: 72%;
+        height: 27%;
     }
 }
 
 @media (max-width: 430px) {
     #proyectos .project-reference-front__preview {
-        top: 34%;
-        width: 76%;
-        height: 24%;
+        top: 40%;
+        width: 74%;
+        height: 22%;
         border-width: 4px;
     }
 }
