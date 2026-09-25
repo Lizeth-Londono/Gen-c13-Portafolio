@@ -16445,9 +16445,9 @@ a:focus-visible {
 }
 
 
-/* CODE utiliza blanco para máximo contraste sobre Dark Amethyst */
+/* CODE utiliza el lavanda de la identidad visual de la camiseta */
 #inicio .hero-marca__code {
-    color: var(--color-claro);
+    color: #AC9CCF;
 }
 
 
