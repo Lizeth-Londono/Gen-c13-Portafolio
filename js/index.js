@@ -482,5 +482,3 @@ function prepararNavegacionActiva() {
 // Aquí se inicializa el scroll spy del navbar.
 prepararNavegacionActiva();
 
-// Personaje LXL interactivo — módulo independiente.
-import("./lxl-character.js");
