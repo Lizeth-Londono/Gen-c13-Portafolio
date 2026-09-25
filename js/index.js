@@ -481,3 +481,4 @@ function prepararNavegacionActiva() {
 
 // Aquí se inicializa el scroll spy del navbar.
 prepararNavegacionActiva();
+
