@@ -20240,3 +20240,285 @@ a:focus-visible {
         transition: none;
     }
 }
+
+/* ========================================
+   PERSONAJE LXL — ACOMPAÑANTE INTERACTIVO
+   ======================================== */
+
+/*
+   El personaje acompaña el recorrido Sobre mí → Proyectos → Habilidades → Contacto.
+   Es completamente decorativo: no captura clics ni modifica la estructura de las secciones.
+   Reutiliza la paleta LXL existente y evita crear un sistema cromático paralelo.
+*/
+.lxl-character-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--lxl-character-document-height, 100vh);
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 4;
+    contain: layout paint;
+}
+
+.lxl-character {
+    --lxl-character-code: #AC9CCF;
+    --lxl-character-glow: rgba(30, 255, 188, 0.28);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: clamp(72px, 7vw, 102px);
+    aspect-ratio: 1;
+    opacity: 0;
+    transform:
+        translate3d(var(--lxl-character-x, 0), var(--lxl-character-y, 0), 0)
+        rotate(var(--lxl-character-rotation, 0deg))
+        scale(var(--lxl-character-scale, 1));
+    transform-origin: center;
+    filter: drop-shadow(0 0 12px var(--lxl-character-glow));
+    transition:
+        opacity 220ms ease,
+        filter 220ms ease;
+    will-change: transform, opacity;
+}
+
+.lxl-character.is-visible {
+    opacity: 0.92;
+}
+
+.lxl-character__float {
+    position: absolute;
+    inset: 0;
+    animation: lxl-character-float 4.8s ease-in-out infinite;
+}
+
+.lxl-character__core {
+    position: absolute;
+    inset: 21%;
+    border: 2px solid color-mix(in srgb, var(--color-tecnologia) 62%, transparent);
+    border-radius: 18%;
+    background:
+        linear-gradient(
+            145deg,
+            color-mix(in srgb, var(--color-identidad) 84%, #ffffff 16%),
+            var(--color-identidad)
+        );
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 0 14px rgba(30, 255, 188, 0.16);
+}
+
+.lxl-character__eye {
+    position: absolute;
+    top: 42%;
+    width: 11%;
+    height: 11%;
+    border-radius: 2px;
+    background: var(--color-tecnologia);
+    box-shadow: 0 0 7px rgba(30, 255, 188, 0.5);
+    transition:
+        height 180ms ease,
+        transform 180ms ease;
+}
+
+.lxl-character__eye--left {
+    left: 26%;
+}
+
+.lxl-character__eye--right {
+    right: 26%;
+}
+
+.lxl-character__mouth {
+    position: absolute;
+    left: 43%;
+    top: 59%;
+    width: 16%;
+    height: 7%;
+    border: 2px solid var(--color-tecnologia);
+    border-top: 0;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-radius: 0 0 10px 10px;
+}
+
+.lxl-character__pixel {
+    position: absolute;
+    width: 12%;
+    aspect-ratio: 1;
+    background: var(--color-tecnologia);
+    box-shadow: 0 0 7px currentColor;
+    animation: lxl-character-orbit 5.2s ease-in-out infinite;
+}
+
+.lxl-character__pixel--a {
+    left: 8%;
+    top: 16%;
+    color: var(--lxl-character-code);
+    background: var(--lxl-character-code);
+    transform: scale(0.7);
+}
+
+.lxl-character__pixel--b {
+    right: 7%;
+    top: 13%;
+    color: var(--color-tecnologia);
+    transform: scale(0.85);
+}
+
+.lxl-character__pixel--c {
+    right: 5%;
+    bottom: 19%;
+    color: var(--color-accion);
+    background: var(--color-accion);
+    transform: scale(0.62);
+}
+
+.lxl-character__signal {
+    position: absolute;
+    left: 50%;
+    top: -10%;
+    transform: translateX(-50%);
+    min-width: 30px;
+    color: var(--color-tecnologia);
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 180ms ease;
+    text-shadow: 0 0 8px rgba(30, 255, 188, 0.28);
+}
+
+.lxl-character[data-state="hello"] .lxl-character__signal::before {
+    content: "✦";
+}
+
+.lxl-character[data-state="coding"] .lxl-character__signal::before {
+    content: "</>";
+}
+
+.lxl-character[data-state="idea"] .lxl-character__signal::before {
+    content: "?";
+}
+
+.lxl-character[data-state="success"] .lxl-character__signal::before {
+    content: "✓";
+}
+
+.lxl-character[data-state="hello"] .lxl-character__signal,
+.lxl-character[data-state="coding"] .lxl-character__signal,
+.lxl-character[data-state="idea"] .lxl-character__signal,
+.lxl-character[data-state="success"] .lxl-character__signal {
+    opacity: 1;
+}
+
+.lxl-character[data-state="focus"] .lxl-character__eye,
+.lxl-character[data-state="success"] .lxl-character__eye {
+    height: 4%;
+    border-radius: 999px;
+}
+
+.lxl-character[data-state="curious"] .lxl-character__eye--right {
+    transform: scale(0.62);
+}
+
+/* La estela se limita a píxeles discretos; no agrega texto sobre el contenido. */
+.lxl-character-trail {
+    position: absolute;
+    width: var(--lxl-trail-size, 5px);
+    height: var(--lxl-trail-size, 5px);
+    background: var(--lxl-trail-color, var(--color-tecnologia));
+    opacity: 0.46;
+    box-shadow: 0 0 6px var(--lxl-trail-color, var(--color-tecnologia));
+    animation: lxl-character-trail-out 640ms ease-out forwards;
+}
+
+/* Compatibilidad explícita con el futuro modo elegante. */
+html[data-theme="elegant"] .lxl-character {
+    --lxl-character-glow: rgba(56, 2, 59, 0.14);
+    filter: drop-shadow(0 7px 12px var(--lxl-character-glow));
+}
+
+html[data-theme="elegant"] .lxl-character__core {
+    background:
+        linear-gradient(
+            145deg,
+            #FFFDFC,
+            #EAE3DA
+        );
+    border-color: color-mix(in srgb, var(--color-identidad) 28%, transparent);
+    box-shadow:
+        inset 0 0 0 1px rgba(21, 21, 21, 0.06),
+        0 8px 18px rgba(30, 22, 18, 0.1);
+}
+
+@media (max-width: 900px) {
+    .lxl-character {
+        width: 76px;
+        opacity: 0;
+    }
+
+    .lxl-character.is-visible {
+        opacity: 0.82;
+    }
+}
+
+@media (max-width: 600px) {
+    .lxl-character {
+        width: 58px;
+    }
+
+    .lxl-character__pixel--c,
+    .lxl-character-trail {
+        display: none;
+    }
+}
+
+@keyframes lxl-character-float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes lxl-character-orbit {
+    0%,
+    100% {
+        translate: 0 0;
+    }
+
+    50% {
+        translate: 3px -4px;
+    }
+}
+
+@keyframes lxl-character-trail-out {
+    to {
+        opacity: 0;
+        transform: translate(-8px, 6px) scale(0.45);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lxl-character,
+    .lxl-character__float,
+    .lxl-character__pixel,
+    .lxl-character-trail {
+        animation: none !important;
+        transition: opacity 120ms linear !important;
+    }
+
+    .lxl-character-trail {
+        display: none !important;
+    }
+}
+
