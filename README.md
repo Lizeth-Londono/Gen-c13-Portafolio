@@ -24,6 +24,8 @@ El proyecto reúne identidad visual, experiencia de usuario, proyectos, habilida
 - [Tipografías](#-tipografías)
 - [Tecnologías utilizadas](#-tecnologías-utilizadas)
 - [Bootstrap 5 en el portafolio](#-bootstrap-5-en-el-portafolio)
+- [Estado del tema](#-estado-del-tema)
+- [Mascota LXL V12](#-mascota-lxl-v12)
 - [Estructura actual del portafolio](#-estructura-actual-del-portafolio)
 - [Inicio](#1-inicio)
 - [Sobre mí](#2-sobre-mí)
@@ -158,6 +160,36 @@ Además, el sistema utiliza aliases semánticos como:
 Bootstrap también se adapta a esta paleta mediante variables como `--bs-primary`, `--bs-secondary`, `--bs-danger`, `--bs-dark` y otras propiedades del framework.
 
 > **Bootstrap aporta estructura y utilidades. LXL define el lenguaje visual.**
+
+## Paleta del modo claro elegante — referencia futura
+
+El modo Elegant Editorial se encuentra **pausado temporalmente**. Su paleta se conserva como referencia de diseño futura y no reemplaza la paleta raíz del proyecto. Las reglas permanecen encapsuladas bajo `html[data-theme="light"]`, pero actualmente el documento no entra en ese estado.
+
+| Color | Nombre | Rol en modo claro |
+|---|---|---|
+| `#F72C25` | Racing Red | CTA y acciones importantes |
+| `#FBD1A2` | Apricot Cream | Superficies cálidas, cards y detalles editoriales |
+| `#1EFFBC` | Tropical Mint | Tecnología, indicadores, líneas y estados activos |
+| `#8D3B72` | Grape Soda | Bloques premium, estructura visual y contraste identitario |
+| `#8A7090` | Dusty Lavender | Profundidad, fondos y soporte visual elegante |
+
+### Identidad cromática protegida
+
+Los colores de **LXL** y **CODE X LIHEN** forman parte fija de la identidad visual y no se recolorean entre temas:
+
+- los píxeles de `LXL` conservan Tropical Mint;
+- `CODE` conserva `#AC9CCF`;
+- `X` conserva Racing Red `#F72C25`;
+- `LIHEN` conserva Tropical Mint `#1EFFBC`.
+
+Cuando se retome el modo Elegant Editorial, podrá modificar fondos, superficies, cards, navegación, CTA, paneles y profundidad visual sin alterar esta firma cromática. Actualmente esas reglas no forman parte de la experiencia activa.
+
+### Criterio visual
+
+`#8A7090` funciona como profundidad general y fondo de algunas superficies amplias; `#8D3B72` se reserva para bloques de mayor peso visual. `#FBD1A2` aporta calidez editorial y `#1EFFBC` se utiliza de forma selectiva para conservar el carácter tecnológico. `#F72C25` se reserva para acciones o énfasis.
+
+La arquitectura futura se conserva encapsulada en `html[data-theme="light"]`. Mientras la funcionalidad permanece pausada, **Creative Tech LXL** es la única experiencia visual activa.
+
 
 ---
 
@@ -845,6 +877,86 @@ Los iconos puramente decorativos utilizan `aria-hidden="true"` para evitar ruido
 
 ---
 
+# 🌓 Estado del tema
+
+El estado actual del portafolio es:
+
+```text
+Creative Tech LXL     → ACTIVO
+Elegant Editorial LXL → EN DESARROLLO / PAUSADO TEMPORALMENTE
+```
+
+Por ahora el portafolio **no opera como sistema dual**. Creative Tech es la única experiencia visual habilitada y representa la identidad activa de LXL.
+
+## Comportamiento temporal
+
+El script previo al primer pintado dentro de `index.html` establece directamente:
+
+```js
+document.documentElement.dataset.theme = "dark";
+document.documentElement.style.colorScheme = "dark";
+```
+
+Durante esta pausa no se utiliza `prefers-color-scheme` para seleccionar el tema y una preferencia histórica `light` almacenada en `localStorage["lxl-theme"]` se ignora. El valor histórico no se elimina automáticamente para no destruir una preferencia que pueda reutilizarse cuando el modo Elegant Editorial sea aprobado.
+
+El control `data-theme-toggle` permanece visible, pero funciona como **teaser de una funcionalidad futura**. No alterna `dark ↔ light`: al activarlo mediante clic, Enter o Space abre un diálogo accesible que explica que el modo Elegante llegará próximamente y que Creative Tech es, por ahora, la expresión principal de LXL.
+
+El diálogo:
+
+- se genera dinámicamente desde `js/theme-toggle.js`;
+- usa `role="dialog"`, `aria-modal`, `aria-labelledby` y `aria-describedby`;
+- puede cerrarse desde sus botones, con `Escape` o haciendo clic en el fondo;
+- devuelve el foco al control que lo abrió;
+- conserva el foco dentro del diálogo mientras está abierto;
+- respeta `prefers-reduced-motion`.
+
+El botón no utiliza el atributo nativo `disabled` porque debe continuar recibiendo foco y activación para comunicar el estado “Próximamente”.
+
+## Arquitectura futura conservada
+
+Las reglas `html[data-theme="light"]` siguen presentes en `styles.css` y están identificadas como **modo Elegant Editorial pausado**. No se borran para conservar el trabajo de diseño y documentación, pero no se activan mientras `index.html` y `js/theme-toggle.js` mantengan `data-theme="dark"`.
+
+Para reactivar el modo claro en el futuro será necesario:
+
+1. aprobar visualmente el diseño Elegant Editorial;
+2. restaurar resolución `dark/light` en el script anti-flash;
+3. restaurar lectura/escritura de `localStorage["lxl-theme"]`;
+4. restaurar el cambio de estado del toggle;
+5. validar responsive, contraste, mascota, cards, video y accesibilidad en ambos temas.
+
+> Estado real: Creative Tech LXL está activo. Elegant Editorial LXL se conserva como desarrollo futuro y no debe presentarse como funcional o terminado.
+
+---
+
+# 🤖 Mascota LXL V12
+
+La mascota activa del portafolio vive en `js/lxl-character.js` y no requiere markup fijo dentro de `index.html`: el módulo crea su propia capa visual.
+
+Su concepto es:
+
+```text
+IDLE CUBE ↔ SPIRAL TRANSITION ↔ ACTIVE MASCOT
+```
+
+La implementación incluye:
+
+- rostro frontal;
+- seguimiento visual del cursor;
+- cubos de identidad LXL;
+- expresiones contextuales;
+- transición a cubo por inactividad;
+- reactivación mediante interacción;
+- recorrido por rails laterales entre secciones;
+- `requestAnimationFrame`;
+- adaptación responsive;
+- respeto por `prefers-reduced-motion`.
+
+Las expresiones implementadas son `idle`, `hello`, `happy`, `curious`, `analysis`, `organization`, `coding`, `technology`, `solutions`, `pride` y `success`.
+
+La integración antigua `.mascota-lxl` y la referencia a `js/mascota.js` no forman parte de la arquitectura activa.
+
+---
+
 # ⚙️ JavaScript actual
 
 Los scripts cargados por `index.html` siguen este orden:
@@ -857,9 +969,13 @@ js/index.js
 js/skills-cards.js
 ↓
 js/project-cards.js
+↓
+js/lxl-character.js
+↓
+js/theme-toggle.js
 ```
 
-Los tres scripts propios utilizan:
+Los módulos propios cargados utilizan:
 
 ```html
 type="module"
@@ -981,6 +1097,18 @@ Controla:
 - estados de carga;
 - manejo de errores;
 - caché compartido.
+
+---
+
+## `js/lxl-character.js`
+
+Controla exclusivamente la mascota LXL V12: creación del DOM, estados visuales, expresiones, inactividad, transición cubo ↔ mascota, posicionamiento por rails, seguimiento de puntero y `requestAnimationFrame`.
+
+---
+
+## `js/theme-toggle.js`
+
+Controla temporalmente el teaser del futuro modo Elegant Editorial: garantiza `dark`, mantiene el control accesible, abre/cierra el diálogo AIDA y emite `lxl:themechange` con Creative Tech como tema activo. Durante esta pausa no alterna a `light` ni escribe una preferencia nueva en `localStorage`.
 
 ---
 
@@ -1160,8 +1288,10 @@ Gen-c13-Portafolio/
 ├── js/
 │   ├── index.intro-reserva.js
 │   ├── index.js
+│   ├── lxl-character.js
 │   ├── project-cards.js
-│   └── skills-cards.js
+│   ├── skills-cards.js
+│   └── theme-toggle.js
 │
 ├── video/
 │   └── video-portafolio.mp4

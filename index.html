@@ -20,6 +20,22 @@
     <!-- Aquí se define el título que aparecerá en la pestaña del navegador -->
     <title>Portafolio | Lizeth Londoño</title>
 
+    <!--
+        LXL — TEMA ACTIVO TEMPORAL
+        Creative Tech es, por ahora, la única experiencia visual habilitada.
+        La preferencia histórica guardada en localStorage se conserva para no
+        destruir datos de futuras iteraciones, pero durante esta pausa no se lee
+        ni se utiliza para activar el modo Elegant Editorial.
+    -->
+    <script>
+        (() => {
+            const ACTIVE_THEME = "dark";
+
+            document.documentElement.dataset.theme = ACTIVE_THEME;
+            document.documentElement.style.colorScheme = ACTIVE_THEME;
+        })();
+    </script>
+
     <!-- Aquí se prepara con anticipación la conexión hacia Google Fonts.
          De esta forma el navegador puede comenzar antes el contacto con el servidor de estilos. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,17 +63,12 @@
         styles.css se conecta después, por eso la identidad visual LXL conserva
         prioridad sobre los estilos generales del framework.
     -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-        crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <!-- Aquí se conecta Bootstrap Icons para utilizar iconografía funcional
          y decorativa sin convertirla en parte de la identidad principal LXL. -->
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     <!-- Aquí se conecta styles.css después de Bootstrap.
          De esta forma puedo aprovechar sus utilidades sin perder el lenguaje visual LXL. -->
@@ -77,57 +88,75 @@
     <header class="encabezado-principal">
 
         <!-- Aquí se organiza la navegación principal del portafolio.
-             aria-label identifica este bloque como navegación principal
-             para tecnologías de asistencia. -->
-        <nav class="navegacion-principal container-fluid d-flex justify-content-end align-items-center" aria-label="Navegación principal">
+     aria-label identifica este bloque como navegación principal
+     para tecnologías de asistencia. -->
+        <nav class="navegacion-principal container-fluid d-flex justify-content-between align-items-center"
+            aria-label="Navegación principal">
+
+            <!-- Selector de tema LXL -->
+            <button class="theme-toggle" type="button" data-theme-toggle
+                aria-label="Modo elegante próximamente"
+                aria-pressed="false"
+                aria-haspopup="dialog"
+                title="Modo elegante próximamente">
+
+                <span class="theme-toggle__track" aria-hidden="true">
+
+                    <span class="theme-toggle__thumb">
+
+                        <i class="bi bi-moon-stars-fill theme-toggle__icon theme-toggle__icon--dark">
+                        </i>
+
+                        <i class="bi bi-sun-fill theme-toggle__icon theme-toggle__icon--light">
+                        </i>
+
+                    </span>
+
+                </span>
+
+                <span class="theme-toggle__label" data-theme-label>
+                    Próximamente
+                </span>
+
+            </button>
 
             <!-- Aquí se agrupan los enlaces hacia Inicio, Sobre mí, Proyectos,
-                 Habilidades y Contacto. index.js administra su estado activo durante el scroll. -->
+         Habilidades y Contacto. index.js administra su estado activo durante el scroll. -->
             <ul class="navegacion-lista d-flex flex-wrap align-items-center mb-0">
 
                 <!-- Aquí se crea el enlace hacia la sección Inicio -->
                 <li>
-
                     <a href="#inicio">
                         Inicio
                     </a>
-
                 </li>
 
                 <!-- Aquí se crea el enlace hacia la sección Sobre mí -->
                 <li>
-
                     <a href="#sobre-mi">
                         Sobre mí
                     </a>
-
                 </li>
 
                 <!-- Aquí se crea el enlace hacia la sección Proyectos -->
                 <li>
-
                     <a href="#proyectos">
                         Proyectos
                     </a>
-
                 </li>
 
                 <!-- Aquí se crea el enlace hacia la sección Habilidades -->
                 <li>
-
                     <a href="#habilidades">
                         Habilidades
                     </a>
-
                 </li>
 
                 <!-- Aquí se crea el enlace hacia la sección Contacto -->
                 <li>
-
                     <a href="#contacto">
                         Contacto
                     </a>
-
                 </li>
 
                 <!-- Cierre lista de navegación -->
@@ -310,7 +339,7 @@
 
                 <!-- Aquí se conserva el rol profesional como información secundaria de cierre -->
                 <p class="hero-profesion">
-                    Junior Full-Stack Java Developer
+                    Ingeniera Informatica | Jr Full-Stack Java Developer
                 </p>
 
                 <!-- Cierre contenido central del Hero -->
@@ -341,7 +370,7 @@
 
                     <!-- Título principal con contorno turquesa -->
                     <h2>
-                        MI HISTORIA &amp; CÓDIGO
+                        MI HISTORIA &amp; CODE
                     </h2>
 
                     <!-- Cierre encabezado editorial de Sobre mí -->
@@ -421,7 +450,7 @@
 
                         <!-- Título principal de la historia -->
                         <h3>
-                            Mi historia.
+                            I AM = 01 + 02 + 03 + 04
                         </h3>
 
                         <!-- Los cuatro bloques resumen la historia profesional con el mismo peso visual -->
@@ -429,17 +458,20 @@
 
                             <!-- Bloque 01: habilidades transferibles hacia tecnología -->
                             <div class="sobre-mi-fiel-contacto__historia-bloque">
-                                <span class="sobre-mi-fiel-contacto__historia-indice" aria-hidden="true">01 - EXPERIENCIA QUE TRANSFIERO A TECNOLOGÍA</span>
+                                <span class="sobre-mi-fiel-contacto__historia-indice" aria-hidden="true">01 -
+                                    EXPERIENCIA QUE TRANSFIERO A TECNOLOGÍA</span>
                                 <p>
                                     Aporto experiencia en
-                                    <strong>gestión de proyectos, análisis, seguimiento y resolución de problemas</strong>,
+                                    <strong>gestión de proyectos, análisis, seguimiento y resolución de
+                                        problemas</strong>,
                                     desarrollada en el sector de telecomunicaciones.
                                 </p>
                             </div>
 
                             <!-- Bloque 02: formación técnica actual -->
                             <div class="sobre-mi-fiel-contacto__historia-bloque">
-                                <span class="sobre-mi-fiel-contacto__historia-indice" aria-hidden="true">02 - DESARROLLO FULL-STACK</span>
+                                <span class="sobre-mi-fiel-contacto__historia-indice" aria-hidden="true">02 - DESARROLLO
+                                    FULL-STACK</span>
                                 <p>
                                     Fortalezco mi perfil como <strong>Junior Full-Stack Java Developer</strong>
                                     desarrollando proyectos con Java, Spring Boot, MySQL, HTML, CSS y JavaScript.
@@ -448,16 +480,19 @@
 
                             <!-- Bloque 03: experiencia complementaria desde LIHEN.CO -->
                             <div class="sobre-mi-fiel-contacto__historia-bloque">
-                                <span class="sobre-mi-fiel-contacto__historia-indice" aria-hidden="true">03 - VISIÓN DE PRODUCTO Y USUARIO</span>
+                                <span class="sobre-mi-fiel-contacto__historia-indice" aria-hidden="true">03 - VISIÓN DE
+                                    PRODUCTO Y USUARIO</span>
                                 <p>
-                                    Como cofundadora de <strong>LIHEN.CO</strong> complemento mi perfil tecnológico con una visión
+                                    Como cofundadora de <strong>LIHEN.CO</strong> complemento mi perfil tecnológico con
+                                    una visión
                                     de marca, usuario y construcción de soluciones digitales.
                                 </p>
                             </div>
 
                             <!-- Bloque 04: enfoque de solución centrado en claridad y utilidad -->
                             <div class="sobre-mi-fiel-contacto__historia-bloque">
-                                <span class="sobre-mi-fiel-contacto__historia-indice" aria-hidden="true">04 - MI ENFOQUE</span>
+                                <span class="sobre-mi-fiel-contacto__historia-indice" aria-hidden="true">04 - MI
+                                    ENFOQUE</span>
                                 <p>
                                     Integro experiencia operativa y desarrollo de software para crear soluciones
                                     <strong>claras, funcionales y orientadas al usuario.</strong>
@@ -556,11 +591,13 @@
                         </div>
 
                         <!-- Flujo visual del proceso -->
-                        <div class="sobre-mi-canal-visual__flujo" aria-label="Formación, práctica, documentación y soluciones">
+                        <div class="sobre-mi-canal-visual__flujo"
+                            aria-label="Formación, práctica, documentación y soluciones">
 
                             <!-- Formación -->
                             <div class="sobre-mi-canal-visual__item">
-                                <span class="sobre-mi-canal-visual__icono sobre-mi-canal-visual__icono--violeta" aria-hidden="true">
+                                <span class="sobre-mi-canal-visual__icono sobre-mi-canal-visual__icono--violeta"
+                                    aria-hidden="true">
                                     <i class="bi bi-book"></i>
                                 </span>
                                 <span class="sobre-mi-canal-visual__texto">
@@ -590,7 +627,8 @@
 
                             <!-- Documentación -->
                             <div class="sobre-mi-canal-visual__item">
-                                <span class="sobre-mi-canal-visual__icono sobre-mi-canal-visual__icono--violeta" aria-hidden="true">
+                                <span class="sobre-mi-canal-visual__icono sobre-mi-canal-visual__icono--violeta"
+                                    aria-hidden="true">
                                     <i class="bi bi-code-slash"></i>
                                 </span>
                                 <span class="sobre-mi-canal-visual__texto">
@@ -660,11 +698,13 @@
                         </div>
 
                         <!-- Flujo visual de identidad -->
-                        <div class="sobre-mi-canal-visual__flujo" aria-label="Diseño, usuario, experiencia y tecnología">
+                        <div class="sobre-mi-canal-visual__flujo"
+                            aria-label="Diseño, usuario, experiencia y tecnología">
 
                             <!-- Diseño -->
                             <div class="sobre-mi-canal-visual__item">
-                                <span class="sobre-mi-canal-visual__icono sobre-mi-canal-visual__icono--violeta" aria-hidden="true">
+                                <span class="sobre-mi-canal-visual__icono sobre-mi-canal-visual__icono--violeta"
+                                    aria-hidden="true">
                                     <i class="bi bi-window"></i>
                                 </span>
                                 <span class="sobre-mi-canal-visual__texto">
@@ -694,7 +734,8 @@
 
                             <!-- Experiencia -->
                             <div class="sobre-mi-canal-visual__item">
-                                <span class="sobre-mi-canal-visual__icono sobre-mi-canal-visual__icono--violeta" aria-hidden="true">
+                                <span class="sobre-mi-canal-visual__icono sobre-mi-canal-visual__icono--violeta"
+                                    aria-hidden="true">
                                     <i class="bi bi-lightbulb"></i>
                                 </span>
                                 <span class="sobre-mi-canal-visual__texto">
@@ -788,7 +829,7 @@
                         <span></span>
                     </div>
                     <p class="proyectos-banner-titulo">
-                        PROYECTOS &amp; CÓDIGO
+                        PROYECTOS &amp; CODE
                     </p>
 
                     <!-- Cierre encabezado oscuro -->
@@ -840,8 +881,7 @@
                                         <div class="project-reference-front__preview">
                                             <iframe
                                                 src="https://jorgegutierrezvallejo.github.io/ProyectoFinalJava13-Grupo6/"
-                                                title="Previsualización del proyecto web HuellaVet"
-                                                loading="lazy"
+                                                title="Previsualización del proyecto web HuellaVet" loading="lazy"
                                                 tabindex="-1"></iframe>
                                         </div>
 
@@ -1008,8 +1048,7 @@
                                             <iframe
                                                 src="https://lizeth-londono.github.io/Gen-c13-Planificador-tareas-web/"
                                                 title="Previsualización del proyecto web Planificador de Tareas"
-                                                loading="lazy"
-                                                tabindex="-1"></iframe>
+                                                loading="lazy" tabindex="-1"></iframe>
                                         </div>
 
                                         <!-- Aquí comienza el estado inicial de Languages para el Planificador.
@@ -1814,7 +1853,8 @@
                                         <!-- Bloque negro superior izquierdo del reverso -->
                                         <div class="skill-card__back-text-block">
                                             <h3 class="skill-card__back-title">BOOTSTRAP</h3>
-                                            <p class="skill-card__back-description">Bootstrap 5 integrado en este portafolio para estructura, utilidades responsive e iconografía.</p>
+                                            <p class="skill-card__back-description">Bootstrap 5 integrado en este
+                                                portafolio para estructura, utilidades responsive e iconografía.</p>
                                         </div>
 
                                         <!-- Decoración pixelada superior derecha -->
@@ -2618,7 +2658,7 @@
                         <span></span>
                     </div>
 
-                    <p>HABILIDADES &amp; CÓDIGO</p>
+                    <p>HABILIDADES &amp; CODE</p>
 
                     <!-- Cierre banner inferior -->
                 </div>
@@ -2679,14 +2719,8 @@
                             <!-- Aquí el video intenta iniciar automáticamente y permanece sin sonido.
                                  loop lo repite, playsinline mantiene la reproducción integrada en móviles compatibles
                                  y preload="metadata" carga primero únicamente la información básica del archivo. -->
-                            <video
-                                class="contacto-poster-video__elemento"
-                                autoplay
-                                muted
-                                loop
-                                playsinline
-                                preload="metadata"
-                                aria-label="Video visual de identidad y proceso LXL">
+                            <video class="contacto-poster-video__elemento" autoplay muted loop playsinline
+                                preload="metadata" aria-label="Video visual de identidad y proceso LXL">
 
                                 <!--
                                     Ruta preparada para una carpeta /video dentro del proyecto.
@@ -2764,7 +2798,7 @@
 
                             <!-- Título principal -->
                             <h3>
-                                Código y proyectos
+                                Código AND proyectos
                             </h3>
 
                             <!-- Descripción breve -->
@@ -2773,10 +2807,8 @@
                             </p>
 
                             <!-- Acción principal -->
-                            <a class="contacto-canal-referencia__cta"
-                                href="https://github.com/Lizeth-Londono"
-                                aria-label="Ver GitHub de Lizeth Londoño, se abre en una pestaña nueva"
-                                target="_blank"
+                            <a class="contacto-canal-referencia__cta" href="https://github.com/Lizeth-Londono"
+                                aria-label="Ver GitHub de Lizeth Londoño, se abre en una pestaña nueva" target="_blank"
                                 rel="noopener noreferrer">
                                 Ver GitHub
                                 <i class="bi bi-arrow-right" aria-hidden="true"></i>
@@ -2802,7 +2834,8 @@
                             <span class="contacto-canal-referencia__plus contacto-canal-referencia__plus--dos">+</span>
                             <span class="contacto-canal-referencia__pixel contacto-canal-referencia__pixel--uno"></span>
                             <span class="contacto-canal-referencia__pixel contacto-canal-referencia__pixel--dos"></span>
-                            <span class="contacto-canal-referencia__pixel contacto-canal-referencia__pixel--tres"></span>
+                            <span
+                                class="contacto-canal-referencia__pixel contacto-canal-referencia__pixel--tres"></span>
 
                         </div>
 
@@ -2845,15 +2878,15 @@
 
                             <!-- Descripción breve -->
                             <p class="contacto-canal-descripcion">
-                                Formación, experiencia y evolución profesional en mi transición hacia desarrollo de software.
+                                Formación, experiencia y evolución profesional en mi transición hacia desarrollo de
+                                software.
                             </p>
 
                             <!-- Acción principal -->
                             <a class="contacto-canal-referencia__cta"
                                 href="https://www.linkedin.com/in/lina-londono-dev/"
                                 aria-label="Conectar con Lizeth Londoño en LinkedIn, se abre en una pestaña nueva"
-                                target="_blank"
-                                rel="noopener noreferrer">
+                                target="_blank" rel="noopener noreferrer">
                                 Conectar en LinkedIn
                                 <i class="bi bi-arrow-right" aria-hidden="true"></i>
                             </a>
@@ -2876,7 +2909,8 @@
                             <span class="contacto-canal-referencia__plus contacto-canal-referencia__plus--dos">+</span>
                             <span class="contacto-canal-referencia__pixel contacto-canal-referencia__pixel--uno"></span>
                             <span class="contacto-canal-referencia__pixel contacto-canal-referencia__pixel--dos"></span>
-                            <span class="contacto-canal-referencia__pixel contacto-canal-referencia__pixel--tres"></span>
+                            <span
+                                class="contacto-canal-referencia__pixel contacto-canal-referencia__pixel--tres"></span>
 
                         </div>
 
@@ -2917,6 +2951,17 @@
     </main>
 
 
+
+    <!-- ========================================
+         MASCOTA LXL V12 — INYECCIÓN DESDE JAVASCRIPT
+         ======================================== -->
+
+    <!--
+        La mascota LXL V12 no necesita markup fijo en index.html.
+        js/lxl-character.js crea su capa visual de forma independiente,
+        evitando duplicar estructuras antiguas de mascota en el DOM.
+    -->
+
     <!-- Aquí se cierra el portafolio con la identidad profesional,
          derechos reservados y accesos secundarios a GitHub y LinkedIn. -->
     <footer class="pie-pagina">
@@ -2924,7 +2969,7 @@
         <!-- Aquí se agrupa el contenido del pie de página -->
         <div class="pie-pagina-contenido d-flex justify-content-between align-items-center flex-wrap">
             <p>
-                © 2026 Lina Lizeth Londoño Marín · Junior Full-Stack Java Developer en formación
+                © 2026 Lina Lizeth Londoño Marín · Ingeniera Informatica | Jr Full-Stack Java Developer
             </p>
             <div class="pie-pagina-enlaces d-flex align-items-center flex-wrap gap-3">
                 <span>
@@ -2959,8 +3004,7 @@
 
     <!-- Aquí se carga primero el bundle de Bootstrap, que incluye sus plugins y Popper.
          Después se conectan los módulos propios para mantener separadas las responsabilidades. -->
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 
@@ -2977,9 +3021,15 @@
          y de Languages en las cards de Proyectos. -->
     <script type="module" src="js/project-cards.js"></script>
 
-    <!-- Aquí se conecta la mascota LXL interactiva como módulo independiente.
-         Su lógica visual y de movimiento permanece desacoplada del resto del portafolio. -->
+    <!-- Aquí se conecta la mascota LXL V12 como módulo independiente.
+         El módulo crea su propio DOM y conserva separadas las responsabilidades
+         respecto de index.js, project-cards.js y skills-cards.js. -->
     <script type="module" src="js/lxl-character.js"></script>
+
+    <!-- Aquí se conecta el teaser del futuro modo Elegant Editorial.
+         Mientras el modo claro está pausado, theme-toggle.js mantiene Creative Tech
+         como única experiencia activa y muestra un mensaje informativo accesible. -->
+    <script type="module" src="js/theme-toggle.js"></script>
 
 </body>
 

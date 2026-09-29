@@ -28,22 +28,22 @@ function prepararLxlCharacterV12() {
     character.dataset.expression = "idle";
 
     const cubeLayout = [
-        [-47,-37,20],[-24,-48,12],[-3,-51,14],[21,-47,14],[45,-35,21],
-        [-54,-13,15],[-42,4,11],[-48,24,20],[51,-7,11],[53,15,16],[45,34,19],
-        [-31,44,19],[-10,51,12],[13,49,14],[31,43,17],
-        [-61,7,8],[61,25,8],[-17,-61,8],[34,-58,8],[-54,45,8],[56,48,8],
-        [-35,-8,9],[38,6,9],[1,-41,10],[-2,59,8],[58,-29,7]
+        [-24, -48, 12], [21, -47, 14],
+        [-54, -13, 15], [-42, 4, 11], [51, -7, 11],
+        [-10, 51, 12], [13, 49, 14],
+        [-61, 7, 8], [61, 25, 8], [-17, -61, 8], [34, -58, 8], [-54, 45, 8], [56, 48, 8],
+        [-35, -8, 9], [38, 6, 9], [1, -41, 10], [-2, 59, 8], [58, -29, 7]
     ];
 
     const colors = [
-        "cyan","cyan","aqua","violet","cyan",
-        "magenta","violet","cyan","lavender","cyan","violet",
-        "cyan","blue","violet","lavender",
-        "red","cyan","lavender","cyan","magenta",
-        "violet","dark","blue","violet","cyan","red"
+        "cyan", "violet",
+        "magenta", "violet", "lavender",
+        "blue", "violet",
+        "red", "cyan", "lavender", "cyan", "magenta", "violet",
+        "dark", "blue", "violet", "cyan", "red"
     ];
 
-    const particles = cubeLayout.map(([x,y,size], index) => `
+    const particles = cubeLayout.map(([x, y, size], index) => `
         <span
             class="lxl-character__cube lxl-character__cube--${colors[index]}"
             style="--cube-x:${x}px;--cube-y:${y}px;--cube-size:${size}px;--cube-index:${index};"
